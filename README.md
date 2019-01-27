@@ -1,8 +1,8 @@
-# ECSE321 Project Group _number_
+# ECSE321 Project Group 06
 
-_This README.md is a fillable template for the project submissions. Use the table provided below to document the hours and the responsibilities of team members individually. Create a separate table for each deliverable. Remove this comment before the first submission._
+Company Viewpoint
 
-## Deliverable _number_
+## Deliverable 1
 
 |Team member's name|Total hours|Responsibility         |
 |------------------|-----------|-----------------------|
