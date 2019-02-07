@@ -15,6 +15,7 @@ public class Student extends User{
 	private int studentId;
 	private String school;
 	private Date graduationDate;
+	private Set<CoopTerm> coopTerm;
 
 	private void setSchool(String value) {
 		this.school = value;
@@ -29,11 +30,15 @@ public class Student extends User{
 	private Date getGraduationDate() {
 		return this.graduationDate;
 	}
-	private Set<CoopTerm> coopTerm;
+	
+	private void setStudentId(int value) {
+		this.studentId=value;
+	}
 	@Id
 	public int getStudentId() {
 		return this.studentId;
 	}
+	
 	@OneToMany(mappedBy="student")
 	public Set<CoopTerm> getCoopTerm() {
 		return this.coopTerm;
@@ -42,6 +47,7 @@ public class Student extends User{
 	public void setCoopTerm(Set<CoopTerm> coopTerms) {
 		this.coopTerm = coopTerms;
 	}
+	
 	public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
 		super(userEmail, userPassword, studentName);
 		this.studentId = studentId;

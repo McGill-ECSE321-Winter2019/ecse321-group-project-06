@@ -16,6 +16,7 @@ public class CoopAdmin extends User{
 	public int getCoopAdminId() {
 		return this.coopAdminId;
 	}
+	
 	public CoopAdmin(String userEmail, String userPassword, String adminName, int coopAdminId) {
 		super(userEmail, userPassword,adminName);
 	}

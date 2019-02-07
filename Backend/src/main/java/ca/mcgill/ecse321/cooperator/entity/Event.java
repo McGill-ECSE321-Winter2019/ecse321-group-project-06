@@ -22,6 +22,7 @@ public class Event{
 	private void setStartDate(Date value) {
 		this.startDate = value;
 	}
+	
 	private Date getStartDate() {
 		return this.startDate;
 	}
@@ -29,6 +30,7 @@ public class Event{
 	private void setEndDate(Date value) {
 		this.endDate = value;
 	}
+	
 	private Date getEndDate() {
 		return this.endDate;
 	}
@@ -36,6 +38,7 @@ public class Event{
 	private void setLocation(String value) {
 		this.location = value;
 	}
+	
 	private String getLocation() {
 		return this.location;
 	}
@@ -52,6 +55,7 @@ public class Event{
 	public void setStartTime(Time value) {
 		this.startTime = value;
 	}
+	
 	public Time getStartTime() {
 		return this.startTime;
 	}
@@ -59,6 +63,7 @@ public class Event{
 	public void setEndTime(Time value) {
 		this.endTime = value;
 	}
+	
 	public Time getEndTime() {
 		return this.endTime;
 	}
@@ -70,6 +75,7 @@ public class Event{
 	public int getEventId() {
 		return this.eventId;
 	}
+	
 	public Event (Date startDate, Date endDate, String location, Time startTime, Time endTime, int eventId) {
 		this.startDate=startDate;
 		this.endDate=endDate;

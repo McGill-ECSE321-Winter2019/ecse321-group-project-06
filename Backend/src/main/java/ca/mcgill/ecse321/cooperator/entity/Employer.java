@@ -28,6 +28,7 @@ public class Employer extends User{
 	public int getEmployerId() {
 		return this.employerId;
 	}
+	
 	private Employer (String userEmail, String userPassword, String companyName, int employerId) {
 		super(userEmail, userPassword,companyName);
 	}
