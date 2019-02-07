@@ -1,4 +1,4 @@
-# ECSE321 Project Group 06
+# ECSE321 Project Group 06 [![Build Status](https://travis-ci.com/McGill-ECSE321-Winter2019/ecse321-group-project-06.svg?token=1hWgpGRW29zUadc5ySpu&branch=master)](https://travis-ci.com/McGill-ECSE321-Winter2019/ecse321-group-project-06)
  Company Viewpoint of CO-OP-ERATOR
 
 
