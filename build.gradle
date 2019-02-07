@@ -1,4 +1,14 @@
-plugins { id "org.springframework.boot" version "2.1.2.RELEASE" }
+buildscript {
+	ext {
+		springBootVersion = '2.1.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
 
 task stage () {
     dependsOn ':Backend:assemble'
