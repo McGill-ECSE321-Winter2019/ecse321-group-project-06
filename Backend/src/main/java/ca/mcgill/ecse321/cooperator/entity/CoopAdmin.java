@@ -7,18 +7,17 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "COOPADMIN")
 public class CoopAdmin extends User{
-private int coopAdminId;
-   
-   public void setCoopAdminId(int value) {
-this.coopAdminId = value;
-    }
-@Id
-public int getCoopAdminId() {
-return this.coopAdminId;
-    }
-public CoopAdmin(String userEmail, String userPassword, String adminName, int coopAdminId) {
-	super(userEmail, userPassword,adminName);
-	// TODO Auto-generated constructor stub	
-}
+	private int coopAdminId;
+
+	public void setCoopAdminId(int value) {
+		this.coopAdminId = value;
+	}
+	@Id
+	public int getCoopAdminId() {
+		return this.coopAdminId;
+	}
+	public CoopAdmin(String userEmail, String userPassword, String adminName, int coopAdminId) {
+		super(userEmail, userPassword,adminName);
+	}
 
 }
