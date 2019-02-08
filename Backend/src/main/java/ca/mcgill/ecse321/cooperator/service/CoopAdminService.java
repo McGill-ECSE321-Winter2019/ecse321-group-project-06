@@ -17,17 +17,26 @@ public class CoopAdminService {
 	
 	@Transactional
 	public CoopAdmin createCoopAdmin(String email, String password, String name){
+		if (name == null || name.trim().length() == 0) {
+			throw new IllegalArgumentException("name cannot be empty!");
+		}
+		if (email == null || email.trim().length() == 0) {
+			throw new IllegalArgumentException("email cannot be empty!");
+		}
+		if (password == null || password.trim().length() == 0) {
+			throw new IllegalArgumentException("password cannot be empty!");
+		}
 		CoopAdmin coopAdmin = new CoopAdmin();
 		coopAdmin.setName(name);
 		coopAdmin.setEmail(email);
 		coopAdmin.setPassword(password);
 		CoopAdmin coopAdminReturn = coopAdminRepository.save(coopAdmin);
-		return coopAdmin;
+		return coopAdminReturn;
 	}
 	
 	@Transactional
-	public CoopAdmin getCoopAdmin(){
-		CoopAdmin coopAdmin = coopAdminRepository.findById(1).get();
+	public CoopAdmin getCoopAdmin(int id){
+		CoopAdmin coopAdmin = coopAdminRepository.findById(id).get();
 		return coopAdmin;
 	}
 	
