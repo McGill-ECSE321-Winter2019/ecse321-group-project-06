@@ -48,7 +48,7 @@ public class Student extends User{
 		this.coopTerm = coopTerms;
 	}
 	public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
-		super(userEmail, userPassword, studentName);
+		super();
 		this.studentId = studentId;
 		this.graduationDate = graduationDate;
 		this.school = school;

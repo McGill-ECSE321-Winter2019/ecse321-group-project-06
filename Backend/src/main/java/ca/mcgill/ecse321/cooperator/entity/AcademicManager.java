@@ -20,7 +20,7 @@ public class AcademicManager extends User{
 		return this.academicManagerId;
 	}
 	public AcademicManager(String userEmail, String userPassword, String academicManagerName) {
-		super(userEmail, userPassword, academicManagerName);
+		super();
 	}
 
 }

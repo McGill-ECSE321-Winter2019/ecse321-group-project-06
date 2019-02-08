@@ -120,7 +120,7 @@ public class CoopTerm{
 	private void setCoopAdmin(CoopAdmin value) {
 		this.coopAdmin = value;
 	}
-	@ManyToOne(optional=false)
+	@ManyToOne
 	private CoopAdmin getCoopAdmin() {
 		return this.coopAdmin;
 	}

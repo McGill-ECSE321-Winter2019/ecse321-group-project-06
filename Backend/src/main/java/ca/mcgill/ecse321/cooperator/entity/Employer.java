@@ -42,7 +42,7 @@ public class Employer extends User{
 		this.coopTerm = coopTerms;
 	}
 	private Employer (String userEmail, String userPassword, String companyName) {
-		super(userEmail, userPassword,companyName);
+		super();
 	}
 
 }

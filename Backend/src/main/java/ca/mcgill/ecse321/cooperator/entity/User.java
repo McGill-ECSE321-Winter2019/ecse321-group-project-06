@@ -12,30 +12,30 @@ public abstract class User{
 	private String password;
 	private String name;
 	
-	public User(String email, String password, String name) {
-		this.email = email;
-		this.password = password;
-		this.name = name;
+	public User() {
+//		this.email = email;
+//		this.password = password;
+//		this.name = name;
 	}
 
-	private void setEmail(String value) {
+	public void setEmail(String value) {
 		this.email = value;
 	}
-	private String getEmail() {
+	public String getEmail() {
 		return this.email;
 	}
 
-	private void setPassword(String value) {
+	public void setPassword(String value) {
 		this.password = value;
 	}
-	private String getPassword() {
+	public String getPassword() {
 		return this.password;
 	}
 
-	private void setName(String value) {
+	public void setName(String value) {
 		this.name = value;
 	}
-	private String getName() {
+	public String getName() {
 		return this.name;
 	}
 
