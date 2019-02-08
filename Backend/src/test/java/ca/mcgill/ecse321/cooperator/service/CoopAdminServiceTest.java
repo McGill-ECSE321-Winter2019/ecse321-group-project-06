@@ -52,4 +52,67 @@ public class CoopAdminServiceTest {
 		assertEquals(email, coopAdmin.getEmail());
 		assertEquals(password, coopAdmin.getPassword());
 	}
+	
+	@Test
+	public void testCreateCoopAdminWithNullName() {
+		assertEquals(0, coopAdminService.getAllCoopAdmins().size());
+		
+		String email = "test@gmail.com";
+		String password = "12345678";
+		String name = null;
+
+		CoopAdmin coopAdmin = null;
+		String error = null;
+		try {
+			coopAdmin = coopAdminService.createCoopAdmin(email, password, name);
+		} catch (IllegalArgumentException e) {
+			// Check that no error occurred
+			error = e.getMessage();
+		}
+		assertEquals("name cannot be empty!", error);
+
+		assertEquals(0, coopAdminService.getAllCoopAdmins().size());
+	}
+	
+	@Test
+	public void testCreateCoopAdminWithNullEmail() {
+		assertEquals(0, coopAdminService.getAllCoopAdmins().size());
+		
+		String email = null;
+		String password = "12345678";
+		String name = "test name";
+
+		CoopAdmin coopAdmin = null;
+		String error = null;
+		try {
+			coopAdmin = coopAdminService.createCoopAdmin(email, password, name);
+		} catch (IllegalArgumentException e) {
+			// Check that no error occurred
+			error = e.getMessage();
+		}
+		assertEquals("email cannot be empty!", error);
+
+		assertEquals(0, coopAdminService.getAllCoopAdmins().size());
+	}
+	
+	@Test
+	public void testCreateCoopAdminWithNullPassword() {
+		assertEquals(0, coopAdminService.getAllCoopAdmins().size());
+		
+		String email = "test@gmail.com";
+		String password = null;
+		String name = "test name";
+
+		CoopAdmin coopAdmin = null;
+		String error = null;
+		try {
+			coopAdmin = coopAdminService.createCoopAdmin(email, password, name);
+		} catch (IllegalArgumentException e) {
+			// Check that no error occurred
+			error = e.getMessage();
+		}
+		assertEquals("password cannot be empty!", error);
+
+		assertEquals(0, coopAdminService.getAllCoopAdmins().size());
+	}
 }
