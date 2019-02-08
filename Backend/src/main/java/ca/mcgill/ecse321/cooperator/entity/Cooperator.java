@@ -1,3 +1,5 @@
+package ca.mcgill.ecse321.cooperator.entity;
+
 import javax.persistence.Entity;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -5,81 +7,75 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Cooperator{
-private Set<Student> student;
+	private Set<Student> student;
+	private Set<CoopTerm> coopTerm;
+	private Set<CoopAdmin> coopAdmin;
+	private Set<Event> event;
+	private Set<AcademicManager> academicManager;
+	private Set<Employer> employer;
+	private Set<User> user;
 
-@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
-public Set<Student> getStudent() {
-   return this.student;
-}
+	@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
+	public Set<Student> getStudent() {
+		return this.student;
+	}
 
-public void setStudent(Set<Student> students) {
-   this.student = students;
-}
+	public void setStudent(Set<Student> students) {
+		this.student = students;
+	}
 
-private Set<CoopTerm> coopTerm;
+	@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
+	public Set<CoopTerm> getCoopTerm() {
+		return this.coopTerm;
+	}
 
-@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
-public Set<CoopTerm> getCoopTerm() {
-   return this.coopTerm;
-}
+	public void setCoopTerm(Set<CoopTerm> coopTerms) {
+		this.coopTerm = coopTerms;
+	}
 
-public void setCoopTerm(Set<CoopTerm> coopTerms) {
-   this.coopTerm = coopTerms;
-}
+	@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
+	public Set<CoopAdmin> getCoopAdmin() {
+		return this.coopAdmin;
+	}
 
-private Set<CoopAdmin> coopAdmin;
+	public void setCoopAdmin(Set<CoopAdmin> coopAdmins) {
+		this.coopAdmin = coopAdmins;
+	}
 
-@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
-public Set<CoopAdmin> getCoopAdmin() {
-   return this.coopAdmin;
-}
+	@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
+	public Set<Event> getEvent() {
+		return this.event;
+	}
 
-public void setCoopAdmin(Set<CoopAdmin> coopAdmins) {
-   this.coopAdmin = coopAdmins;
-}
+	public void setEvent(Set<Event> events) {
+		this.event = events;
+	}
 
-private Set<Event> event;
+	@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
+	public Set<AcademicManager> getAcademicManager() {
+		return this.academicManager;
+	}
 
-@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
-public Set<Event> getEvent() {
-   return this.event;
-}
+	public void setAcademicManager(Set<AcademicManager> academicManagers) {
+		this.academicManager = academicManagers;
+	}
 
-public void setEvent(Set<Event> events) {
-   this.event = events;
-}
+	@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
+	public Set<Employer> getEmployer() {
+		return this.employer;
+	}
 
-private Set<AcademicManager> academicManager;
+	public void setEmployer(Set<Employer> employers) {
+		this.employer = employers;
+	}
 
-@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
-public Set<AcademicManager> getAcademicManager() {
-   return this.academicManager;
-}
+	@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
+	public Set<User> getUser() {
+		return this.user;
+	}
 
-public void setAcademicManager(Set<AcademicManager> academicManagers) {
-   this.academicManager = academicManagers;
-}
-
-private Set<Employer> employer;
-
-@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
-public Set<Employer> getEmployer() {
-   return this.employer;
-}
-
-public void setEmployer(Set<Employer> employers) {
-   this.employer = employers;
-}
-
-private Set<User> user;
-
-@OneToMany(mappedBy="cooperator", cascade={CascadeType.ALL})
-public Set<User> getUser() {
-   return this.user;
-}
-
-public void setUser(Set<User> users) {
-   this.user = users;
-}
+	public void setUser(Set<User> users) {
+		this.user = users;
+	}
 
 }

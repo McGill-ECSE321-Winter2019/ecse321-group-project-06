@@ -1,3 +1,5 @@
+package ca.mcgill.ecse321.cooperator.entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -11,84 +13,82 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "EVENT")
 public class Event{
-private Cooperator cooperator;
+	private Cooperator cooperator;
+	private Date startDate;
+	private Date endDate;
+	private String location;
+	private Set<Employer> employer;
+	private Time startTime;
+	private Time endTime;
+	private int eventId;
 
-@ManyToOne(optional=false)
-public Cooperator getCooperator() {
-   return this.cooperator;
-}
+	@ManyToOne(optional=false)
+	public Cooperator getCooperator() {
+		return this.cooperator;
+	}
 
-public void setCooperator(Cooperator cooperator) {
-   this.cooperator = cooperator;
-}
+	public void setCooperator(Cooperator cooperator) {
+		this.cooperator = cooperator;
+	}
 
-private Date startDate;
-   
-   private void setStartDate(Date value) {
-this.startDate = value;
-    }
-private Date getStartDate() {
-return this.startDate;
-    }
-private Date endDate;
+	private void setStartDate(Date value) {
+		this.startDate = value;
+	}
+	private Date getStartDate() {
+		return this.startDate;
+	}
+	
+	private void setEndDate(Date value) {
+		this.endDate = value;
+	}
+	private Date getEndDate() {
+		return this.endDate;
+	}
 
-private void setEndDate(Date value) {
-this.endDate = value;
-    }
-private Date getEndDate() {
-return this.endDate;
-    }
-private String location;
+	private void setLocation(String value) {
+		this.location = value;
+	}
+	private String getLocation() {
+		return this.location;
+	}
 
-private void setLocation(String value) {
-this.location = value;
-    }
-private String getLocation() {
-return this.location;
-    }
-private Set<Employer> employer;
+	@ManyToMany(mappedBy="event")
+	public Set<Employer> getEmployer() {
+		return this.employer;
+	}
 
-@ManyToMany(mappedBy="event")
-public Set<Employer> getEmployer() {
-   return this.employer;
-}
+	public void setEmployer(Set<Employer> employers) {
+		this.employer = employers;
+	}
 
-public void setEmployer(Set<Employer> employers) {
-   this.employer = employers;
-}
+	public void setStartTime(Time value) {
+		this.startTime = value;
+	}
+	public Time getStartTime() {
+		return this.startTime;
+	}
 
-private Time startTime;
+	public void setEndTime(Time value) {
+		this.endTime = value;
+	}
+	public Time getEndTime() {
+		return this.endTime;
+	}
 
-public void setStartTime(Time value) {
-this.startTime = value;
-    }
-public Time getStartTime() {
-return this.startTime;
-    }
-private Time endTime;
-
-public void setEndTime(Time value) {
-this.endTime = value;
-    }
-public Time getEndTime() {
-return this.endTime;
-    }
-private int eventId;
-
-public void setEventId(int value) {
-this.eventId = value;
-    }
-@Id
-@GeneratedValue()public int getEventId() {
-return this.eventId;
-    }
-public Event (Date startDate, Date endDate, String location, Time startTime, Time endTime) {
-   this.startDate=startDate;
-   this.endDate=endDate;
-   this.location=location;
-   this.startTime=startTime;
-   this.endTime=endTime;
-   this.eventId=eventId;
-}
+	public void setEventId(int value) {
+		this.eventId = value;
+	}
+	@Id
+	@GeneratedValue()
+	public int getEventId() {
+		return this.eventId;
+	}
+	public Event (Date startDate, Date endDate, String location, Time startTime, Time endTime) {
+		this.startDate=startDate;
+		this.endDate=endDate;
+		this.location=location;
+		this.startTime=startTime;
+		this.endTime=endTime;
+	}
 
 }
