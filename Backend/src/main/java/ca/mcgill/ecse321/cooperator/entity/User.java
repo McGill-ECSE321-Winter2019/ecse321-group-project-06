@@ -6,11 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 
-@Entity
-@Table(name = "USER")
-public class User{
-	private int userId;
-	private Cooperator cooperator;
+public abstract class User{
+
 	private String email;
 	private String password;
 	private String name;
@@ -19,23 +16,6 @@ public class User{
 		this.email = email;
 		this.password = password;
 		this.name = name;
-	}
-	public void setUserId(int value) {
-		this.userId = value;
-	}
-	@Id
-	@GeneratedValue()
-	public int getUserId() {
-		return this.userId;
-	}
-
-	@ManyToOne(optional=false)
-	public Cooperator getCooperator() {
-		return this.cooperator;
-	}
-
-	public void setCooperator(Cooperator cooperator) {
-		this.cooperator = cooperator;
 	}
 
 	private void setEmail(String value) {

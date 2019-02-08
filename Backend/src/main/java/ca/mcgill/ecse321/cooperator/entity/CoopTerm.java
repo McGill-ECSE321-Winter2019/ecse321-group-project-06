@@ -3,14 +3,13 @@ package ca.mcgill.ecse321.cooperator.entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Entity;
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.ManyToOne;
 import javax.persistence.Id;
 
 @Entity
 @Table(name = "COOPTERM")
 public class CoopTerm{
-	private Cooperator cooperator;
 	private Date endDate;
 	private Date startDate;
 	private String location;
@@ -25,16 +24,7 @@ public class CoopTerm{
 	private Employer employer;
 	private CoopAdmin coopAdmin;
 
-	@ManyToOne(optional=false)
-	public Cooperator getCooperator() {
-		return this.cooperator;
-	}
-
-	public void setCooperator(Cooperator cooperator) {
-		this.cooperator = cooperator;
-	}
-
-	@ManyToOne(optional=false)
+	//@ManyToOne(optional=false)
 	public Date getEndDate() {
 		return this.endDate;
 	}
@@ -43,7 +33,7 @@ public class CoopTerm{
 		this.endDate = endDate;
 	}
 
-	@ManyToOne(optional=false)
+	//@ManyToOne(optional=false)
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -119,12 +109,18 @@ public class CoopTerm{
 	public int getcoopTermId() {
 		return this.coopTermId;
 	}
+	@ManyToOne(optional=false)
 	private Employer getEmployer() {
 		return this.employer;
 	}
+	private void setEmployer(Employer value) {
+		this.employer = value;
+	}
+	
 	private void setCoopAdmin(CoopAdmin value) {
 		this.coopAdmin = value;
 	}
+	@ManyToOne(optional=false)
 	private CoopAdmin getCoopAdmin() {
 		return this.coopAdmin;
 	}

@@ -9,17 +9,7 @@ import javax.persistence.Id;
 @Entity
 @Table()
 public class AcademicManager extends User{
-	private Cooperator cooperator;
 	private int academicManagerId;
-
-	@ManyToOne(optional=false)
-	public Cooperator getCooperator() {
-		return this.cooperator;
-	}
-
-	public void setCooperator(Cooperator cooperator) {
-		this.cooperator = cooperator;
-	}
 
 	public void setAcademicManagerId(int value) {
 		this.academicManagerId = value;

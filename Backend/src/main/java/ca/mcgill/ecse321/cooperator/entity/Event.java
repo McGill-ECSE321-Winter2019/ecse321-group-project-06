@@ -4,32 +4,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Entity;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.ManyToMany;
-import java.sql.Time;
+import java.time.LocalTime;
 import javax.persistence.Id;
 
 @Entity
 @Table(name = "EVENT")
 public class Event{
-	private Cooperator cooperator;
 	private Date startDate;
 	private Date endDate;
 	private String location;
 	private Set<Employer> employer;
-	private Time startTime;
-	private Time endTime;
+	private LocalTime startTime;
+	private LocalTime endTime;
 	private int eventId;
-
-	@ManyToOne(optional=false)
-	public Cooperator getCooperator() {
-		return this.cooperator;
-	}
-
-	public void setCooperator(Cooperator cooperator) {
-		this.cooperator = cooperator;
-	}
 
 	private void setStartDate(Date value) {
 		this.startDate = value;
@@ -61,17 +51,17 @@ public class Event{
 		this.employer = employers;
 	}
 
-	public void setStartTime(Time value) {
+	public void setStartTime(LocalTime value) {
 		this.startTime = value;
 	}
-	public Time getStartTime() {
+	public LocalTime getStartTime() {
 		return this.startTime;
 	}
 
-	public void setEndTime(Time value) {
+	public void setEndTime(LocalTime value) {
 		this.endTime = value;
 	}
-	public Time getEndTime() {
+	public LocalTime getEndTime() {
 		return this.endTime;
 	}
 
@@ -83,7 +73,7 @@ public class Event{
 	public int getEventId() {
 		return this.eventId;
 	}
-	public Event (Date startDate, Date endDate, String location, Time startTime, Time endTime) {
+	public Event (Date startDate, Date endDate, String location, LocalTime startTime, LocalTime endTime) {
 		this.startDate=startDate;
 		this.endDate=endDate;
 		this.location=location;

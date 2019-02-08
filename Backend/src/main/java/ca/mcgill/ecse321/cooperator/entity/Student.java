@@ -1,7 +1,7 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
 import javax.persistence.ManyToOne;
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,20 +12,10 @@ import javax.persistence.OneToMany;
 @Entity
 @Table()
 public class Student extends User{
-	private Cooperator cooperator;
 	private int studentId;
 	private String school;
 	private Date graduationDate;
 	private Set<CoopTerm> coopTerm;
-
-	@ManyToOne(optional=false)
-	public Cooperator getCooperator() {
-		return this.cooperator;
-	}
-
-	public void setCooperator(Cooperator cooperator) {
-		this.cooperator = cooperator;
-	}
 
 	private void setSchool(String value) {
 		this.school = value;
@@ -40,12 +30,12 @@ public class Student extends User{
 	private Date getGraduationDate() {
 		return this.graduationDate;
 	}
-	@Id
-	@GeneratedValue()
+
 	private void setStudentId(int value) {
 		this.studentId=value;
 	}
-	private int getStudentId() {
+	@Id
+	@GeneratedValue()private int getStudentId() {
 		return this.studentId;
 	}
 
