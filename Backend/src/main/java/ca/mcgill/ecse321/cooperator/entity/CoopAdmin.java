@@ -7,16 +7,18 @@ import javax.persistence.Table;
 import java.util.Collections;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "COOPADMIN")
 public class CoopAdmin extends User{
 	private int coopAdminId;
 	
-	private Set<CoopTerm> coopTerm = Collections.emptySet();
+	private Set<CoopTerm> coopTerm = null;
 
 	public void setCoopAdminId(int value) {
 		this.coopAdminId = value;
@@ -26,7 +28,7 @@ public class CoopAdmin extends User{
 	public int getCoopAdminId() {
 		return this.coopAdminId;
 	}
-	@OneToMany(mappedBy="coopAdmin", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="coopAdmin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Set<CoopTerm> getCoopTerm() {
 		return this.coopTerm;
 	}
