@@ -1,6 +1,5 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
-import javax.persistence.ManyToOne;
 import java.util.Date;
 import javax.persistence.Table;
 import javax.persistence.Entity;

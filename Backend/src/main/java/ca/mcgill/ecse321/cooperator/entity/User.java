@@ -1,11 +1,5 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Entity;
-
 public abstract class User{
 
 	private String email;
