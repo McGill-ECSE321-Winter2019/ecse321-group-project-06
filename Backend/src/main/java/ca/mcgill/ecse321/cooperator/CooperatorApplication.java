@@ -17,9 +17,4 @@ public class CooperatorApplication {
 	public String greeting() {
 		return "Hello world!";
 	}
-	
-	@RequestMapping("/1")
-	public String hello() {
-		return "Hello world 1 !";
-	}
 }
