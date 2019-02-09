@@ -1,5 +1,4 @@
-package ca.mcgill.ecse321.cooperator.entity;
-
+import javax.persistence.ManyToOne;
 import java.sql.Date;
 import javax.persistence.Table;
 import javax.persistence.Entity;
@@ -8,51 +7,55 @@ import java.util.Set;
 import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="STUDENT")
+@Table()
 public class Student extends User{
-	public class Date{
-	}
-	private int studentId;
-	private String school;
-	private Date graduationDate;
-	private Set<CoopTerm> coopTerm;
+private Cooperator cooperator;
 
-	private void setSchool(String value) {
-		this.school = value;
-	}
-	private String getSchool() {
-		return this.school;
-	}
+@ManyToOne(optional=false)
+public Cooperator getCooperator() {
+   return this.cooperator;
+}
 
-	private void setGraduationDate(Date value) {
-		this.graduationDate = value;
-	}
-	private Date getGraduationDate() {
-		return this.graduationDate;
-	}
-	
-	private void setStudentId(int value) {
-		this.studentId=value;
-	}
-	@Id
-	public int getStudentId() {
-		return this.studentId;
-	}
-	
-	@OneToMany(mappedBy="student")
-	public Set<CoopTerm> getCoopTerm() {
-		return this.coopTerm;
-	}
+public void setCooperator(Cooperator cooperator) {
+   this.cooperator = cooperator;
+}
 
-	public void setCoopTerm(Set<CoopTerm> coopTerms) {
-		this.coopTerm = coopTerms;
-	}
-	
-	public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
-		super(userEmail, userPassword, studentName);
-		this.studentId = studentId;
-		this.graduationDate = graduationDate;
-		this.school = school;
-	}
+@Entity
+public class Date{
+}
+private int studentId;
+private String school;
+
+private void setSchool(String value) {
+this.school = value;
+    }
+private String getSchool() {
+return this.school;
+    }
+private Date graduationDate;
+
+private void setGraduationDate(Date value) {
+this.graduationDate = value;
+    }
+private Date getGraduationDate() {
+return this.graduationDate;
+    }
+private Set<CoopTerm> coopTerm;
+
+@OneToMany(mappedBy="student")
+public Set<CoopTerm> getCoopTerm() {
+   return this.coopTerm;
+}
+
+public void setCoopTerm(Set<CoopTerm> coopTerms) {
+   this.coopTerm = coopTerms;
+}
+public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
+	super(userEmail, userPassword, studentName);
+	// TODO Auto-generated constructor stub
+	this.studentId = studentId;
+	this.graduationDate = graduationDate;
+	this.school = school;
+}
 
 }
