@@ -40,20 +40,22 @@ public class EmployerServiceTest {
 			String userEmail = "sam.smith@mail.mcgill.ca";
 			String userPassword = "abcdefghi";
 			String companyName = "ABC";
+			Employer employer = null;
 
 			try {
-				service.createEmployer(userEmail, userPassword,companyName);
+				employer = service.createEmployer(userEmail, userPassword,companyName);
 			} catch (IllegalArgumentException e) {
 				// Check that no error occurred
 				fail();
 			}
 			List<Employer> allEmployers = service.getAllEmployers();
-			Employer employer = null; 
+			
 
 			assertEquals(1, allEmployers.size());
 			assertEquals(userEmail, employer.getEmail());
 			assertEquals(userPassword, employer.getPassword());
 			assertEquals(companyName, employer.getName());	
+			
 		}
 		
 		@Test
@@ -63,16 +65,19 @@ public class EmployerServiceTest {
 			String userEmail = null;
 			String userPassword = "abcdefghi";
 			String companyName = "ABC";
+			Employer employer = null;
 			String error = null;
 			
 			try {
-				service.createEmployer(userEmail, userPassword,companyName);
+				employer = service.createEmployer(userEmail, userPassword,companyName);
 			} catch (IllegalArgumentException e) {
 				// Check that no error occurred
 				error = e.getMessage();
 			}
 			assertEquals("Email cannot be empty!", error);
 			assertEquals(0, service.getAllEmployers().size());
+			
+			
 		}
 		
 		@Test
@@ -82,10 +87,11 @@ public class EmployerServiceTest {
 			String userEmail = null;
 			String userPassword = null;
 			String companyName = "ABC";
+			Employer employer = null;
 			String error = null;
 			
 			try {
-				service.createEmployer(userEmail, userPassword,companyName);
+				employer = service.createEmployer(userEmail, userPassword,companyName);
 			} catch (IllegalArgumentException e) {
 				// Check that no error occurred
 				error = e.getMessage();
@@ -101,10 +107,11 @@ public class EmployerServiceTest {
 			String userEmail = null;
 			String userPassword = null;
 			String companyName = "ABC";
+			Employer employer = null;
 			String error = null;
 			
 			try {
-				service.createEmployer(userEmail, userPassword,companyName);
+				employer = service.createEmployer(userEmail, userPassword,companyName);
 			} catch (IllegalArgumentException e) {
 				// Check that no error occurred
 				error = e.getMessage();
@@ -120,20 +127,20 @@ public class EmployerServiceTest {
 			String userEmail = "sam.smith@mail.mcgill.ca";
 			String userPassword = "abcdefghi";
 			String companyName = "ABC";
+			Employer employer = null;
 
 			try {
-				service.createEmployer(userEmail, userPassword,companyName);
+				employer = service.createEmployer(userEmail, userPassword,companyName);
 			} catch (IllegalArgumentException e) {
 				// Check that no error occurred
 				fail();
 			}
 			
 			//get Student
-			Employer employer = null;
 			String error = null;
 		
 			try {
-				service.getEmployer(userEmail); 
+				employer = service.getEmployer(userEmail); 
 			} catch (IllegalArgumentException e) {
 				error = e.getMessage();
 			}
@@ -150,10 +157,10 @@ public class EmployerServiceTest {
 		@Test
 		public void testGetEmployerWithNullEmail(String userEmail) {
 			testCreateEmployer();
-			
+			Employer employer = null;
 			String error = null;
 			try {
-				service.getEmployer(userEmail); 
+				employer = service.getEmployer(userEmail); 
 			} catch (IllegalArgumentException e) {
 				error = e.getMessage();
 			assertEquals("Email cannot be empty!", error);	

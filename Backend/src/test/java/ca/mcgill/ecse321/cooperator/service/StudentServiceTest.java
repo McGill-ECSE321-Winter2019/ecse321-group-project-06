@@ -47,14 +47,14 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Calendar graduationDate = Calendar.getInstance();
 		graduationDate.set(2020, 12);
+		Student student = null; 
 
 		try {
-			service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
+			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
 		}
-		Student student = null; 
 
 		List<Student> allStudents = service.getAllStudents();
 
@@ -78,10 +78,11 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Calendar graduationDate = Calendar.getInstance();
 		graduationDate.set(2020, 12);
+		Student student = null; 
 		String error = null;
 		
 		try {
-			service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
+			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			error = e.getMessage();
@@ -101,10 +102,11 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Calendar graduationDate = Calendar.getInstance();
 		graduationDate.set(2020, 12);
+		Student student = null; 
 		String error = null;
 		
 		try {
-			service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
+			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			error = e.getMessage();
@@ -124,10 +126,11 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Calendar graduationDate = Calendar.getInstance();
 		graduationDate.set(2020, 12);
+		Student student = null; 
 		String error = null;
 		
 		try {
-			service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
+			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			error = e.getMessage();
@@ -139,7 +142,6 @@ public class StudentServiceTest {
 	@Test
 	public void testCreateStudentWithEmptyId() {
 		assertEquals(0, service.getAllStudents().size());
-		
 		String userEmail = "sam.smith@mail.mcgill.ca";
 		String userPassword = "abcdefghi";
 		String studentName = "ABC";
@@ -147,10 +149,11 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Calendar graduationDate = Calendar.getInstance();
 		graduationDate.set(2020, 12);
+		Student student = null; 
 		String error = null;
 		
 		try {
-			service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
+			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			error = e.getMessage();
@@ -162,7 +165,6 @@ public class StudentServiceTest {
 	@Test
 	public void testCreateStudentWithNullSchool() {
 		assertEquals(0, service.getAllStudents().size());
-		
 		String userEmail = "sam.smith@mail.mcgill.ca";
 		String userPassword = "abcdefghi";
 		String studentName = "ABC";
@@ -170,10 +172,11 @@ public class StudentServiceTest {
 		String school = null;
 		Calendar graduationDate = Calendar.getInstance();
 		graduationDate.set(2020, 12);
+		Student student = null; 
 		String error = null;
 		
 		try {
-			service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
+			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			error = e.getMessage();
@@ -185,17 +188,17 @@ public class StudentServiceTest {
 	@Test
 	public void testCreateStudentWithNullDate() {
 		assertEquals(0, service.getAllStudents().size());
-		
 		String userEmail = "sam.smith@mail.mcgill.ca";
 		String userPassword = "abcdefghi";
 		String studentName = "ABC";
 		int studentId = 26071190;
 		String school = "McGill";
 		Calendar graduationDate = Calendar.getInstance();
+		Student student = null; 
 		String error = null;
 		
 		try {
-			service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
+			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			error = e.getMessage();
@@ -207,7 +210,6 @@ public class StudentServiceTest {
 	@Test
 	public void testCreateStudentWithWrongMonth() {
 		assertEquals(0, service.getAllStudents().size());
-		
 		String userEmail = "sam.smith@mail.mcgill.ca";
 		String userPassword = "abcdefghi";
 		String studentName = "ABC";
@@ -215,10 +217,11 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Calendar graduationDate = Calendar.getInstance();
 		graduationDate.set(2020, 13);
+		Student student = null; 
 		String error = null;
 		
 		try {
-			service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
+			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			error = e.getMessage();
@@ -230,7 +233,6 @@ public class StudentServiceTest {
 	@Test
 	public void testCreateStudentWithWrongYear() {
 		assertEquals(0, service.getAllStudents().size());
-		
 		String userEmail = "sam.smith@mail.mcgill.ca";
 		String userPassword = "abcdefghi";
 		String studentName = "ABC";
@@ -238,10 +240,11 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Calendar graduationDate = Calendar.getInstance();
 		graduationDate.set(199, 12);
+		Student student = null; 
 		String error = null;
 		
 		try {
-			service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
+			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			error = e.getMessage();
@@ -261,24 +264,21 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Calendar graduationDate = Calendar.getInstance();
 		graduationDate.set(2020, 12);
+		Student student = null; 
 		try {
-			service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
+			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
-		}
-		
+		}	
 		//get Student
-		Student student = null;
 		String error = null;
 		try {
-			service.getStudent(studentId); 
+			student = service.getStudent(studentId); 
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		
 		List<Student> allStudents = service.getAllStudents();
-
 		assertEquals(1, allStudents.size());
 		assertEquals(userEmail, student.getEmail());
 		assertEquals(userPassword, student.getPassword());
@@ -293,9 +293,10 @@ public class StudentServiceTest {
 		//create employer first 
 		testCreateEmployer();
 		//get Student
+		Student student = null; 
 		String error = null;
 		try {
-			service.getStudent(0); 
+			student = service.getStudent(0); 
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		assertEquals("Student Id cannot be empty!", error);	
