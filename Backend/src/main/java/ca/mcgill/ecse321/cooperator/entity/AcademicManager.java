@@ -1,7 +1,6 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
 import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,7 +19,7 @@ public class AcademicManager extends User{
 		return this.academicManagerId;
 	}
 	public AcademicManager(String userEmail, String userPassword, String academicManagerName) {
-		super(userEmail, userPassword, academicManagerName);
+		super();
 	}
 
 }

@@ -1,6 +1,5 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
-import javax.persistence.ManyToOne;
 import java.util.Date;
 import javax.persistence.Table;
 import javax.persistence.Entity;
@@ -48,7 +47,7 @@ public class Student extends User{
 		this.coopTerm = coopTerms;
 	}
 	public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
-		super(userEmail, userPassword, studentName);
+		super();
 		this.studentId = studentId;
 		this.graduationDate = graduationDate;
 		this.school = school;

@@ -1,7 +1,6 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
 import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Entity;
@@ -42,7 +41,7 @@ public class Employer extends User{
 		this.coopTerm = coopTerms;
 	}
 	private Employer (String userEmail, String userPassword, String companyName) {
-		super(userEmail, userPassword,companyName);
+		super();
 	}
 
 }
