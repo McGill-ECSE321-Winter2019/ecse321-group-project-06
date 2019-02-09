@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.cooperator.service;
 
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,8 +45,11 @@ public class EmployerService {
 	}
 	
 	@Transactional
-	public Employer getEmployer(int employerId) {
-		Employer e = employerRepository.findById(employerId).get();
+	public Employer getEmployer(String userEmail) {
+		if (userEmail == null || userEmail.trim().length() == 0) {
+	        throw new IllegalArgumentException("company name cannot be empty!");
+	    }
+		Employer e = employerRepository.findByEmailAddress(userEmail);
 		return e;
 	}
 	

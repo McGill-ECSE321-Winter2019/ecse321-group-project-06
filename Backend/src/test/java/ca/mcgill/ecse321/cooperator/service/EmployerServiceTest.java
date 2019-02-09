@@ -18,7 +18,7 @@ import ca.mcgill.ecse321.cooperator.entity.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EmployerPersistenceTest {
+public class EmployerServiceTest {
 	
 	@Autowired
 	private EmployerService service;
@@ -47,16 +47,117 @@ public class EmployerPersistenceTest {
 				// Check that no error occurred
 				fail();
 			}
-
 			List<Employer> allEmployers = service.getAllEmployers();
-			Employer employer = null;
+			Employer employer = null; 
 
 			assertEquals(1, allEmployers.size());
+			assertEquals(userEmail, employer.getEmail());
+			assertEquals(userPassword, employer.getPassword());
+			assertEquals(companyName, employer.getName());	
+		}
+		
+		@Test
+		public void testCreateEmployerWithNullEmail() {
+			assertEquals(0, service.getAllEmployers().size());
+
+			String userEmail = null;
+			String userPassword = "abcdefghi";
+			String companyName = "ABC";
+			String error = null;
 			
+			try {
+				service.createEmployer(userEmail, userPassword,companyName);
+			} catch (IllegalArgumentException e) {
+				// Check that no error occurred
+				error = e.getMessage();
+			}
+			assertEquals("Email cannot be empty!", error);
+			assertEquals(0, service.getAllEmployers().size());
+		}
+		
+		@Test
+		public void testCreateEmployerWithNullUserPassword() {
+			assertEquals(0, service.getAllEmployers().size());
+
+			String userEmail = null;
+			String userPassword = null;
+			String companyName = "ABC";
+			String error = null;
+			
+			try {
+				service.createEmployer(userEmail, userPassword,companyName);
+			} catch (IllegalArgumentException e) {
+				// Check that no error occurred
+				error = e.getMessage();
+			}
+			assertEquals("password cannot be empty!", error);
+			assertEquals(0, service.getAllEmployers().size());
+		}
+
+		@Test
+		public void testCreateEmployerWithNullCompanyName() {
+			assertEquals(0, service.getAllEmployers().size());
+
+			String userEmail = null;
+			String userPassword = null;
+			String companyName = "ABC";
+			String error = null;
+			
+			try {
+				service.createEmployer(userEmail, userPassword,companyName);
+			} catch (IllegalArgumentException e) {
+				// Check that no error occurred
+				error = e.getMessage();
+			}
+			assertEquals("company name cannot be empty!", error);
+			assertEquals(0, service.getAllEmployers().size());
+		}
+		
+		@Test
+		public void testGetEmployer() {
+			assertEquals(0, service.getAllEmployers().size());
+
+			String userEmail = "sam.smith@mail.mcgill.ca";
+			String userPassword = "abcdefghi";
+			String companyName = "ABC";
+
+			try {
+				service.createEmployer(userEmail, userPassword,companyName);
+			} catch (IllegalArgumentException e) {
+				// Check that no error occurred
+				fail();
+			}
+			
+			//get Student
+			Employer employer = null;
+			String error = null;
+		
+			try {
+				service.getEmployer(userEmail); 
+			} catch (IllegalArgumentException e) {
+				error = e.getMessage();
+			}
+			
+			List<Employer> allEmployers = service.getAllEmployers();
+
+			assertEquals(1, allEmployers.size());
 			assertEquals(userEmail, employer.getEmail());
 			assertEquals(userPassword, employer.getPassword());
 			assertEquals(companyName, employer.getName());
+		
+		}
+		
+		@Test
+		public void testGetEmployerWithNullEmail(String userEmail) {
+			testCreateEmployer();
+			
+			String error = null;
+			try {
+				service.getEmployer(userEmail); 
+			} catch (IllegalArgumentException e) {
+				error = e.getMessage();
+			assertEquals("Email cannot be empty!", error);	
+			}
 			
 		}
-
 }
