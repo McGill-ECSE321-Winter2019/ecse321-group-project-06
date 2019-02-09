@@ -1,94 +1,83 @@
+package ca.mcgill.ecse321.cooperator.entity;
+
 import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Entity;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.ManyToMany;
-import java.sql.Time;
+import java.time.LocalTime;
 import javax.persistence.Id;
 
 @Entity
 @Table(name = "EVENT")
 public class Event{
-private Cooperator cooperator;
+	private Date startDate;
+	private Date endDate;
+	private String location;
+	private Set<Employer> employer;
+	private LocalTime startTime;
+	private LocalTime endTime;
+	private int eventId;
 
-@ManyToOne(optional=false)
-public Cooperator getCooperator() {
-   return this.cooperator;
-}
+	private void setStartDate(Date value) {
+		this.startDate = value;
+	}
+	private Date getStartDate() {
+		return this.startDate;
+	}
+	
+	private void setEndDate(Date value) {
+		this.endDate = value;
+	}
+	private Date getEndDate() {
+		return this.endDate;
+	}
 
-public void setCooperator(Cooperator cooperator) {
-   this.cooperator = cooperator;
-}
+	private void setLocation(String value) {
+		this.location = value;
+	}
+	private String getLocation() {
+		return this.location;
+	}
 
-private Date startDate;
-   
-   private void setStartDate(Date value) {
-this.startDate = value;
-    }
-private Date getStartDate() {
-return this.startDate;
-    }
-private Date endDate;
+	@ManyToMany(mappedBy="event")
+	public Set<Employer> getEmployer() {
+		return this.employer;
+	}
 
-private void setEndDate(Date value) {
-this.endDate = value;
-    }
-private Date getEndDate() {
-return this.endDate;
-    }
-private String location;
+	public void setEmployer(Set<Employer> employers) {
+		this.employer = employers;
+	}
 
-private void setLocation(String value) {
-this.location = value;
-    }
-private String getLocation() {
-return this.location;
-    }
-private Set<Employer> employer;
+	public void setStartTime(LocalTime value) {
+		this.startTime = value;
+	}
+	public LocalTime getStartTime() {
+		return this.startTime;
+	}
 
-@ManyToMany(mappedBy="event")
-public Set<Employer> getEmployer() {
-   return this.employer;
-}
+	public void setEndTime(LocalTime value) {
+		this.endTime = value;
+	}
+	public LocalTime getEndTime() {
+		return this.endTime;
+	}
 
-public void setEmployer(Set<Employer> employers) {
-   this.employer = employers;
-}
-
-private Time startTime;
-
-public void setStartTime(Time value) {
-this.startTime = value;
-    }
-public Time getStartTime() {
-return this.startTime;
-    }
-private Time endTime;
-
-public void setEndTime(Time value) {
-this.endTime = value;
-    }
-public Time getEndTime() {
-return this.endTime;
-    }
-private int eventId;
-
-public void setEventId(int value) {
-this.eventId = value;
-    }
-@Id
-@GeneratedValue()public int getEventId() {
-return this.eventId;
-    }
-public Event (Date startDate, Date endDate, String location, Time startTime, Time endTime) {
-   this.startDate=startDate;
-   this.endDate=endDate;
-   this.location=location;
-   this.startTime=startTime;
-   this.endTime=endTime;
-   this.eventId=eventId;
-}
+	public void setEventId(int value) {
+		this.eventId = value;
+	}
+	@Id
+	@GeneratedValue()
+	public int getEventId() {
+		return this.eventId;
+	}
+	public Event (Date startDate, Date endDate, String location, LocalTime startTime, LocalTime endTime) {
+		this.startDate=startDate;
+		this.endDate=endDate;
+		this.location=location;
+		this.startTime=startTime;
+		this.endTime=endTime;
+	}
 
 }

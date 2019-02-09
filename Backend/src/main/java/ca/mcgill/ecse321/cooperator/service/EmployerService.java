@@ -29,8 +29,8 @@ public class EmployerService {
 	EmployerRepository employerRepository;
 
 	@Transactional
-	public Employer createEmployer(String userEmail, String userPassword, String companyName, int employerId) {
-		Employer e = new Employer(userEmail, userPassword, companyName, employerId);
+	public Employer createEmployer(String userEmail, String userPassword, String companyName) {
+		Employer e = new Employer(userEmail, userPassword, companyName);
 		entityManager.persist(e);
 		return e;
 	}

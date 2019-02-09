@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ca.mcgill.ecse321.cooperator.entity.Student;
-import ca.mcgill.ecse321.cooperator.entity.Student.Date;
+import java.util.Date;
 import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
 
 

@@ -3,8 +3,7 @@ package ca.mcgill.ecse321.cooperator.repository;
 import org.springframework.data.repository.CrudRepository;
 
 import ca.mcgill.ecse321.cooperator.entity.Student;
-import ca.mcgill.ecse321.cooperator.entity.Student.Date;
-
+import java.util.Date;
 
 public interface StudentRepository extends CrudRepository<Student, Integer> {
 	

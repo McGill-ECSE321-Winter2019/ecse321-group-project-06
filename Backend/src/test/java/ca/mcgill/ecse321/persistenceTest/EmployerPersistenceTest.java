@@ -40,22 +40,23 @@ public class EmployerPersistenceTest {
 			String userEmail = "sam.smith@mail.mcgill.ca";
 			String userPassword = "abcdefghi";
 			String companyName = "ABC";
-			int employerId = 260700123;
 
 			try {
-				service.createEmployer(userEmail, userPassword, companyName, employerId);
+				service.createEmployer(userEmail, userPassword,companyName);
 			} catch (IllegalArgumentException e) {
 				// Check that no error occurred
 				fail();
 			}
 
 			List<Employer> allEmployers = service.getAllEmployers();
-			Employer e = allEmployers.get(0);
-			User u = new User(userEmail, userPassword, companyName); 
-			
+			Employer employer = null;
 
 			assertEquals(1, allEmployers.size());
-			//assertEquals(employerId, );
+			
+			assertEquals(userEmail, employer.getEmail());
+			assertEquals(userPassword, employer.getPassword());
+			assertEquals(companyName, employer.getCompanyName());
+			
 		}
 
 }

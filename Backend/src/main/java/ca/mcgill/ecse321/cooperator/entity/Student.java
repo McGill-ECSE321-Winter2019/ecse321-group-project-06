@@ -1,7 +1,9 @@
-import javax.persistence.ManyToOne;
-import java.sql.Date;
+package ca.mcgill.ecse321.cooperator.entity;
+
+import java.util.Date;
 import javax.persistence.Table;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Set;
 import javax.persistence.OneToMany;
@@ -9,53 +11,46 @@ import javax.persistence.OneToMany;
 @Entity
 @Table()
 public class Student extends User{
-private Cooperator cooperator;
+	private int studentId;
+	private String school;
+	private Date graduationDate;
+	private Set<CoopTerm> coopTerm;
 
-@ManyToOne(optional=false)
-public Cooperator getCooperator() {
-   return this.cooperator;
-}
+	private void setSchool(String value) {
+		this.school = value;
+	}
+	private String getSchool() {
+		return this.school;
+	}
 
-public void setCooperator(Cooperator cooperator) {
-   this.cooperator = cooperator;
-}
+	private void setGraduationDate(Date value) {
+		this.graduationDate = value;
+	}
+	private Date getGraduationDate() {
+		return this.graduationDate;
+	}
 
-@Entity
-public class Date{
-}
-private int studentId;
-private String school;
+	private void setStudentId(int value) {
+		this.studentId=value;
+	}
+	@Id
+	@GeneratedValue()private int getStudentId() {
+		return this.studentId;
+	}
 
-private void setSchool(String value) {
-this.school = value;
-    }
-private String getSchool() {
-return this.school;
-    }
-private Date graduationDate;
+	@OneToMany(mappedBy="student")
+	public Set<CoopTerm> getCoopTerm() {
+		return this.coopTerm;
+	}
 
-private void setGraduationDate(Date value) {
-this.graduationDate = value;
-    }
-private Date getGraduationDate() {
-return this.graduationDate;
-    }
-private Set<CoopTerm> coopTerm;
-
-@OneToMany(mappedBy="student")
-public Set<CoopTerm> getCoopTerm() {
-   return this.coopTerm;
-}
-
-public void setCoopTerm(Set<CoopTerm> coopTerms) {
-   this.coopTerm = coopTerms;
-}
-public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
-	super(userEmail, userPassword, studentName);
-	// TODO Auto-generated constructor stub
-	this.studentId = studentId;
-	this.graduationDate = graduationDate;
-	this.school = school;
-}
+	public void setCoopTerm(Set<CoopTerm> coopTerms) {
+		this.coopTerm = coopTerms;
+	}
+	public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
+		super();
+		this.studentId = studentId;
+		this.graduationDate = graduationDate;
+		this.school = school;
+	}
 
 }
