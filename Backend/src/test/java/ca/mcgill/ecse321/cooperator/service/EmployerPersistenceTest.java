@@ -1,4 +1,4 @@
-package ca.mcgill.ecse321.persistenceTest;
+package ca.mcgill.ecse321.cooperator.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -49,13 +49,13 @@ public class EmployerPersistenceTest {
 			}
 
 			List<Employer> allEmployers = service.getAllEmployers();
-			Employer employer = null; //??/
+			Employer employer = null;
 
 			assertEquals(1, allEmployers.size());
 			
 			assertEquals(userEmail, employer.getEmail());
 			assertEquals(userPassword, employer.getPassword());
-			assertEquals(companyName, employer.getCompanyName());
+			assertEquals(companyName, employer.getName());
 			
 		}
 
