@@ -1,11 +1,17 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.ManyToMany;
+
+import java.sql.Time;
 import java.time.LocalTime;
 import javax.persistence.Id;
 
@@ -16,32 +22,32 @@ public class Event{
 	private Date endDate;
 	private String location;
 	private Set<Employer> employer;
-	private LocalTime startTime;
-	private LocalTime endTime;
+	private Time startTime;
+	private Time endTime;
 	private int eventId;
 
-	private void setStartDate(Date value) {
+	public void setStartDate(Date value) {
 		this.startDate = value;
 	}
-	private Date getStartDate() {
+	public Date getStartDate() {
 		return this.startDate;
 	}
 	
-	private void setEndDate(Date value) {
+	public void setEndDate(Date value) {
 		this.endDate = value;
 	}
-	private Date getEndDate() {
+	public Date getEndDate() {
 		return this.endDate;
 	}
 
-	private void setLocation(String value) {
+	public void setLocation(String value) {
 		this.location = value;
 	}
-	private String getLocation() {
+	public String getLocation() {
 		return this.location;
 	}
 
-	@ManyToMany(mappedBy="event")
+	@ManyToMany(mappedBy="event", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Set<Employer> getEmployer() {
 		return this.employer;
 	}
@@ -50,17 +56,17 @@ public class Event{
 		this.employer = employers;
 	}
 
-	public void setStartTime(LocalTime value) {
-		this.startTime = value;
+	public void setStartTime(Time startTime) {
+		this.startTime = startTime;
 	}
-	public LocalTime getStartTime() {
+	public Time getStartTime() {
 		return this.startTime;
 	}
 
-	public void setEndTime(LocalTime value) {
+	public void setEndTime(Time value) {
 		this.endTime = value;
 	}
-	public LocalTime getEndTime() {
+	public Time getEndTime() {
 		return this.endTime;
 	}
 
@@ -72,12 +78,7 @@ public class Event{
 	public int getEventId() {
 		return this.eventId;
 	}
-	public Event (Date startDate, Date endDate, String location, LocalTime startTime, LocalTime endTime) {
-		this.startDate=startDate;
-		this.endDate=endDate;
-		this.location=location;
-		this.startTime=startTime;
-		this.endTime=endTime;
+	public Event () {
 	}
 
 }
