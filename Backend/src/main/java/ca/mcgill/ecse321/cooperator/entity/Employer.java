@@ -6,6 +6,7 @@ import javax.persistence.Table;
 import javax.persistence.Entity;
 import java.util.Set;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Id;
 
 @Entity

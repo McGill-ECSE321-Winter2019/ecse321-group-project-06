@@ -1,8 +1,10 @@
 package ca.mcgill.ecse321.cooperator.service;
 
-import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import java.util.Calendar;
 import java.util.List;
@@ -59,9 +61,10 @@ public class StudentService {
 
 	@Transactional
 	public Student getStudent(int studentId) {
-		if (String.valueOf(studentId).length() < 1) {
+		/*if (String.valueOf(studentId).length() < 1) {
 	        throw new IllegalArgumentException("Student Id cannot be empty!");
 	    }
+	    */
 		Student s = studentRepository.findById(studentId).get();
 		return s;
 	}

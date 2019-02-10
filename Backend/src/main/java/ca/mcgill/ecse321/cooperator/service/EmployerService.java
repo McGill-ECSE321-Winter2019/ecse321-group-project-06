@@ -1,9 +1,11 @@
 package ca.mcgill.ecse321.cooperator.service;
 
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+
+import ca.mcgill.ecse321.cooperator.entity.CoopAdmin;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.repository.EmployerRepository;
 
@@ -37,14 +39,17 @@ public class EmployerService {
 	}
 	
 	@Transactional
-	public Employer getEmployer(String userEmail) {
-		if (userEmail == null || userEmail.trim().length() == 0) {
+	public Employer getEmployer(int id) {
+		/*
+		if (String.valueOf(id).length() < 1) {
 	        throw new IllegalArgumentException("company name cannot be empty!");
 	    }
-		Employer e = employerRepository.findByEmailAddress(userEmail);
+	    */
+		Employer e = employerRepository.findById(id).get();
 		return e;
 	}
-
+	
+	
 	@Transactional
 	public List<Employer> getAllEmployers() {
 		return (List<Employer>) employerRepository.findAll();
