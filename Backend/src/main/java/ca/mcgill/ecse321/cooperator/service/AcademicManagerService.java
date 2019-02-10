@@ -38,7 +38,7 @@ public class AcademicManagerService {
 		}
 		
 		// set attributes
-		AcademicManager academicManager = new AcademicManager(email, password, name);
+		AcademicManager academicManager = new AcademicManager();
 		academicManager.setEmail(email);
 		academicManager.setName(name);
 		academicManager.setPassword(password);

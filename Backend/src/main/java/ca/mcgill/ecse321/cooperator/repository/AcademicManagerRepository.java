@@ -12,11 +12,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface AcademicManagerRepository extends CrudRepository<AcademicManager, Integer> {
 	
 	
-	@Transactional
-	public AcademicManager createAcademicManager(String userEmail, String userPassword, String acManagerName);
-	
-	@Transactional
-	public AcademicManager getAcademicManager(int acdemicManagerId);
 		
 	
 	
