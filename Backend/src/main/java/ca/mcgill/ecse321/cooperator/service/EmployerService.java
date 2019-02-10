@@ -40,11 +40,11 @@ public class EmployerService {
 	
 	@Transactional
 	public Employer getEmployer(int id) {
-		/*
+		
 		if (String.valueOf(id).length() < 1) {
 	        throw new IllegalArgumentException("company name cannot be empty!");
 	    }
-	    */
+	    
 		Employer e = employerRepository.findById(id).get();
 		return e;
 	}

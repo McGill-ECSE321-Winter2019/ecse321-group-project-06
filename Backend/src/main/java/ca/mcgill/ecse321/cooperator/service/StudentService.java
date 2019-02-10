@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.cooperator.entity.CoopAdmin;
+import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 
 import java.util.ArrayList;
@@ -64,17 +65,17 @@ public class StudentService {
 
 	@Transactional
 	public Student getStudent(int studentId) {
-		/*if (String.valueOf(studentId).length() < 1) {
+		if (String.valueOf(studentId).length() < 1) {
 	        throw new IllegalArgumentException("Student Id cannot be empty!");
 	    }
-	    */
+	    
 		Student s = studentRepository.findById(studentId).get();
 		return s;
 	}
 	
 	@Transactional
 	public List<Student> getAllStudents() {
-		return toList((List<Student>) studentRepository.findAll());
+		return toList (studentRepository.findAll());
 	}
 	
 	
@@ -85,4 +86,5 @@ public class StudentService {
 		}
 		return resultList;
 	}
+	
 }
