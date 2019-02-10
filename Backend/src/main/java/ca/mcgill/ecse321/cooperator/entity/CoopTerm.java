@@ -125,18 +125,22 @@ public class CoopTerm{
 	public CoopAdmin getCoopAdmin() {
 		return this.coopAdmin;
 	}
-
-	public CoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
-			String jobDescription, Student student, Employer employer, CoopAdmin coopAdmin, Date endDate) {
-		this.location = location;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.academicSemester = academicSemester;
-		this.ifWorkPermitNeeded = ifWorkPermitNeeded;
-		this.jobDescription = jobDescription;
-		this.student = student;
-		this.employer = employer;
-		this.coopAdmin = coopAdmin;
+	
+	public CoopTerm() {
+		
 	}
+
+//	public CoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
+//			String jobDescription, Student student, Employer employer, CoopAdmin coopAdmin, Date endDate) {
+//		this.location = location;
+//		this.startDate = startDate;
+//		this.endDate = endDate;
+//		this.academicSemester = academicSemester;
+//		this.ifWorkPermitNeeded = ifWorkPermitNeeded;
+//		this.jobDescription = jobDescription;
+//		this.student = student;
+//		this.employer = employer;
+//		this.coopAdmin = coopAdmin;
+//	}
 
 }

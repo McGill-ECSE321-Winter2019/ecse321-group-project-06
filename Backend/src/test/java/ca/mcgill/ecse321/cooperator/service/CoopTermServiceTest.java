@@ -251,14 +251,17 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 		
 		String location = "Mcgill";
+		@SuppressWarnings("deprecation")
 		Date startDate = new Date(2018,9,01);
 		String academicSemester= "fall";  
 		boolean ifWorkPermitNeeded= true ;
 		String jobDescription= "Software Internship";
+		@SuppressWarnings("deprecation")
 		Date date = new Date(2020,5,1);
 		Student student= null ;
 		Employer employer= new Employer("company@gmail.com","wq","Amazon");
 		CoopAdmin coopAdmin=new CoopAdmin ();
+		@SuppressWarnings("deprecation")
 		Date endDate = new Date(2022,5,1);
 
 		CoopTerm coopTerm = null;

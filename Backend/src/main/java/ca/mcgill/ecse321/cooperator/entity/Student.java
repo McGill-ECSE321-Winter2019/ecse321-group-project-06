@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Table;
 import javax.persistence.Entity;

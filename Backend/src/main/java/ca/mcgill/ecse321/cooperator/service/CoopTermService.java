@@ -25,8 +25,7 @@ public class CoopTermService {
 
 	public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
 			String jobDescription, Student student, Employer employer, CoopAdmin coopAdmin, Date endDate) {
-		CoopTerm s = new CoopTerm( location, startDate, academicSemester, ifWorkPermitNeeded,
-				jobDescription, student,  employer, coopAdmin,  endDate);
+		CoopTerm s = new CoopTerm( );
 
 		if (location == null || location.trim().length() == 0) {
 			throw new IllegalArgumentException("Location cannot be empty!");
