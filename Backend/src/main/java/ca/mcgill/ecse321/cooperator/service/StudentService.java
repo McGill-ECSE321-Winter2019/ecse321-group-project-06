@@ -9,6 +9,7 @@ import ca.mcgill.ecse321.cooperator.entity.Student;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
@@ -20,9 +21,11 @@ public class StudentService {
 	@Autowired
 	StudentRepository studentRepository;
 
+	@SuppressWarnings("deprecation")
 	@Transactional
-	public Student createStudent(String userEmail, String userPassword, String studentName, int studentId, String school, Calendar graduationMonth, Calendar graduationYear) {
+	public Student createStudent(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
 		
+		Student s = new Student();
 		if (userEmail == null || userEmail.trim().length() == 0) {
 			throw new IllegalArgumentException("Email cannot be empty!");
 		}
@@ -38,24 +41,19 @@ public class StudentService {
 		if (school == null || school.trim().length() == 0) {
 			throw new IllegalArgumentException("school entry cannot be empty!");
 		}
-		if (graduationMonth == null) {
+		if (graduationDate == null) {
 			throw new IllegalArgumentException("Graduation Month cannot be empty!");
 		}
-		if (graduationYear == null) {
-			throw new IllegalArgumentException("Graduation Year cannot be empty!");
-		}
-		if (graduationYear.get(Calendar.YEAR) < 1950) {
+		if (graduationDate.getYear() < 1950) {
 			throw new IllegalArgumentException("graduation date should be a valid year!");
 		}
-		//Student s = new Student(studentId, school, graduationMonth, graduationYear);
-		Student s = new Student();
+		
 		s.setEmail(userEmail);
 		s.setPassword(userPassword);
 		s.setName(studentName);
 		s.setStudentId(studentId);
 		s.setSchool(school);
-		s.setGraduationMonth(graduationMonth);
-		s.setGraduationYear(graduationYear);
+		s.setGraduationDate(graduationDate);
 		Student sReturn = studentRepository.save(s);
 		
 		return sReturn;
