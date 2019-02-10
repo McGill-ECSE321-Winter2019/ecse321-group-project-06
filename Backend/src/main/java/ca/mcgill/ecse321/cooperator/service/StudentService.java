@@ -25,6 +25,7 @@ public class StudentService {
 	@Transactional
 	public Student createStudent(String userEmail, String userPassword, String studentName, int studentId, String school, Calendar graduationMonth, Calendar graduationYear) {
 		
+		Student s = new Student();
 		if (userEmail == null || userEmail.trim().length() == 0) {
 			throw new IllegalArgumentException("Email cannot be empty!");
 		}
@@ -49,8 +50,7 @@ public class StudentService {
 		if (graduationYear.get(Calendar.YEAR) < 1950) {
 			throw new IllegalArgumentException("graduation date should be a valid year!");
 		}
-		//Student s = new Student(studentId, school, graduationMonth, graduationYear);
-		Student s = new Student();
+		
 		s.setEmail(userEmail);
 		s.setPassword(userPassword);
 		s.setName(studentName);

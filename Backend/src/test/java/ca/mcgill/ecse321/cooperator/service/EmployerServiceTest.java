@@ -119,55 +119,5 @@ public class EmployerServiceTest {
 			assertEquals(0, service.getAllEmployers().size());
 		}
 		
-		/*
 		
-		@Test
-		public void testGetEmployer() {
-			assertEquals(0, service.getAllEmployers().size());
-
-			String userEmail = "sam.smith@mail.mcgill.ca";
-			String userPassword = "abcdefghi";
-			String companyName = "ABC";
-			Employer employer = null;
-
-			try {
-				employer = service.createEmployer(userEmail, userPassword,companyName);
-			} catch (IllegalArgumentException e) {
-				// Check that no error occurred
-				fail();
-			}
-			
-			//get Student
-			String error = null;
-			int employerId = 123;
-			try {
-				employer = service.getEmployer(employerId); 
-			} catch (IllegalArgumentException e) {
-				error = e.getMessage();
-			}
-			
-			List<Employer> allEmployers = service.getAllEmployers();
-
-			assertEquals(1, allEmployers.size());
-			assertEquals(userEmail, employer.getEmail());
-			assertEquals(userPassword, employer.getPassword());
-			assertEquals(companyName, employer.getName());
-		
-		}
-		
-		@Test
-		public void testGetEmployerWithNullEmail(String userEmail) {
-			testCreateEmployer();
-			Employer employer = null;
-			String error = null;
-			int employerId = 0;
-			try {
-				employer = service.getEmployer(employerId); 
-			} catch (IllegalArgumentException e) {
-				error = e.getMessage();
-			assertEquals("Email cannot be empty!", error);	
-			}
-			
-		}
-		*/
 }

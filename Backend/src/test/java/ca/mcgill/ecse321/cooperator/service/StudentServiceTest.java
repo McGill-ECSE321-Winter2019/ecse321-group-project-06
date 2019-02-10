@@ -61,10 +61,6 @@ public class StudentServiceTest {
 		List<Student> allStudents = service.getAllStudents();
 		
 		assertEquals(1, allStudents.size());
-		//assertEquals(userEmail, student.getEmail());
-		//assertEquals(userPassword, student.getPassword());
-		assertEquals(studentName, student.getName());
-		//assertEquals(studentId, student.getStudentId());
 		assertEquals(school, student.getSchool());
 		assertEquals(graduationMonth, student.getGraduationMonth());
 		assertEquals(graduationYear, student.getGraduationYear());
@@ -83,7 +79,6 @@ public class StudentServiceTest {
 		Calendar graduationYear = Calendar.getInstance();          
 		graduationMonth.set(Calendar.MONTH, 1);  
 		graduationYear.set(Calendar.YEAR, 2001); 
-		//graduationDate.set(2020, 12);
 		Student student = null; 
 		String error = null;
 		
@@ -107,8 +102,7 @@ public class StudentServiceTest {
 		int studentId = 26071190;
 		String school = "McGill";
 		Calendar graduationMonth = Calendar.getInstance();
-		Calendar graduationYear = Calendar.getInstance();
-		//graduationDate.set(2020, 12);            
+		Calendar graduationYear = Calendar.getInstance();           
 		graduationMonth.set(Calendar.MONTH, 1);  
 		graduationYear.set(Calendar.YEAR, 2001); 
 		Student student = null; 
@@ -134,8 +128,7 @@ public class StudentServiceTest {
 		int studentId = 26071190;
 		String school = "McGill";
 		Calendar graduationMonth = Calendar.getInstance();
-		Calendar graduationYear = Calendar.getInstance();
-		//graduationDate.set(2020, 12);           
+		Calendar graduationYear = Calendar.getInstance();          
 		graduationMonth.set(Calendar.MONTH, 1);  
 		graduationYear.set(Calendar.YEAR, 2001); 
 		Student student = null; 
@@ -160,9 +153,7 @@ public class StudentServiceTest {
 		int studentId = 1;
 		String school = "McGill";
 		Calendar graduationMonth = Calendar.getInstance();
-		Calendar graduationYear = Calendar.getInstance();
-		//graduationDate.set(2020, 12);
-		//graduationDate.set(Calendar.YEAR, 0);             
+		Calendar graduationYear = Calendar.getInstance();           
 		graduationMonth.set(Calendar.MONTH, 1);  
 		graduationYear.set(Calendar.YEAR, 2001); 
 		Student student = null; 
@@ -187,8 +178,7 @@ public class StudentServiceTest {
 		int studentId = 71190;
 		String school = null;
 		Calendar graduationMonth = Calendar.getInstance();
-		Calendar graduationYear = Calendar.getInstance();
-		//graduationDate.set(2020, 12);            
+		Calendar graduationYear = Calendar.getInstance();            
 		graduationMonth.set(Calendar.MONTH, 1);  
 		graduationYear.set(Calendar.YEAR, 2001); 
 		Student student = null; 
@@ -260,9 +250,7 @@ public class StudentServiceTest {
 		int studentId = 71190;
 		String school = "McGill";
 		Calendar graduationMonth = Calendar.getInstance();   
-		Calendar graduationYear = Calendar.getInstance();
-		//graduationDate.set(199, 12);
-		//graduationDate.set(Calendar.YEAR, 0);             
+		Calendar graduationYear = Calendar.getInstance();          
 		graduationMonth.set(Calendar.MONTH, 1);  
 		graduationYear.set(Calendar.YEAR, 190); 
 		Student student = null; 
@@ -277,61 +265,6 @@ public class StudentServiceTest {
 		assertEquals("graduation date should be a valid year!", error);
 		assertEquals(0, service.getAllStudents().size());		
 	}
-	
-	/*
-	@Test
-	public void testGetStudentWithCorrectId() {
-		//create a student first 
-		assertEquals(0, service.getAllStudents().size());
-		String userEmail = "sam.smith@mail.mcgill.ca";
-		String userPassword = "abcdefghi";
-		String studentName = "ABC";
-		int studentId = 71190;
-		String school = "McGill";
-		Calendar graduationDate = Calendar.getInstance();
-		//graduationDate.set(2020, 12);
-		graduationDate.set(Calendar.YEAR, 0);             
-		graduationDate.set(Calendar.MONTH, 1);  
-		graduationDate.set(Calendar.YEAR, 2001); 
-		Student student = null; 
-		try {
-			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
-		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
-			fail();
-		}	
-		//get Student
-		String error = null;
-		try {
-			student = service.getStudent(studentId); 
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-		List<Student> allStudents = service.getAllStudents();
-		assertEquals(1, allStudents.size());
-		assertEquals(userEmail, student.getEmail());
-		assertEquals(userPassword, student.getPassword());
-		assertEquals(studentName, student.getName());
-		assertEquals(studentId, student.getStudentId());
-		assertEquals(school, student.getSchool());
-		assertEquals(graduationDate, student.getGraduationDate());
-	}
-	
-	@Test
-	public void testGetStudentWithInvalidId() {
-		//create employer first 
-		testCreateStudent();
-		//get Student
-		Student student = null; 
-		String error = null;
-		try {
-			student = service.getStudent(0); 
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		assertEquals("Student Id cannot be empty!", error);	
-		}
-	}
-	*/
 
 
 }
