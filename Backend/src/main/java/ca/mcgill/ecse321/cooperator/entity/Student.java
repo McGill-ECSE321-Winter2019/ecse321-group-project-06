@@ -40,7 +40,6 @@ public class Student extends User{
 		return this.graduationYear;
 	}
 	
-
 	public void setStudentId(int value) {
 		this.studentId=value;
 	}
@@ -61,15 +60,5 @@ public class Student extends User{
 	public Student() {
 		super();
 	}
-
-	/*
-	public Student(int studentId, String school, Calendar graduationMonth, Calendar graduationYear) {
-		super();
-		this.studentId = studentId;
-		this.graduationMonth = graduationMonth;
-		this.graduationYear = graduationYear;
-		this.school = school;
-	}
-	*/
 
 }
