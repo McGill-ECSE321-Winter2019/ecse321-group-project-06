@@ -21,11 +21,6 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 - Test cases for persistence layer
 
 ## Documents 
-- **Minutes**
-    - [Meeting Minutes 1.1](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.1)
-    - [Meeting Minutes 1.2](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.2)
-    - [Meeting Minutes 1.3](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.3)
-    - [Meeting Minutes 1.4](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.4)
     
 - **Requirements Model**
     - [System Requirements](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/System-Requirements)
@@ -34,6 +29,15 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 
 - **Domain Model**
     - [class diagram](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Domain-Model)
+  
+- **Minutes**
+    - [Meeting Minutes 1.1](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.1)
+    - [Meeting Minutes 1.2](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.2)
+    - [Meeting Minutes 1.3](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.3)
+    - [Meeting Minutes 1.4](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.4)
+    
+- **Effort Table**
+    - [Effort Table](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Effort-Table)   
 
 
 |Team member's name|Total hours|Responsibility         |
