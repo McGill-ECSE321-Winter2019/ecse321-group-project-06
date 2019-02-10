@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.cooperator.entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Entity;
+
 import java.util.Date;
 import javax.persistence.ManyToOne;
 import javax.persistence.Id;
@@ -120,7 +121,7 @@ public class CoopTerm{
 	private void setCoopAdmin(CoopAdmin value) {
 		this.coopAdmin = value;
 	}
-	@ManyToOne(optional=false)
+	@ManyToOne
 	private CoopAdmin getCoopAdmin() {
 		return this.coopAdmin;
 	}

@@ -1,7 +1,7 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
+
 import java.util.Calendar;
-import java.util.Date;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +47,9 @@ public class Student extends User{
 	public void setCoopTerm(Set<CoopTerm> coopTerms) {
 		this.coopTerm = coopTerms;
 	}
+
 	public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Calendar graduationDate) {
+
 		super();
 		this.studentId = studentId;
 		this.graduationDate = graduationDate;

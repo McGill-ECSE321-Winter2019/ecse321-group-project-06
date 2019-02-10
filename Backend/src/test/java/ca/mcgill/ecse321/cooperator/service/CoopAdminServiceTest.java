@@ -115,4 +115,6 @@ public class CoopAdminServiceTest {
 
 		assertEquals(0, coopAdminService.getAllCoopAdmins().size());
 	}
+
 }
+

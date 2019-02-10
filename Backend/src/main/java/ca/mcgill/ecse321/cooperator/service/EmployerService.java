@@ -1,8 +1,5 @@
 package ca.mcgill.ecse321.cooperator.service;
 
-
-import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,13 +7,8 @@ import java.util.List;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.repository.EmployerRepository;
 
-
-
 @Service
 public class EmployerService {
-	
-	//@Autowired
-	//EntityManager entityManager;
 	
 	@Autowired
 	EmployerRepository employerRepository;
@@ -52,10 +44,11 @@ public class EmployerService {
 		Employer e = employerRepository.findByEmailAddress(userEmail);
 		return e;
 	}
-	
+
 	@Transactional
 	public List<Employer> getAllEmployers() {
 		return (List<Employer>) employerRepository.findAll();
 	}
+
 }
 
