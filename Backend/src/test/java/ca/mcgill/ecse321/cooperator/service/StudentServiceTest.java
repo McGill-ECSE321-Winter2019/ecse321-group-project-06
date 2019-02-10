@@ -129,6 +129,7 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Calendar graduationMonth = Calendar.getInstance();
 		Calendar graduationYear = Calendar.getInstance();          
+
 		graduationMonth.set(Calendar.MONTH, 1);  
 		graduationYear.set(Calendar.YEAR, 2001); 
 		Student student = null; 
@@ -154,6 +155,7 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Calendar graduationMonth = Calendar.getInstance();
 		Calendar graduationYear = Calendar.getInstance();           
+
 		graduationMonth.set(Calendar.MONTH, 1);  
 		graduationYear.set(Calendar.YEAR, 2001); 
 		Student student = null; 
@@ -179,6 +181,7 @@ public class StudentServiceTest {
 		String school = null;
 		Calendar graduationMonth = Calendar.getInstance();
 		Calendar graduationYear = Calendar.getInstance();            
+
 		graduationMonth.set(Calendar.MONTH, 1);  
 		graduationYear.set(Calendar.YEAR, 2001); 
 		Student student = null; 
@@ -250,7 +253,9 @@ public class StudentServiceTest {
 		int studentId = 71190;
 		String school = "McGill";
 		Calendar graduationMonth = Calendar.getInstance();   
+
 		Calendar graduationYear = Calendar.getInstance();          
+
 		graduationMonth.set(Calendar.MONTH, 1);  
 		graduationYear.set(Calendar.YEAR, 190); 
 		Student student = null; 
