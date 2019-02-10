@@ -2,27 +2,28 @@ package ca.mcgill.ecse321.cooperator.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import ca.mcgill.ecse321.cooperator.entity.CoopAdmin;
 import ca.mcgill.ecse321.cooperator.entity.Student;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
 
 
-@Repository
+@Service
 public class StudentService {
 
 	@Autowired
 	StudentRepository studentRepository;
 
 	@Transactional
-
-	public Student createStudent(String userEmail, String userPassword, String studentName, int studentId, String school, Calendar graduationDate) {
-		Student s = new Student(userEmail, userPassword, studentName, studentId, school, graduationDate);
-
+	public Student createStudent(String userEmail, String userPassword, String studentName, int studentId, String school, Calendar graduationMonth, Calendar graduationYear) {
+		
 		if (userEmail == null || userEmail.trim().length() == 0) {
 			throw new IllegalArgumentException("Email cannot be empty!");
 		}
@@ -32,28 +33,30 @@ public class StudentService {
 		if (studentName == null || studentName.trim().length() ==0) {
 			throw new IllegalArgumentException("Student name cannot be empty!");
 		}
-		if (String.valueOf(studentId).length() < 1) {
-			throw new IllegalArgumentException("Student name cannot be empty!");
+		if (String.valueOf(studentId).length() <= 1) {
+			throw new IllegalArgumentException("Student Id should be more than 1 digit!");
 		}
-		if (school == null || school.trim().length() ==0) {
+		if (school == null || school.trim().length() == 0) {
 			throw new IllegalArgumentException("school entry cannot be empty!");
 		}
-		if (graduationDate == null) {
-			throw new IllegalArgumentException("Graduation date cannot be empty!");
+		if (graduationMonth == null) {
+			throw new IllegalArgumentException("Graduation Month cannot be empty!");
 		}
-		if (graduationDate.get(Calendar.MONTH) < 1 || graduationDate.get(Calendar.MONTH) > 12 ) {
-			throw new IllegalArgumentException("graduation date should be a valid month!");
+		if (graduationYear == null) {
+			throw new IllegalArgumentException("Graduation Year cannot be empty!");
 		}
-		if (graduationDate.get(Calendar.YEAR) < 1950) {
+		if (graduationYear.get(Calendar.YEAR) < 1950) {
 			throw new IllegalArgumentException("graduation date should be a valid year!");
 		}
-		
+		//Student s = new Student(studentId, school, graduationMonth, graduationYear);
+		Student s = new Student();
 		s.setEmail(userEmail);
 		s.setPassword(userPassword);
 		s.setName(studentName);
 		s.setStudentId(studentId);
 		s.setSchool(school);
-		s.setGraduationDate(graduationDate);
+		s.setGraduationMonth(graduationMonth);
+		s.setGraduationYear(graduationYear);
 		Student sReturn = studentRepository.save(s);
 		
 		return sReturn;
@@ -71,7 +74,15 @@ public class StudentService {
 	
 	@Transactional
 	public List<Student> getAllStudents() {
-		return (List<Student>) studentRepository.findAll();
+		return toList((List<Student>) studentRepository.findAll());
 	}
 	
+	
+	private <T> List<T> toList(Iterable<T> iterable){
+		List<T> resultList = new ArrayList<T>();
+		for (T t : iterable) {
+			resultList.add(t);
+		}
+		return resultList;
+	}
 }

@@ -50,7 +50,6 @@ public class EmployerServiceTest {
 			}
 			List<Employer> allEmployers = service.getAllEmployers();
 			
-
 			assertEquals(1, allEmployers.size());
 			assertEquals(userEmail, employer.getEmail());
 			assertEquals(userPassword, employer.getPassword());
@@ -84,7 +83,7 @@ public class EmployerServiceTest {
 		public void testCreateEmployerWithNullUserPassword() {
 			assertEquals(0, service.getAllEmployers().size());
 
-			String userEmail = null;
+			String userEmail = "oliver.olivier@gmail.com";
 			String userPassword = null;
 			String companyName = "ABC";
 			Employer employer = null;
@@ -104,9 +103,9 @@ public class EmployerServiceTest {
 		public void testCreateEmployerWithNullCompanyName() {
 			assertEquals(0, service.getAllEmployers().size());
 
-			String userEmail = null;
-			String userPassword = null;
-			String companyName = "ABC";
+			String userEmail = "stephen.frank@hotmail.com";
+			String userPassword = "asdfefef";
+			String companyName = null;
 			Employer employer = null;
 			String error = null;
 			

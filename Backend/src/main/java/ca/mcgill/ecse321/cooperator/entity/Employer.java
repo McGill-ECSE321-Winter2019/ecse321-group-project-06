@@ -41,7 +41,8 @@ public class Employer extends User{
 	public void setCoopTerm(Set<CoopTerm> coopTerms) {
 		this.coopTerm = coopTerms;
 	}
-	public Employer (String userEmail, String userPassword, String companyName) {
+	
+	public Employer () {
 		super();
 	}
 

@@ -16,6 +16,8 @@ public class Student extends User{
 	private String school;
 	private Calendar graduationDate;
 	private Set<CoopTerm> coopTerm;
+	private Calendar graduationMonth;
+	private Calendar graduationYear;
 
 	public void setSchool(String value) {
 		this.school = value;
@@ -24,12 +26,20 @@ public class Student extends User{
 		return this.school;
 	}
 
-	public void setGraduationDate(Calendar value) {
-		this.graduationDate = value;
+	public void setGraduationMonth(Calendar value) {
+		this.graduationMonth = value;
 	}
-	public Calendar getGraduationDate() {
-		return this.graduationDate;
+	public Calendar getGraduationMonth() {
+		return this.graduationMonth;
 	}
+	
+	public void setGraduationYear(Calendar value) {
+		this.graduationYear = value;
+	}
+	public Calendar getGraduationYear() {
+		return this.graduationYear;
+	}
+	
 
 	public void setStudentId(int value) {
 		this.studentId=value;
@@ -47,13 +57,19 @@ public class Student extends User{
 	public void setCoopTerm(Set<CoopTerm> coopTerms) {
 		this.coopTerm = coopTerms;
 	}
+	
+	public Student() {
+		super();
+	}
 
-	public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Calendar graduationDate) {
-
+	/*
+	public Student(int studentId, String school, Calendar graduationMonth, Calendar graduationYear) {
 		super();
 		this.studentId = studentId;
-		this.graduationDate = graduationDate;
+		this.graduationMonth = graduationMonth;
+		this.graduationYear = graduationYear;
 		this.school = school;
 	}
+	*/
 
 }
