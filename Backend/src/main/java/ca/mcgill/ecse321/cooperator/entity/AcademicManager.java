@@ -18,7 +18,7 @@ public class AcademicManager extends User{
 	public int getAcademicManagerId() {
 		return this.academicManagerId;
 	}
-	public AcademicManager(String userEmail, String userPassword, String academicManagerName) {
+	public AcademicManager() {
 		super();
 	}
 
