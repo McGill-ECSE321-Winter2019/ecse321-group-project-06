@@ -14,8 +14,8 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 
 # Deliverable 1
 
-## Main Goals
-- Requirement model: Requirements, Actors and Use cases
+## Main Tasks
+- Requirement model: Functional & Non functional Requirements, Use cases, Use case specification 
 - Domain model
 - Database design
 - Test cases for persistence layer
