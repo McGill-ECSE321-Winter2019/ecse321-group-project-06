@@ -39,20 +39,11 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 - **Effort Table**
     - [Effort Table](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Effort-Table)   
 
-
-|Team member's name|Total hours|Responsibility         |
-|------------------|-----------|-----------------------|
-|Lily Li    |  _x_ hours|Mobile frontend lead   |
-|Yin Zhang     |  _y_ hours|Project management lead|
-|Irene Huang     |  _y_ hours|Project management lead|
-|Xinquan Wang     |  _y_ hours|Project management lead|
-|Zhuzhen Li    |  _y_ hours|Project management lead|
-
-
+## Table 
 | Team's Member Name | Total Hours | Requirements Model | Domain Model | Persistence Layer | Testing of  Persistence Layer | Build System and  Continuous Integration | Documentation | Meeting |
 |--------------------|-------------|--------------------|--------------|-------------------|-------------------------------|------------------------------------------|---------------|---------|
-| Lily Li            |             | 3.5                | 4            | 0                 |                               |                                          | 1.5           | 4       |
-| Yin Zhang          |             | 1                  | 5            | 1                 |                               |                                          | 0             | 4       |
-| Irene Huang        |             | 3.5                | 2            | 0                 |                               |                                          | 1.5           | 4       |
-| Xinquan Wang       |             | 3.5                | 2            | 0                 |                               |                                          | 0             | 4       |
-| Zhuzhen Li         |             | 3.5                | 2            | 0                 |                               |                                          | 1             | 4       |
+| Lily Li            |  23.5        |  3.5                |    4     |     0.5      |    3      |    8                                        |  1.5           |  3    |
+| Yin Zhang          |  19.5        |  2.5                |    8     |      2       |    3      |    1                                        |  0             |  3     |
+| Irene Huang        |  19.5        |  3.5                |    2     |      0       |    8      |    1                                        |  2             |  3     |
+| Xinquan Wang       |  19.5        |  3.5                |    2     |      0       |    10     |    1                                        |  0             |   3    |
+| Zhuzhen Li         |  19.5        |  3.5                |    2     |      0       |    8      |    1                                        |  2             |   3    |
