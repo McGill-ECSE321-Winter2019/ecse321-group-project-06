@@ -8,6 +8,8 @@ import ca.mcgill.ecse321.cooperator.entity.CoopAdmin;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Student;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,10 +25,9 @@ public class CoopTermService {
 
 	@SuppressWarnings("deprecation")
 	@Transactional
-
-	public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
+    public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
 			String jobDescription, Student student, Employer employer, CoopAdmin coopAdmin, Date endDate) {
-		CoopTerm s = new CoopTerm( );
+		CoopTerm p = new CoopTerm( );
 
 		if (location == null || location.trim().length() == 0) {
 			throw new IllegalArgumentException("Location cannot be empty!");
@@ -62,8 +63,7 @@ public class CoopTermService {
 			throw new IllegalArgumentException("coopAdmin cannot be empty!");
 		}
 		
-		Calendar endCal = Calendar.getInstance();
-		endCal.setTime(endDate);
+		
 		if (endDate == null) {
 			throw new IllegalArgumentException("End date cannot be empty!");
 		}
@@ -74,33 +74,38 @@ public class CoopTermService {
 //			throw new IllegalArgumentException("end date should be a valid year!");
 //		}
 		
-		s.setLocation(location);
-		s.setStartDate(startDate);
-		s.setAcademicSemester(academicSemester);
-		s.setIfWorkPermitNeeded(ifWorkPermitNeeded);
-		s.setJobDescription(jobDescription);
-		s.setStudent(student);
-		s.setEmployer(employer);
-		s.setCoopAdmin(coopAdmin);
-		s.setEndDate(endDate);
+		p.setLocation(location);
+		p.setStartDate(startDate);
+		p.setAcademicSemester(academicSemester);
+		p.setIfWorkPermitNeeded(ifWorkPermitNeeded);
+		p.setJobDescription(jobDescription);
+		p.setStudent(student);
+		p.setEmployer(employer);
+		p.setCoopAdmin(coopAdmin);
+		p.setEndDate(endDate);
 		
-	    CoopTerm sReturn = coopTermRepository.save(s);
+	    CoopTerm pReturn = coopTermRepository.save(p);
 		
-		return sReturn;
+		return pReturn;
 	}
 
 	@Transactional
 	public CoopTerm getCoopTerm(int coopTermId) {
-		if (String.valueOf(coopTermId).length() < 1) {
-	        throw new IllegalArgumentException("Coop Term Id cannot be empty!");
-	    }
+		
 		CoopTerm s = coopTermRepository.findById(coopTermId).get();
 		return s;
 	}
 	
 	@Transactional
 	public List<CoopTerm> getAllCoopTerms() {
-		return (List<CoopTerm>) coopTermRepository.findAll();
+		return toList ( coopTermRepository.findAll());
+	}
+	private <T> List<T> toList(Iterable<T> iterable){
+		List<T> resultList = new ArrayList<T>();
+		for (T t : iterable) {
+			resultList.add(t);
+		}
+		return resultList;
 	}
 	
 }

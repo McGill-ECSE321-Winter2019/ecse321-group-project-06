@@ -1,7 +1,9 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
+
 import java.util.Calendar;
 import java.util.Date;
+
 import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,25 +19,25 @@ public class Student extends User{
 	private Date graduationDate;
 	private Set<CoopTerm> coopTerm;
 
-	private void setSchool(String value) {
+	public void setSchool(String value) {
 		this.school = value;
 	}
-	private String getSchool() {
+	public String getSchool() {
 		return this.school;
 	}
 
-	private void setGraduationDate(Date value) {
+	public void setGraduationDate(Date value) {
 		this.graduationDate = value;
 	}
-	private Date getGraduationDate() {
+	public Date getGraduationDate() {
 		return this.graduationDate;
 	}
-
-	private void setStudentId(int value) {
+	
+	public void setStudentId(int value) {
 		this.studentId=value;
 	}
 	@Id
-	@GeneratedValue()private int getStudentId() {
+	@GeneratedValue()public int getStudentId() {
 		return this.studentId;
 	}
 
@@ -51,11 +53,5 @@ public class Student extends User{
 	public Student() {
 		super();
 	}
-//	public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
-//		super();
-//		this.studentId = studentId;
-//		this.graduationDate = graduationDate;
-//		this.school = school;
-//	}
 
 }

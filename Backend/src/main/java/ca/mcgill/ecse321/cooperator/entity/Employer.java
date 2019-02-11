@@ -6,6 +6,7 @@ import javax.persistence.Table;
 import javax.persistence.Entity;
 import java.util.Set;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Id;
 
 @Entity
@@ -41,11 +42,8 @@ public class Employer extends User{
 		this.coopTerm = coopTerms;
 	}
 	
-	public Employer() {
+	public Employer () {
 		super();
 	}
-//	public Employer (String userEmail, String userPassword, String companyName) {
-//		super();
-//	}
 
 }
