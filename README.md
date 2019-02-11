@@ -41,6 +41,7 @@ Design decisions:
     - [Meeting Minutes 1.2](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.2)
     - [Meeting Minutes 1.3](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.3)
     - [Meeting Minutes 1.4](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.4)
+    - [Meeting Minutes 1.5](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.5)
     
 - **Effort Table**
     - [Effort Table](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Effort-Table)   
