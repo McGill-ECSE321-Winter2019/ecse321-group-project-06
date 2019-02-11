@@ -43,52 +43,52 @@ public class CoopTerm{
 		this.startDate = startDate;
 	}
 
-	private void setLocation(String value) {
+	public void setLocation(String value) {
 		this.location = value;
 	}
-	private String getLocation() {
+	public String getLocation() {
 		return this.location;
 	}
 
-	private void setAcademicSemester(String value) {
+	public void setAcademicSemester(String value) {
 		this.academicSemester = value;
 	}
-	private String getAcademicSemester() {
+	public String getAcademicSemester() {
 		return this.academicSemester;
 	}
 	
-	private void setIfWorkPermitNeeded(boolean value) {
+	public void setIfWorkPermitNeeded(boolean value) {
 		this.ifWorkPermitNeeded = value;
 	}
-	private boolean isIfWorkPermitNeeded() {
+	public boolean isIfWorkPermitNeeded() {
 		return this.ifWorkPermitNeeded;
 	}
 
-	private void setJobDescription(String value) {
+	public void setJobDescription(String value) {
 		this.jobDescription = value;
 	}
-	private String getJobDescription() {
+	public String getJobDescription() {
 		return this.jobDescription;
 	}
 
-	private void setEvaluationForm(String value) {
+	public void setEvaluationForm(String value) {
 		this.evaluationForm = value;
 	}
-	private String getEvaluationForm() {
+	public String getEvaluationForm() {
 		return this.evaluationForm;
 	}
 
-	private void setCoopPlacement(String value) {
+	public void setCoopPlacement(String value) {
 		this.coopPlacement = value;
 	}
-	private String getCoopPlacement() {
+	public String getCoopPlacement() {
 		return this.coopPlacement;
 	}
 
-	private void setTaxCreditForm(String value) {
+	public void setTaxCreditForm(String value) {
 		this.taxCreditForm = value;
 	}
-	private String getTaxCreditForm() {
+	public String getTaxCreditForm() {
 		return this.taxCreditForm;
 	}
 
@@ -111,32 +111,36 @@ public class CoopTerm{
 		return this.coopTermId;
 	}
 	@ManyToOne(optional=false)
-	private Employer getEmployer() {
+	public Employer getEmployer() {
 		return this.employer;
 	}
-	private void setEmployer(Employer value) {
+	public void setEmployer(Employer value) {
 		this.employer = value;
 	}
 	
-	private void setCoopAdmin(CoopAdmin value) {
+	public void setCoopAdmin(CoopAdmin value) {
 		this.coopAdmin = value;
 	}
 	@ManyToOne
-	private CoopAdmin getCoopAdmin() {
+	public CoopAdmin getCoopAdmin() {
 		return this.coopAdmin;
 	}
-
-	public CoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
-			String jobDescription, Student student, Employer employer, CoopAdmin coopAdmin, Date endDate) {
-		this.location = location;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.academicSemester = academicSemester;
-		this.ifWorkPermitNeeded = ifWorkPermitNeeded;
-		this.jobDescription = jobDescription;
-		this.student = student;
-		this.employer = employer;
-		this.coopAdmin = coopAdmin;
+	
+	public CoopTerm() {
+		
 	}
+
+//	public CoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
+//			String jobDescription, Student student, Employer employer, CoopAdmin coopAdmin, Date endDate) {
+//		this.location = location;
+//		this.startDate = startDate;
+//		this.endDate = endDate;
+//		this.academicSemester = academicSemester;
+//		this.ifWorkPermitNeeded = ifWorkPermitNeeded;
+//		this.jobDescription = jobDescription;
+//		this.student = student;
+//		this.employer = employer;
+//		this.coopAdmin = coopAdmin;
+//	}
 
 }
