@@ -47,11 +47,15 @@ public class Student extends User{
 	public void setCoopTerm(Set<CoopTerm> coopTerms) {
 		this.coopTerm = coopTerms;
 	}
-	public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
+	
+	public Student() {
 		super();
-		this.studentId = studentId;
-		this.graduationDate = graduationDate;
-		this.school = school;
 	}
+//	public Student(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
+//		super();
+//		this.studentId = studentId;
+//		this.graduationDate = graduationDate;
+//		this.school = school;
+//	}
 
 }

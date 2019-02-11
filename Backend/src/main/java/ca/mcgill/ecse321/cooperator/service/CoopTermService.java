@@ -21,6 +21,7 @@ public class CoopTermService {
 	@Autowired
 	CoopTermRepository coopTermRepository;
 
+	@SuppressWarnings("deprecation")
 	@Transactional
 
 	public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
@@ -36,10 +37,10 @@ public class CoopTermService {
 		if (startDate == null) {
 			throw new IllegalArgumentException("Start date cannot be empty!");
 		}
-		if (startCal.get(Calendar.MONTH) < 1 || startCal.get(Calendar.MONTH) > 12 ) {
+		if (startDate.getMonth() < 1 || startDate.getMonth() > 12 ) {
 			throw new IllegalArgumentException("start date should be a valid month!");
 		}
-		if (startCal.get(Calendar.YEAR) < 1950 || startCal.get(Calendar.YEAR) > 2020) {
+		if (startDate.getYear() < 1950 || startDate.getYear() > 2020) {
 			throw new IllegalArgumentException("start date should be a valid year!");
 		}
 		if (academicSemester == null || academicSemester.trim().length() == 0) {
@@ -66,12 +67,12 @@ public class CoopTermService {
 		if (endDate == null) {
 			throw new IllegalArgumentException("End date cannot be empty!");
 		}
-		if (endCal.get(Calendar.MONTH) < 1 || endCal.get(Calendar.MONTH) > 12 ) {
-			throw new IllegalArgumentException("end date should be a valid month!");
-		}
-		if (endCal.get(Calendar.YEAR) < 1950) {
-			throw new IllegalArgumentException("end date should be a valid year!");
-		}
+//		if (endCal.get(Calendar.MONTH) < 1 || endCal.get(Calendar.MONTH) > 12 ) {
+//			throw new IllegalArgumentException("end date should be a valid month!");
+//		}
+//		if (endCal.get(Calendar.YEAR) < 1950) {
+//			throw new IllegalArgumentException("end date should be a valid year!");
+//		}
 		
 		s.setLocation(location);
 		s.setStartDate(startDate);

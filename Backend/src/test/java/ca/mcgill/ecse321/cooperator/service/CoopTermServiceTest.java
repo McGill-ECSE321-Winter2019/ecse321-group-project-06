@@ -37,15 +37,15 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 
 		String location = "Mcgill";
-		Date startDate = new Date(2018,9,01);
+		Date startDate = new Date();
 		String academicSemester= "fall";  
 		boolean ifWorkPermitNeeded= true;
 		String jobDescription= "Software Internship";
-		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		Date date = new Date();
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
-		Date endDate = new Date(2022,5,1);
+		Date endDate = new Date();
 
 		CoopTerm coopTerm = null;
 		try {
@@ -72,20 +72,25 @@ public class CoopTermServiceTest {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateCoopTermWithNullLocation() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 		
-		String location = null;
-		Date startDate = new Date(2018,9,01);
+		String location = "sa";
+		Date startDate = new Date();
+		startDate.setYear(2019);
+		startDate.setMonth(1);
 		String academicSemester= "fall";  
 		boolean ifWorkPermitNeeded= true;
 		String jobDescription= "Software Internship";
-		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		//Date date = new Date();
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
-		Date endDate = new Date(2022,5,1);
+		Date endDate = new Date();
+		endDate.setYear(2019);
+		endDate.setMonth(1);
 
 		CoopTerm coopTerm = null;
 		String error = null;
@@ -96,11 +101,12 @@ public class CoopTermServiceTest {
 			// Check that no error occurred
 			error = e.getMessage();
 		}
-		assertEquals("location cannot be empty!", error);
+		assertEquals("Location cannot be empty!", error);
 
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateCoopTermWithNullStartDate() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -110,11 +116,15 @@ public class CoopTermServiceTest {
 		String academicSemester= "fall";  
 		boolean ifWorkPermitNeeded= true;
 		String jobDescription= "Software Internship";
-		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		Date date = new Date();
+		date.setYear(2019);
+		date.setMonth(1);
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
-		Date endDate = new Date(2022,5,1);
+		Date endDate = new Date();
+		endDate.setYear(2019);
+		endDate.setMonth(1);
 
 		CoopTerm coopTerm = null;
 		String error = null;
@@ -140,9 +150,10 @@ public class CoopTermServiceTest {
 		boolean ifWorkPermitNeeded= true;
 		String jobDescription= "Software Internship";
 		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
+		
 		Date endDate = new Date(2022,5,1);
 
 		CoopTerm coopTerm = null;
@@ -159,20 +170,27 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateCoopTermWithWrongStartDateYear() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 		
 		String location = "Mcgill";
-		Date startDate = new Date(201,13,01);
+		Date startDate = new Date();
+		startDate.setYear(2019);
+		startDate.setMonth(1);
 		String academicSemester= "fall";  
 		boolean ifWorkPermitNeeded= true;
 		String jobDescription= "Software Internship";
-		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		Date date = new Date();
+		date.setYear(2019);
+		date.setMonth(1);
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
-		Date endDate = new Date(2022,5,1);
+		Date endDate = new Date();
+		endDate.setYear(2);
+		endDate.setMonth(1);
 
 		CoopTerm coopTerm = null;
 		String error = null;
@@ -198,8 +216,8 @@ public class CoopTermServiceTest {
 		boolean ifWorkPermitNeeded= true;
 		String jobDescription= "Software Internship";
 		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
 		Date endDate = new Date(2022,5,1);
 
@@ -222,15 +240,15 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 		
 		String location = "Mcgill";
-		Date startDate = new Date(2018,9,01);
+		Date startDate = new Date();
 		String academicSemester= "fall";  
 		boolean ifWorkPermitNeeded= true ;
 		String jobDescription= null;
-		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		Date date = new Date();
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
-		Date endDate = new Date(2022,5,1);
+		Date endDate = new Date();
 
 		CoopTerm coopTerm = null;
 		String error = null;
@@ -252,14 +270,15 @@ public class CoopTermServiceTest {
 		
 		String location = "Mcgill";
 		@SuppressWarnings("deprecation")
-		Date startDate = new Date(2018,9,01);
+		Date startDate = new Date();
 		String academicSemester= "fall";  
 		boolean ifWorkPermitNeeded= true ;
 		String jobDescription= "Software Internship";
 		@SuppressWarnings("deprecation")
 		Date date = new Date(2020,5,1);
 		Student student= null ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
 		@SuppressWarnings("deprecation")
 		Date endDate = new Date(2022,5,1);
@@ -288,7 +307,7 @@ public class CoopTermServiceTest {
 		boolean ifWorkPermitNeeded= true ;
 		String jobDescription= "Software Internship";
 		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
+		Student student= new Student() ;
 		Employer employer= null;
 		CoopAdmin coopAdmin=new CoopAdmin ();
 		Date endDate = new Date(2022,5,1);
@@ -317,8 +336,8 @@ public class CoopTermServiceTest {
 		boolean ifWorkPermitNeeded= true ;
 		String jobDescription= "Software Internship";
 		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=null;
 		Date endDate = new Date(2022,5,1);
 
@@ -346,8 +365,8 @@ public class CoopTermServiceTest {
 		boolean ifWorkPermitNeeded= true ;
 		String jobDescription= "Software Internship";
 		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
 		Date endDate = null;
 
@@ -375,8 +394,8 @@ public class CoopTermServiceTest {
 		boolean ifWorkPermitNeeded= true;
 		String jobDescription= "Software Internship";
 		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
 		Date endDate = new Date(2022,13,1);
 
@@ -404,8 +423,8 @@ public class CoopTermServiceTest {
 		boolean ifWorkPermitNeeded= true;
 		String jobDescription= "Software Internship";
 		Date date = new Date(2020,5,1);
-		Student student= new Student("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= new Employer("company@gmail.com","wq","Amazon");
+		Student student= new Student() ;
+		Employer employer= new Employer();
 		CoopAdmin coopAdmin=new CoopAdmin ();
 		Date endDate = new Date(202,5,1);
 
