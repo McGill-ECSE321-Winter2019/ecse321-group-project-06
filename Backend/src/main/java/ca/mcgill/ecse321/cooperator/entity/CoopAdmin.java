@@ -38,5 +38,5 @@ public class CoopAdmin extends User{
 	public CoopAdmin() {
 		super();
 	}
-
 }
+
