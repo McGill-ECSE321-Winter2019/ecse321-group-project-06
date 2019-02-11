@@ -20,6 +20,12 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 - Database design
 - Test cases for persistence layer
 
+## Design Decision
+Design decisions:
+- Created User class which has student, employer, coop administrator and academic manager generalizations. This makes the organization more clean.
+- Created the id attribute for each class. The id is used as the primary key attribute to differentiate each object. 
+- Created two data structures, date and time to have a better representation of some data.
+
 ## Documents 
     
 - **Requirements Model**
