@@ -41,7 +41,7 @@ public class Student extends User{
 		return this.studentId;
 	}
 
-	@OneToMany(mappedBy="student")
+	@OneToMany(mappedBy="student", orphanRemoval=true)
 	public Set<CoopTerm> getCoopTerm() {
 		return this.coopTerm;
 	}

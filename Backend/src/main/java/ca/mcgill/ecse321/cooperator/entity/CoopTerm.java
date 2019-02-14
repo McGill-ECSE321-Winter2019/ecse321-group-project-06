@@ -1,12 +1,12 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
-import javax.persistence.Entity;
-
 import java.util.Date;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "COOPTERM")
@@ -129,6 +129,7 @@ public class CoopTerm{
 	public CoopTerm() {
 		
 	}
+		
 
 //	public CoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
 //			String jobDescription, Student student, Employer employer, CoopAdmin coopAdmin, Date endDate) {

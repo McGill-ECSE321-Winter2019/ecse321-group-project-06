@@ -26,18 +26,18 @@ public class CoopTermService {
 	@SuppressWarnings("deprecation")
 	@Transactional
     public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
-			String jobDescription, Student student, Employer employer, CoopAdmin coopAdmin, Date endDate) {
+			String jobDescription, Student student, Employer employer, CoopAdmin coopAdmin, Date endDate) throws IllegalArgumentException{
 		CoopTerm p = new CoopTerm( );
 
 		if (location == null || location.trim().length() == 0) {
 			throw new IllegalArgumentException("Location cannot be empty!");
 		}
 		
-		Calendar startCal = Calendar.getInstance();
-		startCal.setTime(startDate);
+		
 		if (startDate == null) {
 			throw new IllegalArgumentException("Start date cannot be empty!");
 		}
+		
 		if (startDate.getMonth() < 1 || startDate.getMonth() > 12 ) {
 			throw new IllegalArgumentException("start date should be a valid month!");
 		}
@@ -100,6 +100,13 @@ public class CoopTermService {
 	public List<CoopTerm> getAllCoopTerms() {
 		return toList ( coopTermRepository.findAll());
 	}
+	
+	@Transactional
+	public void clearAllCoopTerms() {
+		coopTermRepository.deleteAll();
+		System.out.println(getAllCoopTerms().size());
+	}
+	
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {
