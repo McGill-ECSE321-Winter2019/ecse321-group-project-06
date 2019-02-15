@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,14 +38,16 @@ public class EventServiceTest {
 		assertEquals(0, eventService.getAllEvents().size());
 		
 		Calendar c = Calendar.getInstance();
- 		Date startdate = new Date();
-		Date enddate = new Date();
 		String location = "location";
-		Time starttime = new Time(c.getTimeInMillis());
-		Time endtime = new Time(c.getTimeInMillis());
+		c.set(2016, Calendar.OCTOBER, 16, 9, 00, 0);
+ 		Date startdate = new Date(c.getTimeInMillis());
+		LocalTime starttime = LocalTime.parse("09:00");
+		c.set(2016, Calendar.OCTOBER, 16, 9, 30, 0);
+		Date enddate = new Date(c.getTimeInMillis());
+		LocalTime endtime = LocalTime.parse("09:30");
 		Event event = null;
 		try {
-			event = eventService.createEvent(startdate, enddate, location,starttime,endtime);
+			event = eventService.createEvent(startdate, enddate, location,Time.valueOf(starttime),Time.valueOf(endtime));
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -53,12 +56,12 @@ public class EventServiceTest {
  		List<Event> allevents = eventService.getAllEvents();
 
  		assertEquals(1, allevents.size());
-
- 		assertEquals(startdate, event.getStartDate());
-		assertEquals(enddate, event.getEndDate());
-		assertEquals(location, event.getLocation());
-		assertEquals(starttime, event.getStartTime());
-		assertEquals(endtime, event.getEndTime());
+ 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+ 		assertEquals(startdate, allevents.get(0).getStartDate());
+		assertEquals(enddate, allevents.get(0).getEndDate());
+		assertEquals(location, allevents.get(0).getLocation());
+		assertEquals(starttime.format(formatter).toString(), allevents.get(0).getStartTime().toString());
+		assertEquals(endtime.format(formatter).toString(), allevents.get(0).getEndTime().toString());
 
 
 	}
@@ -88,7 +91,7 @@ public class EventServiceTest {
 	}
 
  	@Test
-	public void testCreateCoopAdminWithNullEndDate() {
+	public void testCreateEventWithNullEndDate() {
 		assertEquals(0, eventService.getAllEvents().size());
 		
 		Calendar c = Calendar.getInstance();
@@ -112,7 +115,7 @@ public class EventServiceTest {
 	}
 
  	@Test
-	public void testCreateCoopAdminWithNullLocation() {
+	public void testCreateEventWithNullLocation() {
 		assertEquals(0, eventService.getAllEvents().size());
 		Calendar c = Calendar.getInstance();
 		Date startdate = new Date();
