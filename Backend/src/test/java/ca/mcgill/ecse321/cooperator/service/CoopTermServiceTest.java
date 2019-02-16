@@ -15,14 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import ca.mcgill.ecse321.cooperator.entity.CoopAdmin;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
-import ca.mcgill.ecse321.cooperator.entity.Student;
-import ca.mcgill.ecse321.cooperator.repository.CoopAdminRepository;
 import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
 import ca.mcgill.ecse321.cooperator.repository.EmployerRepository;
-import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,14 +31,6 @@ public class CoopTermServiceTest {
 	private EmployerService employerService;
 	@Autowired
 	private EmployerRepository employerRepository;
-	@Autowired
-	private StudentService studentService;
-	@Autowired
-	private StudentRepository studentRepository;
-	@Autowired
-	private CoopAdminService coopAdminService;
-	@Autowired
-	private CoopAdminRepository coopAdminRepository;
 	
 	
 	@After
@@ -333,40 +321,6 @@ public class CoopTermServiceTest {
 //		assertEquals(0, coopTermService.getAllCoopTerms().size());
 //	}
 //	
-	@Test
-	public void testCreateCoopTermWithNullCoopAdmin() {
-		//assertEquals(0, coopTermService.getAllCoopTerms().size());
-		
-		String location = "mcgill";;
-		Date startDate = new Date();
-		startDate.setYear(2019);
-		startDate.setMonth(1);
-		String academicSemester= "fall";  
-		boolean ifWorkPermitNeeded= true;
-		String jobDescription= "Software Internship";
-		Date date = new Date();
-		date.setYear(2019);
-		date.setMonth(1);
-		Student student= studentService.createStudent("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
-		Employer employer= employerService.createEmployer("company@gmail.com","wq","Amazon");
-		CoopAdmin coopAdmin=null;;
-		Date endDate = new Date();
-		endDate.setYear(2019);
-		endDate.setMonth(1);
-
-		CoopTerm coopTerm = null;
-		String error = null;
-		try {
-			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, student,  employer,coopAdmin,endDate);
-		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
-			error = e.getMessage();
-		}
-		assertEquals("coopAdmin cannot be empty!", error);
-
-		assertEquals(0, coopTermService.getAllCoopTerms().size());
-	}
 	
 //	@Test
 //	public void testCreateCoopTermWithNullEndDate() {
@@ -415,9 +369,7 @@ public class CoopTermServiceTest {
 		Date date = new Date();
 		date.setYear(2019);
 		date.setMonth(1);
-		Student student= studentService.createStudent("test@gmail.com", "Kevin", "sadaf", 260664930, "Mcgill",date) ;
 		Employer employer= employerService.createEmployer("company@gmail.com","wq","Amazon");
-		CoopAdmin coopAdmin=coopAdminService.createCoopAdmin("company@gmail.com","dafaf","sn");;
 		Date endDate = new Date();
 		endDate.setYear(2019);
 		endDate.setMonth(1);
@@ -426,7 +378,7 @@ public class CoopTermServiceTest {
 		CoopTerm coopTerm = null;
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, student,  employer,coopAdmin,endDate);
+					jobDescription, employer, endDate);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -441,9 +393,7 @@ public class CoopTermServiceTest {
 		assertEquals(academicSemester, coopTerm.getAcademicSemester());
 		assertEquals(ifWorkPermitNeeded, coopTerm.isIfWorkPermitNeeded());
 		assertEquals(jobDescription, coopTerm.getJobDescription());
-		assertEquals(student, coopTerm.getStudent());
 		assertEquals(employer, coopTerm.getEmployer());
-		assertEquals(coopAdmin, coopTerm.getCoopAdmin());
 		assertEquals(endDate, coopTerm.getEndDate());
 		
 	}
