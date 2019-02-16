@@ -4,10 +4,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ca.mcgill.ecse321.cooperator.entity.CoopAdmin;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
-import ca.mcgill.ecse321.cooperator.entity.Student;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,7 +24,8 @@ public class CoopTermService {
 	@SuppressWarnings("deprecation")
 	@Transactional
     public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
-			String jobDescription, Student student, Employer employer, CoopAdmin coopAdmin, Date endDate) throws IllegalArgumentException{
+			String jobDescription, Employer employer, Date endDate) 
+	{
 		CoopTerm p = new CoopTerm( );
 
 		if (location == null || location.trim().length() == 0) {
@@ -53,14 +52,8 @@ public class CoopTermService {
 		if (jobDescription == null || jobDescription.trim().length() == 0) {
 			throw new IllegalArgumentException("JobDescription cannot be empty!");
 		}
-		if (student == null ) {
-			throw new IllegalArgumentException("student cannot be empty!");
-		}
 		if (employer == null ) {
 			throw new IllegalArgumentException("employer cannot be empty!");
-		}
-		if (coopAdmin == null ) {
-			throw new IllegalArgumentException("coopAdmin cannot be empty!");
 		}
 		
 		
@@ -79,9 +72,7 @@ public class CoopTermService {
 		p.setAcademicSemester(academicSemester);
 		p.setIfWorkPermitNeeded(ifWorkPermitNeeded);
 		p.setJobDescription(jobDescription);
-		p.setStudent(student);
 		p.setEmployer(employer);
-		p.setCoopAdmin(coopAdmin);
 		p.setEndDate(endDate);
 		
 	    CoopTerm pReturn = coopTermRepository.save(p);

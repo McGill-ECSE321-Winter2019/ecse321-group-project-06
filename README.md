@@ -12,6 +12,23 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 - download a proof of co-op placement and access taxk credit forms with instructions 
 - Be notified about or invited to upcoming events
 
+# Deliverable 2 
+## Main Tasks 
+- Backend Implementation and Evolution of Persistence Layer 
+- Software Quality Assurance Plan and Report 
+- Unit Testing of Backend 
+- Integration Testing of Backend Services 
+- Build System, Continuous Integration and Delivery
+
+## Design Decision 
+
+## Documents 
+
+## Table 
+
+
+
+
 # Deliverable 1
 
 ## Main Tasks
@@ -35,7 +52,10 @@ Design decisions:
 
 - **Domain Model**
     - [class diagram](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Domain-Model)
-  
+    
+- **Testing Report** 
+    - [Testing Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Testing-Report)
+
 - **Minutes**
     - [Meeting Minutes 1.1](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.1)
     - [Meeting Minutes 1.2](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.2)

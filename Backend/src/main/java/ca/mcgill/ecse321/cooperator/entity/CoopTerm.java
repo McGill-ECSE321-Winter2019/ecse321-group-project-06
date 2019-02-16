@@ -20,10 +20,8 @@ public class CoopTerm{
 	private String evaluationForm;
 	private String coopPlacement;
 	private String taxCreditForm;
-	private Student student;
 	private int coopTermId;
 	private Employer employer;
-	private CoopAdmin coopAdmin;
 
 	//@ManyToOne(optional=false)
 	public Date getEndDate() {
@@ -91,20 +89,11 @@ public class CoopTerm{
 	public String getTaxCreditForm() {
 		return this.taxCreditForm;
 	}
-
-	@ManyToOne(optional=false)
-	public Student getStudent() {
-		return this.student;
+	
+	public void setCoopTermId(int coopTermId) {
+		this.coopTermId = coopTermId;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
-
-	public void setcoopTermId(int value) {
-		this.coopTermId = value;
-	}
 	@Id
 	@GeneratedValue()
 	public int getcoopTermId() {
@@ -116,14 +105,6 @@ public class CoopTerm{
 	}
 	public void setEmployer(Employer value) {
 		this.employer = value;
-	}
-	
-	public void setCoopAdmin(CoopAdmin value) {
-		this.coopAdmin = value;
-	}
-	@ManyToOne
-	public CoopAdmin getCoopAdmin() {
-		return this.coopAdmin;
 	}
 	
 	public CoopTerm() {
