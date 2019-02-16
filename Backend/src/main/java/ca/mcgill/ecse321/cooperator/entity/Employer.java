@@ -8,10 +8,14 @@ import java.util.Set;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 
 @Entity
 @Table(name = "EMPLOYER")
-public class Employer extends User{
+
+public class Employer extends CoopUser{
 	private Set<Event> event;
 	private int employerId;
 	private Set<CoopTerm> coopTerm;
@@ -20,19 +24,10 @@ public class Employer extends User{
 	public Set<Event> getEvent() {
 		return this.event;
 	}
-
 	public void setEvent(Set<Event> events) {
 		this.event = events;
 	}
 
-	public void setEmployerId(int value) {
-		this.employerId = value;
-	}
-	@Id
-	@GeneratedValue()
-	public int getEmployerId() {
-		return this.employerId;
-	}
 	@OneToMany(mappedBy="employer")
 	public Set<CoopTerm> getCoopTerm() {
 		return this.coopTerm;

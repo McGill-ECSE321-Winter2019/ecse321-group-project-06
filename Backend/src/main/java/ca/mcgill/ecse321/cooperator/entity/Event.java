@@ -21,7 +21,6 @@ public class Event{
 	private Date startDate;
 	private Date endDate;
 	private String location;
-	private Set<Employer> employer;
 	private Time startTime;
 	private Time endTime;
 	private int eventId;
@@ -45,15 +44,6 @@ public class Event{
 	}
 	public String getLocation() {
 		return this.location;
-	}
-
-	@ManyToMany(mappedBy="event", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	public Set<Employer> getEmployer() {
-		return this.employer;
-	}
-
-	public void setEmployer(Set<Employer> employers) {
-		this.employer = employers;
 	}
 
 	public void setStartTime(Time startTime) {

@@ -5,11 +5,8 @@ import java.sql.Date;
 
 import org.springframework.data.repository.CrudRepository;
 
-
-import ca.mcgill.ecse321.cooperator.entity.CoopAdmin;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
-import ca.mcgill.ecse321.cooperator.entity.Student;
 
 
 public interface CoopTermRepository extends CrudRepository<CoopTerm, Integer> {

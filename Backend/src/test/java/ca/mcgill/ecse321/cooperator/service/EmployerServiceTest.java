@@ -51,9 +51,9 @@ public class EmployerServiceTest {
 			List<Employer> allEmployers = service.getAllEmployers();
 			
 			assertEquals(1, allEmployers.size());
-			assertEquals(userEmail, employer.getEmail());
-			assertEquals(userPassword, employer.getPassword());
-			assertEquals(companyName, employer.getName());	
+			assertEquals(userEmail, allEmployers.get(0).getEmail());
+			assertEquals(userPassword, allEmployers.get(0).getPassword());
+			assertEquals(companyName, allEmployers.get(0).getName());	
 			
 		}
 		
