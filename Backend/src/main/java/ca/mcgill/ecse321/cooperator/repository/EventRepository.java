@@ -1,9 +1,13 @@
 package ca.mcgill.ecse321.cooperator.repository;
 
- import org.springframework.data.repository.CrudRepository;
+ import java.sql.Date;
 
- import ca.mcgill.ecse321.cooperator.entity.Event;
+import org.springframework.data.repository.CrudRepository;
+
+import ca.mcgill.ecse321.cooperator.entity.Event;
 
  public interface EventRepository extends CrudRepository<Event, Integer>{
-
+	 Event findByStartDate(Date startDate);
+	 Event findByEndDate(Date endDate);
+	 Event findByLocation(String location);
  }
