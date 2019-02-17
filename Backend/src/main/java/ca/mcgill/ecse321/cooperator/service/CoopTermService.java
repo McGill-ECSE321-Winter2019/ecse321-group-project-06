@@ -21,7 +21,6 @@ public class CoopTermService {
 	@Autowired
 	CoopTermRepository coopTermRepository;
 
-	@SuppressWarnings("deprecation")
 	@Transactional
     public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
 			String jobDescription, Employer employer, Date endDate) 
