@@ -2,14 +2,9 @@ package ca.mcgill.ecse321.cooperator.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
 import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +28,12 @@ public class CoopTermServiceTest {
 	@Autowired
 	private EmployerRepository employerRepository;
 	
-	
 	@After
 	public void clearDatabase() {	
 		coopTermService.clearAllCoopTerms();
 	}
 	
-
+	/* Test whether coopterm can be created successfully*/
 	@Test
 	public void testCreateCoopTerm() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -55,9 +49,8 @@ public class CoopTermServiceTest {
 		Date endDate = new Date();
 		endDate.setYear(2019);
 		endDate.setMonth(1);
-
-
 		CoopTerm coopTerm = null;
+		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
 					jobDescription, employer, endDate);
@@ -69,7 +62,6 @@ public class CoopTermServiceTest {
 		List<CoopTerm> allCoopTerms = coopTermService.getAllCoopTerms();
 
 		assertEquals(1, allCoopTerms.size());
-	
 		assertEquals(location, coopTerm.getLocation());
 		assertEquals(startDate, coopTerm.getStartDate());
 		assertEquals(academicSemester, coopTerm.getAcademicSemester());
@@ -80,6 +72,7 @@ public class CoopTermServiceTest {
 		
 	}
 	
+    /* Test creating coopterm with no location provided, should throw exception */
 	@Test
 	public void testCreateCoopTermWithNullLocation() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -95,9 +88,9 @@ public class CoopTermServiceTest {
 		Date endDate = new Date();
 		endDate.setYear(2019);
 		endDate.setMonth(1);
-
 		CoopTerm coopTerm = null;
 		String error = null;
+		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
 					jobDescription, employer, endDate);
@@ -109,7 +102,7 @@ public class CoopTermServiceTest {
 		}
 	}
 
-	
+	/* Test creating coopterm with no start date provided, should throw exception */
 	@Test
 	public void testCreateCoopTermWithNullStartDate() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -124,9 +117,9 @@ public class CoopTermServiceTest {
 		Date endDate = new Date();
 		endDate.setYear(2019);
 		endDate.setMonth(1);
-
 		CoopTerm coopTerm = null;
 		String error = null;
+		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
 					jobDescription, employer, endDate);
@@ -137,7 +130,7 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
-
+	/* Test creating coopterm with wrong start date year provided, should throw exception */
 	@Test
 	public void testCreateCoopTermWithWrongStartDateYear() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -153,9 +146,9 @@ public class CoopTermServiceTest {
 		Date endDate = new Date();
 		endDate.setYear(2);
 		endDate.setMonth(1);
-
 		CoopTerm coopTerm = null;
 		String error = null;
+		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
 					jobDescription, employer, endDate);
@@ -166,6 +159,7 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
+	/* Test creating coopterm with no academic semester provided, should throw exception */
 	@Test
 	public void testCreateCoopTermWithNullAcademicSemester() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -181,9 +175,9 @@ public class CoopTermServiceTest {
 		Date endDate = new Date();
 		endDate.setYear(2019);
 		endDate.setMonth(1);
-
 		CoopTerm coopTerm = null;
 		String error = null;
+		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
 					jobDescription, employer, endDate);
@@ -194,6 +188,7 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
+	/* Test creating coopterm with no job description provided, should throw exception */
 	@Test
 	public void testCreateCoopTermWithNullJobDescription() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -209,9 +204,9 @@ public class CoopTermServiceTest {
 		Date endDate = new Date();
 		endDate.setYear(2019);
 		endDate.setMonth(1);
-
 		CoopTerm coopTerm = null;
 		String error = null;
+		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
 					jobDescription, employer, endDate);
@@ -222,6 +217,7 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
+	/* Test creating coopterm with no employer provided, should throw exception */
 	@Test
 	public void testCreateCoopTermWithNullEmployer() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -237,9 +233,9 @@ public class CoopTermServiceTest {
 		Date endDate = new Date();
 		endDate.setYear(2019);
 		endDate.setMonth(1);
-
 		CoopTerm coopTerm = null;
 		String error = null;
+		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
 					jobDescription, employer, endDate);
@@ -250,7 +246,7 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
-	
+	/* Test creating coopterm with no end date provided, should throw exception */
 	@Test
 	public void testCreateCoopTermWithNullEndDate() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -264,9 +260,9 @@ public class CoopTermServiceTest {
 		String jobDescription= "Software Internship";
 		Employer employer= employerService.createEmployer("company@gmail.com","wq","Amazon");
 		Date endDate = null;
-
 		CoopTerm coopTerm = null;
 		String error = null;
+		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
 					jobDescription, employer, endDate);
@@ -277,21 +273,21 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
+	/* Test creating coopterm with wrong end date year provided, should throw exception */
 	@Test
 	public void testCreateCoopTermWithWrongEndDateYear() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 		
 		String location = "Mcgill";
-		
 		Date startDate = new Date(2012,12,01);
 		String academicSemester= "fall";  
 		boolean ifWorkPermitNeeded= true;
 		String jobDescription= "Software Internship";
 		Employer employer= employerService.createEmployer("company@gmail.com","wq","Amazon");
 		Date endDate = new Date(202,5,1);
-
 		CoopTerm coopTerm = null;
 		String error = null;
+		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
 					jobDescription, employer, endDate);

@@ -31,6 +31,7 @@ public class EmployerServiceTest {
 		employerRepository.deleteAll();
 	}
 	
+	/* Test creating employer, should return no error */
 	@Test
 	public void testCreateEmployer() {
 		assertEquals(0, service.getAllEmployers().size());
@@ -55,6 +56,7 @@ public class EmployerServiceTest {
 		
 	}
 	
+	/* Test creating employer with no email provided, should throw exception */
 	@Test
 	public void testCreateEmployerWithNullEmail() {
 		assertEquals(0, service.getAllEmployers().size());
@@ -68,15 +70,13 @@ public class EmployerServiceTest {
 		try {
 			employer = service.createEmployer(userEmail, userPassword,companyName);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("Email cannot be empty!", error);
 		assertEquals(0, service.getAllEmployers().size());
-		
-		
 	}
 	
+	/* Test creating employer with no userpassword provided, should throw exception */
 	@Test
 	public void testCreateEmployerWithNullUserPassword() {
 		assertEquals(0, service.getAllEmployers().size());
@@ -90,13 +90,13 @@ public class EmployerServiceTest {
 		try {
 			employer = service.createEmployer(userEmail, userPassword,companyName);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("password cannot be empty!", error);
 		assertEquals(0, service.getAllEmployers().size());
 	}
-
+	
+	/* Test creating employer with no company name provided, should throw exception */
 	@Test
 	public void testCreateEmployerWithNullCompanyName() {
 		assertEquals(0, service.getAllEmployers().size());
@@ -110,7 +110,6 @@ public class EmployerServiceTest {
 		try {
 			employer = service.createEmployer(userEmail, userPassword,companyName);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("company name cannot be empty!", error);

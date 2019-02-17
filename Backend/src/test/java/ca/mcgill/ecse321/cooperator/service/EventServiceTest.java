@@ -32,7 +32,8 @@ public class EventServiceTest {
 	public void clearDatabase() {	
 		eventRepository.deleteAll();
 	}
-
+ 	
+	/* Test creating event, should not throw exception */
  	@Test
 	public void testCreateEvent() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -65,7 +66,8 @@ public class EventServiceTest {
 
 
 	}
-
+ 	
+	/* Test creating event with no start date provided, should throw exception */
  	@Test
 	public void testCreateEventWithNullStartDate() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -85,10 +87,10 @@ public class EventServiceTest {
 			error = e.getMessage();
 		}
 		assertEquals("startDate cannot be empty!", error);
-
  		assertEquals(0, eventService.getAllEvents().size());
 	}
 
+	/* Test creating event with no end date provided, should throw exception */
  	@Test
 	public void testCreateEventWithNullEndDate() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -108,10 +110,10 @@ public class EventServiceTest {
 			error = e.getMessage();
 		}
 		assertEquals("endDate cannot be empty!", error);
-
  		assertEquals(0, eventService.getAllEvents().size());
 	}
 
+	/* Test creating event with no location provided, should throw exception */
  	@Test
 	public void testCreateEventWithNullLocation() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -132,6 +134,8 @@ public class EventServiceTest {
 		assertEquals("location cannot be empty!", error);
  		assertEquals(0, eventService.getAllEvents().size());
 	}
+ 	
+	/* Test creating event with no start time provided, should throw exception */
  	@Test
 	public void testCreateEventWithNullStartTime() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -141,9 +145,9 @@ public class EventServiceTest {
 		String location = "location";
 		Time starttime = null;
 		Time endtime = new Time(c.getTimeInMillis());
-
  		Event event = null;
 		String error = null;
+		
 		try {
 			event = eventService.createEvent(startdate, enddate, location,starttime,endtime);
 		} catch (IllegalArgumentException e) {
@@ -152,6 +156,8 @@ public class EventServiceTest {
 		assertEquals("startTime cannot be empty!", error);
  		assertEquals(0, eventService.getAllEvents().size());
 	}
+ 	
+	/* Test creating event with no end time provided, should throw exception */
  	@Test
 	public void testCreateEventWithNullEndTime() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -162,9 +168,9 @@ public class EventServiceTest {
 		String location = "location";
 		Time starttime = new Time(c.getTimeInMillis());
 		Time endtime = null;
-
  		Event event = null;
 		String error = null;
+		
 		try {
 			event = eventService.createEvent(startdate, enddate, location,starttime,endtime);
 		} catch (IllegalArgumentException e) {
