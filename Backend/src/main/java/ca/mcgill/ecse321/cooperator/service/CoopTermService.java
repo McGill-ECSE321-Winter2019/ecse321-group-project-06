@@ -2,7 +2,7 @@ package ca.mcgill.ecse321.cooperator.service;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
@@ -15,7 +15,7 @@ import java.util.List;
 import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
 
 
-@Repository
+@Service
 public class CoopTermService {
 
 	@Autowired
@@ -60,12 +60,14 @@ public class CoopTermService {
 		if (endDate == null) {
 			throw new IllegalArgumentException("End date cannot be empty!");
 		}
-//		if (endCal.get(Calendar.MONTH) < 1 || endCal.get(Calendar.MONTH) > 12 ) {
-//			throw new IllegalArgumentException("end date should be a valid month!");
-//		}
-//		if (endCal.get(Calendar.YEAR) < 1950) {
-//			throw new IllegalArgumentException("end date should be a valid year!");
-//		}
+		
+		if (endDate.getMonth() < 1 || endDate.getMonth() > 12 ) {
+			throw new IllegalArgumentException("end date should be a valid month!");
+		}
+		
+		if (endDate.getYear() < 1950) {
+			throw new IllegalArgumentException("end date should be a valid year!");
+		}
 		
 		p.setLocation(location);
 		p.setStartDate(startDate);
