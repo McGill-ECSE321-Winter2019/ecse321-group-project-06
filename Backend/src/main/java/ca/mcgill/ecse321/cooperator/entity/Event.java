@@ -1,18 +1,10 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
 import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-
 import java.util.Date;
-import java.util.Set;
-import javax.persistence.ManyToMany;
-
 import java.sql.Time;
-import java.time.LocalTime;
 import javax.persistence.Id;
 
 @Entity

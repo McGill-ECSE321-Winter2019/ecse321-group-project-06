@@ -23,7 +23,6 @@ public class CoopTerm{
 	private int coopTermId;
 	private Employer employer;
 
-	//@ManyToOne(optional=false)
 	public Date getEndDate() {
 		return this.endDate;
 	}
@@ -32,7 +31,6 @@ public class CoopTerm{
 		this.endDate = endDate;
 	}
 
-	//@ManyToOne(optional=false)
 	public Date getStartDate() {
 		return this.startDate;
 	}
