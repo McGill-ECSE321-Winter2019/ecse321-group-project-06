@@ -252,7 +252,7 @@ public class CoopTermServiceTest {
 	
 	@Test
 	public void testCreateCoopTermWithNullEndDate() {
-		//assertEquals(0, coopTermService.getAllCoopTerms().size());
+		assertEquals(0, coopTermService.getAllCoopTerms().size());
 		
 		String location = "mcgill";;
 		Date startDate = new Date();
