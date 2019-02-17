@@ -30,7 +30,7 @@ public class CoopTermServiceTest {
 	
 	@After
 	public void clearDatabase() {	
-		coopTermService.clearAllCoopTerms();
+		coopTermRepository.deleteAll();
 	}
 	
 	/* Test whether coopterm can be created successfully*/

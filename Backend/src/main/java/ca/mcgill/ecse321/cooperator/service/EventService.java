@@ -17,6 +17,7 @@ public class EventService {
 	@Autowired
 	EventRepository eventRepository;
 
+	/* exceptions */
  	@Transactional
 	public Event createEvent(Date startdate, Date enddate, String location, Time starttime, Time endtime){
 		if (startdate == null) {
@@ -45,13 +46,15 @@ public class EventService {
 		Event eventReturn = eventRepository.save(event);
 		return eventReturn;
 	}
-
+ 	
+ 	/* id getter*/
  	@Transactional
 	public Event getEvent(int id){
 		Event event = eventRepository.findById(id).get();
 		return event;
 	}
 
+ 	/* get all events in the list */
  	@Transactional
 	public List<Event> getAllEvents() {
 		return toList(eventRepository.findAll());

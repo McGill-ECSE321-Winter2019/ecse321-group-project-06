@@ -20,6 +20,7 @@ public class CoopTermService {
 	@Autowired
 	CoopTermRepository coopTermRepository;
 
+	/* exceptions */
 	@SuppressWarnings("deprecation")
 	@Transactional
     public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
@@ -30,12 +31,9 @@ public class CoopTermService {
 		if (location == null || location.trim().length() == 0) {
 			throw new IllegalArgumentException("Location cannot be empty!");
 		}
-		
-		
 		if (startDate == null) {
 			throw new IllegalArgumentException("Start date cannot be empty!");
 		}
-		
 		if (startDate.getMonth() < 0 || startDate.getMonth() > 11 ) {
 			throw new IllegalArgumentException("start date should be a valid month!");
 		}
@@ -54,16 +52,12 @@ public class CoopTermService {
 		if (employer == null ) {
 			throw new IllegalArgumentException("employer cannot be empty!");
 		}
-		
-		
 		if (endDate == null) {
 			throw new IllegalArgumentException("End date cannot be empty!");
 		}
-		
 		if (endDate.getMonth() < 0 || endDate.getMonth() > 11 ) {
 			throw new IllegalArgumentException("end date should be a valid month!");
 		}
-		
 		if (endDate.getYear() < 1950) {
 			throw new IllegalArgumentException("end date should be a valid year!");
 		}
@@ -81,6 +75,7 @@ public class CoopTermService {
 		return pReturn;
 	}
 
+	/* id getter */
 	@Transactional
 	public CoopTerm getCoopTerm(int coopTermId) {
 		
@@ -88,15 +83,10 @@ public class CoopTermService {
 		return s;
 	}
 	
+	/* get coopterms list */
 	@Transactional
 	public List<CoopTerm> getAllCoopTerms() {
 		return toList ( coopTermRepository.findAll());
-	}
-	
-	@Transactional
-	public void clearAllCoopTerms() {
-		coopTermRepository.deleteAll();
-		System.out.println(getAllCoopTerms().size());
 	}
 	
 	private <T> List<T> toList(Iterable<T> iterable){

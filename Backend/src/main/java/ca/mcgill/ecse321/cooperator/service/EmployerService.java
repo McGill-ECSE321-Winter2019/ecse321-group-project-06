@@ -15,10 +15,10 @@ public class EmployerService {
 	@Autowired
 	EmployerRepository employerRepository;
 
+	/* exceptions */
 	@Transactional
 	public Employer createEmployer(String userEmail, String userPassword, String companyName) {
 		Employer e = new Employer();
-	//	entityManager.persist(e);
 		
 		if (userEmail == null || userEmail.trim().length() == 0) {
 			throw new IllegalArgumentException("Email cannot be empty!");
@@ -38,6 +38,7 @@ public class EmployerService {
 		return eReturn;
 	}
 	
+	/* id getter */
 	@Transactional
 	public Employer getEmployer(int id) {
 		
@@ -49,7 +50,7 @@ public class EmployerService {
 		return e;
 	}
 	
-	
+	/* get all employers in the list */
 	@Transactional
 	public List<Employer> getAllEmployers() {
 		return toList(employerRepository.findAll());
