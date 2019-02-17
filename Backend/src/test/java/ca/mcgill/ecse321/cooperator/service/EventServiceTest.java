@@ -82,7 +82,6 @@ public class EventServiceTest {
 		try {
 			event = eventService.createEvent(startdate, enddate, location,starttime,endtime);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("startDate cannot be empty!", error);
@@ -106,7 +105,6 @@ public class EventServiceTest {
 		try {
 			event = eventService.createEvent(startdate, enddate, location,starttime,endtime);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("endDate cannot be empty!", error);
@@ -129,11 +127,9 @@ public class EventServiceTest {
 		try {
 			event = eventService.createEvent(startdate, enddate, location,starttime,endtime);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("location cannot be empty!", error);
-
  		assertEquals(0, eventService.getAllEvents().size());
 	}
  	@Test
@@ -151,11 +147,9 @@ public class EventServiceTest {
 		try {
 			event = eventService.createEvent(startdate, enddate, location,starttime,endtime);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("startTime cannot be empty!", error);
-
  		assertEquals(0, eventService.getAllEvents().size());
 	}
  	@Test
@@ -174,11 +168,9 @@ public class EventServiceTest {
 		try {
 			event = eventService.createEvent(startdate, enddate, location,starttime,endtime);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("endTime cannot be empty!", error);
-
  		assertEquals(0, eventService.getAllEvents().size());
 	}
 }
