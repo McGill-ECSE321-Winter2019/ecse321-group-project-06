@@ -21,6 +21,7 @@ public class CoopTermService {
 	@Autowired
 	CoopTermRepository coopTermRepository;
 
+	@SuppressWarnings("deprecation")
 	@Transactional
     public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
 			String jobDescription, Employer employer, Date endDate) 
@@ -36,7 +37,7 @@ public class CoopTermService {
 			throw new IllegalArgumentException("Start date cannot be empty!");
 		}
 		
-		if (startDate.getMonth() < 1 || startDate.getMonth() > 12 ) {
+		if (startDate.getMonth() < 0 || startDate.getMonth() > 11 ) {
 			throw new IllegalArgumentException("start date should be a valid month!");
 		}
 		if (startDate.getYear() < 1950 || startDate.getYear() > 2020) {
@@ -60,7 +61,7 @@ public class CoopTermService {
 			throw new IllegalArgumentException("End date cannot be empty!");
 		}
 		
-		if (endDate.getMonth() < 1 || endDate.getMonth() > 12 ) {
+		if (endDate.getMonth() < 0 || endDate.getMonth() > 11 ) {
 			throw new IllegalArgumentException("end date should be a valid month!");
 		}
 		

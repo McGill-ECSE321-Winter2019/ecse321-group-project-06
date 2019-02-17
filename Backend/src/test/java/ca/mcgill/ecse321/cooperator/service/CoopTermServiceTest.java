@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.cooperator.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -281,7 +282,8 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 		
 		String location = "Mcgill";
-		Date startDate = new Date(2012,13,01);
+		
+		Date startDate = new Date(2012,12,01);
 		String academicSemester= "fall";  
 		boolean ifWorkPermitNeeded= true;
 		String jobDescription= "Software Internship";
