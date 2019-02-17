@@ -8,7 +8,6 @@ import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
