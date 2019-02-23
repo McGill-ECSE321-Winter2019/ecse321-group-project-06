@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
+import ca.mcgill.ecse321.cooperator.entity.Student;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +25,7 @@ public class CoopTermService {
 	@SuppressWarnings("deprecation")
 	@Transactional
     public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
-			String jobDescription, Employer employer, Date endDate) 
+			String jobDescription, Employer employer, Date endDate, Student student) 
 	{
 		CoopTerm p = new CoopTerm( );
 
@@ -61,6 +62,9 @@ public class CoopTermService {
 		if (endDate.getYear() < 1950) {
 			throw new IllegalArgumentException("end date should be a valid year!");
 		}
+		if (student == null) {
+			throw new IllegalArgumentException("student cannot be empty!");
+		}
 		
 		p.setLocation(location);
 		p.setStartDate(startDate);
@@ -69,6 +73,7 @@ public class CoopTermService {
 		p.setJobDescription(jobDescription);
 		p.setEmployer(employer);
 		p.setEndDate(endDate);
+		p.setStudent(student);
 		
 	    CoopTerm pReturn = coopTermRepository.save(p);
 		
