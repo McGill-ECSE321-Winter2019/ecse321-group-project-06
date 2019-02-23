@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.cooperator.dto;
 import java.util.Date;
 
 public class CoopTermDto {
+
 	private Date endDate;
 	private Date startDate;
 	private String location;
@@ -31,8 +32,8 @@ public class CoopTermDto {
 		this.evaluationForm = evaluationForm;
 		this.coopPlacement = coopPlacement;
 		this.taxCreditForm = taxCreditForm;
+		this.employer = employer;    
 		this.coopTermId = coopTermId;
-		this.employer = employer;
 	}
 
 	public Date getEndDate() {
@@ -78,5 +79,4 @@ public class CoopTermDto {
 	public EmployerDto getEmployer() {
 		return employer;
 	}
-	
 }

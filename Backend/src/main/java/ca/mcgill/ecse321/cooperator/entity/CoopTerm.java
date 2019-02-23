@@ -22,6 +22,7 @@ public class CoopTerm{
 	private String taxCreditForm;
 	private int coopTermId;
 	private Employer employer;
+	private Student student;
 
 	public Date getEndDate() {
 		return this.endDate;
@@ -103,6 +104,15 @@ public class CoopTerm{
 	}
 	public void setEmployer(Employer value) {
 		this.employer = value;
+	}
+	
+	@ManyToOne(optional=false)
+	public Student getStudent() {
+		return this.student;
+	}
+	
+	public void setStudent(Student value) {
+		this.student = value;
 	}
 	
 	public CoopTerm() {

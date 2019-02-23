@@ -1,33 +1,35 @@
 package ca.mcgill.ecse321.cooperator.dto;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Set;
 
-public class EmployerDto {
+public class StudentDto {
+
 	private String email;
 	private String password;
 	private String name;
 	private int coopUserId;
-	private Set<EventDto> event;
+	private String school;
+	private Date graduationDate;
 	private Set<CoopTermDto> coopTerm;
-	
-	public EmployerDto() {
+
+	public StudentDto() {
 	}
 	
-	public EmployerDto(String email,String password, String name, int coopUserId) {
-		this(email, password, name, coopUserId, Collections.EMPTY_SET, Collections.EMPTY_SET);
+	public StudentDto(String email,String password, String name, int coopUserId) {
+		this(email, password, name, coopUserId, Collections.EMPTY_SET);
 	}
 	
-	public EmployerDto(String email, String password, String name, 
-			int coopUserId, Set<EventDto> event, Set<CoopTermDto> coopTerm) {
+	public StudentDto(String email, String password, String name, 
+			int coopUserId, Set<CoopTermDto> coopTerm) {
 		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.coopUserId = coopUserId;
-		this.event = event;
 		this.coopTerm = coopTerm;
 	}
-
+	
 	public String getEmail() {
 		return email;
 	}
@@ -39,16 +41,23 @@ public class EmployerDto {
 	public String getName() {
 		return name;
 	}
-
+	
 	public int getCoopUserId() {
 		return coopUserId;
 	}
+	
+	public String getSchool() {
+		return this.school;
+	}
 
-	public Set<EventDto> getEvent() {
-		return event;
+	public Date getGraduationDate() {
+		return this.graduationDate;
 	}
 
 	public Set<CoopTermDto> getCoopTerm() {
-		return coopTerm;
+		return this.coopTerm;
 	}
+
+
+	
 }
