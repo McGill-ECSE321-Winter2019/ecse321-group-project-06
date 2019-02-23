@@ -1,0 +1,125 @@
+package ca.mcgill.ecse321.cooperator.dto;
+
+import java.util.Date;
+
+import ca.mcgill.ecse321.cooperator.entity.Employer;
+
+public class CoopTermDto {
+
+	private Date endDate;
+	private Date startDate;
+	private String location;
+	private String academicSemester;
+	private boolean ifWorkPermitNeeded;
+	private String jobDescription;
+	private String evaluationForm;
+	private String coopPlacement;
+	private String taxCreditForm;
+//	private int coopTermId;
+	private Employer employer;
+	
+	public CoopTermDto() {
+		
+	}
+	
+	public CoopTermDto(Date endDate, Date startDate, String location, String academicSemester, boolean ifWorkPermitNeeded,
+			String jobDescription, String evaluationForm, String coopPlacement, String taxCreditForm, Employer employer) {
+		this.endDate = endDate;
+		this.startDate = startDate;
+		this.location = location;
+		this.academicSemester = academicSemester;
+		this.ifWorkPermitNeeded = ifWorkPermitNeeded;
+		this.jobDescription = jobDescription;
+		this.evaluationForm = evaluationForm;
+		this.coopPlacement = coopPlacement;
+		this.taxCreditForm = taxCreditForm;
+		this.employer = employer;    
+	}
+
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getStartDate() {
+		return this.startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setLocation(String value) {
+		this.location = value;
+	}
+	public String getLocation() {
+		return this.location;
+	}
+
+	public void setAcademicSemester(String value) {
+		this.academicSemester = value;
+	}
+	public String getAcademicSemester() {
+		return this.academicSemester;
+	}
+	
+	public void setIfWorkPermitNeeded(boolean value) {
+		this.ifWorkPermitNeeded = value;
+	}
+	public boolean isIfWorkPermitNeeded() {
+		return this.ifWorkPermitNeeded;
+	}
+
+	public void setJobDescription(String value) {
+		this.jobDescription = value;
+	}
+	public String getJobDescription() {
+		return this.jobDescription;
+	}
+
+	public void setEvaluationForm(String value) {
+		this.evaluationForm = value;
+	}
+	public String getEvaluationForm() {
+		return this.evaluationForm;
+	}
+
+	public void setCoopPlacement(String value) {
+		this.coopPlacement = value;
+	}
+	public String getCoopPlacement() {
+		return this.coopPlacement;
+	}
+
+	public void setTaxCreditForm(String value) {
+		this.taxCreditForm = value;
+	}
+	public String getTaxCreditForm() {
+		return this.taxCreditForm;
+	}
+	
+//	public void setCoopTermId(int coopTermId) {
+//		this.coopTermId = coopTermId;
+//	}
+
+	/*
+	@Id
+	@GeneratedValue()
+	public int getcoopTermId() {
+		return this.coopTermId;
+	}
+	*/
+	//@ManyToOne(optional=false)
+	
+	public Employer getEmployer() {
+		return this.employer;
+	}
+	public void setEmployer(Employer value) {
+		this.employer = value;
+	}
+	
+	
+}
