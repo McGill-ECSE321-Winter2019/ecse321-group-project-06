@@ -44,7 +44,7 @@ public class EventControllerTests {
 	@Before
 	public void setupMock() {
 		Calendar c = Calendar.getInstance();
-		String location = "location";
+		String location = "Montreal";
 		c.set(2016, Calendar.OCTOBER, 16, 9, 00, 0);
  		Date startdate = new Date(c.getTimeInMillis());
 		LocalTime starttime = LocalTime.parse("09:00");
@@ -56,7 +56,7 @@ public class EventControllerTests {
 		event.setEndDate(enddate);
 		event.setStartDate(startdate);
 		event.setEventId(1);
-		event.setLocation("Montreal");
+		event.setLocation(location);
 		event.setStartTime(Time.valueOf(starttime));
 		event.setEndTime(Time.valueOf(endtime));
 	}
