@@ -24,20 +24,20 @@ public class StudentListController {
 		CoopTermService service = new CoopTermService();
 		List<CoopTermDto> coopTermDtos = new ArrayList<>();
 		for (CoopTerm coopTerm : service.getAllCoopTerms()) {
-			coopTermDtos.add(convertToDto(coopTerm));
+			//coopTermDtos.add(convertToDto(coopTerm));
 		}
 		return coopTermDtos;
 	}
 	
-	private CoopTermDto convertToDto(CoopTerm e) {
-		if (e == null) {
-			throw new IllegalArgumentException("There is no such Coop term!");
-		}
-		CoopTermDto coopTermDto = new CoopTermDto(e.getEndDate(), e.getStartDate(), e.getLocation(),e.getAcademicSemester(),
-				e.isIfWorkPermitNeeded(), e.getJobDescription(), e.getEvaluationForm(), e.getCoopPlacement(),
-				e.getTaxCreditForm(), e.getEmployer());
-		
-		return coopTermDto;
-	}
+//	private CoopTermDto convertToDto(CoopTerm e) {
+//		if (e == null) {
+//			throw new IllegalArgumentException("There is no such Coop term!");
+//		}
+//		CoopTermDto coopTermDto = new CoopTermDto(e.getEndDate(), e.getStartDate(), e.getLocation(),e.getAcademicSemester(),
+//				e.isIfWorkPermitNeeded(), e.getJobDescription(), e.getEvaluationForm(), e.getCoopPlacement(),
+//				e.getTaxCreditForm(), e.getEmployer());
+//		
+//		return coopTermDto;
+//	}
 	//only get all coop term for this specific employer 
 }
