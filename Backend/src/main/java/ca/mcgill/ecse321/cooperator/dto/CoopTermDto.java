@@ -2,8 +2,6 @@ package ca.mcgill.ecse321.cooperator.dto;
 
 import java.util.Date;
 
-import ca.mcgill.ecse321.cooperator.entity.Employer;
-
 public class CoopTermDto {
 
 	private Date endDate;
@@ -15,17 +13,18 @@ public class CoopTermDto {
 	private String evaluationForm;
 	private String coopPlacement;
 	private String taxCreditForm;
-//	private int coopTermId;
-	private Employer employer;
+	private int coopTermId;
+	private EmployerDto employer;
 	
 	public CoopTermDto() {
 		
 	}
 	
-	public CoopTermDto(Date endDate, Date startDate, String location, String academicSemester, boolean ifWorkPermitNeeded,
-			String jobDescription, String evaluationForm, String coopPlacement, String taxCreditForm, Employer employer) {
-		this.endDate = endDate;
+	public CoopTermDto(Date startDate, Date endDate, String location, String academicSemester,
+			boolean ifWorkPermitNeeded, String jobDescription, String evaluationForm, String coopPlacement,
+			String taxCreditForm, int coopTermId, EmployerDto employer) {
 		this.startDate = startDate;
+		this.endDate = endDate;
 		this.location = location;
 		this.academicSemester = academicSemester;
 		this.ifWorkPermitNeeded = ifWorkPermitNeeded;
@@ -34,92 +33,50 @@ public class CoopTermDto {
 		this.coopPlacement = coopPlacement;
 		this.taxCreditForm = taxCreditForm;
 		this.employer = employer;    
+		this.coopTermId = coopTermId;
 	}
 
 	public Date getEndDate() {
-		return this.endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+		return endDate;
 	}
 
 	public Date getStartDate() {
-		return this.startDate;
+		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public void setLocation(String value) {
-		this.location = value;
-	}
 	public String getLocation() {
-		return this.location;
+		return location;
 	}
 
-	public void setAcademicSemester(String value) {
-		this.academicSemester = value;
-	}
 	public String getAcademicSemester() {
-		return this.academicSemester;
+		return academicSemester;
 	}
-	
-	public void setIfWorkPermitNeeded(boolean value) {
-		this.ifWorkPermitNeeded = value;
-	}
+
 	public boolean isIfWorkPermitNeeded() {
-		return this.ifWorkPermitNeeded;
+		return ifWorkPermitNeeded;
 	}
 
-	public void setJobDescription(String value) {
-		this.jobDescription = value;
-	}
 	public String getJobDescription() {
-		return this.jobDescription;
+		return jobDescription;
 	}
 
-	public void setEvaluationForm(String value) {
-		this.evaluationForm = value;
-	}
 	public String getEvaluationForm() {
-		return this.evaluationForm;
+		return evaluationForm;
 	}
 
-	public void setCoopPlacement(String value) {
-		this.coopPlacement = value;
-	}
 	public String getCoopPlacement() {
-		return this.coopPlacement;
+		return coopPlacement;
 	}
 
-	public void setTaxCreditForm(String value) {
-		this.taxCreditForm = value;
-	}
 	public String getTaxCreditForm() {
-		return this.taxCreditForm;
+		return taxCreditForm;
 	}
-	
-//	public void setCoopTermId(int coopTermId) {
-//		this.coopTermId = coopTermId;
-//	}
 
-	/*
-	@Id
-	@GeneratedValue()
-	public int getcoopTermId() {
-		return this.coopTermId;
+	public int getCoopTermId() {
+		return coopTermId;
 	}
-	*/
-	//@ManyToOne(optional=false)
-	
-	public Employer getEmployer() {
-		return this.employer;
+
+	public EmployerDto getEmployer() {
+		return employer;
 	}
-	public void setEmployer(Employer value) {
-		this.employer = value;
-	}
-	
-	
 }

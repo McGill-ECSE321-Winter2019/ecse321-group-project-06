@@ -1,36 +1,54 @@
 package ca.mcgill.ecse321.cooperator.dto;
 
 import java.util.Collections;
-import java.util.List;
-
+import java.util.Set;
 
 public class EmployerDto {
+	private String email;
+	private String password;
+	private String name;
+	private int coopUserId;
+	private Set<EventDto> event;
+	private Set<CoopTermDto> coopTerm;
 	
-	private String companyName;
-//	private String email;
-//	private String password;
-//	private int userId;  
-	private List<CoopTermDto> coopTerms;
-
 	public EmployerDto() {
 	}
-
-	@SuppressWarnings("unchecked")
-	public EmployerDto(String name) {
-		this(name, Collections.EMPTY_LIST);
+	
+	public EmployerDto(String email,String password, String name, int coopUserId) {
+		this(email, password, name, coopUserId, Collections.EMPTY_SET, Collections.EMPTY_SET);
+	}
+	
+	public EmployerDto(String email, String password, String name, 
+			int coopUserId, Set<EventDto> event, Set<CoopTermDto> coopTerm) {
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.coopUserId = coopUserId;
+		this.event = event;
+		this.coopTerm = coopTerm;
 	}
 
-	public EmployerDto(String name, List<CoopTermDto> arrayList) {
-		this.companyName = name;
-		this.coopTerms = arrayList;
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPassword() {
+		return password;
 	}
 
 	public String getName() {
-		return companyName;
+		return name;
 	}
 
-	public List<CoopTermDto> getCoopTerms() {
-		return coopTerms;
+	public int getCoopUserId() {
+		return coopUserId;
 	}
 
+	public Set<EventDto> getEvent() {
+		return event;
+	}
+
+	public Set<CoopTermDto> getCoopTerm() {
+		return coopTerm;
+	}
 }
