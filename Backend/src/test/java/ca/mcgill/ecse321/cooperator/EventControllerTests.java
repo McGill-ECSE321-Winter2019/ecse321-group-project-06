@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class EventControllerTests {
 	@Mock
-	private EventRepository employerDao;
+	private EventRepository eventDao;
 	
 	@Mock
 	private EventService eventService;
