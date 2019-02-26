@@ -64,7 +64,6 @@ public class StudentServiceTest {
 		assertEquals(userEmail, allStudents.get(0).getEmail());
 		assertEquals(userPassword, allStudents.get(0).getPassword());
 		assertEquals(studentName, allStudents.get(0).getName());
-	    assertEquals(studentId, allStudents.get(0).getStudentId());
 		assertEquals(1, allStudents.size());
 		assertEquals(school, allStudents.get(0).getSchool());
 		assertEquals(graduationDate, allStudents.get(0).getGraduationDate());
