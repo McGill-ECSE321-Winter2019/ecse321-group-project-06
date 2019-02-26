@@ -3,7 +3,8 @@ package ca.mcgill.ecse321.cooperator.entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Entity;
-import java.util.Set;
+
+import java.util.List;
 import javax.persistence.ManyToMany;
 
 
@@ -11,23 +12,23 @@ import javax.persistence.ManyToMany;
 @Table(name = "EMPLOYER")
 
 public class Employer extends CoopUser{
-	private Set<Event> event;
-	private Set<CoopTerm> coopTerm;
+	private List<Event> event;
+	private List<CoopTerm> coopTerm;
 	
 	@ManyToMany
-	public Set<Event> getEvent() {
+	public List<Event> getEvent() {
 		return this.event;
 	}
-	public void setEvent(Set<Event> events) {
+	public void setEvent(List<Event> events) {
 		this.event = events;
 	}
 
 	@OneToMany(mappedBy="employer")
-	public Set<CoopTerm> getCoopTerm() {
+	public List<CoopTerm> getCoopTerm() {
 		return this.coopTerm;
 	}
 
-	public void setCoopTerm(Set<CoopTerm> coopTerms) {
+	public void setCoopTerm(List<CoopTerm> coopTerms) {
 		this.coopTerm = coopTerms;
 	}
 	
