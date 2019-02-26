@@ -90,7 +90,11 @@ public class CoopTermService {
 	@Transactional
 	public CoopTerm getCoopTerm(int coopTermId) {
 		
-		CoopTerm s = coopTermRepository.findById(coopTermId).get();
+		CoopTerm s = coopTermRepository.findById(coopTermId);
+		if (s == null) {
+			throw new IllegalArgumentException("Coop term cannot found!");
+		}
+		
 		return s;
 	}
 	

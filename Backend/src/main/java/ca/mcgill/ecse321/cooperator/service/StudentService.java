@@ -62,11 +62,10 @@ public class StudentService {
 	/* id getter */
 	@Transactional
 	public Student getStudent(int studentId) {
-		if (String.valueOf(studentId).length() < 1) {
-	        throw new IllegalArgumentException("Student Id cannot be empty!");
-	    }
-
-		Student s = studentRepository.findById(studentId).get();
+		Student s = studentRepository.findById(studentId);
+		if (s == null) {
+			throw new IllegalArgumentException("Student ID cannot found!");
+		}
 		return s;
 	}
 
