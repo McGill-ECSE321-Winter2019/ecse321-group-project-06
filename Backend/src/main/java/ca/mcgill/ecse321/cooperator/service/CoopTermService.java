@@ -83,8 +83,8 @@ public class CoopTermService {
 	/* id getter */
 	@Transactional
 	public CoopTerm getCoopTerm(int coopTermId) {
-		
-		CoopTerm s = coopTermRepository.findById(coopTermId).get();
+		CoopTerm s = coopTermRepository.findById(coopTermId);
+		System.out.print(s.getcoopTermId());
 		return s;
 	}
 	
@@ -94,9 +94,9 @@ public class CoopTermService {
 		return toList ( coopTermRepository.findAll());
 	}
 	
-	private <T> List<T> toList(Iterable<T> iterable){
-		List<T> resultList = new ArrayList<T>();
-		for (T t : iterable) {
+	private <CoopTerm> List<CoopTerm> toList(Iterable<CoopTerm> iterable){
+		List<CoopTerm> resultList = new ArrayList<CoopTerm>();
+		for (CoopTerm t : iterable) {
 			resultList.add(t);
 		}
 		return resultList;
