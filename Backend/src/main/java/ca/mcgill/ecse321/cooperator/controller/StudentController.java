@@ -1,9 +1,9 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,44 +15,55 @@ import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
+import ca.mcgill.ecse321.cooperator.service.EmployerService;
 import ca.mcgill.ecse321.cooperator.service.StudentService;
 import ca.mcgill.ecse321.cooperator.dto.StudentDto;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class StudentController {
+	@Autowired
+	private StudentService studentService;
+	@Autowired
+	private EmployerService employerService;
+	@Autowired
+	private CoopTermService coopTermService;
 
 	/* Get students of an employer */
-	@GetMapping(value = {"/employers/{employerId}/students"})
-	public List<StudentDto> getStudents(@PathVariable int employerId) {
-		StudentService service = new StudentService();
+	@GetMapping(value = {"/employer/{employerIds}/students", "/employer/{employerId}/students/"})
+	public List<StudentDto> getStudents(@PathVariable(value = "employerId") int employerId) {
+		Employer employer = employerService.getEmployer(employerId);
 		List<StudentDto> studentDtos = new ArrayList<>();
-	    for (Student student: service.getAllStudentsOfAnEmployer(employerId)) {
+	    for (Student student: studentService.getAllStudentsOfAnEmployer(employerId)) {
 	    	studentDtos.add(convertToDto(student));
 	    }
 		return studentDtos;
 	}
 	
 	/* get all coop terms of a student in charged by an employer */
-	@GetMapping(value = {"/employers/{employerId}/students/{studentId}/coopTerms"})
+	@GetMapping(value = {"/employer/{employerId}/student/{studentId}/coopTerms", 
+			"/employers/{employerId}/student/{studentId}/coopTerms/"})
 	public List<CoopTermDto> getAllCoopTermsByStudents(@PathVariable(value = "employerId") int employerId,
-			@PathVariable(value = "studentId") int studentId, @PathVariable (value = "employers") Employer employers) {
-		CoopTermService service = new CoopTermService();
+			@PathVariable(value = "studentId") int studentId) {
+		Employer employer = employerService.getEmployer(employerId);
+		Student student = studentService.getStudent(studentId);
 		List<CoopTermDto> coopTermDtos = new ArrayList<>();
-		for (CoopTerm coopTerm: service.getCoopTermsofStudent(employerId, studentId)) {
-			coopTermDtos.add(convertToDto(coopTerm, employers));
+		for (CoopTerm coopTerm: coopTermService.getCoopTermsofStudent(employerId, studentId)) {
+			coopTermDtos.add(convertToDto(coopTerm));
 		}
 		return coopTermDtos;
 	}
 	
 	/* get a coop term of a student in charged by an employer  */
-	@GetMapping(value = {"/employers/{employerId}/students/{studentId}/coopTerms/{coopTermId}"})
+	@GetMapping(value = {"/employer/{employerId}/student/{studentId}/coopTerm/{coopTermId}",
+			"/employer/{employerId}/student/{studentId}/coopTerm/{coopTermId}/"})
 	public CoopTermDto getAnCoopTermOfStudent(@PathVariable(value = "employerId") int employerId,
-			@PathVariable (value = "studentId") int studentId, @PathVariable(value = "coopTermId")int coopTermId,
-			@PathVariable (value = "employers") Employer employers) {
-		CoopTermService service = new CoopTermService();
-		CoopTerm coopTerm = service.getOneCoopTermOfStudent(employerId, studentId, coopTermId);
-		CoopTermDto coopTermDto = convertToDto(coopTerm, employers);
+			@PathVariable (value = "studentId") int studentId, @PathVariable(value = "coopTermId")int coopTermId) {
+		Employer employer = employerService.getEmployer(employerId);
+		Student student = studentService.getStudent(studentId);
+		CoopTerm coopTerm = coopTermService.getCoopTerm(coopTermId);
+		CoopTerm getCoopTerm = coopTermService.getOneCoopTermOfStudent(employerId, studentId, coopTermId);
+		CoopTermDto coopTermDto = convertToDto(getCoopTerm);
 		
 		return coopTermDto;
 	}
@@ -76,11 +87,12 @@ public class StudentController {
 	}
 	
 	/*convert to Dto method for coop term*/
-	private CoopTermDto convertToDto(CoopTerm t, Employer e) {
-		if (e == null) {
+	private CoopTermDto convertToDto(CoopTerm t) {
+		if (t == null) {
 			throw new IllegalArgumentException("There is no such Coop term!");
 		}
-		EmployerDto employerDto  = convertToDto(e);
+		Employer employer = new Employer();
+		EmployerDto employerDto  = convertToDto(employer);
 		CoopTermDto coopTermDto = new CoopTermDto( t.getStartDate(), t.getEndDate(), t.getLocation(),t.getAcademicSemester(),
 				t.isIfWorkPermitNeeded(), t.getJobDescription(), t.getEvaluationForm(), t.getCoopPlacement(),
 				t.getTaxCreditForm(), t.getcoopTermId(), employerDto);	
