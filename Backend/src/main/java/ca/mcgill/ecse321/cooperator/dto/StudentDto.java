@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.cooperator.dto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
