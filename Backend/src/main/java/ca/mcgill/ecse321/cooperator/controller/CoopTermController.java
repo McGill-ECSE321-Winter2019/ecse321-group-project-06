@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +17,6 @@ import ca.mcgill.ecse321.cooperator.dto.EmployerDto;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
-
 
 @CrossOrigin
 @RestController
@@ -39,6 +40,12 @@ public class CoopTermController {
 	public CoopTermDto getCoopTermById(@PathVariable int id) {
 		CoopTerm coopTerm = service.getCoopTerm(id);
 		return convertToCoopTermDto(coopTerm);
+	}
+	
+	@PutMapping(value = {"/{id}"})
+	public CoopTermDto updateCoopTermStateById(@PathVariable int id, @RequestBody CoopTerm coopTerm) {
+		CoopTerm updatedCoopTerm = service.updateCoopTermState(id, coopTerm.getState());
+		return convertToCoopTermDto(updatedCoopTerm);
 	}
 	
 	private CoopTermDto convertToCoopTermDto(CoopTerm coopTerm) {

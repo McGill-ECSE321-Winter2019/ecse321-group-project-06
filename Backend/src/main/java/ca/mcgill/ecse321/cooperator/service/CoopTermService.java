@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
+import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 
@@ -25,7 +26,7 @@ public class CoopTermService {
 	@SuppressWarnings("deprecation")
 	@Transactional
     public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
-			String jobDescription, Employer employer, Date endDate, Student student) 
+			String jobDescription, Employer employer, Date endDate, Student student, CoopTermStates state) 
 	{
 		CoopTerm p = new CoopTerm( );
 
@@ -74,6 +75,7 @@ public class CoopTermService {
 		p.setEmployer(employer);
 		p.setEndDate(endDate);
 		p.setStudent(student);
+		p.setState(state);
 		
 	    CoopTerm pReturn = coopTermRepository.save(p);
 		
@@ -84,7 +86,14 @@ public class CoopTermService {
 	@Transactional
 	public CoopTerm getCoopTerm(int coopTermId) {
 		CoopTerm s = coopTermRepository.findById(coopTermId);
-		System.out.print(s.getcoopTermId());
+		return s;
+	}
+	
+	@Transactional
+	public CoopTerm updateCoopTermState(int coopTermId, CoopTermStates state) {
+		CoopTerm s = coopTermRepository.findById(coopTermId);
+		s.setState(state);
+		coopTermRepository.save(s);
 		return s;
 	}
 	
@@ -94,7 +103,7 @@ public class CoopTermService {
 		return toList ( coopTermRepository.findAll());
 	}
 	
-	private <CoopTerm> List<CoopTerm> toList(Iterable<CoopTerm> iterable){
+	private List<CoopTerm> toList(Iterable<CoopTerm> iterable){
 		List<CoopTerm> resultList = new ArrayList<CoopTerm>();
 		for (CoopTerm t : iterable) {
 			resultList.add(t);

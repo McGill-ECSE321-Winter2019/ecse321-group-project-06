@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
+import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
@@ -60,11 +61,11 @@ public class CoopTermServiceTest {
 		graduationDate.setYear(2020);
 		graduationDate.setMonth(7);
 		Student student = studentService.createStudent("student@gmail.com", "abcde", "Oliverrr", 12345, "McGill", graduationDate);
-
+		
 		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, employer, endDate, student);
+					jobDescription, employer, endDate, student, CoopTermStates.INACTIVE);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -109,7 +110,7 @@ public class CoopTermServiceTest {
 		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, employer, endDate,student);
+					jobDescription, employer, endDate,student, CoopTermStates.ACTIVE);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 			assertEquals("Location cannot be empty!", error);
@@ -142,7 +143,7 @@ public class CoopTermServiceTest {
 		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, employer, endDate,student);
+					jobDescription, employer, endDate,student, CoopTermStates.ACTIVE);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -175,7 +176,7 @@ public class CoopTermServiceTest {
 		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, employer, endDate, student);
+					jobDescription, employer, endDate, student, CoopTermStates.ACTIVE);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -208,7 +209,7 @@ public class CoopTermServiceTest {
 		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, employer, endDate,student);
+					jobDescription, employer, endDate,student, CoopTermStates.INACTIVE);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -241,7 +242,7 @@ public class CoopTermServiceTest {
 		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, employer, endDate,student);
+					jobDescription, employer, endDate,student, CoopTermStates.INACTIVE);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -274,7 +275,7 @@ public class CoopTermServiceTest {
 		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, employer, endDate,student);
+					jobDescription, employer, endDate,student, CoopTermStates.INACTIVE);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -305,7 +306,7 @@ public class CoopTermServiceTest {
 		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, employer, endDate, student);
+					jobDescription, employer, endDate, student, CoopTermStates.ACTIVE);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -334,7 +335,7 @@ public class CoopTermServiceTest {
 		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, employer, endDate, student);
+					jobDescription, employer, endDate, student, CoopTermStates.ACTIVE);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -362,7 +363,7 @@ assertEquals(0, coopTermService.getAllCoopTerms().size());
 		
 		try {
 			coopTerm = coopTermService.createCoopTerm(location, startDate, academicSemester, ifWorkPermitNeeded,
-					jobDescription, employer, endDate, student);
+					jobDescription, employer, endDate, student, CoopTermStates.ACTIVE);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
