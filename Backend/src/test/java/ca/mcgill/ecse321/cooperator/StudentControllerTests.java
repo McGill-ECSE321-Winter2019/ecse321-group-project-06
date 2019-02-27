@@ -5,6 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.mcgill.ecse321.cooperator.controller.StudentController;
+import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
 import ca.mcgill.ecse321.cooperator.service.StudentService;
@@ -22,6 +23,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -45,19 +47,33 @@ public class StudentControllerTests {
 	
 	
 	
+	@SuppressWarnings("deprecation")
 	@Before
 	public void setupMock() {
+		List<CoopTerm> coopTerm = null;
 		student = new Student();
 		student.setCoopUserId(1);
 		student.setEmail("testStudent@mail.mcgill.ca");
 		student.setName(STUDENT_KEY);
 		student.setPassword("test password");
+		student.setSchool("testSchool");
+		Date date = new Date();
+		date.setYear(2020);
+		date.setMonth(10);
+		student.setGraduationDate(date);
+		student.setCoopTerm(coopTerm);
 		
 		student1 = new Student();
 		student1.setCoopUserId(2);
 		student1.setEmail("testStudent1@mail.mcgill.ca");
 		student1.setName(STUDENT1_KEY);
 		student1.setPassword("test password1");
+		student1.setSchool("testSchool1");
+		Date date1 = new Date();
+		date1.setYear(2019);
+		date1.setMonth(2);
+		student.setGraduationDate(date1);
+		student.setCoopTerm(coopTerm);
 		
 		studentList.add(student);
 		studentList.add(student1);
@@ -69,6 +85,7 @@ public class StudentControllerTests {
 		assertNotNull(student1);
 	}
 	
+	/*One student tests*/
 	@Test
 	public void testParticipantQueryFound() {
 		when(studentDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
@@ -77,10 +94,13 @@ public class StudentControllerTests {
 		assertEquals(STUDENT_KEY, studentService.getStudent(1).getName());
 		assertEquals("testStudent@mail.mcgill.ca", studentService.getStudent(1).getEmail());
 		assertEquals("test password", studentService.getStudent(1).getPassword());
+		assertEquals("testSchool", studentService.getStudent(1).getSchool());
+		assertEquals(2020, studentService.getStudent(1).getGraduationDate().getYear());
+		assertEquals(10, studentService.getStudent(1).getGraduationDate().getMonth());
 		
 	}
 	
-	/**/
+	/*All student tests*/
 	@Test
 	public void testAllParticipantQueryFound() {
 		when(studentService.getAllStudents()).thenAnswer((InvocationOnMock invocation) -> {
@@ -89,10 +109,16 @@ public class StudentControllerTests {
 		assertEquals(STUDENT_KEY, studentService.getAllStudents().get(0).getName());
 		assertEquals("testStudent1@mail.mcgill.ca", studentService.getAllStudents().get(0).getEmail());
 		assertEquals("test password", studentService.getAllStudents().get(0).getPassword());
+		assertEquals("testSchool", studentService.getAllStudents().get(0).getSchool());
+		assertEquals(2020, studentService.getAllStudents().get(0).getGraduationDate().getYear());
+		assertEquals(10, studentService.getAllStudents().get(0).getGraduationDate().getMonth());
 		
 		assertEquals(STUDENT1_KEY, studentService.getAllStudents().get(1).getName());
 		assertEquals("testStudent1@mail.mcgill.ca", studentService.getAllStudents().get(1).getEmail());
 		assertEquals("test password1", studentService.getAllStudents().get(1).getPassword());	
+		assertEquals("testSchool1", studentService.getAllStudents().get(1).getSchool());
+		assertEquals(2019, studentService.getAllStudents().get(1).getGraduationDate().getYear());
+		assertEquals(2, studentService.getAllStudents().get(1).getGraduationDate().getMonth());
 	}
 }
 	
