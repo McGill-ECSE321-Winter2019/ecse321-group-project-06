@@ -50,7 +50,10 @@ public class CoopTermController {
 			throw new IllegalArgumentException("There is no such employer");
 		}
 		EmployerDto employerDto = convertToEmployerDto(employer);
-		CoopTermDto coopTermDto = new CoopTermDto(coopTerm.getStartDate(), coopTerm.getEndDate(), coopTerm.getLocation(), coopTerm.getAcademicSemester(), coopTerm.isIfWorkPermitNeeded(), coopTerm.getJobDescription(), coopTerm.getEvaluationForm(), coopTerm.getCoopPlacement(), coopTerm.getTaxCreditForm(), coopTerm.getcoopTermId(),  employerDto);
+		CoopTermDto coopTermDto = new CoopTermDto(coopTerm.getStartDate(), coopTerm.getEndDate(), 
+				coopTerm.getLocation(), coopTerm.getAcademicSemester(), coopTerm.isIfWorkPermitNeeded(), 
+				coopTerm.getJobDescription(), coopTerm.getEvaluationForm(), coopTerm.getCoopPlacement(), 
+				coopTerm.getTaxCreditForm(), coopTerm.getcoopTermId(),  employerDto, coopTerm.getState());
 		return coopTermDto;
 	}
 	
