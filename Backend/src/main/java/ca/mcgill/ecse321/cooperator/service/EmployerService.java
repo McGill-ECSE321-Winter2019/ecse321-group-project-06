@@ -41,10 +41,9 @@ public class EmployerService {
 	/* id getter */
 	@Transactional
 	public Employer getEmployer(int id) {
-	    
 		Employer e = employerRepository.findById(id);
 		if (e == null) {
-			throw new IllegalArgumentException("employer ID cannot found!");
+			throw new IllegalArgumentException("employer cannot found!");
 		}
 		return e;
 	}

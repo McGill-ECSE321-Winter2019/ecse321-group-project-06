@@ -64,7 +64,7 @@ public class StudentService {
 	public Student getStudent(int studentId) {
 		Student s = studentRepository.findById(studentId);
 		if (s == null) {
-			throw new IllegalArgumentException("Student ID cannot found!");
+			throw new IllegalArgumentException("Student cannot found!");
 		}
 		return s;
 	}
