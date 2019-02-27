@@ -30,9 +30,14 @@ public class StudentController {
 	private CoopTermService coopTermService;
 
 	/* Get students of an employer */
-	@GetMapping(value = {"/employer/{employerIds}/students", "/employer/{employerId}/students/"})
+	@GetMapping(value = {"/employer/{employerId}/students", "/employer/{employerId}/students/"})
 	public List<StudentDto> getStudents(@PathVariable(value = "employerId") int employerId) {
-		Employer employer = employerService.getEmployer(employerId);
+		try {
+			Employer employer = employerService.getEmployer(employerId);
+		} catch(Exception e){
+			throw (e);
+		}
+		
 		List<StudentDto> studentDtos = new ArrayList<>();
 	    for (Student student: studentService.getAllStudentsOfAnEmployer(employerId)) {
 	    	studentDtos.add(convertToDto(student));
@@ -45,7 +50,16 @@ public class StudentController {
 			"/employers/{employerId}/student/{studentId}/coopTerms/"})
 	public List<CoopTermDto> getAllCoopTermsByStudents(@PathVariable(value = "employerId") int employerId,
 			@PathVariable(value = "studentId") int studentId) {
-		Employer employer = employerService.getEmployer(employerId);
+		try {
+			Employer employer = employerService.getEmployer(employerId);
+		} catch(Exception e) {
+			throw(e);
+		}
+		try {
+			Student student = studentService.getStudent(studentId);
+		}catch(Exception e) {
+			throw (e);
+		}
 		Student student = studentService.getStudent(studentId);
 		List<CoopTermDto> coopTermDtos = new ArrayList<>();
 		for (CoopTerm coopTerm: coopTermService.getCoopTermsofStudent(employerId, studentId)) {
@@ -59,7 +73,21 @@ public class StudentController {
 			"/employer/{employerId}/student/{studentId}/coopTerm/{coopTermId}/"})
 	public CoopTermDto getAnCoopTermOfStudent(@PathVariable(value = "employerId") int employerId,
 			@PathVariable (value = "studentId") int studentId, @PathVariable(value = "coopTermId")int coopTermId) {
-		Employer employer = employerService.getEmployer(employerId);
+		try {
+			Employer employer = employerService.getEmployer(employerId);
+		} catch(Exception e) {
+			throw (e);
+		}
+		try {
+			Student student = studentService.getStudent(studentId);
+		}catch(Exception e) {
+			throw (e);
+		}
+		try {
+			CoopTerm coopTerm = coopTermService.getCoopTerm(coopTermId);
+		} catch(Exception e) {
+			throw (e);
+		}
 		Student student = studentService.getStudent(studentId);
 		CoopTerm coopTerm = coopTermService.getCoopTerm(coopTermId);
 		CoopTerm getCoopTerm = coopTermService.getOneCoopTermOfStudent(employerId, studentId, coopTermId);
