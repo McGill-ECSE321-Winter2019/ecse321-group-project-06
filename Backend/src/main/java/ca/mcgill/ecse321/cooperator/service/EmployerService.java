@@ -50,6 +50,19 @@ public class EmployerService {
 		return e;
 	}
 	
+	
+	/* email getter */
+	@Transactional
+	public Employer getEmployer(String email) {
+		
+		if (email.length() < 1) {
+	        throw new IllegalArgumentException("email cannot be empty!");
+		}
+		Employer e = employerRepository.findByEmail(email);
+		return e;
+	}
+	
+	
 	/* get all employers in the list */
 	@Transactional
 	public List<Employer> getAllEmployers() {
