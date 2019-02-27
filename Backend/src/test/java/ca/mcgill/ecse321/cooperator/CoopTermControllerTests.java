@@ -23,6 +23,10 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CoopTermControllerTests {
@@ -37,7 +41,21 @@ public class CoopTermControllerTests {
 	@Before
 	public void setupMock() {
 		coopTerm = new CoopTerm();
-		coopTerm.setCoopTermId(1);	
+		coopTerm.setCoopTermId(1);
+		
+		Calendar c = Calendar.getInstance();
+		c.set(2016, Calendar.OCTOBER, 16, 9, 00, 0);
+ 		Date startDate = new Date(c.getTimeInMillis());
+		c.set(2016, Calendar.OCTOBER, 16, 9, 30, 0);
+		Date endDate = new Date(c.getTimeInMillis());
+		
+		coopTerm.setStartDate(startDate);
+		coopTerm.setEndDate(endDate);
+		coopTerm.setCoopPlacement("coop placement");
+		coopTerm.setIfWorkPermitNeeded(true);
+		coopTerm.setJobDescription("job description");
+		coopTerm.setLocation("Montreal");
+		coopTerm.setAcademicSemester("FALL2018");
 	}
 	
 	@Before
@@ -54,12 +72,29 @@ public class CoopTermControllerTests {
 	
 	@Test
 	public void testGetCoopTermById() {
-		assertEquals(1, coopTermService.getCoopTerm(1).getcoopTermId());
+		CoopTerm coopTermReturned = coopTermService.getCoopTerm(1);
+		assertEquals(1, coopTermReturned.getcoopTermId());
+		compare(coopTerm, coopTermReturned);
 	}
 	
 	@Test
 	public void testUpdateCoopTermStateById() {
-		CoopTerm coopTerm = coopTermService.updateCoopTermState(1, CoopTermStates.ACTIVE);
+		CoopTerm newCoopTerm = coopTerm;
+		newCoopTerm.setState(CoopTermStates.ACTIVE);
+		newCoopTerm.setEvaluationForm("evaluation form");
+		CoopTerm coopTerm = coopTermService.updateCoopTerm(1, newCoopTerm);
 		assertEquals(CoopTermStates.ACTIVE, coopTerm.getState());
+		assertEquals("evaluation form", coopTerm.getEvaluationForm());
+		compare(newCoopTerm, coopTerm);
+	}
+	
+	private void compare(CoopTerm coopTermExpected, CoopTerm coopTermReturned) {
+		assertEquals(coopTermExpected.getAcademicSemester(), coopTermReturned.getAcademicSemester());
+		assertEquals(coopTermExpected.getCoopPlacement(), coopTermReturned.getCoopPlacement());
+		assertEquals(coopTermExpected.getStartDate(), coopTermReturned.getStartDate());
+		assertEquals(coopTermExpected.getEndDate(), coopTermReturned.getEndDate());
+		assertEquals(coopTermExpected.getJobDescription(), coopTermReturned.getJobDescription());
+		assertEquals(coopTermExpected.getLocation(), coopTermReturned.getLocation());
+		assertEquals(coopTermExpected.isIfWorkPermitNeeded(), coopTermReturned.isIfWorkPermitNeeded());
 	}
 }

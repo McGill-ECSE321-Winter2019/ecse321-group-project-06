@@ -44,10 +44,10 @@ public class CoopTermController {
 	
 	@PutMapping(value = {"/{id}"})
 	public CoopTermDto updateCoopTermStateById(@PathVariable int id, @RequestBody CoopTerm coopTerm) {
-		CoopTerm updatedCoopTerm = service.updateCoopTermState(id, coopTerm.getState());
+		CoopTerm updatedCoopTerm = service.updateCoopTerm(id, coopTerm);
 		return convertToCoopTermDto(updatedCoopTerm);
 	}
-	
+
 	private CoopTermDto convertToCoopTermDto(CoopTerm coopTerm) {
 		if(coopTerm == null) {
 			throw new IllegalArgumentException("There is no such CoopTerm!");
