@@ -6,6 +6,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.mcgill.ecse321.cooperator.controller.CoopTermController;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
+import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
 import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
@@ -56,4 +57,9 @@ public class CoopTermControllerTests {
 		assertEquals(1, coopTermService.getCoopTerm(1).getcoopTermId());
 	}
 	
+	@Test
+	public void testUpdateCoopTermStateById() {
+		CoopTerm coopTerm = coopTermService.updateCoopTermState(1, CoopTermStates.ACTIVE);
+		assertEquals(CoopTermStates.ACTIVE, coopTerm.getState());
+	}
 }

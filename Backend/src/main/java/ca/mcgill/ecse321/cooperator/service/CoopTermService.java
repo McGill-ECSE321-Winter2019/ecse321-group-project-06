@@ -86,12 +86,18 @@ public class CoopTermService {
 	@Transactional
 	public CoopTerm getCoopTerm(int coopTermId) {
 		CoopTerm s = coopTermRepository.findById(coopTermId);
+		if (s == null) {
+			throw new IllegalArgumentException("Coopterm doesn't exist!");
+		}
 		return s;
 	}
 	
 	@Transactional
 	public CoopTerm updateCoopTermState(int coopTermId, CoopTermStates state) {
 		CoopTerm s = coopTermRepository.findById(coopTermId);
+		if (s == null) {
+			throw new IllegalArgumentException("Coopterm doesn't exist!");
+		}
 		s.setState(state);
 		coopTermRepository.save(s);
 		return s;
