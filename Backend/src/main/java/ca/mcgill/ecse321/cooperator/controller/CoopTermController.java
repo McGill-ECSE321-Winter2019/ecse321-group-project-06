@@ -42,7 +42,7 @@ public class CoopTermController {
 		return convertToCoopTermDto(coopTerm);
 	}
 	
-	@PutMapping(value = {"/{id}"})
+	@PutMapping(value = {"/{id}", "/{id}/"})
 	public CoopTermDto updateCoopTermStateById(@PathVariable int id, @RequestBody CoopTerm coopTerm) {
 		CoopTerm updatedCoopTerm = service.updateCoopTerm(id, coopTerm);
 		return convertToCoopTermDto(updatedCoopTerm);

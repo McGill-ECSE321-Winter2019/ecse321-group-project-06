@@ -11,7 +11,9 @@ import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
@@ -101,6 +103,20 @@ public class CoopTermControllerTests {
 		compare(coopTerm, coopTermReturned);
 	}
 	
+	@Rule
+	public ExpectedException exceptionRule = ExpectedException.none();
+	
+	/*test get coopTerm returns null should throw exception*/
+	@Test 
+	public void testGetCoopTermByIdReturnNull() {
+		when(coopTermDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
+		     return null;
+		  });
+		exceptionRule.expect(IllegalArgumentException.class);
+		exceptionRule.expectMessage("Coopterm doesn't exist!");
+		coopTermService.getCoopTerm(1);
+	}
+	
 	/*test update a coopTerm by id returns updated coopTerm*/
 	@Test
 	public void testUpdateCoopTermStateById() {
@@ -109,6 +125,20 @@ public class CoopTermControllerTests {
 		newCoopTerm.setEvaluationForm("new evaluation form");
 		CoopTerm coopTerm = coopTermService.updateCoopTerm(1, newCoopTerm);
 		compare(newCoopTerm, coopTerm);
+	}
+	
+	/*test update a coopTerm returns null throws exception*/
+	@Test
+	public void testUpdateCoopTermStateByIdReturnNull() {
+		when(coopTermDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
+		     return null;
+		  });
+		exceptionRule.expect(IllegalArgumentException.class);
+		exceptionRule.expectMessage("Coopterm doesn't exist!");
+		CoopTerm newCoopTerm = coopTerm;
+		newCoopTerm.setState(CoopTermStates.ACTIVE);
+		newCoopTerm.setEvaluationForm("new evaluation form");
+		coopTermService.updateCoopTerm(1, newCoopTerm);
 	}
 	
 	/*test get all coopTerms return a list of coopTerms*/
