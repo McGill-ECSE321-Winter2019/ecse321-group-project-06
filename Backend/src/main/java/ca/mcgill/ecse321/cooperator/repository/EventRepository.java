@@ -10,4 +10,5 @@ import ca.mcgill.ecse321.cooperator.entity.Event;
 	 Event findByStartDate(Date startDate);
 	 Event findByEndDate(Date endDate);
 	 Event findByLocation(String location);
+	 Event findById(int id);
  }

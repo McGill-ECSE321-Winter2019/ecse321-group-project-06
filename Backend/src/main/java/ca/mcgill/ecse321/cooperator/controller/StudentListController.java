@@ -19,15 +19,15 @@ import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 @RestController
 public class StudentListController {
 
-	@GetMapping(value = { "/events", "/events/" })
-	public List<CoopTermDto> getAllCoopTerms() {
-		CoopTermService service = new CoopTermService();
-		List<CoopTermDto> coopTermDtos = new ArrayList<>();
-		for (CoopTerm coopTerm : service.getAllCoopTerms()) {
-			//coopTermDtos.add(convertToDto(coopTerm));
-		}
-		return coopTermDtos;
-	}
+//	@GetMapping(value = { "/events", "/events/" })
+//	public List<CoopTermDto> getAllCoopTerms() {
+//		CoopTermService service = new CoopTermService();
+//		List<CoopTermDto> coopTermDtos = new ArrayList<>();
+//		for (CoopTerm coopTerm : service.getAllCoopTerms()) {
+//			//coopTermDtos.add(convertToDto(coopTerm));
+//		}
+//		return coopTermDtos;
+//	}
 	
 //	private CoopTermDto convertToDto(CoopTerm e) {
 //		if (e == null) {

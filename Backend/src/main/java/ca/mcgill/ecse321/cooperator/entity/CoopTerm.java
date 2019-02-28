@@ -23,6 +23,8 @@ public class CoopTerm{
 	private int coopTermId;
 	private Employer employer;
 	private Student student;
+	private CoopTermStates state;
+	
 
 	public Date getEndDate() {
 		return this.endDate;
@@ -115,6 +117,15 @@ public class CoopTerm{
 		this.student = value;
 	}
 	
+	
+	public CoopTermStates getState() {
+		return state;
+	}
+
+	public void setState(CoopTermStates state) {
+		this.state = state;
+	}
+
 	public CoopTerm() {
 		
 	}

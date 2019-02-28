@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,17 +27,19 @@ public class EmployerController {
 	 * @return employerDto
 	 * @throws IllegalArgumentException
 	 */
-	
 	@PostMapping(value = { "/employers", "/employers/" })
-	public EmployerDto singup(@RequestBody EmployerDto e ) throws IllegalArgumentException {
-		
-		// @formatter:on
+	public EmployerDto signup(@RequestBody EmployerDto e ) throws IllegalArgumentException {
 		Employer employer = service.createEmployer(e.getEmail(), e.getPassword(), e.getName());
 		return convertToDto(employer);
 	}
 
 	
-	
+	/**
+	 * 
+	 * @param email
+	 * @param password
+	 * @return
+	 */
 	@GetMapping(value = { "/login", "/login/" })
 	public EmployerDto login(@RequestParam String email, @RequestParam String password) {
 		List<EmployerDto> employers = new ArrayList<>();
@@ -72,9 +72,4 @@ public class EmployerController {
 		EmployerDto employerDto  = new EmployerDto(employer.getEmail(), employer.getPassword(), employer.getName(), employer.getCoopUserId());
 		return employerDto;
 	}
-	
-	
-	
-	
-	
 }
