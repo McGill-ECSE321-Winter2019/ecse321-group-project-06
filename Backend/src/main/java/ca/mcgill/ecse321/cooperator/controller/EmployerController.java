@@ -28,7 +28,7 @@ public class EmployerController {
 	 * @throws IllegalArgumentException
 	 */
 	@PostMapping(value = { "/employers", "/employers/" })
-	public EmployerDto signup(@RequestBody EmployerDto e ) throws IllegalArgumentException {
+	public EmployerDto signUp(@RequestBody EmployerDto e ) throws IllegalArgumentException {
 		Employer employer = service.createEmployer(e.getEmail(), e.getPassword(), e.getName());
 		return convertToDto(employer);
 	}
