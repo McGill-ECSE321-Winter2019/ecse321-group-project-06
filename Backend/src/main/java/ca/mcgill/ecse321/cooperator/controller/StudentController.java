@@ -26,8 +26,6 @@ public class StudentController {
 	private StudentService studentService;
 	@Autowired
 	private EmployerService employerService;
-	@Autowired
-	private CoopTermService coopTermService;
 
 	/* Get students of an employer */
 	@GetMapping(value = {"/employer/{employerId}/students", "/employer/{employerId}/students/"})
@@ -45,65 +43,6 @@ public class StudentController {
 		return studentDtos;
 	}
 	
-	/* get all coop terms of a student in charged by an employer */
-	@GetMapping(value = {"/employer/{employerId}/student/{studentId}/coopTerms", 
-			"/employers/{employerId}/student/{studentId}/coopTerms/"})
-	public List<CoopTermDto> getAllCoopTermsByStudents(@PathVariable(value = "employerId") int employerId,
-			@PathVariable(value = "studentId") int studentId) {
-		try {
-			Employer employer = employerService.getEmployer(employerId);
-		} catch(Exception e) {
-			throw(e);
-		}
-		try {
-			Student student = studentService.getStudent(studentId);
-		}catch(Exception e) {
-			throw (e);
-		}
-		Student student = studentService.getStudent(studentId);
-		List<CoopTermDto> coopTermDtos = new ArrayList<>();
-		for (CoopTerm coopTerm: coopTermService.getCoopTermsofStudent(employerId, studentId)) {
-			coopTermDtos.add(convertToDto(coopTerm));
-		}
-		return coopTermDtos;
-	}
-	
-	/* get a coop term of a student in charged by an employer  */
-	@GetMapping(value = {"/employer/{employerId}/student/{studentId}/coopTerm/{coopTermId}",
-			"/employer/{employerId}/student/{studentId}/coopTerm/{coopTermId}/"})
-	public CoopTermDto getAnCoopTermOfStudent(@PathVariable(value = "employerId") int employerId,
-			@PathVariable (value = "studentId") int studentId, @PathVariable(value = "coopTermId")int coopTermId) {
-		try {
-			Employer employer = employerService.getEmployer(employerId);
-		} catch(Exception e) {
-			throw (e);
-		}
-		try {
-			Student student = studentService.getStudent(studentId);
-		}catch(Exception e) {
-			throw (e);
-		}
-		try {
-			CoopTerm coopTerm = coopTermService.getCoopTerm(coopTermId);
-		} catch(Exception e) {
-			throw (e);
-		}
-		Student student = studentService.getStudent(studentId);
-		CoopTerm coopTerm = coopTermService.getCoopTerm(coopTermId);
-		CoopTerm getCoopTerm = coopTermService.getOneCoopTermOfStudent(employerId, studentId, coopTermId);
-		CoopTermDto coopTermDto = convertToDto(getCoopTerm);
-		
-		return coopTermDto;
-	}
-	
-	/*convert to Dto method for Employer*/
-	private EmployerDto convertToDto(Employer e) {
-		if (e == null) {
-			throw new IllegalArgumentException("There is no such employer!");
-		}
-		EmployerDto employerDto = new EmployerDto(e.getEmail(), e.getPassword(),e.getName(),e.getCoopUserId());
-		return employerDto;
-	}
 	
 	/*convert to Dto method for student*/
 	private StudentDto convertToDto(Student s) {
@@ -114,16 +53,4 @@ public class StudentController {
 		return studentDto;
 	}
 	
-	/*convert to Dto method for coop term*/
-	private CoopTermDto convertToDto(CoopTerm t) {
-		if (t == null) {
-			throw new IllegalArgumentException("There is no such Coop term!");
-		}
-		Employer employer = new Employer();
-		EmployerDto employerDto  = convertToDto(employer);
-		CoopTermDto coopTermDto = new CoopTermDto( t.getStartDate(), t.getEndDate(), t.getLocation(),t.getAcademicSemester(),
-				t.isIfWorkPermitNeeded(), t.getJobDescription(), t.getEvaluationForm(), t.getCoopPlacement(),
-				t.getTaxCreditForm(), t.getcoopTermId(), employerDto);	
-		return coopTermDto;
-	}
 }

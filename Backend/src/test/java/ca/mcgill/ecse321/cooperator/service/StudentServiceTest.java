@@ -201,6 +201,7 @@ public class StudentServiceTest {
 
 
 	/* Test creating student with invalid year provided, should throw exception */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudentWithInvalidYear() {
 		assertEquals(0, service.getAllStudents().size());

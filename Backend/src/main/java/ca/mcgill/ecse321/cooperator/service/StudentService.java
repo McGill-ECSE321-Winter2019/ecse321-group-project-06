@@ -79,11 +79,12 @@ public class StudentService {
 	@Transactional
 	public List<Student> getAllStudentsOfAnEmployer (int employerId) {
 		List<CoopTerm> allCoopTermsOfEmployer = coopTermService.getAllCoopTermOfAnEmployer(employerId);
+		//use set to avoid duplicate student
 		Set<Student> allStudentsOfEmployer = new HashSet<Student>();
 		for (CoopTerm coopTerm: allCoopTermsOfEmployer) {
 			allStudentsOfEmployer.add(coopTerm.getStudent());
 		}
-		 List<Student> allStudentsList = new ArrayList<>(allStudentsOfEmployer);
+		List<Student> allStudentsList = new ArrayList<>(allStudentsOfEmployer);
 		
 		return allStudentsList;
 	}
