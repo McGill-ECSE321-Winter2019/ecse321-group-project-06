@@ -36,7 +36,7 @@ public class EmployerControllerTests {
 	
 	private Employer employer;
 	private static final String EMPLOYER_KEY = "TestEmployer";
-	//private static final String NONEXISTING_KEY = "NotAEmployer";
+	
 	
 	@Before
 	public void setupMock() {

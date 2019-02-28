@@ -59,6 +59,12 @@ public class EmployerService {
 	        throw new IllegalArgumentException("email cannot be empty!");
 		}
 		Employer e = employerRepository.findByEmail(email);
+		
+		if(e == null) {
+			throw new IllegalArgumentException("there is no such employer");
+		}
+		
+		
 		return e;
 	}
 	

@@ -31,7 +31,7 @@ public class EmployerController {
 	 */
 	
 	@PostMapping(value = { "/employers", "/employers/" })
-	public EmployerDto singUp(@RequestBody EmployerDto e ) throws IllegalArgumentException {
+	public EmployerDto singup(@RequestBody EmployerDto e ) throws IllegalArgumentException {
 		
 		// @formatter:on
 		Employer employer = service.createEmployer(e.getEmail(), e.getPassword(), e.getName());
