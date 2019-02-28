@@ -41,12 +41,10 @@ public class EmployerService {
 	/* id getter */
 	@Transactional
 	public Employer getEmployer(int id) {
-		
-		if (String.valueOf(id).length() < 1) {
-	        throw new IllegalArgumentException("company name cannot be empty!");
-	    }
-	    
-		Employer e = employerRepository.findById(id).get();
+		Employer e = employerRepository.findById(id);
+		if (e == null) {
+			throw new IllegalArgumentException("employer cannot found!");
+		}
 		return e;
 	}
 	
@@ -75,6 +73,7 @@ public class EmployerService {
 		return toList(employerRepository.findAll());
 	}
 	
+	/*iterable method*/
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {

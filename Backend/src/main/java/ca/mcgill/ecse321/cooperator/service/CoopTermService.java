@@ -21,6 +21,10 @@ public class CoopTermService {
 
 	@Autowired
 	CoopTermRepository coopTermRepository;
+	@Autowired
+	EmployerService employerService;
+	@Autowired
+	StudentService studentService;
 
 	/* exceptions */
 	@SuppressWarnings("deprecation")
@@ -99,6 +103,23 @@ public class CoopTermService {
 	@Transactional
 	public List<CoopTerm> getAllCoopTerms() {
 		return toList ( coopTermRepository.findAll());
+	}
+	
+	/* get all the coop terms in charge by an employer */
+	@Transactional
+	public List<CoopTerm> getAllCoopTermOfAnEmployer(int userId) {
+		List<CoopTerm> allCoopTerms = getAllCoopTerms();
+		
+		List<CoopTerm> coopTermsOfEmployer = new ArrayList<CoopTerm>();
+		for (CoopTerm coopTerm: allCoopTerms){
+			if (coopTerm.getEmployer().getCoopUserId() == userId) {
+				coopTermsOfEmployer.add(coopTerm);
+			}
+		}
+		if (coopTermsOfEmployer.isEmpty()) {
+			throw new IllegalArgumentException("There is no coop terms for this employer!");
+		}
+		return coopTermsOfEmployer;
 	}
 	
 	private List<CoopTerm> toList(Iterable<CoopTerm> iterable){
