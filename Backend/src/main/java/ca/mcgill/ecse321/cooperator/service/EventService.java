@@ -50,7 +50,7 @@ public class EventService {
  	/* id getter*/
  	@Transactional
 	public Event getEvent(int id){
-		Event event = eventRepository.findById(id).get();
+		Event event = eventRepository.findById(id);
 		return event;
 	}
 
