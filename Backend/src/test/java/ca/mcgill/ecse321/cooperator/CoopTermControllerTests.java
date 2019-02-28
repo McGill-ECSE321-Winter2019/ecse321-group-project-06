@@ -24,8 +24,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,34 +36,55 @@ public class CoopTermControllerTests {
 	private CoopTermRepository coopTermDao;
 	@InjectMocks
 	private CoopTermService coopTermService;
-	@InjectMocks
-	private CoopTermController coopTermController;
+	
 	private CoopTerm coopTerm;
+	private CoopTerm coopTerm1;
 	
 	@Before
 	public void setupMock() {
-		coopTerm = new CoopTerm();
-		coopTerm.setCoopTermId(1);
-		
 		Calendar c = Calendar.getInstance();
 		c.set(2016, Calendar.OCTOBER, 16, 9, 00, 0);
  		Date startDate = new Date(c.getTimeInMillis());
 		c.set(2016, Calendar.OCTOBER, 16, 9, 30, 0);
 		Date endDate = new Date(c.getTimeInMillis());
 		
+		coopTerm = new CoopTerm();
+		coopTerm.setCoopTermId(1);
 		coopTerm.setStartDate(startDate);
 		coopTerm.setEndDate(endDate);
 		coopTerm.setCoopPlacement("coop placement");
+		coopTerm.setTaxCreditForm("tax credit form");
+		coopTerm.setEvaluationForm("evaluation form");
 		coopTerm.setIfWorkPermitNeeded(true);
 		coopTerm.setJobDescription("job description");
 		coopTerm.setLocation("Montreal");
 		coopTerm.setAcademicSemester("FALL2018");
+		coopTerm.setState(CoopTermStates.INACTIVE);
+		
+		coopTerm1 = new CoopTerm();
+		coopTerm1.setCoopTermId(2);
+		coopTerm1.setStartDate(startDate);
+		coopTerm1.setEndDate(endDate);
+		coopTerm1.setCoopPlacement("coop placement1");
+		coopTerm1.setTaxCreditForm("tax credit form1");
+		coopTerm1.setEvaluationForm("evaluation form1");
+		coopTerm1.setIfWorkPermitNeeded(true);
+		coopTerm1.setJobDescription("job description1");
+		coopTerm1.setLocation("Toronto");
+		coopTerm1.setAcademicSemester("WINTER2018");
+		coopTerm1.setState(CoopTermStates.ACTIVE);
 	}
 	
 	@Before
 	public void setMockOutput() {
 		when(coopTermDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
 		     return coopTerm;
+		  });
+		when(coopTermDao.findAll()).thenAnswer( (InvocationOnMock invocation) -> {
+			List<CoopTerm> allCoopTerms = new ArrayList<>();
+			allCoopTerms.add(coopTerm);
+			allCoopTerms.add(coopTerm1);
+		     return allCoopTerms;
 		  });
 	}
 	
@@ -70,6 +93,7 @@ public class CoopTermControllerTests {
 		assertNotNull(coopTerm);
 	}
 	
+	/*test get one coopTerm by id return corresponding coopTerm*/
 	@Test
 	public void testGetCoopTermById() {
 		CoopTerm coopTermReturned = coopTermService.getCoopTerm(1);
@@ -77,15 +101,22 @@ public class CoopTermControllerTests {
 		compare(coopTerm, coopTermReturned);
 	}
 	
+	/*test update a coopTerm by id returns updated coopTerm*/
 	@Test
 	public void testUpdateCoopTermStateById() {
 		CoopTerm newCoopTerm = coopTerm;
 		newCoopTerm.setState(CoopTermStates.ACTIVE);
-		newCoopTerm.setEvaluationForm("evaluation form");
+		newCoopTerm.setEvaluationForm("new evaluation form");
 		CoopTerm coopTerm = coopTermService.updateCoopTerm(1, newCoopTerm);
-		assertEquals(CoopTermStates.ACTIVE, coopTerm.getState());
-		assertEquals("evaluation form", coopTerm.getEvaluationForm());
 		compare(newCoopTerm, coopTerm);
+	}
+	
+	/*test get all coopTerms return a list of coopTerms*/
+	@Test
+	public void testGetAllCoopTerms() {
+		List<CoopTerm> coopTerms = coopTermService.getAllCoopTerms();
+		compare(coopTerm, coopTerms.get(0));
+		compare(coopTerm1, coopTerms.get(1));
 	}
 	
 	private void compare(CoopTerm coopTermExpected, CoopTerm coopTermReturned) {
@@ -96,5 +127,9 @@ public class CoopTermControllerTests {
 		assertEquals(coopTermExpected.getJobDescription(), coopTermReturned.getJobDescription());
 		assertEquals(coopTermExpected.getLocation(), coopTermReturned.getLocation());
 		assertEquals(coopTermExpected.isIfWorkPermitNeeded(), coopTermReturned.isIfWorkPermitNeeded());
+		assertEquals(coopTermExpected.getState(), coopTermReturned.getState());
+		assertEquals(coopTermExpected.getcoopTermId(), coopTermReturned.getcoopTermId());
+		assertEquals(coopTermExpected.getTaxCreditForm(), coopTermReturned.getTaxCreditForm());
+		assertEquals(coopTermExpected.getEvaluationForm(), coopTermReturned.getEvaluationForm());
 	}
 }
