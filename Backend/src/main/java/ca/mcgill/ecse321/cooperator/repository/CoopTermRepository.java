@@ -13,4 +13,5 @@ public interface CoopTermRepository extends CrudRepository<CoopTerm, Integer> {
 	CoopTerm findByEndDate(Date endDate);
 	CoopTerm findByLocation(String location);
 	CoopTerm findByAcademicSemester(String academicSemester);
+	CoopTerm findById(int id);
 }

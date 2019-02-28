@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
+import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 
@@ -25,7 +26,7 @@ public class CoopTermService {
 	@SuppressWarnings("deprecation")
 	@Transactional
     public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
-			String jobDescription, Employer employer, Date endDate, Student student) 
+			String jobDescription, Employer employer, Date endDate, Student student, CoopTermStates state) 
 	{
 		CoopTerm p = new CoopTerm( );
 
@@ -35,17 +36,11 @@ public class CoopTermService {
 		if (startDate == null) {
 			throw new IllegalArgumentException("Start date cannot be empty!");
 		}
-		if (startDate.getMonth() < 0 || startDate.getMonth() > 11 ) {
-			throw new IllegalArgumentException("start date should be a valid month!");
-		}
 		if (startDate.getYear() < 1950 || startDate.getYear() > 2020) {
 			throw new IllegalArgumentException("start date should be a valid year!");
 		}
 		if (academicSemester == null || academicSemester.trim().length() == 0) {
 			throw new IllegalArgumentException("AcademicSemester cannot be empty!");
-		}
-		if (ifWorkPermitNeeded != true && ifWorkPermitNeeded != false ) {
-			throw new IllegalArgumentException("ifWorkPermitNeeded must be boolean!");
 		}
 		if (jobDescription == null || jobDescription.trim().length() == 0) {
 			throw new IllegalArgumentException("JobDescription cannot be empty!");
@@ -55,9 +50,6 @@ public class CoopTermService {
 		}
 		if (endDate == null) {
 			throw new IllegalArgumentException("End date cannot be empty!");
-		}
-		if (endDate.getMonth() < 0 || endDate.getMonth() > 11 ) {
-			throw new IllegalArgumentException("end date should be a valid month!");
 		}
 		if (endDate.getYear() < 1950) {
 			throw new IllegalArgumentException("end date should be a valid year!");
@@ -74,6 +66,7 @@ public class CoopTermService {
 		p.setEmployer(employer);
 		p.setEndDate(endDate);
 		p.setStudent(student);
+		p.setState(state);
 		
 	    CoopTerm pReturn = coopTermRepository.save(p);
 		
@@ -83,8 +76,22 @@ public class CoopTermService {
 	/* id getter */
 	@Transactional
 	public CoopTerm getCoopTerm(int coopTermId) {
-		
-		CoopTerm s = coopTermRepository.findById(coopTermId).get();
+		CoopTerm s = coopTermRepository.findById(coopTermId);
+		if (s == null) {
+			throw new IllegalArgumentException("Coopterm doesn't exist!");
+		}
+		return s;
+	}
+	
+	@Transactional
+	public CoopTerm updateCoopTerm(int coopTermId, CoopTerm newCoopTerm) {
+		CoopTerm s = coopTermRepository.findById(coopTermId);
+		if (s == null) {
+			throw new IllegalArgumentException("Coopterm doesn't exist!");
+		}
+		s.setState(newCoopTerm.getState());
+		s.setEvaluationForm(newCoopTerm.getEvaluationForm());
+		coopTermRepository.save(s);
 		return s;
 	}
 	
@@ -94,9 +101,9 @@ public class CoopTermService {
 		return toList ( coopTermRepository.findAll());
 	}
 	
-	private <T> List<T> toList(Iterable<T> iterable){
-		List<T> resultList = new ArrayList<T>();
-		for (T t : iterable) {
+	private List<CoopTerm> toList(Iterable<CoopTerm> iterable){
+		List<CoopTerm> resultList = new ArrayList<CoopTerm>();
+		for (CoopTerm t : iterable) {
 			resultList.add(t);
 		}
 		return resultList;
