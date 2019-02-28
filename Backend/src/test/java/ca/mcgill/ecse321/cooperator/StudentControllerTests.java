@@ -107,6 +107,7 @@ public class StudentControllerTests {
 	@Rule 
 	public ExpectedException exceptionRule = ExpectedException.none();
 	
+	/*test null case of getStudentById*/
 	@Test
 	public void testGetStudentByIdReturnNull() {
 		when(studentDao.findById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
