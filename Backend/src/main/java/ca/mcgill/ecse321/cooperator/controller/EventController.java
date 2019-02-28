@@ -29,13 +29,12 @@ public class EventController {
 		return events;
 	}
 	
-	@PostMapping(value = {"/events", "/events/"})
+	@PostMapping(value = {"/event", "/event/"})
 	public EventDto createEvent(@RequestBody Event event) {
 		if(event != null) {
 			Event eventCreated = eventService.createEvent(event.getStartDate(), event.getEndDate(), event.getLocation(), event.getStartTime(), event.getEndTime());
 			return convertToEventDto(eventCreated);
 		}
-		//TODO if event is null, throw exception
 		return null;
 	}
 	
