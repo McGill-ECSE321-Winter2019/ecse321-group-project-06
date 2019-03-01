@@ -92,7 +92,7 @@ public class EmployerServiceTest {
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("password cannot be empty!", error);
+		assertEquals("Password cannot be empty!", error);
 		assertEquals(0, service.getAllEmployers().size());
 	}
 	
@@ -112,7 +112,7 @@ public class EmployerServiceTest {
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("company name cannot be empty!", error);
+		assertEquals("Company name cannot be empty!", error);
 		assertEquals(0, service.getAllEmployers().size());
 	}
 		
