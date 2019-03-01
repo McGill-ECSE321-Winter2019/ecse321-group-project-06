@@ -180,7 +180,7 @@ public class EmployerControllerTests {
 	public void testCreateEmployerEmailNull() {
 		exceptionRule.expect(IllegalArgumentException.class);
 		exceptionRule.expectMessage("Email cannot be empty!");
-		employerService.createEmployer("","test password","TestEmployer");	
+		employerService.createEmployer(null,"test password","TestEmployer");	
 	}
 	
 	/* test create employer when email is all space */
@@ -196,7 +196,7 @@ public class EmployerControllerTests {
 	public void testCreateEmployerPasswordNull() {
 		exceptionRule.expect(IllegalArgumentException.class);
 		exceptionRule.expectMessage("Password cannot be empty!");
-		employerService.createEmployer("testEmployer@gmail.com","","TestEmployer");	
+		employerService.createEmployer("testEmployer@gmail.com",null,"TestEmployer");	
 	}
 	
 	/* test create employer when password is all space */
@@ -206,6 +206,15 @@ public class EmployerControllerTests {
 		exceptionRule.expectMessage("Password cannot be empty!");
 		employerService.createEmployer("testEmployer@gmail.com","    ","TestEmployer");	
 	}
+	
+	/* test create employer when Company Name is null */
+	@Test
+	public void testCreateEmployerCompanyNameNull() {
+		exceptionRule.expect(IllegalArgumentException.class);
+		exceptionRule.expectMessage("Company name cannot be empty!");
+		employerService.createEmployer("testEmployer@gmail.com","test password",null);	
+	}
+	
 	
 	/* test create employer when Company Name is all space */
 	@Test
