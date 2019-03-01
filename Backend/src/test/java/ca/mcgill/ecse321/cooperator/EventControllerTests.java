@@ -10,7 +10,7 @@ import ca.mcgill.ecse321.cooperator.repository.EventRepository;
 import ca.mcgill.ecse321.cooperator.service.EventService;
 
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
