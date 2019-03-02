@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.cooperator.dto.EventDto;
@@ -21,6 +22,7 @@ public class EventController {
 	private EventService eventService;
 	
 	@GetMapping(value = {"/events", "/events/"})
+	@ResponseBody
 	public List<EventDto> getEvents(){
 		List<EventDto> events = new ArrayList<>();
 		for(Event event: eventService.getAllEvents()) {

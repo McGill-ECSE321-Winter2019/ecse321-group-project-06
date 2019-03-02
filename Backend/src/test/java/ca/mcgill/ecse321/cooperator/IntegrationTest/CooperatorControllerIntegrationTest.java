@@ -1,21 +1,14 @@
-package ca.mcgill.ecse321.cooperator;
+package ca.mcgill.ecse321.cooperator.IntegrationTest;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.junit.Before;
-import org.junit.Test;
-//import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 
-import static org.mockito.Mockito.verify;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyObject;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -23,16 +16,16 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.Assert.assertEquals;
-
-import static org.mockito.ArgumentMatchers.*;
-
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+//import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -41,31 +34,24 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import ca.mcgill.ecse321.cooperator.entity.CoopUser;
-import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
-import ca.mcgill.ecse321.cooperator.entity.Employer;
-import ca.mcgill.ecse321.cooperator.entity.Event;
-import ca.mcgill.ecse321.cooperator.entity.Student;
-import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
-import ca.mcgill.ecse321.cooperator.repository.EmployerRepository;
-import ca.mcgill.ecse321.cooperator.repository.EventRepository;
-import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
-import ca.mcgill.ecse321.cooperator.controller.CoopTermController;
-import ca.mcgill.ecse321.cooperator.service.CoopTermService;
-import ca.mcgill.ecse321.cooperator.service.EmployerService;
-import ca.mcgill.ecse321.cooperator.service.EventService;
-import ca.mcgill.ecse321.cooperator.service.StudentService;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ca.mcgill.ecse321.cooperator.controller.CoopTermController;
+import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
+import ca.mcgill.ecse321.cooperator.entity.Employer;
+import ca.mcgill.ecse321.cooperator.entity.Student;
+import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
+import ca.mcgill.ecse321.cooperator.service.CoopTermService;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
-//@WebMvcTest
-public class CooperatorApplicationTest {
-    //@Autowired
+@AutoConfigureMockMvc
+
+public class CooperatorControllerIntegrationTest {
+    @Autowired
 	private MockMvc mvc;
 	private Employer testEmployer;
-	private Event testEvent;
 	private Student testStudent1;
 	private Student testStudent2;
 	private CoopTerm testCoopTerm1;
@@ -73,17 +59,13 @@ public class CooperatorApplicationTest {
 	private Date endDate;
 	private Date startDate;
 	List<CoopTerm> coopTerms = new ArrayList<>();
-	List<Student> students = new ArrayList<>();
 	private JacksonTester<CoopTerm> jsonct;
-	private JacksonTester<List<CoopTerm>> jsonctlist;
-	private JacksonTester<Student> student;
-	private JacksonTester<List<Student>> jsonstlist;
 	
 	@MockBean
 	private CoopTermRepository coopTermRepo;
-	@Autowired
+	@Mock
 	private CoopTermService coopTermService;
-	@Autowired 
+	@InjectMocks 
 	private CoopTermController coopTermController;
 	
 //	public static class MockSecutiryContext implements SecurityContext {
@@ -107,7 +89,7 @@ public class CooperatorApplicationTest {
 //	}
 	@Before
 	public void setup(){
-		MockitoAnnotations.initMocks(this);
+		//MockitoAnnotations.initMocks(this);
 		mvc = MockMvcBuilders.standaloneSetup(coopTermController).build();
 		JacksonTester.initFields(this, new ObjectMapper());
 		testEmployer = new Employer();
@@ -163,10 +145,13 @@ public class CooperatorApplicationTest {
 		
 		coopTerms.add(testCoopTerm1);
 		coopTerms.add(testCoopTerm2);
-		students.add(testStudent1);
-		students.add(testStudent2);
 		}
-	
+	@After
+	public void resetMock() {
+		coopTermRepo.deleteAll();
+		reset(coopTermRepo);
+		reset(coopTermService);
+	}
 	@Test
 	public void canGetOneCoopTerm() throws Exception {
 		when(coopTermRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation)->{
@@ -183,7 +168,7 @@ public class CooperatorApplicationTest {
 		assertEquals(objAsJson,responseContent);
 		//assertEquals(this.testCoopTerm1,result.getResponse());
 	}
-}
+
 //	@Test
 //	public void canGetCoopTerms() throws Exception{
 //		when(coopTermRepo.findAllById(anyInt())).thenReturn(coopTerms);
@@ -192,8 +177,23 @@ public class CooperatorApplicationTest {
 //				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 //				.andExpect(status().isOk())
 //				.andReturn();
+//		String objAsJson = jsonctlist.write(coopTerms).getJson();
 //		String responseContent = result.getResponse().getContentAsString();
-//		assertEquals(this.coopTerms,this.coopTerms);
+//		assertEquals(objAsJson,responseContent);
 //	}
-//
-//}
+	@Test
+	public void canupdateCoopTerm() throws Exception{
+		when(coopTermRepo.findById(anyInt())).thenReturn(testCoopTerm1);
+		when(coopTermRepo.save(anyObject())).thenReturn(testCoopTerm1);
+		String objAsJson = jsonct.write(testCoopTerm1).getJson();
+		MvcResult result = mvc.perform(put("/coopTerm/2/")
+										.contentType(MediaType.APPLICATION_JSON_UTF8)
+										.content(objAsJson))
+				//.andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andReturn();
+		String responseContent =result.getResponse().getContentAsString();
+		assertEquals(objAsJson,responseContent);
+	}
+}

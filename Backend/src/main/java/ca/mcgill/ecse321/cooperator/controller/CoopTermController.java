@@ -31,6 +31,7 @@ public class CoopTermController {
 	private CoopTermService service;
 	
 	@GetMapping(value = {"/student/{id}", "/student/{id}/"})
+	@ResponseBody
 	public List<CoopTermDto> getCoopTermsByStudentId(@PathVariable int id){
 		List<CoopTermDto> coopTerms = new ArrayList<>();
 		for(CoopTerm coopterm: service.getAllCoopTerms()) {
@@ -49,6 +50,7 @@ public class CoopTermController {
 	}
 	
 	@PutMapping(value = {"/{id}", "/{id}/"})
+	@ResponseBody
 	public CoopTermDto updateCoopTermStateById(@PathVariable int id, @RequestBody CoopTerm coopTerm) {
 		CoopTerm updatedCoopTerm = service.updateCoopTerm(id, coopTerm);
 		return convertToCoopTermDto(updatedCoopTerm);

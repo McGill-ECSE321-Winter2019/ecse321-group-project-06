@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.cooperator.dto.EmployerDto;
@@ -28,7 +29,9 @@ public class EmployerController {
 	 * @throws IllegalArgumentException
 	 */
 	@PostMapping(value = { "/employers", "/employers/" })
+	@ResponseBody
 	public EmployerDto signUp(@RequestBody EmployerDto e ) throws IllegalArgumentException {
+		
 		Employer employer = service.createEmployer(e.getEmail(), e.getPassword(), e.getName());
 		return convertToDto(employer);
 	}
@@ -41,7 +44,8 @@ public class EmployerController {
 	 * @return
 	 */
 	@GetMapping(value = { "/login", "/login/" })
-	public EmployerDto login(@RequestParam String email, @RequestParam String password) {
+	@ResponseBody
+	public EmployerDto login(@RequestParam("Email") String email, @RequestParam("Password") String password) {
 		List<EmployerDto> employers = new ArrayList<>();
 		for (Employer employer : service.getAllEmployers()) {
 			
