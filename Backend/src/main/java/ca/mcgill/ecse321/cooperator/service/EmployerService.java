@@ -52,7 +52,6 @@ public class EmployerService {
 		if(e == null) {
 			throw new IllegalArgumentException("there is no such employer");
 		}
-		
 		return e;
 	}
 	
@@ -85,6 +84,7 @@ public class EmployerService {
 		return toList(employerRepository.findAll());
 	}
 	
+	/*iterable method*/
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {

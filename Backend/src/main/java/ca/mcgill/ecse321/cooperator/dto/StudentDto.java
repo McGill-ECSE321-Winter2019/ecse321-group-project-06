@@ -1,7 +1,9 @@
 package ca.mcgill.ecse321.cooperator.dto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class StudentDto {
@@ -12,17 +14,17 @@ public class StudentDto {
 	private int coopUserId;
 	private String school;
 	private Date graduationDate;
-	private Set<CoopTermDto> coopTerm;
+	private List<CoopTermDto> coopTerm;
 
 	public StudentDto() {
 	}
 	
 	public StudentDto(String email,String password, String name, int coopUserId) {
-		this(email, password, name, coopUserId, Collections.EMPTY_SET);
+		this(email, password, name, coopUserId, Collections.EMPTY_LIST);
 	}
 	
 	public StudentDto(String email, String password, String name, 
-			int coopUserId, Set<CoopTermDto> coopTerm) {
+			int coopUserId, List<CoopTermDto> coopTerm) {
 		this.email = email;
 		this.password = password;
 		this.name = name;
@@ -54,7 +56,7 @@ public class StudentDto {
 		return this.graduationDate;
 	}
 
-	public Set<CoopTermDto> getCoopTerm() {
+	public List<CoopTermDto> getCoopTerm() {
 		return this.coopTerm;
 	}
 

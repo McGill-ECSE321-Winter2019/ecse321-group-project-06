@@ -64,13 +64,13 @@ public class StudentServiceTest {
 		assertEquals(userEmail, allStudents.get(0).getEmail());
 		assertEquals(userPassword, allStudents.get(0).getPassword());
 		assertEquals(studentName, allStudents.get(0).getName());
-	    assertEquals(studentId, allStudents.get(0).getStudentId());
 		assertEquals(1, allStudents.size());
 		assertEquals(school, allStudents.get(0).getSchool());
 		assertEquals(graduationDate, allStudents.get(0).getGraduationDate());
 	}
 
 	/* Test creating student with no email provided, should throw exception */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudentWithNullEmail() {
 		assertEquals(0, service.getAllStudents().size());
@@ -82,7 +82,7 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Date graduationDate = new Date(); 
 		graduationDate.setYear(2020);
-		graduationDate.setMonth(12);
+		graduationDate.setMonth(11);
 		Student student = null; 
 		String error = null;
 
@@ -97,6 +97,7 @@ public class StudentServiceTest {
 	}
 
 	/* Test creating student with no user password provided, should throw exception */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudentWithNullPassword() {
 		assertEquals(0, service.getAllStudents().size());
@@ -108,7 +109,7 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Date graduationDate = new Date(); 
 		graduationDate.setYear(2020);
-		graduationDate.setMonth(12);
+		graduationDate.setMonth(11);
 		Student student = null; 
 		String error = null;
 
@@ -123,6 +124,7 @@ public class StudentServiceTest {
 	}
 
 	/* Test creating student with no name provided, should throw exception */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudentWithNullName() {
 		assertEquals(0, service.getAllStudents().size());
@@ -134,7 +136,7 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Date graduationDate = new Date(); 
 		graduationDate.setYear(2020);
-		graduationDate.setMonth(12);
+		graduationDate.setMonth(11);
 		Student student = null; 
 		String error = null;
 
@@ -148,32 +150,8 @@ public class StudentServiceTest {
 		assertEquals(0, service.getAllStudents().size());		
 	}
 
-	/* Test creating student with invalid Id provided, should throw exception */
-	@Test
-	public void testCreateStudentWithInvalidId() {
-		assertEquals(0, service.getAllStudents().size());
-		String userEmail = "sam.smith@mail.mcgill.ca";
-		String userPassword = "abcdefghi";
-		String studentName = "ABC";
-		int studentId = 1;
-		String school = "McGill";
-		Date graduationDate = new Date(); 
-		graduationDate.setYear(2020);
-		graduationDate.setMonth(12);
-		Student student = null; 
-		String error = null;
-
-		try {
-			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
-		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
-			error = e.getMessage();
-		}
-		assertEquals("Student Id should be more than 1 digit!", error);
-		assertEquals(0, service.getAllStudents().size());		
-	}
-
 	/* Test creating student with no school provided, should throw exception */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudentWithNullSchool() {
 		assertEquals(0, service.getAllStudents().size());
@@ -184,7 +162,7 @@ public class StudentServiceTest {
 		String school = null;
 		Date graduationDate = new Date(); 
 		graduationDate.setYear(2020);
-		graduationDate.setMonth(12);
+		graduationDate.setMonth(11);
 		Student student = null; 
 		String error = null;
 
@@ -223,6 +201,7 @@ public class StudentServiceTest {
 
 
 	/* Test creating student with invalid year provided, should throw exception */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudentWithInvalidYear() {
 		assertEquals(0, service.getAllStudents().size());
@@ -233,7 +212,7 @@ public class StudentServiceTest {
 		String school = "McGill";
 		Date graduationDate = new Date(); 
 		graduationDate.setYear(1);
-		graduationDate.setMonth(12);
+		graduationDate.setMonth(11);
 		Student student = null; 
 		String error = null;
 

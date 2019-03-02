@@ -6,6 +6,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
+import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
@@ -39,6 +40,10 @@ public class CoopTermControllerTests {
 	private CoopTerm coopTerm;
 	private CoopTerm coopTerm1;
 	
+	private Student student1;
+	private Student student2;
+	
+	
 	@Before
 	public void setupMock() {
 		Calendar c = Calendar.getInstance();
@@ -46,6 +51,12 @@ public class CoopTermControllerTests {
  		Date startDate = new Date(c.getTimeInMillis());
 		c.set(2016, Calendar.OCTOBER, 16, 9, 30, 0);
 		Date endDate = new Date(c.getTimeInMillis());
+		
+		student1 = new Student();
+		student1.setCoopUserId(1);
+		
+		student2 = new Student();
+		student2.setCoopUserId(2);
 		
 		coopTerm = new CoopTerm();
 		coopTerm.setCoopTermId(1);
@@ -59,6 +70,7 @@ public class CoopTermControllerTests {
 		coopTerm.setLocation("Montreal");
 		coopTerm.setAcademicSemester("FALL2018");
 		coopTerm.setState(CoopTermStates.INACTIVE);
+		coopTerm.setStudent(student1);
 		
 		coopTerm1 = new CoopTerm();
 		coopTerm1.setCoopTermId(2);
@@ -72,6 +84,7 @@ public class CoopTermControllerTests {
 		coopTerm1.setLocation("Toronto");
 		coopTerm1.setAcademicSemester("WINTER2018");
 		coopTerm1.setState(CoopTermStates.ACTIVE);
+		coopTerm1.setStudent(student1);
 	}
 	
 	@Before
@@ -144,6 +157,27 @@ public class CoopTermControllerTests {
 		List<CoopTerm> coopTerms = coopTermService.getAllCoopTerms();
 		compare(coopTerm, coopTerms.get(0));
 		compare(coopTerm1, coopTerms.get(1));
+	}
+	
+	
+	/*test get coopTerms of an student*/
+	@Test
+	public void testCoopTermsOfAnStudent() {
+		List<CoopTerm> coopTerms = coopTermService.getAllCoopTermsOfAnStudent(1);
+		compare(coopTerm, coopTerms.get(0));
+		compare(coopTerm1, coopTerms.get(1));
+	}
+	
+	/*test get coopTerms of an student*/
+	@Test
+	public void testCoopTermsOfAnStudentReturnNull() {
+		when(coopTermDao.findAll()).thenAnswer( (InvocationOnMock invocation) -> {
+			List<CoopTerm> allCoopTerms = new ArrayList<>();
+		     return allCoopTerms;
+		  });
+		exceptionRule.expect(IllegalArgumentException.class);
+		exceptionRule.expectMessage("There is no coop terms for this employer!");
+		coopTermService.getAllCoopTermsOfAnStudent(1);	
 	}
 	
 	private void compare(CoopTerm coopTermExpected, CoopTerm coopTermReturned) {

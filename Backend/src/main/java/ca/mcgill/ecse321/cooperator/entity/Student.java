@@ -1,20 +1,19 @@
 package ca.mcgill.ecse321.cooperator.entity;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Table;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Set;
 import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "STUDENT")
 public class Student extends CoopUser{
-	private int studentId;
 	private String school;
 	private Date graduationDate;
-	private Set<CoopTerm> coopTerm;
+	private List<CoopTerm> coopTerm;
 
 	public void setSchool(String value) {
 		this.school = value;
@@ -30,20 +29,12 @@ public class Student extends CoopUser{
 		return this.graduationDate;
 	}
 
-	public void setStudentId(int value) {
-		this.studentId=value;
-	}
-	
-	public int getStudentId() {
-		return this.studentId;
-	}
-
 	@OneToMany(mappedBy="student")
-	public Set<CoopTerm> getCoopTerm() {
+	public List<CoopTerm> getCoopTerm() {
 		return this.coopTerm;
 	}
 
-	public void setCoopTerm(Set<CoopTerm> coopTerms) {
+	public void setCoopTerm(List<CoopTerm> coopTerms) {
 		this.coopTerm = coopTerms;
 	}
 

@@ -4,18 +4,25 @@ package ca.mcgill.ecse321.cooperator.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
+import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class StudentService {
 
 	@Autowired
 	StudentRepository studentRepository;
+	@Autowired
+	CoopTermService coopTermService;
 
 	/*exceptions*/
 	@SuppressWarnings("deprecation")
@@ -32,9 +39,6 @@ public class StudentService {
 		if (studentName == null || studentName.trim().length() ==0) {
 			throw new IllegalArgumentException("Student name cannot be empty!");
 		}
-		if (String.valueOf(studentId).length() <= 1) {
-			throw new IllegalArgumentException("Student Id should be more than 1 digit!");
-		}
 		if (school == null || school.trim().length() == 0) {
 			throw new IllegalArgumentException("school entry cannot be empty!");
 		}
@@ -48,7 +52,6 @@ public class StudentService {
 		s.setEmail(userEmail);
 		s.setPassword(userPassword);
 		s.setName(studentName);
-		s.setStudentId(studentId);
 		s.setSchool(school);
 		s.setGraduationDate(graduationDate);
 		Student sReturn = studentRepository.save(s);
@@ -59,11 +62,10 @@ public class StudentService {
 	/* id getter */
 	@Transactional
 	public Student getStudent(int studentId) {
-		if (String.valueOf(studentId).length() < 1) {
-	        throw new IllegalArgumentException("Student Id cannot be empty!");
-	    }
-
-		Student s = studentRepository.findById(studentId).get();
+		Student s = studentRepository.findById(studentId);
+		if (s == null) {
+			throw new IllegalArgumentException("Student cannot found!");
+		}
 		return s;
 	}
 
@@ -72,7 +74,22 @@ public class StudentService {
 	public List<Student> getAllStudents() {
 		return toList (studentRepository.findAll());
 	}
-
+	
+	/* Get all the students in charged by an employer */
+	@Transactional
+	public List<Student> getAllStudentsOfAnEmployer (int employerId) {
+		List<CoopTerm> allCoopTermsOfEmployer = coopTermService.getAllCoopTermOfAnEmployer(employerId);
+		//use set to avoid duplicate student
+		Set<Student> allStudentsOfEmployer = new HashSet<Student>();
+		for (CoopTerm coopTerm: allCoopTermsOfEmployer) {
+			allStudentsOfEmployer.add(coopTerm.getStudent());
+		}
+		List<Student> allStudentsList = new ArrayList<>(allStudentsOfEmployer);
+		
+		return allStudentsList;
+	}
+	
+	/* iterable method */
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {
