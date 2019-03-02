@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.repository.EmployerRepository;
 
@@ -24,10 +25,10 @@ public class EmployerService {
 			throw new IllegalArgumentException("Email cannot be empty!");
 		}
 		if (userPassword == null || userPassword.trim().length() == 0) {
-			throw new IllegalArgumentException("password cannot be empty!");
+			throw new IllegalArgumentException("Password cannot be empty!");
 		}
 	    if (companyName == null || companyName.trim().length() == 0) {
-			throw new IllegalArgumentException("company name cannot be empty!");
+			throw new IllegalArgumentException("Company name cannot be empty!");
 		}
 	    
 	    e.setEmail(userEmail);
@@ -40,10 +41,16 @@ public class EmployerService {
 	
 	/* id getter */
 	@Transactional
-	public Employer getEmployer(int id) {
+	public Employer getEmployerById(int id) {
+		
+		if (id < 1) {
+	        throw new IllegalArgumentException("invalid id");
+	    }
+	    
 		Employer e = employerRepository.findById(id);
-		if (e == null) {
-			throw new IllegalArgumentException("employer cannot found!");
+		
+		if(e == null) {
+			throw new IllegalArgumentException("there is no such employer");
 		}
 		return e;
 	}
@@ -51,17 +58,21 @@ public class EmployerService {
 	
 	/* email getter */
 	@Transactional
-	public Employer getEmployer(String email) {
+	public Employer getEmployerByEmail(String email) {
 		
-		if (email.length() < 1) {
+		if (email==null) {
 	        throw new IllegalArgumentException("email cannot be empty!");
 		}
+		
+		if (email.length() < 5) {
+	        throw new IllegalArgumentException("invalid email");
+		} 
+		
 		Employer e = employerRepository.findByEmail(email);
 		
 		if(e == null) {
 			throw new IllegalArgumentException("there is no such employer");
 		}
-		
 		
 		return e;
 	}

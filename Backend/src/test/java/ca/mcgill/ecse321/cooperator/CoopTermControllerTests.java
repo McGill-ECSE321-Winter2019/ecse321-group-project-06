@@ -12,6 +12,7 @@ import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
 import org.junit.Before;
 import org.junit.Rule;
+
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;

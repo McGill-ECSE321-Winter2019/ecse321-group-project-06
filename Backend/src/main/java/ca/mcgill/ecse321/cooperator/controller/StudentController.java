@@ -31,7 +31,7 @@ public class StudentController {
 	@GetMapping(value = {"/employer/{employerId}/students", "/employer/{employerId}/students/"})
 	public List<StudentDto> getStudents(@PathVariable(value = "employerId") int employerId) {
 		try {
-			Employer employer = employerService.getEmployer(employerId);
+			Employer employer = employerService.getEmployerById(employerId);
 		} catch(Exception e){
 			throw (e);
 		}
