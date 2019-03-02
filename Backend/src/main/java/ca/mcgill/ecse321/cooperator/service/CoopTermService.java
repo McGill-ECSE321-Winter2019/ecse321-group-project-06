@@ -122,6 +122,23 @@ public class CoopTermService {
 		return coopTermsOfEmployer;
 	}
 	
+	/* get all the coop terms of a student */
+	@Transactional
+	public List<CoopTerm> getAllCoopTermsOfAnStudent(int userId) {
+		List<CoopTerm> allCoopTerms = getAllCoopTerms();
+		
+		List<CoopTerm> coopTermsOfStudent = new ArrayList<CoopTerm>();
+		for (CoopTerm coopTerm: allCoopTerms){
+			if (coopTerm.getStudent().getCoopUserId() == userId) {
+				coopTermsOfStudent.add(coopTerm);
+			}
+		}
+		if (coopTermsOfStudent.isEmpty()) {
+			throw new IllegalArgumentException("There is no coop terms for this employer!");
+		}
+		return coopTermsOfStudent;
+	}
+	
 	private List<CoopTerm> toList(Iterable<CoopTerm> iterable){
 		List<CoopTerm> resultList = new ArrayList<CoopTerm>();
 		for (CoopTerm t : iterable) {
