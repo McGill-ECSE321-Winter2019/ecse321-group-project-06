@@ -41,10 +41,10 @@ import ca.mcgill.ecse321.cooperator.service.EventService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
+//@AutoConfigureMockMvc
 
 public class EventControllerIntegrationTest {
-    @Autowired
+   // @Autowired
 	private MockMvc mvc;
 	private Event testEvent;
 	private List<Event> testEvents;
@@ -54,15 +54,15 @@ public class EventControllerIntegrationTest {
 	
 	@MockBean
 	private EventRepository eventRepo;
-	@Mock
-	private EventService EventService;
-	@InjectMocks  
+	@Autowired
+	private EventService eventService;
+	@Autowired  
 	private EventController eventController;
 	
 	@Before
 	public void setup(){
-		//MockitoAnnotations.initMocks(this);
-		//mvc = MockMvcBuilders.standaloneSetup(eventController).build();
+		MockitoAnnotations.initMocks(this);
+		mvc = MockMvcBuilders.standaloneSetup(eventController).build();
 		JacksonTester.initFields(this, new ObjectMapper());
 		testEvent= new Event();
 		testEvent.setEndDate(endDate);
@@ -76,8 +76,9 @@ public class EventControllerIntegrationTest {
 	@After
 	public void resetMock() {
 		//eventRepo.deleteAll();
-		reset(eventRepo);
-		reset(EventService);
+		//reset(eventRepo);
+		//reset(eventService);
+		//reset(eventController);
 
 	}
 	@Test

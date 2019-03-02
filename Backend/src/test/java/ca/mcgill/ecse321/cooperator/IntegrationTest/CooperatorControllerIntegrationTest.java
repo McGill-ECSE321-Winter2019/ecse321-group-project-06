@@ -23,6 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -46,10 +47,10 @@ import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
+//@AutoConfigureMockMvc
 
 public class CooperatorControllerIntegrationTest {
-    @Autowired
+    //@Autowired
 	private MockMvc mvc;
 	private Employer testEmployer;
 	private Student testStudent1;
@@ -63,33 +64,14 @@ public class CooperatorControllerIntegrationTest {
 	
 	@MockBean
 	private CoopTermRepository coopTermRepo;
-	@Mock
+	@Autowired
 	private CoopTermService coopTermService;
-	@InjectMocks 
+	@Autowired 
 	private CoopTermController coopTermController;
 	
-//	public static class MockSecutiryContext implements SecurityContext {
-//		private static final long serialVersionUID = 31204723579235L;
-//
-//		private Authentication authentication;
-//
-//		public MockSecutiryContext(Authentication authentication) {
-//			this.authentication = authentication;
-//		}
-//
-//		@Override
-//		public Authentication getAuthentication() {
-//			return this.authentication;
-//		}
-//
-//		@Override
-//		public void setAuthentication(Authentication authentication) {
-//			this.authentication = authentication;
-//		}
-//	}
 	@Before
 	public void setup(){
-		//MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.initMocks(this);
 		mvc = MockMvcBuilders.standaloneSetup(coopTermController).build();
 		JacksonTester.initFields(this, new ObjectMapper());
 		testEmployer = new Employer();
@@ -149,8 +131,9 @@ public class CooperatorControllerIntegrationTest {
 	@After
 	public void resetMock() {
 		coopTermRepo.deleteAll();
-		reset(coopTermRepo);
-		reset(coopTermService);
+		//reset(coopTermRepo);
+		//reset(coopTermService);
+		//reset(coopTermController);
 	}
 	@Test
 	public void canGetOneCoopTerm() throws Exception {
