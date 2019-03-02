@@ -27,6 +27,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -41,8 +43,7 @@ import ca.mcgill.ecse321.cooperator.service.EventService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-//@AutoConfigureMockMvc
-
+@DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
 public class EventControllerIntegrationTest {
    // @Autowired
 	private MockMvc mvc;
@@ -73,14 +74,6 @@ public class EventControllerIntegrationTest {
 		testEvents.add(testEvent);
 		}
 	
-	@After
-	public void resetMock() {
-		//eventRepo.deleteAll();
-		//reset(eventRepo);
-		//reset(eventService);
-		//reset(eventController);
-
-	}
 	@Test
 	public void canGetEvents() throws Exception{
 		when(eventRepo.findAll()).thenReturn(testEvents);

@@ -31,6 +31,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -47,6 +49,7 @@ import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
 //@AutoConfigureMockMvc
 
 public class CooperatorControllerIntegrationTest {
@@ -128,13 +131,6 @@ public class CooperatorControllerIntegrationTest {
 		coopTerms.add(testCoopTerm1);
 		coopTerms.add(testCoopTerm2);
 		}
-	@After
-	public void resetMock() {
-		coopTermRepo.deleteAll();
-		//reset(coopTermRepo);
-		//reset(coopTermService);
-		//reset(coopTermController);
-	}
 	@Test
 	public void canGetOneCoopTerm() throws Exception {
 		when(coopTermRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation)->{

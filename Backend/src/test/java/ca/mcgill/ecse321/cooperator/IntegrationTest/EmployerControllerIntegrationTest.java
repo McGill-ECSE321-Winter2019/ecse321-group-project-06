@@ -29,6 +29,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -46,6 +49,7 @@ import ca.mcgill.ecse321.cooperator.repository.EmployerRepository;
 import ca.mcgill.ecse321.cooperator.service.EmployerService;
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
 //@AutoConfigureMockMvc
 public class EmployerControllerIntegrationTest {
 
@@ -92,14 +96,6 @@ public class EmployerControllerIntegrationTest {
 		testEmployer.setCoopTerm(new ArrayList<>());
 		employers.add(testEmployer);
 		}
-	
-	@After
-	public void resetMock() {
-		employerRepo.deleteAll();
-		//reset(employerRepo);
-		//reset(employerService);
-		//reset(employerController);
-	}
 	
 	@Test
 	public void signUpEmployer() throws Exception {
