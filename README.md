@@ -20,10 +20,18 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 - Integration Testing of Backend Services 
 - Build System, Continuous Integration and Delivery
 
-## Design Decision 
-
 ## Documents 
-
+- **Deliverable 2 Reports**
+    - [Deliverable 2 Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-2-Report)
+    - [RESTful Service endpoints Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/RESTful-Service-Report)
+    - [Software Quality Assurance Plan & Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Software-Quality-Assurance-Plan-and-Report)
+- **Minutes**
+    - [Meeting Minutes 2.1](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-2-Meeting-Minutes-2.1)
+    - [Meeting Minutes 2.2](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-2-Meeting-Minutes-2.2)
+    - [Meeting Minutes 2.3](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-Meeting-minutes-2.3)
+- **Effort Table**
+    - [Effort Table](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-2-Effort-Table)
+    
 ## Table 
 
 
