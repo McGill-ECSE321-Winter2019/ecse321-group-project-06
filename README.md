@@ -33,7 +33,14 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
     - [Effort Table](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-2-Effort-Table)
     
 ## Table 
+The following table shows the individual efforts of each team members in Deliverable 2. 
 
+| Team's Member Name | Total Hours | RESTful endpoints Implementation | Unit Testing of Backend | Integration Testing of Backend | Documentation | Meeting |
+|--------------|----------|-----------|---------|--------|-----------|------------|
+| Lily Li            | 22        | 5               | 10            | 5  |0              | 2|
+| Yin Zhang          | 20        | 0               | 0             | 18 |0             | 2|                          
+| Irene Huang        | 20.5      | 5               | 7.5           | 0  |6             | 2|
+| Zhuzhen Li         | 21        | 5               | 8             | 0  |6             | 2|                     
 
 
 
