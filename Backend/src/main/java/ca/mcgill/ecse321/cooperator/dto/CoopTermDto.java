@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.cooperator.dto;
 import java.util.Date;
 
 import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
+import ca.mcgill.ecse321.cooperator.entity.Student;
 
 public class CoopTermDto {
 
@@ -17,7 +18,9 @@ public class CoopTermDto {
 	private String taxCreditForm;
 	private int coopTermId;
 	private EmployerDto employer;
+	private StudentDto student;
 	private CoopTermStates state;
+
 	
 	public CoopTermDto() {
 		
@@ -25,7 +28,7 @@ public class CoopTermDto {
 	
 	public CoopTermDto(Date startDate, Date endDate, String location, String academicSemester,
 			boolean ifWorkPermitNeeded, String jobDescription, String evaluationForm, String coopPlacement,
-			String taxCreditForm, int coopTermId, EmployerDto employer, CoopTermStates state) {
+			String taxCreditForm, int coopTermId, EmployerDto employer,StudentDto student, CoopTermStates state) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.location = location;
@@ -37,6 +40,7 @@ public class CoopTermDto {
 		this.taxCreditForm = taxCreditForm;
 		this.employer = employer;    
 		this.coopTermId = coopTermId;
+		this.student=student;
 		this.state = state;
 	}
 
@@ -82,6 +86,11 @@ public class CoopTermDto {
 
 	public EmployerDto getEmployer() {
 		return employer;
+	}
+	
+	public StudentDto getStudent() {
+		return student;
+		
 	}
 
 	public CoopTermStates getState() {

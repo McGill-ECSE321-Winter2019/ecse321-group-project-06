@@ -2,6 +2,8 @@ package ca.mcgill.ecse321.cooperator;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
@@ -11,6 +13,7 @@ import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Rule;
 
 import org.junit.Test;
@@ -31,6 +34,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
 public class CoopTermControllerTests {
 	@Mock
 	private CoopTermRepository coopTermDao;
@@ -98,7 +102,7 @@ public class CoopTermControllerTests {
 			allCoopTerms.add(coopTerm1);
 		     return allCoopTerms;
 		  });
-	}
+	}	
 	
 	@Test
 	public void testMockCoopTermCreation() {
@@ -122,6 +126,12 @@ public class CoopTermControllerTests {
 		when(coopTermDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
 		     return null;
 		  });
+	     try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		exceptionRule.expect(IllegalArgumentException.class);
 		exceptionRule.expectMessage("Coopterm doesn't exist!");
 		coopTermService.getCoopTerm(1);

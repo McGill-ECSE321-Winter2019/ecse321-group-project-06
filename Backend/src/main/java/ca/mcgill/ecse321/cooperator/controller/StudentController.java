@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.cooperator.dto.CoopTermDto;
@@ -29,6 +30,7 @@ public class StudentController {
 
 	/* Get students of an employer */
 	@GetMapping(value = {"/employer/{employerId}/students", "/employer/{employerId}/students/"})
+	@ResponseBody
 	public List<StudentDto> getStudents(@PathVariable(value = "employerId") int employerId) {
 		try {
 			Employer employer = employerService.getEmployerById(employerId);
