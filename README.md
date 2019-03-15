@@ -12,17 +12,19 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 - download a proof of co-op placement and access taxk credit forms with instructions 
 - Be notified about or invited to upcoming events
 
+# Menu 
+- [Heroku Application](#heroku-application)
+- [RESTful Service](#restful-service)
+- [Deliverable 3](#deliverable-3)
+- [Deliverable 2](#deliverable-2)
+- [Deliverable 1](#deliverable-1)
+
 # Heroku Application
 Our project is deloyed on Heroku. 
 * URL: <pre>https://cooperator-backend-060606.herokuapp.com/</pre>
 
 # RESTful Service 
 - [RESTful Service API](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/RESTful-Service-Report)
-
-# Navigate to:
-- [Deliverable 3](#deliverable-3)
-- [Deliverable 2](#deliverable-2)
-- [Deliverable 1](#deliverable-1)
   
 # Deliverable 3 
 ## Main Tasks 
