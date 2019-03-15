@@ -13,7 +13,30 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 - Be notified about or invited to upcoming events
 
 # Heroku Application
-https://cooperator-backend-060606.herokuapp.com/
+Our project is deloyed on Heroku. 
+* URL: <pre>https://cooperator-backend-060606.herokuapp.com/</pre>
+
+# RESTful Service 
+- [RESTful Service API](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/RESTful-Service-Report)
+
+# Navigate to:
+- [Deliverable 3](#deliverable-3)
+- [Deliverable 2](#deliverable-2)
+- [Deliverable 1](#deliverable-1)
+  
+# Deliverable 3 
+## Main Tasks 
+- Architecture Modeling 
+- Implementation of Web Frontend 
+- Integration of Web Frontend with Backend Services 
+- Build System, Continuous Integration and Delivery
+
+## Documents
+- **Minutes**
+    - [Meeting Minutes 3.1](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-3-Meeting-Minutes-3.1)
+
+## Table
+
 # Deliverable 2 
 ## Main Tasks 
 - Backend Implementation and Evolution of Persistence Layer 
@@ -25,7 +48,6 @@ https://cooperator-backend-060606.herokuapp.com/
 ## Documents 
 - **Deliverable 2 Reports**
     - [Deliverable 2 Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-2-Report)
-    - [RESTful Service endpoints Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/RESTful-Service-Report)
     - [Software Quality Assurance Plan & Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Software-Quality-Assurance-Plan-and-Report)
 - **Minutes**
     - [Meeting Minutes 2.1](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-2-Meeting-Minutes-2.1)
@@ -44,21 +66,12 @@ The following table shows the individual efforts of each team members in Deliver
 | Irene Huang        | 20.5      | 5               | 7.5           | 0  |6             | 2|
 | Zhuzhen Li         | 21        | 5               | 8             | 0  |6             | 2|                     
 
-
-
 # Deliverable 1
-
 ## Main Tasks
-- Requirement model: Functional & Non functional Requirements, Use cases, Use case specification 
+- Requirement model: Functional & Non functional Requirements, Use cases, Use case specification
 - Domain model
 - Database design
 - Test cases for persistence layer
-
-## Design Decision
-Design decisions:
-- Created User class which has student, employer, coop administrator and academic manager generalizations. This makes the organization more clean.
-- Created the id attribute for each class. The id is used as the primary key attribute to differentiate each object. 
-- Created two data structures, date and time to have a better representation of some data.
 
 ## Documents 
     
@@ -70,8 +83,9 @@ Design decisions:
 - **Domain Model**
     - [class diagram](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Domain-Model)
     
-- **Testing Report** 
+- **Reports** 
     - [Testing Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Testing-Report)
+    - [Deliverable 1 Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Report)
 
 - **Minutes**
     - [Meeting Minutes 1.1](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-1-Meeting-Minutes-1.1)
