@@ -24,7 +24,7 @@ Our project is deloyed on Heroku.
 * URL: <pre>https://cooperator-backend-060606.herokuapp.com/</pre>
 
 # RESTful Service 
-- [RESTful Service API](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/RESTful-Service-Report)
+- [RESTful Service API](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/RESTful-Service-API)
   
 # Deliverable 3 
 ## Main Tasks 
