@@ -12,7 +12,9 @@ import ca.mcgill.ecse321.cooperator.repository.EventRepository;
 import ca.mcgill.ecse321.cooperator.service.EventService;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
@@ -70,9 +72,7 @@ public class EventControllerTests {
 		event1.setEventId(2);
 		event1.setLocation("Toronto");
 		event1.setStartTime(Time.valueOf(starttime));
-		event1.setEndTime(Time.valueOf(endtime));
-		
-			
+		event1.setEndTime(Time.valueOf(endtime));	
 	}
 
 	@Before
@@ -88,24 +88,70 @@ public class EventControllerTests {
 		  });
 	}
 	
+	/*test successfully create mock Event */
 	@Test
-	public void testMockPersonCreation() {
+	public void testMockEventCreation() {
 		assertNotNull(event);
 	}
 	
+	/*test successfully get one event by id return corresponding event*/
 	@Test
 	public void testGetEvent() {
 		Event eventReturned = eventService.getEvent(1);
 		compare(event, eventReturned);
 	}
+	
+	@Rule
+	public ExpectedException exceptionRule = ExpectedException.none();
+	
+	/*test get event returns null should throw exception*/
+	@Test 
+	public void testGetEventByIdReturnNull() {
+		when(eventDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
+		     return null;
+		  });
+	     try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		exceptionRule.expect(IllegalArgumentException.class);
+		exceptionRule.expectMessage("there is no such event!");
+		eventService.getEvent(1);
+	}
+	
+	
+	/*test get event by invalid id returns null should throw exception*/
+	@Test 
+	public void testGetEventByInvalIdIdReturnNull() {
+		when(eventDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
+		     return null;
+		  });
+	     try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		exceptionRule.expect(IllegalArgumentException.class);
+		exceptionRule.expectMessage("invalid id input!");
+		eventService.getEvent(-1);
+	}
+	
+	/*test successfully get all events */
 	@Test
-	public void testGetEvents() {
+	public void testGetAllEvents() {
 		List<Event> eventsReturned = eventService.getAllEvents();
 		compare(event, eventsReturned.get(0));
 		compare(event1, eventsReturned.get(1));
 	}
 	
+	/* method to compare two event */
 	private void compare(Event eventExpected, Event eventReturned) {
 		assertEquals(eventExpected.getEventId(), eventReturned.getEventId());
+		assertEquals(eventExpected.getEndDate(), eventReturned.getEndDate());
+		assertEquals(eventExpected.getEndTime(), eventReturned.getEndTime());
+		assertEquals(eventExpected.getLocation(), eventReturned.getLocation());
+		assertEquals(eventExpected.getStartTime(), eventReturned.getStartTime());
+		assertEquals(eventExpected.getStartDate(), eventReturned.getStartDate());
 	}
 }

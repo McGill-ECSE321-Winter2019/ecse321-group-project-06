@@ -83,8 +83,10 @@ public class EmployerControllerTests {
 		});
 	}
 	
+	
+	/* test successfully create employer*/
 	@Test
-	public void testMockPersonCreation() {
+	public void testMockEmployerCreation() {
 		assertNotNull(employer);
 		assertNotNull(employer1);
 	}
@@ -228,7 +230,7 @@ public class EmployerControllerTests {
 		employerService.createEmployer("testEmployer@gmail.com","test password","    ");	
 	}
 	
-	
+	/* method to compare two employer */
 	private void compare(Employer employerExpected, Employer employerReturned) {
 		assertEquals(employerExpected.getCoopUserId(), employerReturned.getCoopUserId());
 		assertEquals(employerExpected.getEmail(), employerReturned.getEmail());

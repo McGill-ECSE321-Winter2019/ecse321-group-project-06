@@ -62,6 +62,9 @@ public class StudentService {
 	/* id getter */
 	@Transactional
 	public Student getStudent(int studentId) {
+		if(studentId <0) {
+			throw new IllegalArgumentException("invalid id input!");
+		}
 		Student s = studentRepository.findById(studentId);
 		if (s == null) {
 			throw new IllegalArgumentException("Student cannot found!");
@@ -74,6 +77,8 @@ public class StudentService {
 	public List<Student> getAllStudents() {
 		return toList (studentRepository.findAll());
 	}
+	
+	
 	
 	/* Get all the students in charged by an employer */
 	@Transactional
