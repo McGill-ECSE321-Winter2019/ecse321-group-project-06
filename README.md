@@ -20,7 +20,7 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 - [Deliverable 1](#deliverable-1)
 
 # Heroku Application
-Our project is deloyed on Heroku. 
+Heroku is a cloud service platform that is easy to use for many development projects. It enables application development and deployment. Heroku platform manages hardware and servers, so developer using Heroku are able to focus on perfecting their applications. With the benefit of offloading many of the concerns around application deployment and operation, our project is deloyed on Heroku. 
 * URL: <pre>https://cooperator-backend-060606.herokuapp.com/</pre>
 
 # RESTful Service 
