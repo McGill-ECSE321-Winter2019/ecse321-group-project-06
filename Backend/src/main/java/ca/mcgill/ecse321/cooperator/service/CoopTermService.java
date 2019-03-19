@@ -80,9 +80,7 @@ public class CoopTermService {
 	/* id getter */
 	@Transactional
 	public CoopTerm getCoopTerm(int coopTermId) {
-		if(coopTermId < 0) {
-			throw new IllegalArgumentException("invalid id input!");
-		}
+		
 		CoopTerm s = coopTermRepository.findById(coopTermId);
 		if (s == null) {
 			throw new IllegalArgumentException("Coopterm doesn't exist!");

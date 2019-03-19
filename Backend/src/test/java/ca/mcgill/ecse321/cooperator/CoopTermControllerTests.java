@@ -174,22 +174,7 @@ public class CoopTermControllerTests {
 		coopTermService.getCoopTerm(1);
 	}
 	
-	
-	/*test get coopTerm by an invalid id should throw exception*/
-	@Test
-	public void testGetEmployerByInvalidId() {
-		when(coopTermDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
-		     return null;
-		  });
-	     try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		exceptionRule.expect(IllegalArgumentException.class);
-		exceptionRule.expectMessage("invalid id input!");
-		coopTermService.getCoopTerm(-1);
-	}
+
 	
 	
 	/*test successfully update a coopTerm by id returns updated coopTerm*/
