@@ -21,7 +21,8 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 
 # Heroku Application
 Heroku is a cloud service platform that is easy to use for many development projects. It enables application development and deployment. Heroku platform manages hardware and servers, so developer using Heroku are able to focus on perfecting their applications. With the benefit of offloading many of the concerns around application deployment and operation, our project is deloyed on Heroku. 
-* URL: <pre>https://cooperator-backend-060606.herokuapp.com/</pre>
+* backend: <pre>https://cooperator-backend-060606.herokuapp.com/</pre>
+* frontend: <pre>https://cooperator-frontend-060606.herokuapp.com/</pre>
 
 # RESTful Service 
 - [RESTful Service API](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/RESTful-Service-API)
