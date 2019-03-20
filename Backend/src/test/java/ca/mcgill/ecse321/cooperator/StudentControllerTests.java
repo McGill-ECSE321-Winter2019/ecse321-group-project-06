@@ -120,22 +120,7 @@ public class StudentControllerTests {
 	
 	@Rule 
 	public ExpectedException exceptionRule = ExpectedException.none();
-	
-	/*test get student by an invalid id should throw exception*/
-	@Test
-	public void testGetStudentByInvalidId() {
-		when(studentDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
-		     return null;
-		  });
-	     try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		exceptionRule.expect(IllegalArgumentException.class);
-		exceptionRule.expectMessage("invalid id input!");
-		studentService.getStudent(-1);
-	}
+
 	
 	/*test get student by id should return null throw exception*/
 	@Test

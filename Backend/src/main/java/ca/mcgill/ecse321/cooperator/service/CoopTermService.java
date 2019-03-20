@@ -91,9 +91,7 @@ public class CoopTermService {
 	
 	@Transactional
 	public CoopTerm updateCoopTerm(int coopTermId, CoopTerm newCoopTerm) {
-		if(coopTermId < 0) {
-			throw new IllegalArgumentException("invalid id input!");
-		}
+		
 		if(newCoopTerm == null) {
 			throw new IllegalArgumentException("invalid newCoopTerm!");
 		}

@@ -50,9 +50,7 @@ public class EventService {
  	/* id getter*/
  	@Transactional
 	public Event getEvent(int id){
- 		if (id < 0) {
-	        throw new IllegalArgumentException("invalid id input!");
-	    }
+ 
 		Event event = eventRepository.findById(id);
 		if(event == null) {
 			throw new IllegalArgumentException("there is no such event!");

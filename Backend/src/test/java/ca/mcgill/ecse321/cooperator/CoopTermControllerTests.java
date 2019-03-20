@@ -201,20 +201,6 @@ public class CoopTermControllerTests {
 		coopTermService.updateCoopTerm(1, newCoopTerm);
 	}
 	
-	/*test update a coopTerm by an invalid id input returns null throws exception*/
-	@Test
-	public void testUpdateCoopTermStateByInvalidIdReturnNull() {
-		when(coopTermDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
-		     return null;
-		  });
-		exceptionRule.expect(IllegalArgumentException.class);
-		exceptionRule.expectMessage("invalid id input!");
-		CoopTerm newCoopTerm = coopTerm;
-		newCoopTerm.setState(CoopTermStates.ACTIVE);
-		newCoopTerm.setEvaluationForm("new evaluation form");
-		coopTermService.updateCoopTerm(-1, newCoopTerm);
-	}
-	
 	
 	/*test update a coopTerm by an invalid newCoopTerm input returns null throws exception*/
 	@Test

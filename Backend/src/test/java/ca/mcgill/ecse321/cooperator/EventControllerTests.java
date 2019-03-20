@@ -121,22 +121,6 @@ public class EventControllerTests {
 	}
 	
 	
-	/*test get event by invalid id returns null should throw exception*/
-	@Test 
-	public void testGetEventByInvalIdIdReturnNull() {
-		when(eventDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
-		     return null;
-		  });
-	     try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		exceptionRule.expect(IllegalArgumentException.class);
-		exceptionRule.expectMessage("invalid id input!");
-		eventService.getEvent(-1);
-	}
-	
 	/*test successfully get all events */
 	@Test
 	public void testGetAllEvents() {

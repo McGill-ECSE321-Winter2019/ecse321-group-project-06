@@ -126,14 +126,6 @@ public class EmployerControllerTests {
 	
 
 	
-	/*test get Employer by invalid id should throw exception*/
-	@Test 
-	public void testGetEmployerByInvalidId() {
-		exceptionRule.expect(IllegalArgumentException.class);
-		exceptionRule.expectMessage("invalid id");
-		employerService.getEmployerById(-1);
-	}
-	
 	
 	/*test get Employer by email returns null should throw exception*/
 	@Test 
