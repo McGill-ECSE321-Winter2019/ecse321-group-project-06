@@ -42,10 +42,6 @@ public class EmployerService {
 	/* id getter */
 	@Transactional
 	public Employer getEmployerById(int id) {
-		
-		if (id < 1) {
-	        throw new IllegalArgumentException("invalid id");
-	    }
 	    
 		Employer e = employerRepository.findById(id);
 		

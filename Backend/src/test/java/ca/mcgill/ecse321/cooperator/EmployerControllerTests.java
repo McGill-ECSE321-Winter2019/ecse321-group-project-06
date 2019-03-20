@@ -83,8 +83,10 @@ public class EmployerControllerTests {
 		});
 	}
 	
+	
+	/* test successfully create employer*/
 	@Test
-	public void testMockPersonCreation() {
+	public void testMockEmployerCreation() {
 		assertNotNull(employer);
 		assertNotNull(employer1);
 	}
@@ -123,14 +125,6 @@ public class EmployerControllerTests {
 	}
 	
 
-	
-	/*test get Employer by invalid id should throw exception*/
-	@Test 
-	public void testGetEmployerByInvalidId() {
-		exceptionRule.expect(IllegalArgumentException.class);
-		exceptionRule.expectMessage("invalid id");
-		employerService.getEmployerById(-1);
-	}
 	
 	
 	/*test get Employer by email returns null should throw exception*/
@@ -228,7 +222,7 @@ public class EmployerControllerTests {
 		employerService.createEmployer("testEmployer@gmail.com","test password","    ");	
 	}
 	
-	
+	/* method to compare two employer */
 	private void compare(Employer employerExpected, Employer employerReturned) {
 		assertEquals(employerExpected.getCoopUserId(), employerReturned.getCoopUserId());
 		assertEquals(employerExpected.getEmail(), employerReturned.getEmail());

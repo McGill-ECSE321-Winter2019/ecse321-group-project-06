@@ -8,6 +8,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.mcgill.ecse321.cooperator.controller.StudentController;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
+import ca.mcgill.ecse321.cooperator.entity.Employer;
+import ca.mcgill.ecse321.cooperator.entity.Event;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
 import ca.mcgill.ecse321.cooperator.service.StudentService;
@@ -85,30 +87,60 @@ public class StudentControllerTests {
 		studentList.add(student);
 		studentList.add(student1);
 	}
+	@Before
+	public void setMockOutput() {
+		when(studentDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
+		     return student;
+		});
+		
+		when(studentService.getAllStudents()).thenAnswer((InvocationOnMock invocation) -> {
+			studentList.add(student);
+			studentList.add(student1);
+			return studentList;
+		});
+		
+	}
 	
+	/*test successfully create mock students */
 	@Test
 	public void testMockPersonCreation() {
 		assertNotNull(student);
 		assertNotNull(student1);
 	}
+
 	
-	/*Test getStudent in StudentService class with valid input*/
-	@SuppressWarnings("deprecation")
+	/* test successfully get student by id*/
 	@Test
 	public void testGetStudentFindById() {
-		when(studentDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
-		     return student;
-		});
-		assertEquals(STUDENT_KEY, studentService.getStudent(1).getName());
-		assertEquals("testStudent@mail.mcgill.ca", studentService.getStudent(1).getEmail());
-		assertEquals("test password", studentService.getStudent(1).getPassword());
-		assertEquals("testSchool", studentService.getStudent(1).getSchool());
-		assertEquals(2020, studentService.getStudent(1).getGraduationDate().getYear());
-		assertEquals(10, studentService.getStudent(1).getGraduationDate().getMonth());
+		Student studentReturn = studentService.getStudent(1);
+		assertNotNull(studentReturn);
+		assertEquals(1, studentReturn.getCoopUserId());
+		compare(student, studentReturn);	
 	}
 	
 	@Rule 
 	public ExpectedException exceptionRule = ExpectedException.none();
+
+	
+	/*test get student by id should return null throw exception*/
+	@Test
+	public void GetStudentByIdReturnNull() {
+		when(studentDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
+		     return null;
+		  });
+	     try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		exceptionRule.expect(IllegalArgumentException.class);
+		exceptionRule.expectMessage("Student cannot found!");
+		studentService.getStudent(9);
+	}
+	
+	
+	
+	
 	
 	/*test null case of getStudentById*/
 	@Test
@@ -121,31 +153,25 @@ public class StudentControllerTests {
 		studentService.getStudent(1);
 	}
 	
-	/*All student tests*/
-	@SuppressWarnings("deprecation")
+	/* test successfully get all students */
 	@Test
 	public void testGetAllStudent() {
-		when(studentService.getAllStudents()).thenAnswer((InvocationOnMock invocation) -> {
-			return studentList;
-		});
-		assertEquals(STUDENT_KEY, studentService.getAllStudents().get(0).getName());
-		assertEquals("testStudent@mail.mcgill.ca", studentService.getAllStudents().get(0).getEmail());
-		assertEquals("test password", studentService.getAllStudents().get(0).getPassword());
-		assertEquals("testSchool", studentService.getAllStudents().get(0).getSchool());
-		assertEquals(2020, studentService.getAllStudents().get(0).getGraduationDate().getYear());
-		assertEquals(10, studentService.getAllStudents().get(0).getGraduationDate().getMonth());
-		
-		assertEquals(STUDENT1_KEY, studentService.getAllStudents().get(1).getName());
-		assertEquals("testStudent1@mail.mcgill.ca", studentService.getAllStudents().get(1).getEmail());
-		assertEquals("test password1", studentService.getAllStudents().get(1).getPassword());	
-		assertEquals("testSchool1", studentService.getAllStudents().get(1).getSchool());
-		assertEquals(2019, studentService.getAllStudents().get(1).getGraduationDate().getYear());
-		assertEquals(2, studentService.getAllStudents().get(1).getGraduationDate().getMonth());
+		List<Student> studentReturn = studentService.getAllStudents();
+		assertNotNull(studentReturn);
+		compare(student, studentReturn.get(0));
+		compare(student1, studentReturn.get(1));
 	}
 	
-	
-	
-	
+	/* method to compare two students */
+	private void compare(Student studentExpected, Student studentReturned) {
+		assertEquals(studentExpected.getCoopUserId(), studentReturned.getCoopUserId());
+		assertEquals(studentExpected.getCoopTerm(), studentReturned.getCoopTerm());
+		assertEquals(studentExpected.getEmail(), studentReturned.getEmail());
+		assertEquals(studentExpected.getGraduationDate(), studentReturned.getGraduationDate());
+		assertEquals(studentExpected.getName(), studentReturned.getName());
+		assertEquals(studentExpected.getPassword(), studentReturned.getPassword());
+		assertEquals(studentExpected.getSchool(), studentReturned.getSchool());
+	}
 	
 	
 }
