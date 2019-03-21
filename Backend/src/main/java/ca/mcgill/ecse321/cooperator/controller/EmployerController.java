@@ -69,6 +69,17 @@ public class EmployerController {
 		// return the first element in the list
 		return employers.get(0);
 	}
+	
+	@GetMapping(value = {"/employers","/employers/"})
+	@ResponseBody
+	public List<EmployerDto> getAllEmployers() {
+		List<EmployerDto> employers = new ArrayList<>();
+		for (Employer employer : service.getAllEmployers()) {
+			employers.add(convertToDto(employer));
+		}
+		return employers;
+	}
+	
 	@DeleteMapping(value = {"/employees/{id}"})
 	@ResponseBody
 	public void delete(@PathVariable int id){

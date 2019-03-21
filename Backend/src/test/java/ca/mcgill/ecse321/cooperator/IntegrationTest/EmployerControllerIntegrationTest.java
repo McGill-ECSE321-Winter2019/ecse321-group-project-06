@@ -69,7 +69,7 @@ public class EmployerControllerIntegrationTest {
 	private EmployerDto employerDto;
 	private JacksonTester<Employer> jsonem;
 	private JacksonTester<EmployerDto> jsonemdto;
-	//private JacksonTester<List<Student>> jsonstlist;
+	private JacksonTester<List<Employer>> jsonemlist;
 	
 	@MockBean
 	private EmployerRepository employerRepo;
@@ -136,5 +136,20 @@ public class EmployerControllerIntegrationTest {
 		String responseContent = result.getResponse().getContentAsString();
 		assertEquals(objAsJson_em,responseContent);
 		//employerController.login(testEmail, testPassword)
+	}
+	@Test
+	public void canGetAllEmployers() throws Exception{
+		when(employerRepo.findAll()).thenAnswer((InvocationOnMock invocation)->{
+			return employers;
+		});
+		String objAsJson_ems = jsonemlist.write(employers).getJson();
+		MvcResult result = mvc.perform(get("/employers/")
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				)
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(status().isOk())
+				.andReturn();
+		String responseContent = result.getResponse().getContentAsString();
+		assertEquals(objAsJson_ems,responseContent);
 	}
 }
