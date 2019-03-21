@@ -25,6 +25,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.aspectj.lang.annotation.After;
@@ -109,6 +111,11 @@ public class EmployerControllerTests {
 		compare(employer,employerReturn);
 	}
 	
+	@Test
+	public void testDeleteEmployer() {
+		employerService.deleteEmployer(1);
+		verify(employerDao, times(1)).deleteById(1);
+	}
 	@Rule
 	public ExpectedException exceptionRule = ExpectedException.none();
 	

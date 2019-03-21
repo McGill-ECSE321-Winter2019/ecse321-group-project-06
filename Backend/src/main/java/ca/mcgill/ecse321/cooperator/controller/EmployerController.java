@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,7 +69,11 @@ public class EmployerController {
 		// return the first element in the list
 		return employers.get(0);
 	}
-
+	@DeleteMapping(value = {"/employees/{id}"})
+	@ResponseBody
+	public void delete(@PathVariable int id){
+		service.deleteEmployer(id);
+	}
 	
 	private EmployerDto convertToDto(Employer employer) {
 		if (employer == null) {

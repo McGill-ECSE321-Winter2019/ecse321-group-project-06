@@ -73,6 +73,10 @@ public class EmployerService {
 		return e;
 	}
 	
+	@Transactional
+	public void deleteEmployer(int id) {
+		employerRepository.deleteById(id);
+	}
 	
 	/* get all employers in the list */
 	@Transactional

@@ -8,4 +8,5 @@ public interface EmployerRepository extends CrudRepository<Employer, Integer> {
 	Employer findByName(String name);
 	Employer findByEmail(String email);
 	Employer findById(int id);
+	void deleteById(int id);
 }

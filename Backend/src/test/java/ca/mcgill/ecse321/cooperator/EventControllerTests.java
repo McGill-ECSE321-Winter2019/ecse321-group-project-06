@@ -23,6 +23,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+//import static org.mockito.Mockito.verifyZeroInteractions;
 
 import java.sql.Time;
 import java.time.LocalTime;
@@ -101,6 +104,11 @@ public class EventControllerTests {
 		compare(event, eventReturned);
 	}
 	
+	@Test
+	public void testDeleteEvent() {
+		eventService.deleteEvent(1);
+		verify(eventDao, times(1)).deleteById(1);
+	}
 	@Rule
 	public ExpectedException exceptionRule = ExpectedException.none();
 	

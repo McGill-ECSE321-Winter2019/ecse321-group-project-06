@@ -11,4 +11,6 @@ import ca.mcgill.ecse321.cooperator.entity.Event;
 	 Event findByEndDate(Date endDate);
 	 Event findByLocation(String location);
 	 Event findById(int id);
+	 void deleteById(int id);
+	 //void delete(Event event);
  }
