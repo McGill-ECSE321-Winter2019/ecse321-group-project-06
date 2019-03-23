@@ -42,6 +42,16 @@ public class CoopTermController {
 		return coopTerms;
 	}
 	
+	@GetMapping(value = {"/employer/{employerId}", "/employer/{employerId}/"})
+	@ResponseBody 
+	public List<CoopTermDto> getCoopTermsByEmployerId(@PathVariable int employerId) {
+		List<CoopTermDto> coopTerms = new ArrayList<>();
+		for (CoopTerm coopterm: service.getAllCoopTermOfAnEmployer(employerId)) {
+				coopTerms.add(convertToCoopTermDto(coopterm));	
+		}
+		return coopTerms;
+	}
+	
 	@GetMapping(value = { "/{id}", "/{id}/" })
 	@ResponseBody
 	public CoopTermDto getCoopTermById(@PathVariable int id) {
