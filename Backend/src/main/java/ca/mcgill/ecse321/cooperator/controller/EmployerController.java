@@ -80,7 +80,7 @@ public class EmployerController {
 		return employers;
 	}
 	
-	@DeleteMapping(value = {"/employees/{id}"})
+	@DeleteMapping(value = {"/employes/{id}"})
 	@ResponseBody
 	public void delete(@PathVariable int id){
 		service.deleteEmployer(id);
