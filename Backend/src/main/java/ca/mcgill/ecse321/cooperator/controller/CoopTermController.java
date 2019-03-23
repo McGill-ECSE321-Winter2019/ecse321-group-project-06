@@ -30,18 +30,6 @@ public class CoopTermController {
 	@Autowired
 	private CoopTermService service;
 	
-	@GetMapping(value = {"/student/{id}", "/student/{id}/"})
-	@ResponseBody
-	public List<CoopTermDto> getCoopTermsByStudentId(@PathVariable int id){
-		List<CoopTermDto> coopTerms = new ArrayList<>();
-		for(CoopTerm coopterm: service.getAllCoopTerms()) {
-			if(coopterm.getStudent().getCoopUserId() == id) {
-				coopTerms.add(convertToCoopTermDto(coopterm));
-			}
-		}
-		return coopTerms;
-	}
-	
 	@GetMapping(value = {"/employer/{employerId}", "/employer/{employerId}/"})
 	@ResponseBody 
 	public List<CoopTermDto> getCoopTermsByEmployerId(@PathVariable int employerId) {
