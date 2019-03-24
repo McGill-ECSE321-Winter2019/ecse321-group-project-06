@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Dashboard from "../components/Dashboard";
 import CoopTerm from "../components/CoopTerms";
-import Events from "../components/Events";
 
 
 Vue.use(Router)
@@ -31,7 +30,7 @@ export default new Router({
       path: '/events',
       name: 'Events',
       meta: { layout: "default" },
-      component: Events
+      component: require('../components/Events.vue').default
     }
   ]
 })
