@@ -35,11 +35,18 @@ Heroku is a cloud service platform that is easy to use for many development proj
 - Build System, Continuous Integration and Delivery
 
 ## Documents
+- **Architecture Model**
+  - [Architecture Model](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/architecture)
+- **Report**
+    - [Deliverable 3 Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-3-Report)
 - **Minutes**
     - [Meeting Minutes 3.1](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-3-Meeting-Minutes-3.1)
+    - [Meeting Minutes 3.2](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-3-Meeting-Minutes-3.2)
+- **Effort Table**
+    - [Effort Table](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-3-Effort-Table)
 
 ## Table 
-The following table shows the individual efforts of each team members in Deliverable 2. 
+The following table shows the individual efforts of each team members in Deliverable 3. 
 
 | Team's Member Name | Total Hours |Update backend | Architecture Modeling  | Web Frontend Implementation| Integration of Web Frontend with Backend Services  | Documentation |
 |--------------|----------|-----------|---------|--------|-----------|------------|
@@ -48,9 +55,6 @@ The following table shows the individual efforts of each team members in Deliver
 | Irene Huang        | 29     | 1               | 0         | 25  |2           | 1|
 | Zhuzhen Li         | 29     | 10              | 0            | 16 |2            | 1|  
 | Xinquan Wang       | 27    | 1              | 10            | 15 |1            | 0|  
-
-
-
 
 
 # Deliverable 2 
