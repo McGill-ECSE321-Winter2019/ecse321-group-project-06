@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.After;
@@ -88,8 +89,12 @@ public class CooperatorControllerIntegrationTest {
 		JacksonTester.initFields(this, new ObjectMapper());
 		Date startDate = new Date (2000, 11, 21);
 		Date endDate = new Date (2019, 11, 21);
-		coopTermDto = new CoopTermDto(startDate, endDate, "montreal", "2017fall", false, "description",
-				"evaluation", "coopPlacement", "taxcredit", 1, employerDto, studentDto, coopTermStates.INACTIVE);
+		
+		employerDto = new EmployerDto("testEmail","testPassword","testEmployer",1, new ArrayList<>(), new ArrayList<>());
+		studentDto = new StudentDto(null,"testPassword","testStudent1",2);
+		
+		coopTermDto = new CoopTermDto(startDate, endDate, "testLocaltion", "FALL 2018", false, "testJobDescription",
+				"testEvaluationForm", "testPlacement", "testTaxCreditForm", 4, employerDto, studentDto, null);
 		testEmployer = new Employer();
 		testEmployer.setEmail("testEmail");
 		testEmployer.setName("testEmployer");
@@ -113,7 +118,7 @@ public class CooperatorControllerIntegrationTest {
 		testStudent2.setCoopUserId(3);
 		
 		testCoopTerm1 = new CoopTerm();
-		testCoopTerm1.setAcademicSemester("FALL2018");
+		testCoopTerm1.setAcademicSemester("FALL 2018");
 		testCoopTerm1.setCoopPlacement("testPlacement");
 		testCoopTerm1.setCoopTermId(4);
 		testCoopTerm1.setEmployer(testEmployer);

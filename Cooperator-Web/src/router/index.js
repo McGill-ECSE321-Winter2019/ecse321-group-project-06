@@ -4,6 +4,8 @@ import Hello from '@/components/Hello'
 import Dashboard from "../components/Dashboard";
 import CoopTerm from "../components/CoopTerms";
 import Events from "../components/Events";
+import CoopPage from "../components/CoopPage";
+
 
 
 Vue.use(Router)
@@ -32,6 +34,13 @@ export default new Router({
       name: 'Events',
       meta: { layout: "default" },
       component: Events
+    },
+    {
+      path:'/coop-page',
+      name: 'CoopPage',
+      meta: { layout: "default" },
+      component: require('../components/CoopPage.vue').default
     }
+
   ]
 })
