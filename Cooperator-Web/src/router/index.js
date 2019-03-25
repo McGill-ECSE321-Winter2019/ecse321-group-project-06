@@ -38,6 +38,12 @@ export default new Router({
       name: 'Help',
       meta: { layout: "default" },
       component: Help
+    },
+    {
+      path: '/coop-page',
+      name: 'CoopPage',
+      meta: { layout: "default" },
+      component: require('../components/CoopPage.vue').default
     }
   ]
 })

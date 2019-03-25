@@ -13,7 +13,7 @@
         <td>{{coopTerm.startDate}}</td>
         <td>{{coopTerm.endDate}}</td>
         <td>{{isActive(coopTerm)}}</td>
-        <td><b-button size="lg"  v-bind:to="{path:'employer'}" class="mr-1" style="margin: 5px">   view   </b-button></td>
+        <td><b-button size="lg"  v-bind:to="{path:'/Coop-Page'}" class="mr-1" style="margin: 5px">   view   </b-button></td>
         <td></td>
       </tr>
     </table>
