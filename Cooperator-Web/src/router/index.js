@@ -2,9 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Dashboard from "../components/Dashboard";
-//import CoopTerms from "@/components/CoopTerms";
+import Login from "@/components/Login.vue";
 import Help from "@/components/Help";
-
 
 Vue.use(Router)
 
@@ -32,6 +31,12 @@ export default new Router({
       name: 'Events',
       meta: { layout: "default" },
       component: require('../components/Events.vue').default
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      meta: { layout: "default" },
+      component: Login
     },
     {
       path: '/help',
