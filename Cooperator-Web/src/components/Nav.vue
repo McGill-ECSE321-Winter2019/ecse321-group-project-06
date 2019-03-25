@@ -7,7 +7,7 @@
 
 
       <b-nav fill vertical>
-        <NavItem text="Home" link="/employer"/>
+        <NavItem text="Home" link="/"/>
         <NavItem text="Coop-Terms" link="/coop-term"/>
         <NavItem text="Events" link="/events"/>
       </b-nav>
