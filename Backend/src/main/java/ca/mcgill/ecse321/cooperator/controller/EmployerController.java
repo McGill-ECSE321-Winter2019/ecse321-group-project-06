@@ -70,6 +70,7 @@ public class EmployerController {
 		return employers.get(0);
 	}
 	
+	//get all employers 
 	@GetMapping(value = {"/employers","/employers/"})
 	@ResponseBody
 	public List<EmployerDto> getAllEmployers() {
@@ -80,6 +81,7 @@ public class EmployerController {
 		return employers;
 	}
 	
+	//delete an employer by passing an employer id 
 	@DeleteMapping(value = {"/employes/{id}"})
 	@ResponseBody
 	public void delete(@PathVariable int id){

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,9 @@ import ca.mcgill.ecse321.cooperator.dto.CoopTermDto;
 import ca.mcgill.ecse321.cooperator.dto.EmployerDto;
 import ca.mcgill.ecse321.cooperator.dto.StudentDto;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
+import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
+import ca.mcgill.ecse321.cooperator.entity.Event;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
@@ -29,17 +32,34 @@ import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 public class CoopTermController {
 	@Autowired
 	private CoopTermService service;
+
 	
-	@GetMapping(value = {"/employer/{employerId}", "/employer/{employerId}/"})
+	@PostMapping(value = {"/newCoopTerm", "/newCoopTerm/"})
 	@ResponseBody 
-	public List<CoopTermDto> getCoopTermsByEmployerId(@PathVariable int employerId) {
+	public CoopTermDto createCoopTerm(@RequestBody CoopTerm coopTerm) {
+		if (coopTerm != null) {
+			CoopTerm coopTermCreated = service.createCoopTerm(coopTerm.getLocation(),coopTerm.getStartDate(),
+					coopTerm.getAcademicSemester(),coopTerm.isIfWorkPermitNeeded(),coopTerm.getJobDescription(),
+					coopTerm.getEmployer(), coopTerm.getEndDate(), coopTerm.getStudent(),coopTerm.getState());
+			return convertToCoopTermDto(coopTermCreated);
+		}
+		return null;		
+	}
+	
+	//get a list of coopterms by an employer id 
+	@GetMapping(value = {"/employer/{id}", "/employer/{id}/"})
+	@ResponseBody
+	public List<CoopTermDto> getCoopTermsByEmployerId(@PathVariable("id") Integer id){
 		List<CoopTermDto> coopTerms = new ArrayList<>();
-		for (CoopTerm coopterm: service.getAllCoopTermOfAnEmployer(employerId)) {
-				coopTerms.add(convertToCoopTermDto(coopterm));	
+		for(CoopTerm coopterm: service.getAllCoopTerms()) {
+			if(coopterm.getEmployer().getCoopUserId() == id) {
+				coopTerms.add(convertToCoopTermDto(coopterm));
+			}
 		}
 		return coopTerms;
 	}
 	
+	//get a coop term by id 
 	@GetMapping(value = { "/{id}", "/{id}/" })
 	@ResponseBody
 	public CoopTermDto getCoopTermById(@PathVariable int id) {
@@ -47,6 +67,7 @@ public class CoopTermController {
 		return convertToCoopTermDto(coopTerm);
 	}
 	
+	//update a coop term by id 
 	@PutMapping(value = {"/{id}", "/{id}/"})
 	@ResponseBody
 	public CoopTermDto updateCoopTermStateById(@PathVariable int id, @RequestBody CoopTerm coopTerm) {

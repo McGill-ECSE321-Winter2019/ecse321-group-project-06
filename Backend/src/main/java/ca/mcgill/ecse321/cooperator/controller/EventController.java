@@ -23,6 +23,7 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 	
+	//get all events 
 	@GetMapping(value = {"/events", "/events/"})
 	@ResponseBody
 	public List<EventDto> getEvents(){
@@ -33,6 +34,7 @@ public class EventController {
 		return events;
 	}
 	
+	//create an event 
 	@PostMapping(value = {"/event", "/event/"})
 	@ResponseBody
 	public EventDto createEvent(@RequestBody Event event) {

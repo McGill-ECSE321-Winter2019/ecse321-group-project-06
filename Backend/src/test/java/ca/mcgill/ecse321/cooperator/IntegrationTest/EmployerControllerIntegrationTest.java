@@ -1,6 +1,5 @@
 package ca.mcgill.ecse321.cooperator.IntegrationTest;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.reset;
@@ -50,7 +49,6 @@ import ca.mcgill.ecse321.cooperator.service.EmployerService;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
-//@AutoConfigureMockMvc
 public class EmployerControllerIntegrationTest {
 
 	private Employer testEmployer;
@@ -77,7 +75,6 @@ public class EmployerControllerIntegrationTest {
 	private EmployerService employerService;
 	@Autowired
 	private EmployerController employerController;
-	//@Autowired
 	private MockMvc mvc;
 	
 	@Before
@@ -99,7 +96,6 @@ public class EmployerControllerIntegrationTest {
 	
 	@Test
 	public void signUpEmployer() throws Exception {
-		//String objAsJson = jsonem.write(testEmployer).getJson();
 		when(employerRepo.save(anyObject())).thenAnswer((InvocationOnMock invocation)->{
 			return testEmployer;
 		});
@@ -114,7 +110,6 @@ public class EmployerControllerIntegrationTest {
 
 		String responseContent = result.getResponse().getContentAsString();
 		assertEquals(objAsJson_dto,responseContent);
-		//assertEquals(this.testCoopTerm1,result.getResponse());
 	}
 	@Test
 	public void canGetOneEmployer() throws Exception {
@@ -124,18 +119,14 @@ public class EmployerControllerIntegrationTest {
 		String objAsJson_em = jsonem.write(testEmployer).getJson();
 		MvcResult result = mvc.perform(get("/login/")
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
-//				.content(objAsJson_email)
-//				.content(objAsJson_ps)
 				.param("Email", testEmail)
 				.param("Password",testPassword)
 				)
-				//.andDo(print())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
 				.andReturn();
 		String responseContent = result.getResponse().getContentAsString();
 		assertEquals(objAsJson_em,responseContent);
-		//employerController.login(testEmail, testPassword)
 	}
 	@Test
 	public void canGetAllEmployers() throws Exception{

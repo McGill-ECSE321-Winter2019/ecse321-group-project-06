@@ -8,6 +8,7 @@ import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -41,7 +42,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ca.mcgill.ecse321.cooperator.controller.CoopTermController;
+import ca.mcgill.ecse321.cooperator.dto.CoopTermDto;
+import ca.mcgill.ecse321.cooperator.dto.EmployerDto;
+import ca.mcgill.ecse321.cooperator.dto.StudentDto;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
+import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
@@ -50,20 +55,24 @@ import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
-//@AutoConfigureMockMvc
 
 public class CooperatorControllerIntegrationTest {
-    //@Autowired
+
 	private MockMvc mvc;
 	private Employer testEmployer;
 	private Student testStudent1;
 	private Student testStudent2;
 	private CoopTerm testCoopTerm1;
 	private CoopTerm testCoopTerm2;
+	private CoopTermStates coopTermStates;
 	private Date endDate;
 	private Date startDate;
+	private CoopTermDto coopTermDto;
+	private StudentDto studentDto;
+	private EmployerDto employerDto;
 	List<CoopTerm> coopTerms = new ArrayList<>();
 	private JacksonTester<CoopTerm> jsonct;
+	private JacksonTester<CoopTermDto> jsoncodto;
 	
 	@MockBean
 	private CoopTermRepository coopTermRepo;
@@ -77,6 +86,10 @@ public class CooperatorControllerIntegrationTest {
 		MockitoAnnotations.initMocks(this);
 		mvc = MockMvcBuilders.standaloneSetup(coopTermController).build();
 		JacksonTester.initFields(this, new ObjectMapper());
+		Date startDate = new Date (2000, 11, 21);
+		Date endDate = new Date (2019, 11, 21);
+		coopTermDto = new CoopTermDto(startDate, endDate, "montreal", "2017fall", false, "description",
+				"evaluation", "coopPlacement", "taxcredit", 1, employerDto, studentDto, coopTermStates.INACTIVE);
 		testEmployer = new Employer();
 		testEmployer.setEmail("testEmail");
 		testEmployer.setName("testEmployer");
@@ -131,6 +144,26 @@ public class CooperatorControllerIntegrationTest {
 		coopTerms.add(testCoopTerm1);
 		coopTerms.add(testCoopTerm2);
 		}
+	
+	@Test
+	public void canCreateCoopTerm() throws Exception {
+		when (coopTermRepo.save(anyObject())).thenAnswer((InvocationOnMock invocation) -> {
+			return testCoopTerm1;
+		});
+		String objAsJson_dto = jsoncodto.write(coopTermDto).getJson();
+		MvcResult result = mvc.perform(post("/coopTerm/newCoopTerm/")
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(objAsJson_dto))
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(status().isOk())
+				.andReturn();
+		
+		String responseContent = result.getResponse().getContentAsString();
+		assertEquals(objAsJson_dto, responseContent);
+		
+	}
+	
+	
 	@Test
 	public void canGetOneCoopTerm() throws Exception {
 		when(coopTermRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation)->{
@@ -138,28 +171,13 @@ public class CooperatorControllerIntegrationTest {
 		});
 		String objAsJson = jsonct.write(testCoopTerm1).getJson();
 		MvcResult result = mvc.perform(get("/coopTerm/1/"))
-				//.andDo(print())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
 				.andReturn();
 		String responseContent = result.getResponse().getContentAsString();
-		//assertEquals(coopTermController.getCoopTermById(2),this.testCoopTerm1);
 		assertEquals(objAsJson,responseContent);
-		//assertEquals(this.testCoopTerm1,result.getResponse());
 	}
 
-//	@Test
-//	public void canGetCoopTerms() throws Exception{
-//		when(coopTermRepo.findAllById(anyInt())).thenReturn(coopTerms);
-//		MvcResult result = mvc.perform(null)
-//				//.andDo(print())
-//				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-//				.andExpect(status().isOk())
-//				.andReturn();
-//		String objAsJson = jsonctlist.write(coopTerms).getJson();
-//		String responseContent = result.getResponse().getContentAsString();
-//		assertEquals(objAsJson,responseContent);
-//	}
 	@Test
 	public void canupdateCoopTerm() throws Exception{
 		when(coopTermRepo.findById(anyInt())).thenReturn(testCoopTerm1);
@@ -168,7 +186,6 @@ public class CooperatorControllerIntegrationTest {
 		MvcResult result = mvc.perform(put("/coopTerm/2/")
 										.contentType(MediaType.APPLICATION_JSON_UTF8)
 										.content(objAsJson))
-				//.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andReturn();

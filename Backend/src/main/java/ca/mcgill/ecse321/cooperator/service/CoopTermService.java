@@ -40,9 +40,9 @@ public class CoopTermService {
 		if (startDate == null) {
 			throw new IllegalArgumentException("Start date cannot be empty!");
 		}
-		if (startDate.getYear() < 1950 || startDate.getYear() > 2020) {
-			throw new IllegalArgumentException("start date should be a valid year!");
-		}
+//		if (startDate.getYear() < 1950 || startDate.getYear() > 2020) {
+//			throw new IllegalArgumentException("start date should be a valid year!");
+//		}
 		if (academicSemester == null || academicSemester.trim().length() == 0) {
 			throw new IllegalArgumentException("AcademicSemester cannot be empty!");
 		}
@@ -55,9 +55,9 @@ public class CoopTermService {
 		if (endDate == null) {
 			throw new IllegalArgumentException("End date cannot be empty!");
 		}
-		if (endDate.getYear() < 1950) {
-			throw new IllegalArgumentException("end date should be a valid year!");
-		}
+//		if (endDate.getYear() < 1950) {
+//			throw new IllegalArgumentException("end date should be a valid year!");
+//		}
 		if (student == null) {
 			throw new IllegalArgumentException("student cannot be empty!");
 		}

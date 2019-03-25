@@ -1,7 +1,6 @@
 package ca.mcgill.ecse321.cooperator.IntegrationTest;
 
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
@@ -45,7 +44,6 @@ import ca.mcgill.ecse321.cooperator.service.EventService;
 @SpringBootTest
 @DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
 public class EventControllerIntegrationTest {
-   // @Autowired
 	private MockMvc mvc;
 	private Event testEvent;
 	private List<Event> testEvents;
@@ -69,7 +67,6 @@ public class EventControllerIntegrationTest {
 		testEvent.setEndDate(endDate);
 		testEvent.setStartDate(startDate);
 		testEvent.setLocation("testLocation");
-		//testEvent.set
 		testEvents = new ArrayList<>();
 		testEvents.add(testEvent);
 		}
@@ -78,7 +75,6 @@ public class EventControllerIntegrationTest {
 	public void canGetEvents() throws Exception{
 		when(eventRepo.findAll()).thenReturn(testEvents);
 		MvcResult result = mvc.perform(get("/events"))
-				//.andDo(print())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
 				.andReturn();
