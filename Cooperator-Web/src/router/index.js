@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Dashboard from "../components/Dashboard";
-import CoopTerm from "../components/CoopTerms";
+//import CoopTerms from "@/components/CoopTerms";
 import Help from "@/components/Help";
 
 
@@ -25,7 +25,7 @@ export default new Router({
       path: '/coop-term',
       name: 'Coopterm',
       meta: { layout: "default" },
-      component: CoopTerm
+      component: require('../components/CoopTerms.vue').default
     },
     {
       path: '/events',

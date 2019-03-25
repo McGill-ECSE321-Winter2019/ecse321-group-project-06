@@ -1,6 +1,5 @@
 import axios from 'axios'
 var config = require('../../config')
-import CoopTerms from './CoopTerms'
 
 
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
@@ -13,9 +12,6 @@ var AXIOS = axios.create({
 
 export default {
   name:"CoopTerms",
-  components:{
-    CoopTerms
-  },
     data(){
       return {
         template:[
