@@ -8,8 +8,7 @@
 
       <b-nav fill vertical>
         <NavItem text="Home" link="/"/>
-        <NavItem text="Active CoopTerms" link="/coop-term"/>
-        <NavItem text="Inactive CoopTerms" link="/coop-term"/>
+        <NavItem text="Coop-Terms" link="/coop-term"/>
         <NavItem text="Events" link="/events"/>
       </b-nav>
 
