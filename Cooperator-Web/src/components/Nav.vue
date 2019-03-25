@@ -27,7 +27,7 @@
         <div class="d-block text-center">
           <p class="my-4">Are you sure you want to log out? Confirm and log out</p>
         </div>
-        <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Confirm</b-button>
+        <b-button class="mt-3" variant="outline-danger" block @click="hideModal" v-bind:to="{path:'/'}">Confirm</b-button>
         <b-button class="mt-3" variant="outline-secondary" block @click="hideModal">Cancel</b-button>
       </b-modal>
     </div>
