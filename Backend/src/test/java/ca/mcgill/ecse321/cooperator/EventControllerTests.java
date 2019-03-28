@@ -104,6 +104,7 @@ public class EventControllerTests {
 		compare(event, eventReturned);
 	}
 	
+	/*test successfully delete one event by id*/
 	@Test
 	public void testDeleteEvent() {
 		eventService.deleteEvent(1);

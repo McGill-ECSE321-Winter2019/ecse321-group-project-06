@@ -23,7 +23,11 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 	
-	//get all events 
+	
+	/**
+	 * Get all events 
+	 * @return eventDtos 
+	 */
 	@GetMapping(value = {"/events", "/events/"})
 	@ResponseBody
 	public List<EventDto> getEvents(){
@@ -34,7 +38,12 @@ public class EventController {
 		return events;
 	}
 	
-	//create an event 
+	
+	/**
+	 * Create an event 
+	 * @param event
+	 * @return eventDto 
+	 */
 	@PostMapping(value = {"/event", "/event/"})
 	@ResponseBody
 	public EventDto createEvent(@RequestBody Event event) {
@@ -45,6 +54,10 @@ public class EventController {
 		return null;
 	}
 	
+	/**
+	 * Delete an event by eventId 
+	 * @param id
+	 */
 	@DeleteMapping(value= {"/delete/{id}"})
 	@ResponseBody
 	public void deleteEvent(@PathVariable int id) {

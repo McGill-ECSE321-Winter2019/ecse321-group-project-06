@@ -97,6 +97,7 @@ public class CoopTermService {
 		return s;
 	}
 	
+	/*update a CoopTerm*/
 	@Transactional
 	public CoopTerm updateCoopTerm(int coopTermId, CoopTerm newCoopTerm) {
 		

@@ -26,6 +26,10 @@ import ca.mcgill.ecse321.cooperator.entity.Event;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
+/**
+ * @author Huang
+ *
+ */
 @CrossOrigin
 @Controller
 @RequestMapping("/coopTerm")
@@ -34,6 +38,11 @@ public class CoopTermController {
 	private CoopTermService service;
 
 	
+	/**
+	 * Create a coopTerm 
+	 * @param coopTermDto
+	 * @return coopTermDto
+	 */
 	@PostMapping(value = {"/newCoopTerm", "/newCoopTerm/"})
 	@ResponseBody 
 	public CoopTermDto createCoopTerm(@RequestBody CoopTermDto coopTerm) {
@@ -47,7 +56,12 @@ public class CoopTermController {
 		return null;		
 	}
 	
-	//get a list of coopterms by an employer id 
+	
+	/**
+	 * get a list of coopterms by employer id 
+	 * @param id
+	 * @return coopTermDtos 
+	 */
 	@GetMapping(value = {"/employer/{id}", "/employer/{id}/"})
 	@ResponseBody
 	public List<CoopTermDto> getCoopTermsByEmployerId(@PathVariable("id") int id){
@@ -60,7 +74,12 @@ public class CoopTermController {
 		return coopTerms;
 	}
 	
-	//get a coop term by id 
+	
+	/**
+	 * get a coopterm by cooptermId
+	 * @param id
+	 * @return coopTermDto
+	 */
 	@GetMapping(value = { "/{id}", "/{id}/" })
 	@ResponseBody
 	public CoopTermDto getCoopTermById(@PathVariable int id) {
@@ -68,7 +87,13 @@ public class CoopTermController {
 		return convertToCoopTermDto(coopTerm);
 	}
 	
-	//update a coop term by id 
+	
+	/**
+	 * Update a coopterm by cooptermId 
+	 * @param id
+	 * @param coopTerm
+	 * @return coopTermDto
+	 */
 	@PutMapping(value = {"/{id}", "/{id}/"})
 	@ResponseBody
 	public CoopTermDto updateCoopTermStateById(@PathVariable int id, @RequestBody CoopTerm coopTerm) {
@@ -76,20 +101,14 @@ public class CoopTermController {
 		return convertToCoopTermDto(updatedCoopTerm);
 	}
 
+	/**
+	 * @param coopTerm
+	 * @return
+	 */
 	private CoopTermDto convertToCoopTermDto(CoopTerm coopTerm) {
 		if(coopTerm == null) {
 			throw new IllegalArgumentException("There is no such CoopTerm!");
 		}
-//		Employer employer = coopTerm.getEmployer();
-//		if(employer == null) {
-//			throw new IllegalArgumentException("There is no such employer");
-//		}
-//		EmployerDto employerDto = convertToEmployerDto(employer);
-//		Student student = coopTerm.getStudent();
-//		if(student == null) {
-//			throw new IllegalArgumentException("There is no such student");
-//		}
-//		StudentDto studentDto = convertToStudentDto(student);
 		CoopTermDto coopTermDto = new CoopTermDto(coopTerm.getStartDate(), coopTerm.getEndDate(), 
 				coopTerm.getLocation(), coopTerm.getAcademicSemester(), coopTerm.isIfWorkPermitNeeded(), 
 				coopTerm.getJobDescription(), coopTerm.getEvaluationForm(), coopTerm.getCoopPlacement(), 

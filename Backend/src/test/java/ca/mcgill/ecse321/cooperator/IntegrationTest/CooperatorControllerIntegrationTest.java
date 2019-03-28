@@ -161,6 +161,7 @@ public class CooperatorControllerIntegrationTest {
 		coopTerms.add(testCoopTerm2);
 		}
 	
+	/*test successfully create a coopterm*/
 	@Test
 	public void canCreateCoopTerm() throws Exception {
 		when (coopTermRepo.save(anyObject())).thenAnswer((InvocationOnMock invocation) -> {
@@ -185,7 +186,7 @@ public class CooperatorControllerIntegrationTest {
 		
 	}
 	
-	
+	/*test successfully get one coopterm*/
 	@Test
 	public void canGetOneCoopTerm() throws Exception {
 		when(coopTermRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation)->{
@@ -201,6 +202,7 @@ public class CooperatorControllerIntegrationTest {
 		assertEquals(objAsJson,responseContent);
 	}
 
+	/*test successfully update a coopterm*/
 	@Test
 	public void canupdateCoopTerm() throws Exception{
 		when(coopTermRepo.findById(anyInt())).thenReturn(testCoopTerm1);

@@ -33,7 +33,13 @@ public class StudentController {
 	private EmployerService employerService;
 
 	
-	/* create a student*/
+	
+	/**
+	 * Create a student 
+	 * @param studentDto
+	 * @return studentDto 
+	 * @throws IllegalArgumentException
+	 */
 	@PostMapping(value = { "/student", "/student/" })
 	@ResponseBody
 	public StudentDto createStudent(@RequestBody StudentDto e) throws IllegalArgumentException {
@@ -43,7 +49,12 @@ public class StudentController {
 		return convertToDto(student);
 	}
 	
-	/* Get students of an employer */
+	
+	/**
+	 * Get all students of an employer by employerId 
+	 * @param employerId
+	 * @return studentDtos 
+	 */
 	@GetMapping(value = {"/employer/{employerId}/students", "/employer/{employerId}/students/"})
 	@ResponseBody
 	public List<StudentDto> getStudents(@PathVariable(value = "employerId") int employerId) {
@@ -61,7 +72,11 @@ public class StudentController {
 	}
 	
 	
-	/*convert to Dto method for student*/
+	/**
+	 * Convert to Dto method for student 
+	 * @param s
+	 * @return studentDto
+	 */
 	private StudentDto convertToDto(Student s) {
 		if (s == null) {
 			throw new IllegalArgumentException("There is no such student!");
