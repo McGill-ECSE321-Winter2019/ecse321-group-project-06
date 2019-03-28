@@ -51,6 +51,8 @@ import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
+import ca.mcgill.ecse321.cooperator.repository.EmployerRepository;
+import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
 @RunWith(SpringRunner.class)
@@ -82,6 +84,11 @@ public class CooperatorControllerIntegrationTest {
 	@Autowired 
 	private CoopTermController coopTermController;
 	
+	@MockBean
+	private EmployerRepository employerRepo;
+	
+	@MockBean
+	private StudentRepository studentRepo;
 	@Before
 	public void setup(){
 		MockitoAnnotations.initMocks(this);
@@ -91,10 +98,10 @@ public class CooperatorControllerIntegrationTest {
 		Date endDate = new Date (2019, 11, 21);
 		
 		employerDto = new EmployerDto("testEmail","testPassword","testEmployer",1, new ArrayList<>(), new ArrayList<>());
-		studentDto = new StudentDto(null,"testPassword","testStudent1",2);
+		studentDto = new StudentDto(null,"testPassword","testStudent1",2,"testSchool", startDate);
 		
 		coopTermDto = new CoopTermDto(startDate, endDate, "testLocaltion", "FALL 2018", false, "testJobDescription",
-				"testEvaluationForm", "testPlacement", "testTaxCreditForm", 4, employerDto, studentDto, null);
+				"testEvaluationForm", "testPlacement", "testTaxCreditForm", 4, 1, 2, null);
 		testEmployer = new Employer();
 		testEmployer.setEmail("testEmail");
 		testEmployer.setName("testEmployer");
@@ -109,12 +116,16 @@ public class CooperatorControllerIntegrationTest {
 		testStudent1.setName("testStudent1");
 		testStudent1.setPassword("testPassword");
 		testStudent1.setCoopUserId(2);
+		testStudent1.setSchool("testSchool");
+		testStudent1.setGraduationDate(startDate);
 		testStudent1.setCoopTerm(new ArrayList<>());
 		
 		testStudent2 = new Student();
 		testStudent2.setCoopUserId(3);
 		testStudent2.setName("testStudent2");
 		testStudent2.setPassword("testPassword");
+		testStudent2.setSchool("testSchool");
+		testStudent2.setGraduationDate(startDate);
 		testStudent2.setCoopUserId(3);
 		
 		testCoopTerm1 = new CoopTerm();
@@ -155,6 +166,12 @@ public class CooperatorControllerIntegrationTest {
 		when (coopTermRepo.save(anyObject())).thenAnswer((InvocationOnMock invocation) -> {
 			return testCoopTerm1;
 		});
+		when(employerRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+			return testEmployer;
+		});
+		when(studentRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+			return testStudent1;
+		});
 		String objAsJson_dto = jsoncodto.write(coopTermDto).getJson();
 		MvcResult result = mvc.perform(post("/coopTerm/newCoopTerm/")
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -174,7 +191,8 @@ public class CooperatorControllerIntegrationTest {
 		when(coopTermRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation)->{
 			return testCoopTerm1;
 		});
-		String objAsJson = jsonct.write(testCoopTerm1).getJson();
+
+		String objAsJson = jsoncodto.write(coopTermDto).getJson();
 		MvcResult result = mvc.perform(get("/coopTerm/1/"))
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
@@ -186,8 +204,9 @@ public class CooperatorControllerIntegrationTest {
 	@Test
 	public void canupdateCoopTerm() throws Exception{
 		when(coopTermRepo.findById(anyInt())).thenReturn(testCoopTerm1);
+	
 		when(coopTermRepo.save(anyObject())).thenReturn(testCoopTerm1);
-		String objAsJson = jsonct.write(testCoopTerm1).getJson();
+		String objAsJson = jsoncodto.write(coopTermDto).getJson();
 		MvcResult result = mvc.perform(put("/coopTerm/2/")
 										.contentType(MediaType.APPLICATION_JSON_UTF8)
 										.content(objAsJson))

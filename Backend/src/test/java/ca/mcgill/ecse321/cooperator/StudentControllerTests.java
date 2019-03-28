@@ -154,6 +154,7 @@ public class StudentControllerTests {
 	}
 	
 	/* test successfully get all students */
+	
 	@Test
 	public void testGetAllStudent() {
 		List<Student> studentReturn = studentService.getAllStudents();

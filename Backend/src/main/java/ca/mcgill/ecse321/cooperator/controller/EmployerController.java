@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.cooperator.dto.EmployerDto;
+import ca.mcgill.ecse321.cooperator.dto.EventDto;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
+import ca.mcgill.ecse321.cooperator.entity.Event;
 import ca.mcgill.ecse321.cooperator.service.EmployerService;
 
 @CrossOrigin(origins = "*")
@@ -37,6 +39,20 @@ public class EmployerController {
 		Employer employer = service.createEmployer(e.getEmail(), e.getPassword(), e.getName());
 		return convertToDto(employer);
 	}
+	
+	//get all events 
+		@GetMapping(value = {"/employer/{employerId}", "/employer/{employerId}"})
+		@ResponseBody
+		public EmployerDto getEmployer(@PathVariable("employerId") int employerId){
+			
+			EmployerDto returnEmployer = null;
+			for(Employer employer: service.getAllEmployers()) {
+				if (employer.getCoopUserId()== employerId) {
+					returnEmployer = convertToDto(employer);
+				}
+			}
+			return returnEmployer;
+		}
 
 	
 	/**

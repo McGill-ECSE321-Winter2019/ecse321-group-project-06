@@ -61,7 +61,6 @@ public class EventService {
  	@Transactional
  	public void deleteEvent(int id) {
  		eventRepository.deleteById(id);
- 		//eventRepository.delete(event);
  	}
  	
  	/* get all events in the list */

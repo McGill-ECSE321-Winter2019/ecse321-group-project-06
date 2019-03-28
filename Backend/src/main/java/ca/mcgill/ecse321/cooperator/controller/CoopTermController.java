@@ -36,11 +36,12 @@ public class CoopTermController {
 	
 	@PostMapping(value = {"/newCoopTerm", "/newCoopTerm/"})
 	@ResponseBody 
-	public CoopTermDto createCoopTerm(@RequestBody CoopTerm coopTerm) {
+	public CoopTermDto createCoopTerm(@RequestBody CoopTermDto coopTerm) {
+		
 		if (coopTerm != null) {
 			CoopTerm coopTermCreated = service.createCoopTerm(coopTerm.getLocation(),coopTerm.getStartDate(),
 					coopTerm.getAcademicSemester(),coopTerm.isIfWorkPermitNeeded(),coopTerm.getJobDescription(),
-					coopTerm.getEmployer(), coopTerm.getEndDate(), coopTerm.getStudent(),coopTerm.getState());
+					coopTerm.getEmployerId(), coopTerm.getEndDate(), coopTerm.getStudentId(),coopTerm.getState());
 			return convertToCoopTermDto(coopTermCreated);
 		}
 		return null;		
@@ -49,7 +50,7 @@ public class CoopTermController {
 	//get a list of coopterms by an employer id 
 	@GetMapping(value = {"/employer/{id}", "/employer/{id}/"})
 	@ResponseBody
-	public List<CoopTermDto> getCoopTermsByEmployerId(@PathVariable("id") Integer id){
+	public List<CoopTermDto> getCoopTermsByEmployerId(@PathVariable("id") int id){
 		List<CoopTermDto> coopTerms = new ArrayList<>();
 		for(CoopTerm coopterm: service.getAllCoopTerms()) {
 			if(coopterm.getEmployer().getCoopUserId() == id) {
@@ -79,25 +80,25 @@ public class CoopTermController {
 		if(coopTerm == null) {
 			throw new IllegalArgumentException("There is no such CoopTerm!");
 		}
-		Employer employer = coopTerm.getEmployer();
-		if(employer == null) {
-			throw new IllegalArgumentException("There is no such employer");
-		}
-		EmployerDto employerDto = convertToEmployerDto(employer);
-		Student student = coopTerm.getStudent();
-		if(student == null) {
-			throw new IllegalArgumentException("There is no such student");
-		}
-		StudentDto studentDto = convertToStudentDto(student);
+//		Employer employer = coopTerm.getEmployer();
+//		if(employer == null) {
+//			throw new IllegalArgumentException("There is no such employer");
+//		}
+//		EmployerDto employerDto = convertToEmployerDto(employer);
+//		Student student = coopTerm.getStudent();
+//		if(student == null) {
+//			throw new IllegalArgumentException("There is no such student");
+//		}
+//		StudentDto studentDto = convertToStudentDto(student);
 		CoopTermDto coopTermDto = new CoopTermDto(coopTerm.getStartDate(), coopTerm.getEndDate(), 
 				coopTerm.getLocation(), coopTerm.getAcademicSemester(), coopTerm.isIfWorkPermitNeeded(), 
 				coopTerm.getJobDescription(), coopTerm.getEvaluationForm(), coopTerm.getCoopPlacement(), 
-				coopTerm.getTaxCreditForm(), coopTerm.getcoopTermId(),  employerDto, studentDto, coopTerm.getState());
+				coopTerm.getTaxCreditForm(), coopTerm.getcoopTermId(),  coopTerm.getEmployer().getCoopUserId(), coopTerm.getStudent().getCoopUserId(), coopTerm.getState());
 		return coopTermDto;
 	}
 	
 	private StudentDto convertToStudentDto(Student student) {
-		StudentDto studentDto = new StudentDto(student.getEmail(),student.getPassword(), student.getName(),student.getCoopUserId());
+		StudentDto studentDto = new StudentDto(student.getEmail(),student.getPassword(), student.getName(),student.getCoopUserId(),student.getSchool(), student.getGraduationDate());
 		return studentDto;
 	}
 

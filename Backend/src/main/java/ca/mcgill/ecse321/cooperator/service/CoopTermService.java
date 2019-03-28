@@ -1,6 +1,11 @@
 package ca.mcgill.ecse321.cooperator.service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +13,9 @@ import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
 import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Student;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
+import ca.mcgill.ecse321.cooperator.repository.EmployerRepository;
+import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
 
 
 @Service
@@ -21,6 +23,11 @@ public class CoopTermService {
 
 	@Autowired
 	CoopTermRepository coopTermRepository;
+	@Autowired
+	EmployerRepository employerRepository;
+	@Autowired
+	StudentRepository studentRepository;
+	
 	@Autowired
 	EmployerService employerService;
 	@Autowired
@@ -30,7 +37,7 @@ public class CoopTermService {
 	@SuppressWarnings("deprecation")
 	@Transactional
     public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
-			String jobDescription, Employer employer, Date endDate, Student student, CoopTermStates state) 
+			String jobDescription, int employerId, Date endDate, int studentId, CoopTermStates state) 
 	{
 		CoopTerm p = new CoopTerm( );
 
@@ -40,26 +47,24 @@ public class CoopTermService {
 		if (startDate == null) {
 			throw new IllegalArgumentException("Start date cannot be empty!");
 		}
-//		if (startDate.getYear() < 1950 || startDate.getYear() > 2020) {
-//			throw new IllegalArgumentException("start date should be a valid year!");
-//		}
 		if (academicSemester == null || academicSemester.trim().length() == 0) {
 			throw new IllegalArgumentException("AcademicSemester cannot be empty!");
 		}
 		if (jobDescription == null || jobDescription.trim().length() == 0) {
 			throw new IllegalArgumentException("JobDescription cannot be empty!");
 		}
-		if (employer == null ) {
-			throw new IllegalArgumentException("employer cannot be empty!");
-		}
 		if (endDate == null) {
 			throw new IllegalArgumentException("End date cannot be empty!");
 		}
-//		if (endDate.getYear() < 1950) {
-//			throw new IllegalArgumentException("end date should be a valid year!");
-//		}
-		if (student == null) {
-			throw new IllegalArgumentException("student cannot be empty!");
+
+		Employer e = employerRepository.findById(employerId); 
+		if(e == null) {
+			throw new IllegalArgumentException("employer does not exist!");
+		}
+		
+		Student s = studentRepository.findById(studentId);
+		if(s == null) {
+			throw new IllegalArgumentException("student does not exist!");
 		}
 		
 		p.setLocation(location);
@@ -67,13 +72,16 @@ public class CoopTermService {
 		p.setAcademicSemester(academicSemester);
 		p.setIfWorkPermitNeeded(ifWorkPermitNeeded);
 		p.setJobDescription(jobDescription);
-		p.setEmployer(employer);
+		p.setEmployer(e);
 		p.setEndDate(endDate);
-		p.setStudent(student);
+		p.setStudent(s);
 		p.setState(state);
 		
+		employerRepository.save(e);
+		studentRepository.save(s);
 	    CoopTerm pReturn = coopTermRepository.save(p);
 		
+	    
 		return pReturn;
 	}
 
