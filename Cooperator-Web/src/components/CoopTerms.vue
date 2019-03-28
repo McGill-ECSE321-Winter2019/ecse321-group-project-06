@@ -1,36 +1,37 @@
 <template>
   <div id="table">
-    <b-table striped hover bordered dark :fields="fields" :items="items" fixed>
-      <template slot="actions" slot-scope="row">
-        <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
-          view coopterm
-        </b-button>
-      </template>
-    </b-table>
+    <table style="width:100%" id="CoopTermTable">
+      <tr style="font-size:25px">
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      <tr v-for="coopTerm in template">
+        <td>{{coopTerm.name}}</td>
+        <td>{{coopTerm.startDate}}</td>
+        <td>{{coopTerm.endDate}}</td>
+        <td>{{isActive(coopTerm)}}</td>
+        <td><b-button size="lg"  v-bind:to="{path:'/Coop-Page'}" class="mr-1" style="margin: 5px">   view   </b-button></td>
+        <td></td>
+      </tr>
+    </table>
+
   </div>
 </template>
 
-<script>
-    export default {
-        name: "CoopTerms",
-      data(){
-          return {
-            items:[
-              {name: "John Smith", startDate: 2019, endDate: 2020},
-            ],
-            fields: [
-              {key:'name', label: 'Name'},
-              {key:'startDate', label: 'Start Date'},
-              {key:'endDate', label: 'End Date'},
-              {key:'actions', label: 'Actions'}
-            ]
-          }
-      }
-    }
+<script src="./CoopTerms.js">
 </script>
 
 <style scoped>
 #table{
   padding: 20px;
 }
+  #CoopTermTable{
+    background-color: #9099a2;
+    border: 20px;
+    margin: 5px;
+    font-size: 20px;
+  }
 </style>

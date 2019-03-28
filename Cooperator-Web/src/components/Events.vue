@@ -4,24 +4,30 @@
     <b-container id="events">
       <b-row class="no-gutters">
         <b-col>
-          <Event event="Tech Fair" text="Whether you have jobs today or will have jobs in the future, McGill students and alumni want to know more about your organization and potential careers!"/>
+          <Event event="Tech Fair"
+                 text="Whether you have jobs today or will have jobs in the future,
+                 McGill students and alumni want to know more about your organization and potential careers!"
+          location="montreal"></Event>
         </b-col>
         <b-col>
-          <Event event="On Campus Recruitment" text="on campus recruitment for your organization"/>
+          <Event event="On Campus Recruitment" text="on campus recruitment for your organization" location="montreal"></Event>
         </b-col>
       </b-row>
     </b-container>
+    <div>
+      <div v-for="event in events">
+        <b-container>
+          <b-row>
+            <Event event="event" text="event text" v-bind:location="`${event.location}`" ></Event>
+          </b-row>
+        </b-container>
+
+      </div>
+    </div>
   </div>
 </template>
 
-<script>
-  import Event from "./Event";
-    export default {
-      name: "Events",
-      components: {
-          Event
-      }
-    }
+<script src="./events.js">
 </script>
 
 <style scoped>
