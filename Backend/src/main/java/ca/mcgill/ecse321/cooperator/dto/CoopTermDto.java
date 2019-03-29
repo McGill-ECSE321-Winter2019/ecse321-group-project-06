@@ -17,8 +17,8 @@ public class CoopTermDto {
 	private String coopPlacement;
 	private String taxCreditForm;
 	private int coopTermId;
-	private EmployerDto employer;
-	private StudentDto student;
+	private int employerId;
+	private int studentId;
 	private CoopTermStates state;
 
 	
@@ -28,7 +28,7 @@ public class CoopTermDto {
 	
 	public CoopTermDto(Date startDate, Date endDate, String location, String academicSemester,
 			boolean ifWorkPermitNeeded, String jobDescription, String evaluationForm, String coopPlacement,
-			String taxCreditForm, int coopTermId, EmployerDto employer,StudentDto student, CoopTermStates state) {
+			String taxCreditForm, int coopTermId, int employerId, int studentId, CoopTermStates state) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.location = location;
@@ -38,9 +38,9 @@ public class CoopTermDto {
 		this.evaluationForm = evaluationForm;
 		this.coopPlacement = coopPlacement;
 		this.taxCreditForm = taxCreditForm;
-		this.employer = employer;    
+		this.employerId = employerId;    
 		this.coopTermId = coopTermId;
-		this.student=student;
+		this.studentId = studentId;
 		this.state = state;
 	}
 
@@ -84,12 +84,12 @@ public class CoopTermDto {
 		return coopTermId;
 	}
 
-	public EmployerDto getEmployer() {
-		return employer;
+	public int getEmployerId() {
+		return employerId;
 	}
 	
-	public StudentDto getStudent() {
-		return student;
+	public int getStudentId() {
+		return studentId;
 		
 	}
 

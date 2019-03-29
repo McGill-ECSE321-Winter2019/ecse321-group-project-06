@@ -5,6 +5,7 @@ import Dashboard from "../components/Dashboard";
 import Login from "@/components/Login.vue";
 import Help from "@/components/Help";
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -50,5 +51,6 @@ export default new Router({
       meta: { layout: "default" },
       component: require('../components/CoopPage.vue').default
     }
+
   ]
 })

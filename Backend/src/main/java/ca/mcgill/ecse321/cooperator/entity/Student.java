@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import java.util.Set;
 import javax.persistence.OneToMany;
@@ -29,7 +30,7 @@ public class Student extends CoopUser{
 		return this.graduationDate;
 	}
 
-	@OneToMany(mappedBy="student")
+	@OneToMany(mappedBy="student",cascade = CascadeType.ALL)
 	public List<CoopTerm> getCoopTerm() {
 		return this.coopTerm;
 	}

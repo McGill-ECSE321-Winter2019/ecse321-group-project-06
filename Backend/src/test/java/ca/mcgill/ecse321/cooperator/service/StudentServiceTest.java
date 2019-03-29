@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -199,33 +200,6 @@ public class StudentServiceTest {
 			error = e.getMessage();
 		}
 		assertEquals("Graduation Month cannot be empty!", error);
-		assertEquals(0, service.getAllStudents().size());		
-	}
-
-
-	/* Test creating student with invalid year provided, should throw exception */
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testCreateStudentWithInvalidYear() {
-		assertEquals(0, service.getAllStudents().size());
-		String userEmail = "sam.smith@mail.mcgill.ca";
-		String userPassword = "abcdefghi";
-		String studentName = "ABC";
-		int studentId = 71190;
-		String school = "McGill";
-		Date graduationDate = new Date(); 
-		graduationDate.setYear(1);
-		graduationDate.setMonth(11);
-		Student student = null; 
-		String error = null;
-
-		try {
-			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
-		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
-			error = e.getMessage();
-		}
-		assertEquals("graduation date should be a valid year!", error);
 		assertEquals(0, service.getAllStudents().size());		
 	}
 

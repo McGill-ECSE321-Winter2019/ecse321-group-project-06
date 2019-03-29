@@ -3,10 +3,14 @@ package ca.mcgill.ecse321.cooperator.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "COOPTERM")
@@ -100,7 +104,7 @@ public class CoopTerm{
 	public int getcoopTermId() {
 		return this.coopTermId;
 	}
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=false, fetch = FetchType.LAZY)
 	public Employer getEmployer() {
 		return this.employer;
 	}
@@ -108,7 +112,7 @@ public class CoopTerm{
 		this.employer = value;
 	}
 	
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=false, fetch = FetchType.LAZY)
 	public Student getStudent() {
 		return this.student;
 	}
