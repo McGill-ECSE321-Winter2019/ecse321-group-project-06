@@ -1,24 +1,32 @@
 <template>
   <div id="table">
-    <table style="width:100%" id="CoopTermTable">
-      <tr style="font-size:25px">
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-      <tr v-for="coopTerm in template">
-        <td>{{coopTerm.name}}</td>
-        <td>{{coopTerm.startDate}}</td>
-        <td>{{coopTerm.endDate}}</td>
-        <td>{{isActive(coopTerm)}}</td>
-        <td><b-button size="lg"  v-bind:to="{path:'/Coop-Page'}" class="mr-1" style="margin: 5px">   view   </b-button></td>
-        <td></td>
-      </tr>
-    </table>
-
-  </div>
+    <div class="site-wrap">
+      <div class="site-section" style="padding-top:10%">
+        <div class="container" style="align:center">
+          <h1 class="page-title">All Coop-Terms</h1>
+            <div class="container" align="center">
+              <table style="width:100%" id="CoopTermTable">
+                <tr style="font-size:25px">
+                  <th>Name</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+                <tr v-for="coopTerm in template">
+                  <td>{{coopTerm.name}}</td>
+                  <td>{{coopTerm.startDate}}</td>
+                  <td>{{coopTerm.endDate}}</td>
+                  <td>{{isActive(coopTerm)}}</td>
+                  <td><b-button size="lg"  v-bind:to="{path:'/Coop-Page'}" class="mr-1" style="margin: 5px">   view   </b-button></td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script src="./CoopTerms.js">
