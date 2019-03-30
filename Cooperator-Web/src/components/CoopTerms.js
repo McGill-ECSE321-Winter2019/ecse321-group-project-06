@@ -16,27 +16,9 @@ export default {
       return {
         template:[
           {
-            name: 'xixi',
-            startDate: '2019',
-            endDate: '123213',
-            active: 'false'
-          },
-          {
-            name:'beibei',
-            startDate: '2019',
-            endDate: '123213',
-            active: 'false'
-          },
-          {
-            name:'jingjing',
-            startDate: '2019',
-            endDate: '2039',
-            active: 'false'
-          },
-          {
             name:'huanhuan',
             startDate: '2019',
-            endDate: '123213',
+            endDate: '2021',
             active: 'true'
           },
           {
@@ -46,9 +28,27 @@ export default {
             active: 'true'
           },
           {
-            name:'nini',
+            name: 'xixi',
+            startDate: '2019',
+            endDate: '2023',
+            active: 'false'
+          },
+          {
+            name:'beibei',
             startDate: '2019',
             endDate: '2020',
+            active: 'false'
+          },
+          {
+            name:'jingjing',
+            startDate: '2019',
+            endDate: '2039',
+            active: 'false'
+          },
+          {
+            name:'nini',
+            startDate: '2019',
+            endDate: '2022',
             active: 'false'
           }
         ],

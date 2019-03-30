@@ -5,23 +5,30 @@
         <div class="container" style="align:center">
           <h1 class="page-title">All Coop-Terms</h1>
             <div class="container" align="center">
-              <table style="width:100%" id="CoopTermTable">
-                <tr style="font-size:25px">
-                  <th>Name</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Status</th>
-                  <th>Action</th>
+
+
+              <table style="width: 100%; height: 100%;" id="CoopTermTable">
+                <tr style="font-size:25px" >
+                  <th style="padding:10px" id = "text">NAME</th>
+                  <th style="padding:10px" id = "text">START DATE</th>
+                  <th style="padding:10px" id = "text">END DATE</th>
+                  <th style="padding:10px" id = "text">STATUS</th>
+                  <th style="padding:10px" id = "text">ACTION</th>
                 </tr>
                 <tr v-for="coopTerm in template">
-                  <td>{{coopTerm.name}}</td>
-                  <td>{{coopTerm.startDate}}</td>
-                  <td>{{coopTerm.endDate}}</td>
-                  <td>{{isActive(coopTerm)}}</td>
-                  <td><b-button size="lg"  v-bind:to="{path:'/Coop-Page'}" class="mr-1" style="margin: 5px">   view   </b-button></td>
+                  <td style="padding:10px" id = "contentText">{{coopTerm.name}}</td>
+                  <td style="padding:10px" id = "contentText">{{coopTerm.startDate}}</td>
+                  <td style="padding:10px" id = "contentText">{{coopTerm.endDate}}</td>
+                  <td style="padding:10px" id = "contentText">{{isActive(coopTerm)}}</td>
+                  <td>
+                    <b-button id = "button"   v-bind:to="{path:'/Coop-Page'}" class="mr-1" style=" margin: 10px" >      view   </b-button>
+
+                  </td>
                   <td></td>
                 </tr>
               </table>
+
+
             </div>
           </div>
         </div>
@@ -34,12 +41,30 @@
 
 <style scoped>
 #table{
-  padding: 20px;
+  padding: 10px;
 }
   #CoopTermTable{
-    background-color: #9099a2;
+    background-color: #D2D1D1;
     border: 20px;
     margin: 5px;
     font-size: 20px;
   }
+
+  #text{
+    text-align: center;
+    color: #EC3A0E;
+  }
+
+  #contentText{
+    text-align: center;
+    color: #0C0A0A;
+  }
+
+  #button{
+    size:lg;
+    margin:auto;
+    display:block;
+
+  }
+
 </style>
