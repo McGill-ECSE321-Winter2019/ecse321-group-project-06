@@ -7,6 +7,8 @@ import router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Default from "./layouts/Default.vue"
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 Vue.component('default-layout', Default);
 Vue.use(BootstrapVue)
@@ -17,5 +19,9 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  created () {
+    AOS.init()
+  },
+  render: h => h(App)
 })

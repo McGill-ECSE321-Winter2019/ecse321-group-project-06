@@ -1,95 +1,97 @@
 <template>
-  <div id="cooppage" class="ml-lg-12 overflow-auto" >
+  <div class="site-wrap">
+    <div class="site-section" style="padding-top:10%">
+      <div class="container" style="align:center">
+        <div id="cooppage" class="ml-lg-12 overflow-auto" >
 
+        <b-container>
 
-    <b-container>
+          <b-row>
+            <b-col class="col-lg-12">
+              <div class="card" style="width: 60rem;">
+                <div class="overflow-auto">
+                <div class="card-body">
+                  <h5 class="card-title">Coop Term</h5>
 
-      <b-row>
-        <b-col class="col-lg-12">
-          <div class="card" style="width: 60rem;">
-            <div class="overflow-auto">
-            <div class="card-body">
-              <h5 class="card-title">Coop Term</h5>
+                  <form>
+                    <div class="form-group row">
+                      <label for="staticEmail1" class="col-sm-2 col-form-label">Student Name</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail1" v-bind:value="`${studentName}`">
+                      </div>
+                    </div>
 
-              <form>
-                <div class="form-group row">
-                  <label for="staticEmail1" class="col-sm-2 col-form-label">Student Name</label>
-                  <div class="col-sm-8">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail1" v-bind:value="`${studentName}`">
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" v-bind:value="`${studentEmail}`">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">Coop Term Start Date</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" v-bind:value="`${startDate}`">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">Coop Term End Date</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail3" v-bind:value="`${endDate}`">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">Academic Semester</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" rows= "5" columns="30" id="staticEmail4" v-bind:value="`${academicSemester}`">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">Job Description</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="4" v-bind:value="`${jobDescription}`">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">Location</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="2" v-bind:value="`${location}`">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">Work Permit Needed?</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="3" v-bind:value="`${ifWorkPermitNeeded}`">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">Student Status</label>
+                      <b-button size="sm" @click="confirmStatus(coopTerm)" class="mr-1" >
+                        Confirm
+                      </b-button>
+                    </div>
+
+                  </form>
+
+                </div>
                   </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                  <div class="col-sm-8">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" v-bind:value="`${studentEmail}`">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">Coop Term Start Date</label>
-                  <div class="col-sm-8">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" v-bind:value="`${startDate}`">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">Coop Term End Date</label>
-                  <div class="col-sm-8">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail3" v-bind:value="`${endDate}`">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">Academic Semester</label>
-                  <div class="col-sm-8">
-                    <input type="text" readonly class="form-control-plaintext" rows= "5" columns="30" id="staticEmail4" v-bind:value="`${academicSemester}`">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">Job Description</label>
-                  <div class="col-sm-8">
-                    <input type="text" readonly class="form-control-plaintext" id="4" v-bind:value="`${jobDescription}`">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">Location</label>
-                  <div class="col-sm-8">
-                    <input type="text" readonly class="form-control-plaintext" id="2" v-bind:value="`${location}`">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">Work Permit Needed?</label>
-                  <div class="col-sm-8">
-                    <input type="text" readonly class="form-control-plaintext" id="3" v-bind:value="`${ifWorkPermitNeeded}`">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">Student Status</label>
-                  <b-button size="sm" @click="confirmStatus(coopTerm)" class="mr-1" >
-                    Confirm
-                  </b-button>
-                </div>
-
-              </form>
-
-            </div>
               </div>
-          </div>
-        </b-col>
-      </b-row>
+            </b-col>
+          </b-row>
 
 
-    </b-container>
+        </b-container>
 
-
-
+       </div>
+      </div>
     </div>
-
+  </div>
 </template>
 
 <script src="./CoopPage.js">
