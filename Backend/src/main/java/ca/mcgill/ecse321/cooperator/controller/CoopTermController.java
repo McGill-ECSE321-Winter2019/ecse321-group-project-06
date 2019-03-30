@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,29 +20,66 @@ import ca.mcgill.ecse321.cooperator.dto.CoopTermDto;
 import ca.mcgill.ecse321.cooperator.dto.EmployerDto;
 import ca.mcgill.ecse321.cooperator.dto.StudentDto;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
+import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
+import ca.mcgill.ecse321.cooperator.entity.Event;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
+/**
+ * @author Huang
+ *
+ */
 @CrossOrigin
 @Controller
 @RequestMapping("/coopTerm")
 public class CoopTermController {
 	@Autowired
 	private CoopTermService service;
+
 	
-	@GetMapping(value = {"/student/{id}", "/student/{id}/"})
+	/**
+	 * Create a coopTerm 
+	 * @param coopTermDto
+	 * @return coopTermDto
+	 */
+	@PostMapping(value = {"/newCoopTerm", "/newCoopTerm/"})
+	@ResponseBody 
+	public CoopTermDto createCoopTerm(@RequestBody CoopTermDto coopTerm) {
+		
+		if (coopTerm != null) {
+			CoopTerm coopTermCreated = service.createCoopTerm(coopTerm.getLocation(),coopTerm.getStartDate(),
+					coopTerm.getAcademicSemester(),coopTerm.isIfWorkPermitNeeded(),coopTerm.getJobDescription(),
+					coopTerm.getEmployerId(), coopTerm.getEndDate(), coopTerm.getStudentId(),coopTerm.getState());
+			return convertToCoopTermDto(coopTermCreated);
+		}
+		return null;		
+	}
+	
+	
+	/**
+	 * get a list of coopterms by employer id 
+	 * @param id
+	 * @return coopTermDtos 
+	 */
+	@GetMapping(value = {"/employer/{id}", "/employer/{id}/"})
 	@ResponseBody
-	public List<CoopTermDto> getCoopTermsByStudentId(@PathVariable int id){
+	public List<CoopTermDto> getCoopTermsByEmployerId(@PathVariable("id") int id){
 		List<CoopTermDto> coopTerms = new ArrayList<>();
 		for(CoopTerm coopterm: service.getAllCoopTerms()) {
-			if(coopterm.getStudent().getCoopUserId() == id) {
+			if(coopterm.getEmployer().getCoopUserId() == id) {
 				coopTerms.add(convertToCoopTermDto(coopterm));
 			}
 		}
 		return coopTerms;
 	}
 	
+	
+	/**
+	 * get a coopterm by cooptermId
+	 * @param id
+	 * @return coopTermDto
+	 */
 	@GetMapping(value = { "/{id}", "/{id}/" })
 	@ResponseBody
 	public CoopTermDto getCoopTermById(@PathVariable int id) {
@@ -49,6 +87,13 @@ public class CoopTermController {
 		return convertToCoopTermDto(coopTerm);
 	}
 	
+	
+	/**
+	 * Update a coopterm by cooptermId 
+	 * @param id
+	 * @param coopTerm
+	 * @return coopTermDto
+	 */
 	@PutMapping(value = {"/{id}", "/{id}/"})
 	@ResponseBody
 	public CoopTermDto updateCoopTermStateById(@PathVariable int id, @RequestBody CoopTerm coopTerm) {
@@ -56,29 +101,23 @@ public class CoopTermController {
 		return convertToCoopTermDto(updatedCoopTerm);
 	}
 
+	/**
+	 * @param coopTerm
+	 * @return
+	 */
 	private CoopTermDto convertToCoopTermDto(CoopTerm coopTerm) {
 		if(coopTerm == null) {
 			throw new IllegalArgumentException("There is no such CoopTerm!");
 		}
-		Employer employer = coopTerm.getEmployer();
-		if(employer == null) {
-			throw new IllegalArgumentException("There is no such employer");
-		}
-		EmployerDto employerDto = convertToEmployerDto(employer);
-		Student student = coopTerm.getStudent();
-		if(student == null) {
-			throw new IllegalArgumentException("There is no such student");
-		}
-		StudentDto studentDto = convertToStudentDto(student);
 		CoopTermDto coopTermDto = new CoopTermDto(coopTerm.getStartDate(), coopTerm.getEndDate(), 
 				coopTerm.getLocation(), coopTerm.getAcademicSemester(), coopTerm.isIfWorkPermitNeeded(), 
 				coopTerm.getJobDescription(), coopTerm.getEvaluationForm(), coopTerm.getCoopPlacement(), 
-				coopTerm.getTaxCreditForm(), coopTerm.getcoopTermId(),  employerDto, studentDto, coopTerm.getState());
+				coopTerm.getTaxCreditForm(), coopTerm.getcoopTermId(),  coopTerm.getEmployer().getCoopUserId(), coopTerm.getStudent().getCoopUserId(), coopTerm.getState());
 		return coopTermDto;
 	}
 	
 	private StudentDto convertToStudentDto(Student student) {
-		StudentDto studentDto = new StudentDto(student.getEmail(),student.getPassword(), student.getName(),student.getCoopUserId());
+		StudentDto studentDto = new StudentDto(student.getEmail(),student.getPassword(), student.getName(),student.getCoopUserId(),student.getSchool(), student.getGraduationDate());
 		return studentDto;
 	}
 

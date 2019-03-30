@@ -8,12 +8,14 @@ import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.After;
@@ -41,29 +43,39 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ca.mcgill.ecse321.cooperator.controller.CoopTermController;
+import ca.mcgill.ecse321.cooperator.dto.CoopTermDto;
+import ca.mcgill.ecse321.cooperator.dto.EmployerDto;
+import ca.mcgill.ecse321.cooperator.dto.StudentDto;
 import ca.mcgill.ecse321.cooperator.entity.CoopTerm;
+import ca.mcgill.ecse321.cooperator.entity.CoopTermStates;
 import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.repository.CoopTermRepository;
+import ca.mcgill.ecse321.cooperator.repository.EmployerRepository;
+import ca.mcgill.ecse321.cooperator.repository.StudentRepository;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
-//@AutoConfigureMockMvc
 
 public class CooperatorControllerIntegrationTest {
-    //@Autowired
+
 	private MockMvc mvc;
 	private Employer testEmployer;
 	private Student testStudent1;
 	private Student testStudent2;
 	private CoopTerm testCoopTerm1;
 	private CoopTerm testCoopTerm2;
+	private CoopTermStates coopTermStates;
 	private Date endDate;
 	private Date startDate;
+	private CoopTermDto coopTermDto;
+	private StudentDto studentDto;
+	private EmployerDto employerDto;
 	List<CoopTerm> coopTerms = new ArrayList<>();
 	private JacksonTester<CoopTerm> jsonct;
+	private JacksonTester<CoopTermDto> jsoncodto;
 	
 	@MockBean
 	private CoopTermRepository coopTermRepo;
@@ -72,11 +84,24 @@ public class CooperatorControllerIntegrationTest {
 	@Autowired 
 	private CoopTermController coopTermController;
 	
+	@MockBean
+	private EmployerRepository employerRepo;
+	
+	@MockBean
+	private StudentRepository studentRepo;
 	@Before
 	public void setup(){
 		MockitoAnnotations.initMocks(this);
 		mvc = MockMvcBuilders.standaloneSetup(coopTermController).build();
 		JacksonTester.initFields(this, new ObjectMapper());
+		Date startDate = new Date (2000, 11, 21);
+		Date endDate = new Date (2019, 11, 21);
+		
+		employerDto = new EmployerDto("testEmail","testPassword","testEmployer",1, new ArrayList<>(), new ArrayList<>());
+		studentDto = new StudentDto(null,"testPassword","testStudent1",2,"testSchool", startDate);
+		
+		coopTermDto = new CoopTermDto(startDate, endDate, "testLocaltion", "FALL 2018", false, "testJobDescription",
+				"testEvaluationForm", "testPlacement", "testTaxCreditForm", 4, 1, 2, null);
 		testEmployer = new Employer();
 		testEmployer.setEmail("testEmail");
 		testEmployer.setName("testEmployer");
@@ -91,16 +116,20 @@ public class CooperatorControllerIntegrationTest {
 		testStudent1.setName("testStudent1");
 		testStudent1.setPassword("testPassword");
 		testStudent1.setCoopUserId(2);
+		testStudent1.setSchool("testSchool");
+		testStudent1.setGraduationDate(startDate);
 		testStudent1.setCoopTerm(new ArrayList<>());
 		
 		testStudent2 = new Student();
 		testStudent2.setCoopUserId(3);
 		testStudent2.setName("testStudent2");
 		testStudent2.setPassword("testPassword");
+		testStudent2.setSchool("testSchool");
+		testStudent2.setGraduationDate(startDate);
 		testStudent2.setCoopUserId(3);
 		
 		testCoopTerm1 = new CoopTerm();
-		testCoopTerm1.setAcademicSemester("FALL2018");
+		testCoopTerm1.setAcademicSemester("FALL 2018");
 		testCoopTerm1.setCoopPlacement("testPlacement");
 		testCoopTerm1.setCoopTermId(4);
 		testCoopTerm1.setEmployer(testEmployer);
@@ -131,44 +160,58 @@ public class CooperatorControllerIntegrationTest {
 		coopTerms.add(testCoopTerm1);
 		coopTerms.add(testCoopTerm2);
 		}
+	
+	/*test successfully create a coopterm*/
+	@Test
+	public void canCreateCoopTerm() throws Exception {
+		when (coopTermRepo.save(anyObject())).thenAnswer((InvocationOnMock invocation) -> {
+			return testCoopTerm1;
+		});
+		when(employerRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+			return testEmployer;
+		});
+		when(studentRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+			return testStudent1;
+		});
+		String objAsJson_dto = jsoncodto.write(coopTermDto).getJson();
+		MvcResult result = mvc.perform(post("/coopTerm/newCoopTerm/")
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(objAsJson_dto))
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(status().isOk())
+				.andReturn();
+		
+		String responseContent = result.getResponse().getContentAsString();
+		assertEquals(objAsJson_dto, responseContent);
+		
+	}
+	
+	/*test successfully get one coopterm*/
 	@Test
 	public void canGetOneCoopTerm() throws Exception {
 		when(coopTermRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation)->{
 			return testCoopTerm1;
 		});
-		String objAsJson = jsonct.write(testCoopTerm1).getJson();
+
+		String objAsJson = jsoncodto.write(coopTermDto).getJson();
 		MvcResult result = mvc.perform(get("/coopTerm/1/"))
-				//.andDo(print())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk())
 				.andReturn();
 		String responseContent = result.getResponse().getContentAsString();
-		//assertEquals(coopTermController.getCoopTermById(2),this.testCoopTerm1);
 		assertEquals(objAsJson,responseContent);
-		//assertEquals(this.testCoopTerm1,result.getResponse());
 	}
 
-//	@Test
-//	public void canGetCoopTerms() throws Exception{
-//		when(coopTermRepo.findAllById(anyInt())).thenReturn(coopTerms);
-//		MvcResult result = mvc.perform(null)
-//				//.andDo(print())
-//				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-//				.andExpect(status().isOk())
-//				.andReturn();
-//		String objAsJson = jsonctlist.write(coopTerms).getJson();
-//		String responseContent = result.getResponse().getContentAsString();
-//		assertEquals(objAsJson,responseContent);
-//	}
+	/*test successfully update a coopterm*/
 	@Test
 	public void canupdateCoopTerm() throws Exception{
 		when(coopTermRepo.findById(anyInt())).thenReturn(testCoopTerm1);
+	
 		when(coopTermRepo.save(anyObject())).thenReturn(testCoopTerm1);
-		String objAsJson = jsonct.write(testCoopTerm1).getJson();
+		String objAsJson = jsoncodto.write(coopTermDto).getJson();
 		MvcResult result = mvc.perform(put("/coopTerm/2/")
 										.contentType(MediaType.APPLICATION_JSON_UTF8)
 										.content(objAsJson))
-				//.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andReturn();

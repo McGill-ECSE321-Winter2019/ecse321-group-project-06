@@ -8,7 +8,7 @@
         <b-row class="no-gutters">
           <div class="topnav">
             <div class="topnav-right">
-              <a href="#about">About</a>
+              <b-button v-bind:to="{path: 'help'}" v-b-tooltip.hover title="instructions">Help</b-button>
             </div>
           </div>
         </b-row>

@@ -1,12 +1,16 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +32,29 @@ public class StudentController {
 	@Autowired
 	private EmployerService employerService;
 
-	/* Get students of an employer */
+	
+	
+	/**
+	 * Create a student 
+	 * @param studentDto
+	 * @return studentDto 
+	 * @throws IllegalArgumentException
+	 */
+	@PostMapping(value = { "/student", "/student/" })
+	@ResponseBody
+	public StudentDto createStudent(@RequestBody StudentDto e) throws IllegalArgumentException {
+		
+		Student student = studentService.createStudent(e.getEmail(), e.getPassword(), e.getName(),e.getCoopUserId(),
+				e.getSchool(), e.getGraduationDate());
+		return convertToDto(student);
+	}
+	
+	
+	/**
+	 * Get all students of an employer by employerId 
+	 * @param employerId
+	 * @return studentDtos 
+	 */
 	@GetMapping(value = {"/employer/{employerId}/students", "/employer/{employerId}/students/"})
 	@ResponseBody
 	public List<StudentDto> getStudents(@PathVariable(value = "employerId") int employerId) {
@@ -46,12 +72,16 @@ public class StudentController {
 	}
 	
 	
-	/*convert to Dto method for student*/
+	/**
+	 * Convert to Dto method for student 
+	 * @param s
+	 * @return studentDto
+	 */
 	private StudentDto convertToDto(Student s) {
 		if (s == null) {
 			throw new IllegalArgumentException("There is no such student!");
 		}
-		StudentDto studentDto = new StudentDto(s.getEmail(),s.getPassword(),s.getName(),s.getCoopUserId());
+		StudentDto studentDto = new StudentDto(s.getEmail(),s.getPassword(),s.getName(),s.getCoopUserId(),s.getSchool(),s.getGraduationDate());
 		return studentDto;
 	}
 	

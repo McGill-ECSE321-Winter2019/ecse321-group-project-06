@@ -45,9 +45,6 @@ public class StudentService {
 		if (graduationDate == null) {
 			throw new IllegalArgumentException("Graduation Month cannot be empty!");
 		}
-		if (graduationDate.getYear() < 1950) {
-			throw new IllegalArgumentException("graduation date should be a valid year!");
-		}
 
 		s.setEmail(userEmail);
 		s.setPassword(userPassword);

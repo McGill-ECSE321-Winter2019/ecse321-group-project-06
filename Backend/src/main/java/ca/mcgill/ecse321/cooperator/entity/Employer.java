@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.cooperator.entity;
 
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.persistence.ManyToMany;
 
 
 @Entity
+
 @Table(name = "EMPLOYER")
 
 public class Employer extends CoopUser{
@@ -23,7 +25,7 @@ public class Employer extends CoopUser{
 		this.event = events;
 	}
 
-	@OneToMany(mappedBy="employer")
+	@OneToMany(mappedBy="employer",cascade = CascadeType.ALL)
 	public List<CoopTerm> getCoopTerm() {
 		return this.coopTerm;
 	}

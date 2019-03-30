@@ -19,18 +19,22 @@ public class StudentDto {
 	public StudentDto() {
 	}
 	
-	public StudentDto(String email,String password, String name, int coopUserId) {
-		this(email, password, name, coopUserId, Collections.EMPTY_LIST);
+	public StudentDto(String email,String password, String name, int coopUserId, String school, Date graduationDate) {
+		this(email, password, name, coopUserId, school, graduationDate, Collections.EMPTY_LIST);
 	}
 	
 	public StudentDto(String email, String password, String name, 
-			int coopUserId, List<CoopTermDto> coopTerm) {
+			int coopUserId, String school, Date graduationDate, List<CoopTermDto> coopTerm) {
 		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.coopUserId = coopUserId;
+		this.school = school;
+		this.graduationDate = graduationDate;
 		this.coopTerm = coopTerm;
 	}
+	
+
 	
 	public String getEmail() {
 		return email;
