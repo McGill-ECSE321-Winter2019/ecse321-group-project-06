@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="site-wrap" style="height:100%;" background="#232531">
+    <div class="site-wrap" style="height:100%;">
       <div class="site-mobile-menu">
         <div class="site-mobile-menu-header">
           <div class="site-mobile-menu-close mt-3">

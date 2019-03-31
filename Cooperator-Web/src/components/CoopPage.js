@@ -1,10 +1,11 @@
 import axios from 'axios'
 var config = require('../../config')
 
-var frontendUrl = 'http://127.0.0.1:8087/'
-var backendUrl = 'http://localhost:8080/'
-//var frontendUrl = 'https://cooperator-frontend-060606.herokuapp.com/'
-//var backendUrl = 'https://cooperator-backend-060606.herokuapp.com/'
+// var frontendUrl = 'http://127.0.0.1:8087/'
+// var backendUrl = 'http://localhost:8080/'
+
+var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
+var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
 
 var studentBackendUrl= 'https://sturegistration-backend-009b01.herokuapp.com/'
 
