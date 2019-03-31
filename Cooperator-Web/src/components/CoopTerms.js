@@ -66,6 +66,7 @@ export default {
         this.error = e;
       })
   },
+
   methods:{
     isActive: function(coopTerm){
       var i;
@@ -75,5 +76,7 @@ export default {
         return "Not Active";
       }
     }
+
+
   }
 }
