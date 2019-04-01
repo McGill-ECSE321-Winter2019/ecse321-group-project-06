@@ -26,10 +26,7 @@ import ca.mcgill.ecse321.cooperator.entity.Event;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
-/**
- * @author Huang
- *
- */
+
 @CrossOrigin
 @Controller
 @RequestMapping("/coopTerm")

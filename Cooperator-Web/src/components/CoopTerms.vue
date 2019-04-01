@@ -5,8 +5,6 @@
         <div class="container" style="align:center">
           <h1 class="page-title">All Coop-Terms</h1>
             <div class="container" align="center">
-
-
               <table style="width: 100%; height: 100%; border:1px solid black; border-collapse:collapse;"  id="CoopTermTable" >
                 <tr style="font-size:25px"    >
                   <th style="padding:10px; border:1px solid black;"   id = "text">NAME</th>
@@ -22,22 +20,17 @@
                   <td style="padding:10px; border:1px solid black;" id = "contentText">{{coopTerm.endDate.substr(0,10)}}</td>
                   <td style="padding:10px; border:1px solid black;" id = "contentText">{{coopTerm.state}}</td>
                   <td style="padding:10px; border:1px solid black;">
-                    <b-button id = "button"   v-bind:to="{path:'/Coop-Page'}" class="mr-1" style=" margin: 10px" >      view   </b-button>
+                    <b-button id = "button"   v-bind:to="{path:'/coop-page/coopterm='+coopTerm.coopTermId+'&student='+coopTerm.studentId}" class="mr-1" style=" margin: 10px" >      view   </b-button>
 
                   </td>
                   <td></td>
                 </tr>
-
-
-
               </table>
-
-
-            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script src="./CoopTerms.js">

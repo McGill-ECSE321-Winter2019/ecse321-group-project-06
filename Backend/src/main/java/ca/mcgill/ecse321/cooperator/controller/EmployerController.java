@@ -20,14 +20,7 @@ import ca.mcgill.ecse321.cooperator.entity.Employer;
 import ca.mcgill.ecse321.cooperator.entity.Event;
 import ca.mcgill.ecse321.cooperator.service.EmployerService;
 
-/**
- * @author Huang
- *
- */
-/**
- * @author Huang
- *
- */
+
 @CrossOrigin(origins = "*")
 @RestController
 public class EmployerController {
