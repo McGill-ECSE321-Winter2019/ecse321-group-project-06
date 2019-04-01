@@ -7,6 +7,8 @@ import Help from '@/components/Help';
 import Home from '@/components/Home';
 import Events from '@/components/Events.vue';
 import CoopTerms from '@/components/CoopTerms.vue';
+import CoopPage from '@/components/CoopPage.vue';
+
 
 Vue.use(Router)
 
@@ -43,9 +45,9 @@ export default new Router({
       component: Help
     },
     {
-      path: '/coop-page',
+      path: '/coop-page/coopterm=:coopId&student=:studentId',
       name: 'CoopPage',
-      component: require('../components/CoopPage.vue').default
+      component: CoopPage
     },
     {
       path: '/home',
