@@ -2,8 +2,11 @@ import axios from 'axios'
 var config = require('../../config')
 
 
+//var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
+//var backendUrl='https://cooperator-backend-060606.herokuapp.com/'
+
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
-var backendUrl='https://cooperator-backend-060606.herokuapp.com/'
+var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
 
 var AXIOS = axios.create({
   baseURL: backendUrl,
@@ -11,72 +14,69 @@ var AXIOS = axios.create({
 })
 
 export default {
-  name:"CoopTerms",
     data(){
       return {
-        template:[
-          {
-            name:'huanhuan',
-            startDate: '2019',
-            endDate: '2021',
-            active: 'true'
-          },
-          {
-            name:'yingying',
-            startDate: '2019',
-            endDate: '2020',
-            active: 'true'
-          },
-          {
-            name: 'xixi',
-            startDate: '2019',
-            endDate: '2023',
-            active: 'false'
-          },
-          {
-            name:'beibei',
-            startDate: '2019',
-            endDate: '2020',
-            active: 'false'
-          },
-          {
-            name:'jingjing',
-            startDate: '2019',
-            endDate: '2039',
-            active: 'false'
-          },
-          {
-            name:'nini',
-            startDate: '2019',
-            endDate: '2022',
-            active: 'false'
-          }
-        ],
-        coopTerms:[],
-        error:'',
+
+        students: '',
+        studentsName: [],
+        coopTerms:[]
       }
   },
-  create: function () {
-    AXIOS.get(`/coopTerms`)
-      .then(response => {
-        this.coopTerms = response.data
+
+    created: function () {
+      AXIOS.get(`coopTerm/employer/4`)
+       .then(response => {
+         this.coopTerms = response.data
+
       })
-      .catch(e =>{
-        console.log("error in post request: " + e);
-        this.error = e;
-      })
+        .catch(e =>{
+         console.log("error in get coopterm request: " + e);
+         this.error = e;
+        })
   },
 
-  methods:{
-    isActive: function(coopTerm){
-      var i;
-      if(coopTerm.active==="true"){
+  methods: {
+    isActive: function (coopTerm) {
+
+      if (coopTerm.state === "ACTIVE") {
         return "Active";
-      }else{
+      } else {
         return "Not Active";
       }
+    },
+
+    studentName: function (id,index) {
+
+      AXIOS.get(`student/` + id)
+        .then(response =>{
+          this.students = response.data;
+          this.studentsName.push(this.students.name) ;
+        })
+        .catch(e => {
+                    console.log("error in get student request:" + e);
+                    this.error = e;
+                  })
+
+      return  this.studentsName[index];
+
+      // .then(()=> {
+      //     for (var i = 0; i < this.coopTerms.length; i++) {
+      //       var id = this.coopTerms[i].studentId
+      //
+      //       AXIOS.get(`student/` + id)
+      //         .then(res => {
+      //           this.coopTerms[i].student = res.data
+      //           this.coopTerms[i].studentName=this.coopTerms[i].student.name
+      //         })
+      //         .catch(e => {
+      //           console.log("error in get student request:" + e);
+      //           this.error = e;
+      //         })
+      //     }
+      //   })
+
     }
 
-
   }
+
 }
