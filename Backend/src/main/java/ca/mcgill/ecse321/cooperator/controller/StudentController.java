@@ -50,6 +50,16 @@ public class StudentController {
 	}
 	
 	
+	
+	@GetMapping(value = {"/student/{studentId}", "/employer/{studentId}"})
+	@ResponseBody
+	public StudentDto getStudent(@PathVariable("studentId") int studentId){
+		Student student = studentService.getStudent(studentId);
+		StudentDto studentDto = convertToDto(student);
+		return studentDto;
+	}
+	
+	
 	/**
 	 * Get all students of an employer by employerId 
 	 * @param employerId
