@@ -45,7 +45,7 @@ export default new Router({
       component: Help
     },
     {
-      path: '/coop-page',
+      path: '/coop-page/coopterm=:coopId&student=:studentId',
       name: 'CoopPage',
       component: CoopPage
     },

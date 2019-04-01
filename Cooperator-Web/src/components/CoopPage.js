@@ -1,13 +1,11 @@
 import axios from 'axios'
 
 var config = require('../../config')
-
-var frontendUrl = 'http://127.0.0.1:8087/'
-var backendUrl = 'http://localhost:8080/'
-//var frontendUrl = 'https://cooperator-frontend-060606.herokuapp.com/'
-//var backendUrl = 'https://cooperator-backend-060606.herokuapp.com/'
-
-var studentBackendUrl= 'https://sturegistration-backend-009b01.herokuapp.com/'
+// var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
+// var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
+var frontendUrl = 'https://cooperator-frontend-060606.herokuapp.com/'
+var backendUrl = 'https://cooperator-backend-060606.herokuapp.com/'
+//var studentBackendUrl= 'https://sturegistration-backend-009b01.herokuapp.com/'
 
 //get coop term information
 var AXIOS = axios.create({
@@ -16,9 +14,9 @@ var AXIOS = axios.create({
 })
 
 //get student information from another url
-const studentAXIOS = axios.create ({
-  baseURL: studentBackendUrl
-})
+// const studentAXIOS = axios.create ({
+//   baseURL: studentBackendUrl
+// })
 
 
 function CoopTermDto(startDate, endDate, location, academicSemester,
@@ -59,11 +57,14 @@ export default {
       coopEndDate: '',
       errorConfirm:'',
       confirmTrue: false,
-      link:''
+      link:'',
+      coopId: null,
+      studentId: null
     }
   },
   created: function () {
-    AXIOS.get(`/coopTerm/8`)
+    this.coopId = this.$route.params.coopId
+    AXIOS.get(`/coopTerm/` + this.coopId )
       .then(response => {
         this.coopTerm = response.data
 
@@ -115,23 +116,22 @@ export default {
       })
 
 
-    studentAXIOS.get(`/student/1`)
-      .then(res => {
-        this.student = res.data
+    this.studentId = this.$route.params.studentId;
 
+    AXIOS.get(`/student/` + this.studentId)
+      .then(response => {
+        this.student = response.data
       })
-      .catch(e => {
+      .catch(e=>  {
         this.errorStudent = e
-      })
-
-
+    })
   },
   methods: {
 
     //confirm button
     confirmCoopTerm() {
       if (this.confirmTrue === false) {
-        AXIOS.put(`/coopTerm/8`, {},{})
+        AXIOS.put(`/coopTerm/` + this.coopId, {},{})
           .then(response => {
           this.coopTerm = response.data
           //confirm Student
