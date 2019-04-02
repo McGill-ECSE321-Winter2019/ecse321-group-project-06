@@ -24,7 +24,7 @@ export default {
   },
 
     created: function () {
-      AXIOS.get(`coopTerm/employer/4`)
+      AXIOS.get(`coopTerm/employer/3`)
        .then(response => {
          this.coopTerms = response.data
 
@@ -41,17 +41,32 @@ export default {
       var end = coopTerm.endDate.substring(0,10);
       var present = "2019-04-01";
 
+      //return start;
       var length = 10;
       var status = "Not Active";
 
       for(var k = 0; k<length; k++){
-        if(present.charAt(k)<start.charAt(k)){
+        if(present.charAt(k) == "-"){
+          continue;
+        }
+        if(present.charCodeAt(k)>start.charCodeAt(k)){
+          break;
+        }
+
+        if(present.charCodeAt(k)<start.charCodeAt(k)){
+          //return present.charAt(k);
           return status;
         }
       }
 
       for(var k = 0; k<length; k++){
-        if(present.charAt(k)>end.charAt(k)){
+        if(present.charAt(k) == "-"){
+          continue;
+        }
+        if(present.charCodeAt(k)<end.charCodeAt(k)){
+          break;
+        }
+        if(present.charCodeAt(k)>end.charCodeAt(k)){
           return status;
         }
       }
