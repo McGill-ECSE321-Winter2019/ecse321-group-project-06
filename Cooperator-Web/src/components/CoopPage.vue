@@ -15,7 +15,7 @@
                     <div class="card-body">
 
                       <button type="button" class="btn btn-default text-black ">
-                        <router-link :to="{name: 'Coopterms'}"> <a> Back </a> </router-link>
+                        <router-link :to="{name: 'Coopterms'}"><a> Back </a></router-link>
                       </button>
 
 
@@ -23,28 +23,32 @@
                         <div class="form-group row">
                           <label for="staticEmail1" class="col-sm-4 col-form-label col-lg-3">Student Name</label>
                           <div class="col-sm-8">
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail1" v-bind:value="`${student.name}`">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail1"
+                                   v-bind:value="`${student.name}`">
                           </div>
                         </div>
 
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Email</label>
                           <div class="col-sm-8">
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" v-bind:value="`${student.email}`">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                   v-bind:value="`${student.email}`">
                           </div>
                         </div>
 
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Coop Term Start Date</label>
                           <div class="col-sm-8">
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" v-bind:value="`${coopStartDate}`">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2"
+                                   v-bind:value="`${coopStartDate}`">
                           </div>
                         </div>
 
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Coop Term End Date</label>
                           <div class="col-sm-8">
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail3" v-bind:value="`${coopEndDate}`">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail3"
+                                   v-bind:value="`${coopEndDate}`">
                           </div>
                         </div>
 
@@ -62,7 +66,7 @@
                             <button @click="coopJobDescription()"
                                     type="button"
                                     class="btn btn-default text-white  "
-                              > Link
+                            > Link
                             </button>
                           </div>
                         </div>
@@ -70,28 +74,50 @@
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Location</label>
                           <div class="col-sm-8">
-                            <input type="text" readonly class="form-control-plaintext" id="2" v-bind:value="`${coopTerm.location}`">
+                            <input type="text" readonly class="form-control-plaintext" id="2"
+                                   v-bind:value="`${coopTerm.location}`">
                           </div>
                         </div>
 
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Work Permit Needed?</label>
                           <div class="col-sm-8">
-                            <input type="text" readonly class="form-control-plaintext" id="3"  v-bind:value="`${workPermit}`">
+                            <input type="text" readonly class="form-control-plaintext" id="3"
+                                   v-bind:value="`${workPermit}`">
                           </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                          <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3"> Student Evaluation
+                            Form </label>
+                          <div class="col col-lg-4">
+                            <b-form-file
+                              v-model="file"
+                              :state="Boolean(file)"
+                              placeholder="Choose a file..."
+                              drop-placeholder="Drop file here..."
+                            >
+                              <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                            </b-form-file>
+                          </div>
+                          <div class="col col-lg-2">
+                            <button type="button" class="btn btn-primary" v-on:click="submitFile()">Submit</button>
+                          </div>
+
                         </div>
 
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Confirm Coop Term</label>
 
                           <!--<input @click="confirmCoopTerm()"-->
-                                 <!--type="submit"-->
-                                 <!--value="Confirm"-->
-                                 <!--class=" btn btn-primary py-2 px-4 text-white"-->
+                          <!--type="submit"-->
+                          <!--value="Confirm"-->
+                          <!--class=" btn btn-primary py-2 px-4 text-white"-->
 
                           <!--/>-->
 
-                          <a  @click="confirmCoopTerm()" class="btn-custom aos-init aos-animate">
+                          <a @click="confirmCoopTerm()" class="btn-custom aos-init aos-animate">
                             <span>Confirm</span>
                           </a>
 
@@ -101,7 +127,7 @@
                         </div>
 
                         <button type="button" class="btn btn-default text-black ">
-                          <router-link :to="{name: 'Coopterms'}"> <a> Back </a> </router-link>
+                          <router-link :to="{name: 'Coopterms'}"><a> Back </a></router-link>
                         </button>
 
 
@@ -122,7 +148,6 @@
 
     </div>
   </div>
-
 
 
 </template>
@@ -147,7 +172,7 @@
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
     transition: .3s all ease;
-    font-weight:300;
+    font-weight: 300;
     text-emphasis-position: over;
 
   }
@@ -157,7 +182,7 @@
   }
 
   .btn-default {
-    background-color:#ff5733;
+    background-color: #ff5733;
     padding: 10px;
   }
 
@@ -182,12 +207,14 @@
   form {
     margin-top: 20px;
   }
+
   h3 {
     color: #ff5733;
     text-align: justify-all;
     font-family: inherit;
     text-transform: uppercase;
   }
+
 
 </style>
 

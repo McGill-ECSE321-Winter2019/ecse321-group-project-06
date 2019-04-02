@@ -1,8 +1,6 @@
 import axios from 'axios'
 var config = require('../../config')
 
-
-
 var frontendUrl = 'https://' + config.build.host + ':'
 var backendUrl = 'https://' + config.build.backendHost + ':'
 
@@ -149,8 +147,39 @@ export default {
     //link of job description
     coopJobDescription(){
       window.location.href = this.link;
-    }
+    },
+
+
+      submitFile(){
+        let formData = new FormData();
+        formData.append('file', this.file);
+        axios.get('https://login.microsoftonline.com/' +
+          'common/oauth2/v2.0/authorize?client_id=3a32b118-da98-4eb3-' +
+          '898d-4e16a59e4fc1&scope=files.readwrite.all&response_type=token&redirect_uri=https://login.live.com/oauth20_desktop.srf'
+        )
+          .then(function(){
+            axios.put('/me/drive/root:/ECSE321PDF/file1/content',
+              formData,
+              {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                  'Access-Control-Allow-Origin': '*',
+                }
+              }
+            ).then(function(){
+              console.log('SUCCESS!!');
+            })
+              .catch(function(){
+                console.log('FAILURE!!');
+              })
+          })
+      },
+      handleFileUpload(){
+        this.file = this.$refs.file.files[0];
+      }
+
   }
+
 
 }
 
