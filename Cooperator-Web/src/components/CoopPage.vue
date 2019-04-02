@@ -110,13 +110,6 @@
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Confirm Coop Term</label>
 
-                          <!--<input @click="confirmCoopTerm()"-->
-                          <!--type="submit"-->
-                          <!--value="Confirm"-->
-                          <!--class=" btn btn-primary py-2 px-4 text-white"-->
-
-                          <!--/>-->
-
                           <a @click="confirmCoopTerm()" class="btn-custom aos-init aos-animate">
                             <span>Confirm</span>
                           </a>
