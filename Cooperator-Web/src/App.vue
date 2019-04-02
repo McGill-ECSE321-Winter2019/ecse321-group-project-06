@@ -21,17 +21,17 @@
             <div class="col-12 col-md-10 d-none d-xl-block">
               <nav class="site-navigation position-relative text-right" role="navigation">
                 <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-                  <li class="active">
-                    <router-link :to="{name: 'Home'}">Home</router-link>
-                  </li>
                   <li>
-                    <router-link :to="{name: 'Hello'}">Hello</router-link>
+                    <router-link :to="{name: 'Home'}">Home</router-link>
                   </li>
                   <li>
                     <router-link :to="{name: 'Coopterms'}">Coopterms</router-link>
                   </li>
                   <li>
                     <router-link :to="{name: 'Events'}">Events</router-link>
+                  </li>
+                  <li>
+                    <router-link :to="{name: 'Forms'}">Forms</router-link>
                   </li>
                   <li>
                     <router-link :to="{name: 'Login'}">Login</router-link>
@@ -51,25 +51,22 @@
         <div class="container">
           <div class="row mb-5">
             <div class="col-md-4">
-              <h2 class="footer-heading text-uppercase mb-4">About Event</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit aliquid quibusdam fugit architecto.</p>
+              <h2 class="footer-heading text-uppercase mb-4">About</h2>
+              <p>A software system for managing co-op terms for co-op programs</p>
             </div>
             <div class="col-md-3 ml-auto">
               <h2 class="footer-heading text-uppercase mb-4">Quick Links</h2>
               <ul class="list-unstyled">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Speakers</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06">About Us</a></li>
+                <li><a href="mailto: chuning.li@mail.mcgill.ca">Contact Us</a></li>
               </ul>
             </div>
             <div class="col-md-4">
               <h2 class="footer-heading text-uppercase mb-4">Connect with Us</h2>
               <p>
-                <a href="#" class="p-2 pl-0"><span class="icon-facebook"></span></a>
-                <a href="#" class="p-2"><span class="icon-twitter"></span></a>
-                <a href="#" class="p-2"><span class="icon-youtube"></span></a>
-                <a href="#" class="p-2"><span class="icon-instagram"></span></a>
+                <a href="https://www.facebook.com/McGillUniversity/" class="p-2 pl-0"><span class="icon-facebook"></span></a>
+                <a href="https://twitter.com/mcgillu" class="p-2"><span class="icon-twitter"></span></a>
+                <a href="https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06" class="p-2"><span class="icon-github"></span></a>
               </p>
             </div>
           </div>
@@ -92,7 +89,6 @@
 </template>
 
 <script>
-const default_layout = "default";
 export default {
   name: 'app',
 }

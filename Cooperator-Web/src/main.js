@@ -6,13 +6,15 @@ import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import Default from "./layouts/Default.vue"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import VueCookie from'vue-cookie'
 
-Vue.component('default-layout', Default);
 Vue.use(BootstrapVue)
+Vue.use(VueCookie)
 Vue.config.productionTip = false
+
+Vue.use(VueCookie);
 
 /* eslint-disable no-new */
 new Vue({

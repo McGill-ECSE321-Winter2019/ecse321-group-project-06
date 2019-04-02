@@ -73,8 +73,8 @@ public class EmployerController {
 		List<EmployerDto> employers = new ArrayList<>();
 		for (Employer employer : service.getAllEmployers()) {
 
-			if(employer.getEmail() == email) {
-				if(employer.getPassword() == password) {
+			if(employer.getEmail().equals(email)) {
+				if(employer.getPassword().equals(password)) {
 					// valid password , add to list 
 					employers.add(convertToDto(employer));
 				}else {
