@@ -2,8 +2,6 @@ import axios from 'axios'
 var config = require('../../config')
 
 
-// var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
-// var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
 
 var frontendUrl = 'https://' + config.build.host + ':'
 var backendUrl = 'https://' + config.build.backendHost + ':'
@@ -14,69 +12,99 @@ var AXIOS = axios.create({
 })
 
 export default {
-  name:"CoopTerms",
     data(){
       return {
-        template:[
-          {
-            name: 'xixi',
-            startDate: '2019',
-            endDate: '123213',
-            active: 'false'
-          },
-          {
-            name:'beibei',
-            startDate: '2019',
-            endDate: '123213',
-            active: 'false'
-          },
-          {
-            name:'jingjing',
-            startDate: '2019',
-            endDate: '2039',
-            active: 'false'
-          },
-          {
-            name:'huanhuan',
-            startDate: '2019',
-            endDate: '123213',
-            active: 'true'
-          },
-          {
-            name:'yingying',
-            startDate: '2019',
-            endDate: '2020',
-            active: 'true'
-          },
-          {
-            name:'nini',
-            startDate: '2019',
-            endDate: '2020',
-            active: 'false'
-          }
-        ],
-        coopTerms:[],
-        error:'',
+
+        students: '',
+        studentsName: [],
+        coopTerms:[]
       }
   },
-  create: function () {
-    AXIOS.get(`/coopTerms`)
-      .then(response => {
-        this.coopTerms = response.data
+
+    created: function () {
+      AXIOS.get(`coopTerm/employer/3`)
+       .then(response => {
+         this.coopTerms = response.data
+
       })
-      .catch(e =>{
-        console.log("error in post request: " + e);
-        this.error = e;
-      })
+        .catch(e =>{
+         console.log("error in get coopterm request: " + e);
+         this.error = e;
+        })
   },
-  methods:{
-    isActive: function(coopTerm){
-      var i;
-      if(coopTerm.active==="true"){
-        return "Active";
-      }else{
-        return "Not Active";
+
+  methods: {
+    isActive: function (coopTerm) {
+      var start = coopTerm.startDate.substring(0,10);
+      var end = coopTerm.endDate.substring(0,10);
+      var present = "2019-04-01";
+
+      //return start;
+      var length = 10;
+      var status = "Not Active";
+
+      for(var k = 0; k<length; k++){
+        if(present.charAt(k) == "-"){
+          continue;
+        }
+        if(present.charCodeAt(k)>start.charCodeAt(k)){
+          break;
+        }
+
+        if(present.charCodeAt(k)<start.charCodeAt(k)){
+          //return present.charAt(k);
+          return status;
+        }
       }
+
+      for(var k = 0; k<length; k++){
+        if(present.charAt(k) == "-"){
+          continue;
+        }
+        if(present.charCodeAt(k)<end.charCodeAt(k)){
+          break;
+        }
+        if(present.charCodeAt(k)>end.charCodeAt(k)){
+          return status;
+        }
+      }
+      status = "Active";
+      return status;
+
+    },
+
+    studentName: function (id,index) {
+
+      AXIOS.get(`student/` + id)
+        .then(response =>{
+          this.students = response.data;
+          this.studentsName.push(this.students.name) ;
+        })
+        .catch(e => {
+                    console.log("error in get student request:" + e);
+                    this.error = e;
+                  })
+
+      return  this.studentsName[index];
+
+      // .then(()=> {
+      //     for (var i = 0; i < this.coopTerms.length; i++) {
+      //       var id = this.coopTerms[i].studentId
+      //
+      //       AXIOS.get(`student/` + id)
+      //         .then(res => {
+      //           this.coopTerms[i].student = res.data
+      //           this.coopTerms[i].studentName=this.coopTerms[i].student.name
+      //         })
+      //         .catch(e => {
+      //           console.log("error in get student request:" + e);
+      //           this.error = e;
+      //         })
+      //     }
+      //   })
+
     }
+
   }
+
 }
