@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import Dashboard from "../components/Dashboard";
 import Login from '@/components/Login.vue';
 import Help from '@/components/Help';
 import Home from '@/components/Home';
@@ -20,16 +18,6 @@ export default new Router({
       component: Login
     },
     {
-      path: '/hello',
-      name: 'Hello',
-      component: Hello
-    },
-    {
-      path: '/employer',
-      name: 'Dashboard',
-      component: Dashboard
-    },
-    {
       path: '/coop-term',
       name: 'Coopterms',
       component: CoopTerms
@@ -40,8 +28,8 @@ export default new Router({
       component: Events
     },
     {
-      path: '/help',
-      name: 'Help',
+      path: '/forms',
+      name: 'Forms',
       component: Help
     },
     {
