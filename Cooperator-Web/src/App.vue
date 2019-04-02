@@ -33,7 +33,7 @@
                   <li>
                     <router-link :to="{name: 'Forms'}">Forms</router-link>
                   </li>
-                  <li v-if=!isLoggedIn>
+                  <li>
                     <router-link :to="{name: 'Login'}">Login</router-link>
                   </li>
                 </ul>
@@ -91,11 +91,6 @@
 <script>
 export default {
   name: 'app',
-  data(){
-    return{
-      isLoggedIn: this.$cookie.get("isLogged").toLowerCase() == 'true' ? true : false
-    }
-  }
 }
 </script>
 
