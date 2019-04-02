@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div  id="app">
     <div class="site-wrap" style="height:100%;">
       <div class="site-mobile-menu">
         <div class="site-mobile-menu-header">
@@ -12,7 +12,7 @@
         </div>
       </div>
 
-      <header class="site-navbar py-3" role="banner">
+      <header v-show="this.$cookie.get('username')" class="site-navbar py-3" role="banner">
         <div class="container-fluid">
           <div class="row align-items-center">
             <div class="col-11 col-xl-2">
@@ -33,8 +33,17 @@
                   <li>
                     <router-link :to="{name: 'Forms'}">Forms</router-link>
                   </li>
-                  <li>
-                    <router-link :to="{name: 'Login'}">Login</router-link>
+                  <li >
+                    <b-button variant="outline-danger" @click="showModal">Log out</b-button>
+                    <div>
+                      <b-modal id="my-modal" ref="my-modal" hide-footer title="Log out">
+                        <div class="d-block text-center">
+                          <h3>You are about to log out of the system, are you sure?</h3>
+                        </div>
+                        <b-button class="mt-3" variant="outline-danger" block @click="logout">Logout</b-button>
+                        <b-button class="mt-2" variant="outline-secondary" block @click="hideModal">Cancel</b-button>
+                      </b-modal>
+                    </div>
                   </li>
                 </ul>
               </nav>
@@ -91,6 +100,23 @@
 <script>
 export default {
   name: 'app',
+  created: function () {
+    console.log("cookie"+this.$cookie.get('username'));
+  },
+  methods:{
+    logout(){
+      this.$cookie.set('username', '');
+      this.$cookie.set('password', '');
+      this.$refs['my-modal'].hide()
+      window.location.href = '/#/';
+    },
+    showModal() {
+      this.$refs['my-modal'].show()
+    },
+    hideModal() {
+      this.$refs['my-modal'].hide()
+    }
+  }
 }
 </script>
 
