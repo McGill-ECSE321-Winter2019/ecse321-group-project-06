@@ -18,7 +18,7 @@
                   <td style="padding:10px; border:1px solid black;" id = "contentText">{{studentName(coopTerm.studentId,index)}}</td>
                   <td style="padding:10px; border:1px solid black;" id = "contentText">{{coopTerm.startDate.substr(0,10)}}</td>
                   <td style="padding:10px; border:1px solid black;" id = "contentText">{{coopTerm.endDate.substr(0,10)}}</td>
-                  <td style="padding:10px; border:1px solid black;" id = "contentText">{{coopTerm.state}}</td>
+                  <td style="padding:10px; border:1px solid black;" id = "contentText">{{isActive(coopTerm)}}</td>
                   <td style="padding:10px; border:1px solid black;">
                     <b-button id = "button"   v-bind:to="{path:'/coop-page/coopterm='+coopTerm.coopTermId+'&student='+coopTerm.studentId}" class="mr-1" style=" margin: 10px" >      view   </b-button>
 

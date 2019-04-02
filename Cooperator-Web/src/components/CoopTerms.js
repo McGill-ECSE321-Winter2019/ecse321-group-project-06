@@ -37,12 +37,27 @@ export default {
 
   methods: {
     isActive: function (coopTerm) {
+      var start = coopTerm.startDate.substring(0,10);
+      var end = coopTerm.endDate.substring(0,10);
+      var present = "2019-04-01";
 
-      if (coopTerm.state === "ACTIVE") {
-        return "Active";
-      } else {
-        return "Not Active";
+      var length = 10;
+      var status = "Not Active";
+
+      for(var k = 0; k<length; k++){
+        if(present.charAt(k)<start.charAt(k)){
+          return status;
+        }
       }
+
+      for(var k = 0; k<length; k++){
+        if(present.charAt(k)>end.charAt(k)){
+          return status;
+        }
+      }
+      status = "Active";
+      return status;
+
     },
 
     studentName: function (id,index) {

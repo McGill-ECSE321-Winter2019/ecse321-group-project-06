@@ -1,7 +1,10 @@
 import axios from 'axios'
+var config = require('../../config')
 
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
 var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
+// var frontendUrl = 'http://localhost:8087'
+// var backendUrl='https://localhost:8080'
 
 //get coop term information
 var AXIOS = axios.create({
