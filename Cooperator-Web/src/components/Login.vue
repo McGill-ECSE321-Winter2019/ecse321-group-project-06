@@ -7,7 +7,7 @@
         <div class="container" align="center">
 
           <div class="col-md-10" align="center" >
-            <h1 class="d-block mb-4">CO-OP-ERATOR</h1>
+            <h1 class="d-block mb-4">CO-OPERATOR</h1>
           </div>
 
         </div>
@@ -26,12 +26,20 @@
           </div>
 
           <div class="form-group">
-            <input @click="login(username, password)"
+            <b-button @click="login(username, password)"
                    type="submit"
                    value="Login"
                    class="btn btn-primary py-2 px-4 text-white"
-            />
+            > Login </b-button>
           </div>
+
+          <div class="form-group">
+            <b-button value="Register"
+                      class="btn btn-primary py-2 px-4 text-white"
+                      v-bind:to="{path:'/register'}"> Go To Register </b-button>
+          </div>
+
+          <span> {{errorLogin}}</span>
         </div>
       </div>
     </div>

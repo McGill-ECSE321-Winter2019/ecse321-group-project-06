@@ -14,6 +14,8 @@ Vue.use(BootstrapVue)
 Vue.use(VueCookie)
 Vue.config.productionTip = false
 
+Vue.use(VueCookie);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -5,8 +5,8 @@ import Help from '@/components/Help';
 import Home from '@/components/Home';
 import Events from '@/components/Events.vue';
 import CoopTerms from '@/components/CoopTerms.vue';
+import Register from '@/components/Register.vue';
 import CoopPage from '@/components/CoopPage.vue';
-
 
 Vue.use(Router)
 
@@ -16,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
     },
     {
       path: '/coop-term',
