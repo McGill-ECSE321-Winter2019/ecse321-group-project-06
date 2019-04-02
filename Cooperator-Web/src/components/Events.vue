@@ -4,7 +4,7 @@
       <div class="site-section" style="padding-top:10%">
         <div class="container" style="align:center">
           <h1>Events</h1>
-          <b-container id="events">
+          <b-container id="events" data-aos="fade-up">
             <b-row class="no-gutters">
               <b-col>
                 <Event event="Tech Fair"
