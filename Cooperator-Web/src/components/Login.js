@@ -6,6 +6,7 @@ var config = require('../../config')
 
 var frontendUrl = 'https://' + config.build.host + ':'
 var backendUrl = 'https://' + config.build.backendHost + ':'
+
 var AXIOS = axios.create({
   baseURL: backendUrl,
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
