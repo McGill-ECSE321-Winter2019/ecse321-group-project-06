@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Vue from 'vue'
 var config = require('../../config')
 
 
@@ -14,7 +15,7 @@ var AXIOS = axios.create({
 export default {
     data(){
       return {
-
+        id: '',
         students: '',
         studentsName: [],
         coopTerms:[]
@@ -22,14 +23,16 @@ export default {
   },
 
     created: function () {
-      AXIOS.get(`coopTerm/employer/3`)
-       .then(response => {
-         this.coopTerms = response.data
-
+      this.id = this.$cookie.get('id')
+      AXIOS.get(`coopTerm/employer/`+this.id)
+        .then(response => {
+          this.coopTerms = response.data
+        }).then(()=>{
+          this.getStudent();
       })
         .catch(e =>{
-         console.log("error in get coopterm request: " + e);
-         this.error = e;
+          console.log("error in get coopterm request: " + e);
+          this.error = e;
         })
   },
 
@@ -72,37 +75,21 @@ export default {
       return status;
 
     },
-
-    studentName: function (id,index) {
-
+    getStudent: async function(){
+      for (var i = 0; i < this.coopTerms.length; i++) {
+        var id = this.coopTerms[i].studentId
+        await this.getName(id, i);
+      }
+    },
+    getName: function(id, i){
       AXIOS.get(`student/` + id)
-        .then(response =>{
-          this.students = response.data;
-          this.studentsName.push(this.students.name) ;
+        .then(res => {
+          Vue.set(this.coopTerms[i], 'student', res.data['name']);
         })
         .catch(e => {
-                    console.log("error in get student request:" + e);
-                    this.error = e;
-                  })
-
-      return  this.studentsName[index];
-
-      // .then(()=> {
-      //     for (var i = 0; i < this.coopTerms.length; i++) {
-      //       var id = this.coopTerms[i].studentId
-      //
-      //       AXIOS.get(`student/` + id)
-      //         .then(res => {
-      //           this.coopTerms[i].student = res.data
-      //           this.coopTerms[i].studentName=this.coopTerms[i].student.name
-      //         })
-      //         .catch(e => {
-      //           console.log("error in get student request:" + e);
-      //           this.error = e;
-      //         })
-      //     }
-      //   })
-
+          console.log("error in get student request:" + e);
+          this.error = e;
+        })
     }
 
   }

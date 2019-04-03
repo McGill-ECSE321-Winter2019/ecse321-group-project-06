@@ -110,12 +110,13 @@
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Confirm Coop Term</label>
 
-                          <a @click="confirmCoopTerm()" class="btn-custom aos-init aos-animate">
+                          <a  @click="confirmCoopTerm()" class="btn-custom aos-init aos-animate">
                             <span>Confirm</span>
-                          </a>
+                          </a >
 
-                          <span v-if="errorConfirm" class='btn btn-primary'> ✗ </span>
-                          <span v-if="confirmTrue" class='btn btn-primary' color="white"> ✔ </span>
+                          <!--<span v-if="this.coopTerm.state" class='btn btn-primary'> ✗ </span>-->
+                          <span v-if="this.coopTerm.state!==true" class='btn btn-primary' color="white"> ✔ </span>
+
 
                         </div>
 

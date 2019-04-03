@@ -14,8 +14,8 @@
                   <th style="padding:10px; border:1px solid black;" id = "text">ACTION</th>
                 </tr>
 
-                <tr v-for="coopTerm,index in coopTerms" >
-                  <td style="padding:10px; border:1px solid black;" id = "contentText">{{studentName(coopTerm.studentId,index)}}</td>
+                <tr v-for="coopTerm in coopTerms" >
+                  <td style="padding:10px; border:1px solid black;" id = "contentText">{{coopTerm.student}}</td>
                   <td style="padding:10px; border:1px solid black;" id = "contentText">{{coopTerm.startDate.substr(0,10)}}</td>
                   <td style="padding:10px; border:1px solid black;" id = "contentText">{{coopTerm.endDate.substr(0,10)}}</td>
                   <td style="padding:10px; border:1px solid black;" id = "contentText">{{isActive(coopTerm)}}</td>
