@@ -125,27 +125,22 @@ export default {
 
     //confirm button
     confirmCoopTerm() {
-      if (this.coopTerm.state === "INACTIVE") {
-        this.coopTerm.state = "ACTIVE"
-        AXIOS.put(`/coopTerm/` + this.coopId, {
-          params: {
-            coopTerm: this.coopTerm
-          }
+      this.coopTerm.state = "ACTIVE"
+      AXIOS.put(`/coopTerm/` + this.coopId,
+        this.coopTerm
+        )
+        .then(response => {
+          this.coopTerm = response.data
+          this.coopTerm.state = "ACTIVE"
+          //confirm Student
+          console.log(this.coopTerm.state)
+          console.log("Confirmed")
         })
-          .then(response => {
-            this.coopTerm = response.data
-            this.coopTerm.state = "ACTIVE"
-            //confirm Student
-            console.log(this.coopTerm.state)
-            console.log("Confirmed")
-          })
-          .catch(e => {
-            console.log("Confirm Unsuccessful")
-            this.errorRegister = errorMsg
-            this.coopTerm.state = "INACTIVE"
-          })
-
-      }
+        .catch(e => {
+          console.log("Confirm Unsuccessful")
+          this.errorRegister = errorMsg
+          this.coopTerm.state = "INACTIVE"
+        })
     },
 
     //link of job description

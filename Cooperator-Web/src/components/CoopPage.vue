@@ -115,7 +115,7 @@
                           </a >
 
                           <!--<span v-if="this.coopTerm.state" class='btn btn-primary'> ✗ </span>-->
-                          <span v-if="this.coopTerm.state!==true" class='btn btn-primary' color="white"> ✔ </span>
+                          <span v-if="this.coopTerm.state==='ACTIVE'" class='btn btn-primary' color="white"> ✔ </span>
 
 
                         </div>
