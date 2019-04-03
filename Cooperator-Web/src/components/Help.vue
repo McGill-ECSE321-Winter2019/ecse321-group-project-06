@@ -23,7 +23,7 @@
                             and then return the form by email to <a href="mailto: careers4engineers@mcgill.ca">careers4engineers@mcgill.ca</a> or by
                             fax (514-398-2169). You will be sent a signed official copy of form CO-1029.8.33.10 by mail.
                           </p>
-                          <h3>credit forms download:</h3>
+                          <h3>Tax credit forms download:</h3>
                           <ul class="col-3">
                             <li>french version: <a href="https://www.revenuquebec.ca/fr/services-en-ligne/formulaires-et-publications/details-courant/co-1029.8.33.10/">download</a></li>
                             <li>english version: <a href="https://www.revenuquebec.ca/en/online-services/forms-and-publications/current-details/co-1029.8.33.10-t/">download</a></li>

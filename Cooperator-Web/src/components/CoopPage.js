@@ -52,8 +52,6 @@ export default {
       workPermit: '',
       coopStartDate: '',
       coopEndDate: '',
-      errorConfirm:'',
-      confirmTrue: false,
       link:'',
       coopId: null,
       studentId: null
@@ -127,19 +125,25 @@ export default {
 
     //confirm button
     confirmCoopTerm() {
-      if (this.confirmTrue === false) {
-        AXIOS.put(`/coopTerm/` + this.coopId, {},{})
-          .then(response => {
-          this.coopTerm = response.data
-          //confirm Student
-          this.confirmTrue = true
-          console.log("Confirmed")
+      if (this.coopTerm.state === "INACTIVE") {
+        this.coopTerm.state = "ACTIVE"
+        AXIOS.put(`/coopTerm/` + this.coopId, {
+          params: {
+            coopTerm: this.coopTerm
+          }
         })
+          .then(response => {
+            this.coopTerm = response.data
+            this.coopTerm.state = "ACTIVE"
+            //confirm Student
+            console.log(this.coopTerm.state)
+            console.log("Confirmed")
+          })
           .catch(e => {
-                  console.log("Confirm Unsuccessful")
-                  this.errorRegister = errorMsg
-                  this.confirmTrue = false
-                })
+            console.log("Confirm Unsuccessful")
+            this.errorRegister = errorMsg
+            this.coopTerm.state = "INACTIVE"
+          })
 
       }
     },

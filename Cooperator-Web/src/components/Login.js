@@ -54,6 +54,8 @@ export default {
           //this.$cookies.set("coopUserId", this.response.coopUserId, { expires: '1h' })
           this.username = this.$cookie.get("username") || ''
           this.password = this.$cookie.get("password") || ''
+
+          this.$cookie.set('id', this.response['coopUserId'])
           this.$cookie.set('name', this.response['name'])
           // if (this.response === 'employer') {
            //localStorage.setItem('loggedIn', "Employer")

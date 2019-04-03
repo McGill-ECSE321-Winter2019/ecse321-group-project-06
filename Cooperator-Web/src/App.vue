@@ -38,7 +38,7 @@
                     <div>
                       <b-modal id="my-modal" ref="my-modal" hide-footer title="Log out">
                         <div class="d-block text-center">
-                          <h3>You are about to log out of the system, are you sure?</h3>
+                          <h3 style="font-size: 16px">You are about to log out of the system, are you sure?</h3>
                         </div>
                         <b-button class="mt-3" variant="outline-danger" block @click="logout">Logout</b-button>
                         <b-button class="mt-2" variant="outline-secondary" block @click="hideModal">Cancel</b-button>
