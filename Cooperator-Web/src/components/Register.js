@@ -30,27 +30,27 @@ export default {
   methods: {
     register(name, email, password, selected) {
       console.log(selected)
-      if (name == '') {
+      if (name === '') {
         var errorMsg = "Invalid name"
         console.log(errorMsg)
         this.errorRegister = errorMsg
         return
       }
 
-      if (email == '') {
+      if (email === '') {
         var errorMsg = "Invalid email"
         console.log(errorMsg)
         this.errorRegister = errorMsg
         return
       }
-      if (password == '') {
+      if (password === '') {
         var errorMsg = "Invalid password"
         console.log(errorMsg)
         this.errorRegister = errorMsg
         return
       }
       this.errorRegister = ''
-      if(selected == "Employer"){
+      if(selected === "Employer"){
 
         AXIOS.post(`/employers`,{
           email: email,
@@ -62,6 +62,7 @@ export default {
             this.response = response.data
             console.log(this.response)
             this.response = "Empolyer Created!"
+            this.$cookie.set('name', name, { expires: '1h' })
             this.name= ''
             this.email= ''
             this.password= ''
