@@ -4,9 +4,9 @@
       <div class="container">
 
           <div class="col-md-10">
-            <h1 class="d-block mb-4" data-aos = "fade-up" data-aos-delay="200"> {{this.name}},</h1>
-            <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="300">Welcome to </h1>
-            <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="400"> Co-operator </h1>
+            <h1 class="d-block mb-4" data-aos = "fade-up" data-aos-delay="100"> {{this.name}},</h1>
+            <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="200">Welcome to </h1>
+            <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="300"> Co-operator </h1>
 
           </div>
         </div>
