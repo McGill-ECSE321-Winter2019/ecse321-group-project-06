@@ -71,7 +71,6 @@ public class CoopTermController {
 		return coopTerms;
 	}
 	
-	
 	/**
 	 * get a coopterm by cooptermId
 	 * @param id
