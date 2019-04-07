@@ -689,9 +689,9 @@ h1, h2, h3, h4, h5,
   color: #e9e9ea; }
 
 .form-group .form-control {
-  color: #fff !important;
+  color: #0b0b0b !important;
   background: none;
-  border: 2px solid #fff; }
+  border: 2px solid #9e9e9e; }
 .form-group .form-control:active, .form-group .form-control:focus {
   background: none; }
 

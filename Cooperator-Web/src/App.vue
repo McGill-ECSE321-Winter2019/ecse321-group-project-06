@@ -83,7 +83,7 @@
 
             <div class="col-md-12 text-center">
               <div class="border-top pt-5">
-                <p>
+                <p style="color: #ffffff;">
                   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                   Copyright &copy; All rights reserved | This template is made with <i class="icon-heart text-primary" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
                   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -122,12 +122,14 @@ export default {
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
-@import 'style/fonts/icomoon/style.css';
+
 @import 'style/css/bootstrap.min.css';
-@import 'style/css/magnific-popup.css';
-@import 'style/css/owl.theme.default.min.css';
-@import 'style/css/bootstrap-datepicker.css';
-@import 'style/fonts/flaticon/font/flaticon.css';
 @import 'style/css/aos.css';
 @import 'style/css/style.css';
+@import 'style/css/magnific-popup.css';
+
+/*@import 'style/fonts/icomoon/style.css';*/
+/*@import 'style/css/owl.theme.default.min.css';*/
+/*@import 'style/css/bootstrap-datepicker.css';*/
+/*@import 'style/fonts/flaticon/font/flaticon.css';*/
 </style>
