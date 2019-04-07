@@ -130,16 +130,6 @@ export default {
                coopTerm.status = 'INACTIVE'
             }
           }
-
-          //
-          // if (year <= current.getFullYear() && current.getFullYear() <= endYear &&
-          //   month <= current.getMonth() && current.getMonth() <= endMonth &&
-          //   dt <= current.getDay() && current.getDay() <= endDt) {
-          //     coopTerm.status = 'ACTIVE'
-          //   }
-          //   else {
-          //     coopTerm.status = 'INACTIVE'
-          //   }
         }
         this.getStudent();
           this.$refs.table.refresh();
