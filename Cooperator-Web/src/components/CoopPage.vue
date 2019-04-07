@@ -89,23 +89,28 @@
 
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Upload Student Evaluation Form</label>
-                          <UploadFile v-on:downloadURL="handleDownLoadURLInParent"/>
-                          <div class="col-sm-2">
-                            <button @click="updateCoopTerm()"
+                          <div>
+                            <b-button v-if="!this.upload" class="btn btn-default text-white" @click="toggleUpload">upload file</b-button>
+                          </div>
+                          <UploadFile v-if="this.upload" v-on:downloadURL="handleDownLoadURLInParent"/>
+                          <div v-if="this.upload" class="col-sm-2">
+                            <b-button @click="updateCoopTerm()"
                                     type="button"
                                     class="btn btn-default text-white"
                             > Upload
-                            </button>
+                            </b-button>
+
                           </div>
                           <div  v-if="this.coopTerm.evaluationForm!==null" class="col-sm-2">
-                              <button @click="evaluationFormView()"
+                              <b-button @click="evaluationFormView()"
                                       type="button"
                                       class="btn btn-default text-white"
                               > DownLoad
-                              </button>
+                              </b-button>
                           </div>
 
                         </div>
+
 
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Confirm Coop Term</label>
@@ -138,6 +143,9 @@
       </div>
 
     </div>
+    <b-modal v-model="modalShow" title="File Upload">
+      <p class="my-4">File Successfully Uploaded!</p>
+    </b-modal>
   </div>
 
 

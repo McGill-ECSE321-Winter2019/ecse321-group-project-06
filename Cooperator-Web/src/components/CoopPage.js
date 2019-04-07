@@ -63,7 +63,9 @@ export default {
       link:'',
       coopId: null,
       studentId: null,
-      evaluationForm:''
+      evaluationForm:'',
+      upload: null,
+      modalShow: false
     }
   },
   created: function () {
@@ -75,6 +77,12 @@ export default {
         //Handle job description link
         this.link = this.coopTerm.jobDescription;
         this.evaluationForm = this.coopTerm.evaluationForm;
+        if(this.evaluationForm === null){
+          this.upload = true;
+        }
+        else{
+          this.upload = false;
+        }
         //Determine if  work permit is needed
         if (this.coopTerm.ifWorkPermitNeeded === true) {
           this.workPermit = 'Yes'
@@ -131,6 +139,9 @@ export default {
     })
   },
   methods: {
+    toggleUpload: function(){
+      this.upload = !this.upload;
+    },
     handleDownLoadURLInParent: function(downloadURL){
       this.evaluationForm = downloadURL;
     },
@@ -160,7 +171,9 @@ export default {
         this.coopTerm
       )
         .then(response => {
-            this.coopTerm = response.data
+            this.coopTerm = response.data;
+            this.upload = false;
+            this.modalShow = true;
             console.log(this.coopTerm.evaluationForm)
             console.log("upload Successful")
       })
