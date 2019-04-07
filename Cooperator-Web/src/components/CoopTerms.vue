@@ -2,7 +2,7 @@
   <div id="table">
     <div class="site-wrap">
       <div class="site-section" style="padding-top:10%">
-        <div class="container" style="align:center">
+        <div class="container" style="align:center" data-aos="fade-up">
           <h1 class="page-title">All Coop-Terms</h1>
           <div class = "container">
             <b-row>
