@@ -16,9 +16,9 @@ var AXIOS = axios.create({
 })
 
 //get student information from another url
-const studentAXIOS = axios.create ({
-  baseURL: studentBackendUrl
-})
+// const studentAXIOS = axios.create ({
+//   baseURL: studentBackendUrl
+// })
 
 
 function CoopTermDto(startDate, endDate, location, academicSemester,
@@ -121,7 +121,7 @@ export default {
 
     this.studentId = this.$route.params.studentId;
 
-    studentAXIOS.get(`/student/` + this.studentId)
+    AXIOS.get(`/student/` + this.studentId)
       .then(response => {
         this.student = response.data
       })
