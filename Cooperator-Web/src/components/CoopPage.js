@@ -1,8 +1,12 @@
 import axios from 'axios'
 var config = require('../../config')
 
+
+// var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
+// var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
 var frontendUrl = 'https://' + config.build.host + ':'
 var backendUrl = 'https://' + config.build.backendHost + ':'
+var studentBackendUrl = 'https://sturegistration-front-009b01.herokuapp.com/'
 
 //get coop term information
 var AXIOS = axios.create({
@@ -11,9 +15,9 @@ var AXIOS = axios.create({
 })
 
 //get student information from another url
-// const studentAXIOS = axios.create ({
-//   baseURL: studentBackendUrl
-// })
+const studentAXIOS = axios.create ({
+  baseURL: studentBackendUrl
+})
 
 
 function CoopTermDto(startDate, endDate, location, academicSemester,
@@ -113,7 +117,7 @@ export default {
 
     this.studentId = this.$route.params.studentId;
 
-    AXIOS.get(`/student/` + this.studentId)
+    studentAXIOS.get(`/student/` + this.studentId)
       .then(response => {
         this.student = response.data
       })
