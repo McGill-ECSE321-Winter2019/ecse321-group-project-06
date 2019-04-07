@@ -1,6 +1,4 @@
 <template>
-
-
   <div class="site-wrap">
     <div class="site-section" style="padding-top:10%">
       <div class="container" style="align:center">
@@ -213,7 +211,6 @@
     font-family: inherit;
     text-transform: uppercase;
   }
-
 
 </style>
 

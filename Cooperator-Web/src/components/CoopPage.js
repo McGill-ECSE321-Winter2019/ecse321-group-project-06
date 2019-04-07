@@ -2,24 +2,13 @@ import axios from 'axios'
 import UploadFile from "./uploadfile";
 var config = require('../../config')
 
-
-// var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
-// var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
 var frontendUrl = 'https://' + config.build.host + ':'
 var backendUrl = 'https://' + config.build.backendHost + ':'
-var studentBackendUrl = 'https://sturegistration-front-009b01.herokuapp.com/'
 
-//get coop term information
 var AXIOS = axios.create({
   baseURL: backendUrl,
   headers: {'Access-Control-Allow-Origin': frontendUrl}
 })
-
-//get student information from another url
-// const studentAXIOS = axios.create ({
-//   baseURL: studentBackendUrl
-// })
-
 
 function CoopTermDto(startDate, endDate, location, academicSemester,
                      ifWorkPermitNeeded, jobDescription, evaluationForm, coopPlacement,
@@ -37,7 +26,6 @@ function CoopTermDto(startDate, endDate, location, academicSemester,
   this.employer = employer
   this.student = student
   this.status = status
-
 }
 
 function StudentDto(name, email) {
@@ -70,12 +58,14 @@ export default {
   },
   created: function () {
     this.coopId = this.$route.params.coopId
+    /* get coopterm */
     AXIOS.get(`/coopTerm/` + this.coopId )
       .then(response => {
         this.coopTerm = response.data
 
         //Handle job description link
         this.link = this.coopTerm.jobDescription;
+        //get evaluation form, conditionally render upload field
         this.evaluationForm = this.coopTerm.evaluationForm;
         if(this.evaluationForm === null){
           this.upload = true;
@@ -127,7 +117,7 @@ export default {
         this.errorCoopTerm = e
       })
 
-
+    /*get student*/
     this.studentId = this.$route.params.studentId;
 
     AXIOS.get(`/student/` + this.studentId)
@@ -139,13 +129,15 @@ export default {
     })
   },
   methods: {
+    /*conditionally render upload file button*/
     toggleUpload: function(){
       this.upload = !this.upload;
     },
+    /*update downloadURL*/
     handleDownLoadURLInParent: function(downloadURL){
       this.evaluationForm = downloadURL;
     },
-    //confirm button
+    /*update coopterm status*/
     confirmCoopTerm() {
       this.coopTerm.state = "ACTIVE"
       AXIOS.put(`/coopTerm/` + this.coopId,
@@ -164,7 +156,7 @@ export default {
           this.coopTerm.state = "INACTIVE"
         })
     },
-
+    /*update coopterm evaluation form*/
     updateCoopTerm(){
       this.coopTerm.evaluationForm=this.evaluationForm
       AXIOS.put(`/coopTerm/` + this.coopId,
@@ -179,10 +171,11 @@ export default {
       })
     },
 
-    //link of job description
+    /*link to job description*/
     coopJobDescription(){
       window.location.href = this.link;
     },
+    /*link to evaluation form*/
     evaluationFormView(){
       window.location.href = this.evaluationForm;
     },

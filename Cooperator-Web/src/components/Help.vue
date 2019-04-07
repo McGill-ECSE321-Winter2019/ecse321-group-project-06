@@ -31,13 +31,13 @@
                           <p>for more reference please go to: <a href="https://www.mcgill.ca/careers4engineers/engineering-internship-program/employers/tax-credits">McGill</a></p>
                         </b-card-text>
                       </b-tab>
-                      <!--<b-tab title="Coop Placement Form">-->
-                        <!--<b-card-text>-->
-                          <!--<h1>Instructions</h1>-->
-                          <!--<p>proof of co-op placement</p>-->
-                          <!--<a href="">download</a>-->
-                        <!--</b-card-text>-->
-                      <!--</b-tab>-->
+                      <b-tab title="Coop Placement Form">
+                        <b-card-text>
+                          <h1>Instructions</h1>
+                          <p>proof of co-op placement</p>
+                          <a href="https://uwaterloo.ca/safety-office/sites/ca.safety-office/files/uploads/files/letter_to_placement_employers_mar2018_-_fillable.pdf">download</a>
+                        </b-card-text>
+                      </b-tab>
                       <b-tab title="Evaluation Form">
                         <b-card-text>
                           <h1>Instructions</h1>
