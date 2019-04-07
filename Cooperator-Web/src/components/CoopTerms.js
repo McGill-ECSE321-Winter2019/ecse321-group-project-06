@@ -41,7 +41,7 @@ export default {
               sortable: true
             },
             status: {
-              label: "ACTIVE",
+              label: "STATUS",
               sortable: true
             },
             action: {
@@ -63,50 +63,73 @@ export default {
         }).then(()=>{
 
         for (var i = 0; i < this.coopTerms.length; i++) {
-          var coopTerm = this.coopTerms[i];
+          var coopTerm = this.coopTerms[i]
           //Handle Json startDate
           var startDate = new Date(coopTerm.startDate)
-          var year = startDate.getFullYear();
-          var month = startDate.getMonth() + 1;
+          var year = startDate.getFullYear()
+          var month = startDate.getMonth() + 1
           var dt = startDate.getDate();
-          startDate.getDate()
           if (dt < 10) {
-            dt = '0' + dt;
+            dt = '0' + dt
           }
           if (month < 10) {
-            month = '0' + month;
+            month = '0' + month
           }
-          startDate = (year + '-' + month + '-' + dt);
-          coopTerm.startDate = startDate;
+          startDate = (year + '-' + month + '-' + dt)
+          coopTerm.startDate = startDate
 
           //Handle Json endDate
           var endDate = new Date(coopTerm.endDate)
-          var endYear = endDate.getFullYear();
-          var endMonth = endDate.getMonth() + 1;
-          var endDt = endDate.getDate();
+          var endYear = endDate.getFullYear()
+          var endMonth = endDate.getMonth() + 1
+          var endDt = endDate.getDate()
 
-          endDate.getDate()
           if (endDt < 10) {
-            endDt = '0' + endDt;
+            endDt = '0' + endDt
           }
           if (endMonth < 10) {
-            endMonth = '0' + endMonth;
+            endMonth = '0' + endMonth
           }
-          endDate = (endYear + '-' + endMonth + '-' + endDt);
-          coopTerm.endDate = endDate;
+          endDate = (endYear + '-' + endMonth + '-' + endDt)
+          coopTerm.endDate = endDate
 
           //Determine if it is a active coop term or not
           var current = new Date()
-          if (year <= current.getFullYear() && current.getFullYear() <= endYear &&
-            month <= current.getMonth() && current.getMonth() <= endMonth &&
-            dt <= current.getDay() && current.getDay() <= endDt) {
-              coopTerm.status = 'ACTIVE'
+          var currentYear = current.getFullYear()
+          var currentMonth = current.getMonth() + 1
+          var currentDt = current.getDate()
+          if (currentDt < 10) {
+            currentDt = '0' + currentDt
+          }
+          if (currentMonth < 10) {
+            currentMonth = '0' + currentMonth
+          }
+          var currentDate = currentYear + '-' + currentMonth + '-' + currentDt
+          console.log(currentDate)
+          coopTerm.status = "ACTIVE";
+          for(var k = 0; k < startDate.length; k++){
+            if(currentDate.charAt(k) === "-"){
+              continue;
             }
-            else {
+            if(currentDate.charCodeAt(k)>startDate.charCodeAt(k)){
+              break;
+            }
+            if(currentDate.charCodeAt(k)<startDate.charCodeAt(k)){
               coopTerm.status = 'INACTIVE'
             }
+          }
 
-
+          for(var k = 0; k<length; k++){
+            if(currentDate.charAt(k) === "-"){
+              continue;
+            }
+            if(currentDate.charCodeAt(k)<endDate.charCodeAt(k)){
+              break;
+            }
+            if(currentDate.charCodeAt(k)>endDate.charCodeAt(k)){
+               coopTerm.status = 'INACTIVE'
+            }
+          }
         }
         this.getStudent();
           this.$refs.table.refresh();
