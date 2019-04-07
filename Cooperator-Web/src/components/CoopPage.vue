@@ -87,23 +87,28 @@
                           </div>
                         </div>
 
-                        <div class="form-group row">
+                        <!--<div class="form-group row">-->
 
-                          <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3"> Student Evaluation
-                            Form </label>
-                          <div class="col col-lg-4">
-                            <b-form-file
-                              v-model="file"
-                              :state="Boolean(file)"
-                              placeholder="Choose a file..."
-                              drop-placeholder="Drop file here..."
-                            >
-                              <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-                            </b-form-file>
-                          </div>
-                          <div class="col col-lg-2">
-                            <button type="button" class="btn btn-primary" v-on:click="submitFile()">Submit</button>
-                          </div>
+                          <!--<label for="staticEmail" class="col-sm-4 col-form-label col-lg-3"> Student Evaluation-->
+                            <!--Form </label>-->
+                          <!--<div class="col col-lg-4">-->
+                            <!--<b-form-file-->
+                              <!--v-model="file"-->
+                              <!--:state="Boolean(file)"-->
+                              <!--placeholder="Choose a file..."-->
+                              <!--drop-placeholder="Drop file here..."-->
+                            <!--&gt;-->
+                              <!--<input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>-->
+                            <!--</b-form-file>-->
+                          <!--</div>-->
+                          <!--<div class="col col-lg-2">-->
+                            <!--<button type="button" class="btn btn-primary" v-on:click="submitFile()">Submit</button>-->
+                          <!--</div>-->
+
+                        <!--</div>-->
+
+                        <div class="form-group row">
+                          <UploadFile/>
 
                         </div>
 

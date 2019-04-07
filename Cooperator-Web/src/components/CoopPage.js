@@ -1,4 +1,5 @@
 import axios from 'axios'
+import UploadFile from "./uploadfile";
 var config = require('../../config')
 
 
@@ -46,6 +47,9 @@ function StudentDto(name, email) {
 
 export default {
   name: "coopPage",
+  components:{
+    UploadFile
+  },
   data() {
     return {
       coopTerm: '',
