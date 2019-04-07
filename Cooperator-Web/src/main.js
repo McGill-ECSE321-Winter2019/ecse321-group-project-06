@@ -9,9 +9,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import VueCookie from'vue-cookie'
+import firebase from 'firebase'
+import Vuetify from 'vuetify'
+
 
 Vue.use(BootstrapVue)
 Vue.use(VueCookie)
+Vue.use(firebase)
+Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 Vue.use(VueCookie);
