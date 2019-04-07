@@ -62,7 +62,8 @@ export default {
       coopEndDate: '',
       link:'',
       coopId: null,
-      studentId: null
+      studentId: null,
+      evaluationForm:''
     }
   },
   created: function () {
@@ -73,7 +74,7 @@ export default {
 
         //Handle job description link
         this.link = this.coopTerm.jobDescription;
-
+        this.evaluationForm = this.coopTerm.evaluationForm;
         //Determine if  work permit is needed
         if (this.coopTerm.ifWorkPermitNeeded === true) {
           this.workPermit = 'Yes'
@@ -130,7 +131,9 @@ export default {
     })
   },
   methods: {
-
+    handleDownLoadURLInParent: function(downloadURL){
+      this.evaluationForm = downloadURL;
+    },
     //confirm button
     confirmCoopTerm() {
       this.coopTerm.state = "ACTIVE"
@@ -151,9 +154,24 @@ export default {
         })
     },
 
+    updateCoopTerm(){
+      this.coopTerm.evaluationForm=this.evaluationForm
+      AXIOS.put(`/coopTerm/` + this.coopId,
+        this.coopTerm
+      )
+        .then(response => {
+            this.coopTerm = response.data
+            console.log(this.coopTerm.evaluationForm)
+            console.log("upload Successful")
+      })
+    },
+
     //link of job description
     coopJobDescription(){
       window.location.href = this.link;
+    },
+    evaluationFormView(){
+      window.location.href = this.evaluationForm;
     },
   }
 
