@@ -59,7 +59,7 @@
 
 <!--</style>-->
 <template>
-  <div>
+  <div class="col-sm-2">
     <v-btn
       @click.native="selectFile"
       v-if="!uploadEnd && !uploading">
@@ -73,15 +73,14 @@
       accept=".pdf"
       :multiple="false"
       @change="detectFiles($event)" />
-      <v-btn
-        class="ma-0"
-        dark
-        small
-        color="error"
-      >
-        <a v-bind:href="`${this.downloadURL}`"> {{this.fileName}}</a>
-
-      </v-btn>
+    <v-btn v-if="this.fileName!==''"
+      class="ma-0"
+      dark
+      small
+      color="error"
+    >
+      <a> {{this.fileName}}</a>
+    </v-btn>
     </div>
 </template>
 
@@ -140,9 +139,6 @@
 </script>
 
 <style>
-  .progress-bar {
-    margin: 10px 0;
-  }
   input[type="file"] {
     position: absolute;
     clip: rect(0,0,0,0);
