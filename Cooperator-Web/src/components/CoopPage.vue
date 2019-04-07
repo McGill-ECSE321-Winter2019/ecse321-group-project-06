@@ -87,28 +87,23 @@
                           </div>
                         </div>
 
-                        <!--<div class="form-group row">-->
-
-                          <!--<label for="staticEmail" class="col-sm-4 col-form-label col-lg-3"> Student Evaluation-->
-                            <!--Form </label>-->
-                          <!--<div class="col col-lg-4">-->
-                            <!--<b-form-file-->
-                              <!--v-model="file"-->
-                              <!--:state="Boolean(file)"-->
-                              <!--placeholder="Choose a file..."-->
-                              <!--drop-placeholder="Drop file here..."-->
-                            <!--&gt;-->
-                              <!--<input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>-->
-                            <!--</b-form-file>-->
-                          <!--</div>-->
-                          <!--<div class="col col-lg-2">-->
-                            <!--<button type="button" class="btn btn-primary" v-on:click="submitFile()">Submit</button>-->
-                          <!--</div>-->
-
-                        <!--</div>-->
-
                         <div class="form-group row">
-                          <UploadFile/>
+                          <label for="staticEmail" class="col-sm-4 col-form-label col-lg-3">Upload Student Evaluation Form</label>
+                          <UploadFile v-on:downloadURL="handleDownLoadURLInParent"/>
+                          <div class="col-sm-2">
+                            <button @click="updateCoopTerm()"
+                                    type="button"
+                                    class="btn btn-default text-white"
+                            > Upload
+                            </button>
+                          </div>
+                          <div  v-if="this.coopTerm.evaluationForm!==null" class="col-sm-2">
+                              <button @click="evaluationFormView()"
+                                      type="button"
+                                      class="btn btn-default text-white"
+                              > DownLoad
+                              </button>
+                          </div>
 
                         </div>
 
@@ -119,7 +114,6 @@
                             <span>Confirm</span>
                           </a >
 
-                          <!--<span v-if="this.coopTerm.state" class='btn btn-primary'> ✗ </span>-->
                           <span v-if="this.coopTerm.state==='ACTIVE'" class='btn btn-primary' color="white"> ✔ </span>
 
 
@@ -137,8 +131,6 @@
                 </div>
               </b-col>
             </b-row>
-
-
           </b-container>
 
 
