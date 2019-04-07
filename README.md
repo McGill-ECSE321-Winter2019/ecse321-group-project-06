@@ -9,7 +9,7 @@ In a team of five students, our goal is to gather requriements, design a multi-t
 Our team focuses on company (employer) viewpoint. An employer can do the following actions in the CO-OPERATOR System:
 - Confirm when a student has started the co-op position
 - Complete a student evaluation form as a confirmation of completion 
-- download a proof of co-op placement and access taxk credit forms with instructions 
+- Download a proof of co-op placement and access taxk credit forms with instructions 
 - Be notified about or invited to upcoming events
 
 # Menu 
