@@ -26,7 +26,6 @@ import ca.mcgill.ecse321.cooperator.entity.Event;
 import ca.mcgill.ecse321.cooperator.entity.Student;
 import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 
-
 @CrossOrigin
 @Controller
 @RequestMapping("/coopTerm")
@@ -57,7 +56,7 @@ public class CoopTermController {
 	/**
 	 * get a list of coopterms by employer id 
 	 * @param id
-	 * @return coopTermDtos 
+	 * @return coopTermDtos
 	 */
 	@GetMapping(value = {"/employer/{id}", "/employer/{id}/"})
 	@ResponseBody
@@ -98,6 +97,7 @@ public class CoopTermController {
 	}
 
 	/**
+	 * convert coopterm to coopTermDto
 	 * @param coopTerm
 	 * @return
 	 */
@@ -110,15 +110,5 @@ public class CoopTermController {
 				coopTerm.getJobDescription(), coopTerm.getEvaluationForm(), coopTerm.getCoopPlacement(), 
 				coopTerm.getTaxCreditForm(), coopTerm.getcoopTermId(),  coopTerm.getEmployer().getCoopUserId(), coopTerm.getStudent().getCoopUserId(), coopTerm.getState());
 		return coopTermDto;
-	}
-	
-	private StudentDto convertToStudentDto(Student student) {
-		StudentDto studentDto = new StudentDto(student.getEmail(),student.getPassword(), student.getName(),student.getCoopUserId(),student.getSchool(), student.getGraduationDate());
-		return studentDto;
-	}
-
-	private EmployerDto convertToEmployerDto(Employer employer) {
-		EmployerDto employerDto = new EmployerDto(employer.getEmail(), employer.getPassword(), employer.getName(), employer.getCoopUserId());
-		return employerDto;
 	}
 }

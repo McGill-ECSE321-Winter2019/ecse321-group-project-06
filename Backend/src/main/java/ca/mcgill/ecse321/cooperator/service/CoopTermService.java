@@ -33,7 +33,21 @@ public class CoopTermService {
 	@Autowired
 	StudentService studentService;
 
-	/* exceptions */
+	/**
+	 * create a coopTerm 
+	 * check the input and throws exception if validation fails
+	 *  
+	 * @param location
+	 * @param startDate
+	 * @param academicSemester
+	 * @param ifWorkPermitNeeded
+	 * @param jobDescription
+	 * @param employerId
+	 * @param endDate
+	 * @param studentId
+	 * @param state
+	 * @return CoopTerm pReturn
+	 */
 	@SuppressWarnings("deprecation")
 	@Transactional
     public CoopTerm createCoopTerm(String location, Date startDate, String academicSemester, boolean ifWorkPermitNeeded,
@@ -85,7 +99,13 @@ public class CoopTermService {
 		return pReturn;
 	}
 
-	/* id getter */
+	/**
+	 * get a coopterm by id
+	 * throws exception if the coopterm is not found
+	 * 
+	 * @param coopTermId
+	 * @return CoopTerm s
+	 */
 	@Transactional
 	public CoopTerm getCoopTerm(int coopTermId) {
 		
@@ -97,7 +117,15 @@ public class CoopTermService {
 		return s;
 	}
 	
-	/*update a CoopTerm*/
+	/**
+	 * update the coopTerm with the coopterm id
+	 * throws exception if the coopterm is not found
+	 * return updated coopterm
+	 * 
+	 * @param coopTermId
+	 * @param newCoopTerm
+	 * @return CoopTerm s
+	 */
 	@Transactional
 	public CoopTerm updateCoopTerm(int coopTermId, CoopTerm newCoopTerm) {
 		
@@ -115,13 +143,22 @@ public class CoopTermService {
 		return s;
 	}
 	
-	/* get coopterms list */
+	/**
+	 * get all coopterms
+	 * 
+	 * @return List<CoopTerm>
+	 */
 	@Transactional
 	public List<CoopTerm> getAllCoopTerms() {
 		return toList ( coopTermRepository.findAll());
 	}
 	
-	/* get all the coop terms in charge by an employer */
+	/**
+	 * get a list of cooopterms of an employer 
+	 * 
+	 * @param userId
+	 * @return List<CoopTerm>
+	 */
 	@Transactional
 	public List<CoopTerm> getAllCoopTermOfAnEmployer(int userId) {
 		List<CoopTerm> allCoopTerms = getAllCoopTerms();
@@ -138,7 +175,12 @@ public class CoopTermService {
 		return coopTermsOfEmployer;
 	}
 	
-	/* get all the coop terms of a student */
+	/**
+	 * get a list of coopterms of a student
+	 * 
+	 * @param userId
+	 * @return
+	 */
 	@Transactional
 	public List<CoopTerm> getAllCoopTermsOfAnStudent(int userId) {
 		List<CoopTerm> allCoopTerms = getAllCoopTerms();
@@ -155,6 +197,11 @@ public class CoopTermService {
 		return coopTermsOfStudent;
 	}
 	
+	/**
+	 * convert iterable to List
+	 * @param iterable
+	 * @return List<CoopTemr>
+	 */
 	private List<CoopTerm> toList(Iterable<CoopTerm> iterable){
 		List<CoopTerm> resultList = new ArrayList<CoopTerm>();
 		for (CoopTerm t : iterable) {

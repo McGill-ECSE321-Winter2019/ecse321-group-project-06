@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Table;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import java.util.Set;
 import javax.persistence.OneToMany;
 
 @Entity

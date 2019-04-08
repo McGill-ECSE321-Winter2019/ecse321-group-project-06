@@ -44,7 +44,9 @@ public class CoopTermServiceTest {
 		coopTermRepository.deleteAll();
 	}
 	
-	/* Test whether coopterm can be created successfully*/
+	/**
+	 * Test if coopterm can be created successfully
+	 */
 	@Test
 	public void testCreateCoopTerm() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -83,7 +85,9 @@ public class CoopTermServiceTest {
 		
 	}
 	
-    /* Test creating coopterm with no location provided, should throw exception */
+    /**
+     * Test creating coopterm with no location provided, should throw exception 
+     */
 	@Test
 	public void testCreateCoopTermWithNullLocation() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -117,7 +121,9 @@ public class CoopTermServiceTest {
 		return;
 	}
 
-	/* Test creating coopterm with no start date provided, should throw exception */
+	/**
+	 * Test creating coopterm with no start date provided, should throw exception 
+	 */
 	@Test
 	public void testCreateCoopTermWithNullStartDate() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -150,7 +156,9 @@ public class CoopTermServiceTest {
 	}
 	
 	
-	/* Test creating coopterm with no academic semester provided, should throw exception */
+	/**
+	 * Test creating coopterm with no academic semester provided, should throw exception
+	 */
 	@Test
 	public void testCreateCoopTermWithNullAcademicSemester() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -183,7 +191,9 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
-	/* Test creating coopterm with no job description provided, should throw exception */
+	/**
+	 * Test creating coopterm with no job description provided, should throw exception 
+	 */
 	@Test
 	public void testCreateCoopTermWithNullJobDescription() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -216,7 +226,9 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
-	/* Test creating coopterm with no employer provided, should throw exception */
+	/**
+	 * Test creating coopterm with no employer provided, should throw exception 
+	 */
 	@Test
 	public void testCreateCoopTermWithNullEmployer() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -248,7 +260,9 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
-	/* Test creating coopterm with no end date provided, should throw exception */
+	/**
+	 * Test creating coopterm with no end date provided, should throw exception
+	 */
 	@Test
 	public void testCreateCoopTermWithNullEndDate() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
@@ -279,6 +293,10 @@ public class CoopTermServiceTest {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());
 	}
 	
+	/**
+	 * test create a coopterm without a valid student
+	 * throws exception
+	 */
 	@Test
 	public void testCreateCoopTermWithNullStudent() {
 		assertEquals(0, coopTermService.getAllCoopTerms().size());

@@ -58,7 +58,6 @@ import ca.mcgill.ecse321.cooperator.service.CoopTermService;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
-
 public class CooperatorControllerIntegrationTest {
 
 	private MockMvc mvc;
@@ -161,7 +160,9 @@ public class CooperatorControllerIntegrationTest {
 		coopTerms.add(testCoopTerm2);
 		}
 	
-	/*test successfully create a coopterm*/
+	/**
+	 * test successfully create a coopterm
+	 */
 	@Test
 	public void canCreateCoopTerm() throws Exception {
 		when (coopTermRepo.save(anyObject())).thenAnswer((InvocationOnMock invocation) -> {
@@ -186,7 +187,9 @@ public class CooperatorControllerIntegrationTest {
 		
 	}
 	
-	/*test successfully get one coopterm*/
+	/**
+	 * test successfully get one coopterm
+	 */
 	@Test
 	public void canGetOneCoopTerm() throws Exception {
 		when(coopTermRepo.findById(anyInt())).thenAnswer((InvocationOnMock invocation)->{
@@ -202,7 +205,9 @@ public class CooperatorControllerIntegrationTest {
 		assertEquals(objAsJson,responseContent);
 	}
 
-	/*test successfully update a coopterm*/
+	/**
+	 * test successfully update a coopterm
+	 */
 	@Test
 	public void canupdateCoopTerm() throws Exception{
 		when(coopTermRepo.findById(anyInt())).thenReturn(testCoopTerm1);

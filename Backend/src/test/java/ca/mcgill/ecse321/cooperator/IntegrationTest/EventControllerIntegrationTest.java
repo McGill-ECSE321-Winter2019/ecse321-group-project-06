@@ -71,7 +71,9 @@ public class EventControllerIntegrationTest {
 		testEvents.add(testEvent);
 		}
 	
-	/*test successfully get all events*/
+	/**
+	 * test successfully get all events
+	 */
 	@Test
 	public void canGetEvents() throws Exception{
 		when(eventRepo.findAll()).thenReturn(testEvents);

@@ -32,8 +32,6 @@ public class StudentController {
 	@Autowired
 	private EmployerService employerService;
 
-	
-	
 	/**
 	 * Create a student 
 	 * @param studentDto
@@ -86,7 +84,7 @@ public class StudentController {
 	
 	
 	/**
-	 * Convert to Dto method for student 
+	 * Convert student to studentDto method for student 
 	 * @param s
 	 * @return studentDto
 	 */

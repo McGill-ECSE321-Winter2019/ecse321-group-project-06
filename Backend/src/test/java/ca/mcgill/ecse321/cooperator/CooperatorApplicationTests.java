@@ -75,13 +75,17 @@ public class CooperatorApplicationTests {
 		});
 	}
 	
-	/* test Mock creation of the employer */
+	/**
+	 * test Mock creation of the employer
+	 */
 	@Test
 	public void testMockEmployerCreation() {
 		assertNotNull(employer);
 	}
 
-	/* test query found */
+	/**
+	 * test query found
+	 */
 	@Test
 	public void testMockEmployerQueryFound() {
 		assertNotNull(employerService.getEmployerByEmail(SYSTEM_KEY));

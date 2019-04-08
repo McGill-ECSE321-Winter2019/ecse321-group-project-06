@@ -24,8 +24,6 @@ import ca.mcgill.ecse321.cooperator.entity.*;
 @SpringBootTest
 @DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
 public class StudentServiceTest {
-
-
 	@Autowired
 	private StudentService service;
 
@@ -34,12 +32,12 @@ public class StudentServiceTest {
 
 	@After
 	public void clearDatabase() {
-		// First, we clear registrations to avoid exceptions due to inconsistencies
 		studentRepository.deleteAll();
-		// Then we can clear the other tables
 	}
 
-	/* Test creating student, should return no error */
+	/**
+	 * Test creating student, should return no error
+	 */
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudent() {
@@ -73,7 +71,9 @@ public class StudentServiceTest {
 		assertEquals(graduationDate, allStudents.get(0).getGraduationDate());
 	}
 
-	/* Test creating student with no email provided, should throw exception */
+	/**
+	 * Test creating student with no email provided, should throw exception
+	 */
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudentWithNullEmail() {
@@ -93,14 +93,15 @@ public class StudentServiceTest {
 		try {
 			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("Email cannot be empty!", error);
 		assertEquals(0, service.getAllStudents().size());		
 	}
 
-	/* Test creating student with no user password provided, should throw exception */
+	/**
+	 * Test creating student with no user password provided, should throw exception
+	 */
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudentWithNullPassword() {
@@ -120,14 +121,15 @@ public class StudentServiceTest {
 		try {
 			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("password cannot be empty!", error);
 		assertEquals(0, service.getAllStudents().size());		
 	}
 
-	/* Test creating student with no name provided, should throw exception */
+	/**
+	 * Test creating student with no name provided, should throw exception
+	 */
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudentWithNullName() {
@@ -147,14 +149,15 @@ public class StudentServiceTest {
 		try {
 			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("Student name cannot be empty!", error);
 		assertEquals(0, service.getAllStudents().size());		
 	}
 
-	/* Test creating student with no school provided, should throw exception */
+	/**
+	 * Test creating student with no school provided, should throw exception
+	 */
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testCreateStudentWithNullSchool() {
@@ -173,14 +176,15 @@ public class StudentServiceTest {
 		try {
 			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("school entry cannot be empty!", error);
 		assertEquals(0, service.getAllStudents().size());		
 	}
 
-	/* Test creating student with no graduation date provided, should throw exception */
+	/**
+	 * Test creating student with no graduation date provided, should throw exception
+	 */
 	@Test
 	public void testCreateStudentWithNullDate() {
 		assertEquals(0, service.getAllStudents().size());
@@ -196,7 +200,6 @@ public class StudentServiceTest {
 		try {
 			student = service.createStudent(userEmail,userPassword,studentName,studentId,school,graduationDate);
 		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
 			error = e.getMessage();
 		}
 		assertEquals("Graduation Month cannot be empty!", error);

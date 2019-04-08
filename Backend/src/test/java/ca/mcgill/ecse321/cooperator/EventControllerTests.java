@@ -91,20 +91,26 @@ public class EventControllerTests {
 		  });
 	}
 	
-	/*test successfully create mock Event */
+	/**
+	 * test successfully create mock Event
+	 */
 	@Test
 	public void testMockEventCreation() {
 		assertNotNull(event);
 	}
 	
-	/*test successfully get one event by id return corresponding event*/
+	/**
+	 * test successfully get one event by id return corresponding event
+	 */
 	@Test
 	public void testGetEvent() {
 		Event eventReturned = eventService.getEvent(1);
 		compare(event, eventReturned);
 	}
 	
-	/*test successfully delete one event by id*/
+	/**
+	 * test successfully delete one event by id
+	 */
 	@Test
 	public void testDeleteEvent() {
 		eventService.deleteEvent(1);
@@ -113,7 +119,9 @@ public class EventControllerTests {
 	@Rule
 	public ExpectedException exceptionRule = ExpectedException.none();
 	
-	/*test get event returns null should throw exception*/
+	/**
+	 * test get event returns null should throw exception
+	 */
 	@Test 
 	public void testGetEventByIdReturnNull() {
 		when(eventDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
@@ -130,7 +138,9 @@ public class EventControllerTests {
 	}
 	
 	
-	/*test successfully get all events */
+	/**
+	 * test successfully get all events 
+	 */
 	@Test
 	public void testGetAllEvents() {
 		List<Event> eventsReturned = eventService.getAllEvents();
@@ -138,7 +148,9 @@ public class EventControllerTests {
 		compare(event1, eventsReturned.get(1));
 	}
 	
-	/* method to compare two event */
+	/**
+	 * helper method to compare two event 
+	 */
 	private void compare(Event eventExpected, Event eventReturned) {
 		assertEquals(eventExpected.getEventId(), eventReturned.getEventId());
 		assertEquals(eventExpected.getEndDate(), eventReturned.getEndDate());

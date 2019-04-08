@@ -28,9 +28,9 @@ public class EmployerController {
 	private EmployerService service;
 
 	/**
-	 * employer account sign up 
+	 * create a new employer
 	 * @param  @RequestBody
-	 * @return employerDto
+	 * @return EmployerDto
 	 * @throws IllegalArgumentException
 	 */
 	@PostMapping(value = { "/employers", "/employers/" })
@@ -45,7 +45,7 @@ public class EmployerController {
 	/**
 	 * get an employer by employerId
 	 * @param employerId
-	 * @return an Employer Dto 
+	 * @return EmployerDto 
 	 */
 	@GetMapping(value = {"/employer/{employerId}", "/employer/{employerId}"})
 	@ResponseBody
@@ -62,10 +62,11 @@ public class EmployerController {
 
 
 	/**
-	 * employer account login 
+	 * employer login by get all employers 
+	 * and compare email and password for the specific employer
 	 * @param email
 	 * @param password
-	 * @return
+	 * @return EmployerDto
 	 */
 	@GetMapping(value = { "/login", "/login/" })
 	@ResponseBody
@@ -95,7 +96,7 @@ public class EmployerController {
 
 	/**
 	 * Get all employers 
-	 * @return employerdtos
+	 * @return List<EmployerDto>
 	 */
 	@GetMapping(value = {"/employers","/employers/"})
 	@ResponseBody
@@ -118,6 +119,11 @@ public class EmployerController {
 		service.deleteEmployer(id);
 	}
 
+	/**
+	 * convert employer to employerDto
+	 * @param employer
+	 * @return EmployerDto
+	 */
 	private EmployerDto convertToDto(Employer employer) {
 		if (employer == null) {
 			throw new IllegalArgumentException("There is no such employer!");

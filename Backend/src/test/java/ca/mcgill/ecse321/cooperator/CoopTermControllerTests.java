@@ -140,13 +140,17 @@ public class CoopTermControllerTests {
 		  });
 	}	
 	
-	/*test successfully create mock coopTerm */
+	/**
+	 * test mock coopterm created successfully
+	 */
 	@Test
 	public void testMockCoopTermCreation() {
 		assertNotNull(coopTerm);
 	}
 	
-	/*test successfully get one coopTerm by id return corresponding coopTerm*/
+	/**
+	 * test successfully get one coopTerm by id return corresponding coopTerm
+	 */
 	@Test
 	public void testGetCoopTermById() {
 		CoopTerm coopTermReturned = coopTermService.getCoopTerm(1);
@@ -154,11 +158,12 @@ public class CoopTermControllerTests {
 		compare(coopTerm, coopTermReturned);
 	}
 	
-	
 	@Rule
 	public ExpectedException exceptionRule = ExpectedException.none();
 	
-	/*test get coopTerm returns null should throw exception*/
+	/**
+	 * test get coopTerm returns null should throw exception with the message 
+	 */
 	@Test 
 	public void testGetCoopTermByIdReturnNull() {
 		when(coopTermDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
@@ -175,9 +180,9 @@ public class CoopTermControllerTests {
 	}
 	
 
-	
-	
-	/*test successfully update a coopTerm by id returns updated coopTerm*/
+	/**
+	 * test successfully update a coopTerm by id returns updated coopTerm
+	 */
 	@Test
 	public void testUpdateCoopTermStateById() {
 		CoopTerm newCoopTerm = coopTerm;
@@ -187,7 +192,9 @@ public class CoopTermControllerTests {
 		compare(newCoopTerm, coopTerm);
 	}
 	
-	/*test update a coopTerm returns null throws exception*/
+	/**
+	 * test update a coopTerm returns null throws exception
+	 */
 	@Test
 	public void testUpdateCoopTermStateByIdReturnNull() {
 		when(coopTermDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
@@ -202,7 +209,9 @@ public class CoopTermControllerTests {
 	}
 	
 	
-	/*test update a coopTerm by an invalid newCoopTerm input returns null throws exception*/
+	/**
+	 * test update a coopTerm by an invalid newCoopTerm input returns null throws exception
+	 */
 	@Test
 	public void testUpdateCoopTermStateByInvalidNewCooptermReturnNull() {
 		when(coopTermDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
@@ -217,7 +226,9 @@ public class CoopTermControllerTests {
 	}
 	
 	
-	/*test successfully get all coopTerms return a list of coopTerms*/
+	/**
+	 * test successfully get all coopTerms return a list of coopTerms
+	 */
 	@Test
 	public void testGetAllCoopTerms() {
 		List<CoopTerm> coopTerms = coopTermService.getAllCoopTerms();
@@ -226,7 +237,9 @@ public class CoopTermControllerTests {
 	}
 	
 	
-	/*test successfully get coopTerms of an student*/
+	/**
+	 * test successfully get coopTerms of an student
+	 */
 	@Test
 	public void testCoopTermsOfAnStudent() {
 		List<CoopTerm> coopTerms = coopTermService.getAllCoopTermsOfAnStudent(1);
@@ -234,7 +247,9 @@ public class CoopTermControllerTests {
 		compare(coopTerm1, coopTerms.get(1));
 	}
 	
-	/*test get coopTerms of an student returns null throws exception*/
+	/**
+	 * test get coopTerms of an student returns null throws exception
+	 */
 	@Test
 	public void testCoopTermsOfAnStudentReturnNull() {
 		when(coopTermDao.findAll()).thenAnswer( (InvocationOnMock invocation) -> {
@@ -246,7 +261,9 @@ public class CoopTermControllerTests {
 		coopTermService.getAllCoopTermsOfAnStudent(1);	
 	}
 	
-	/*test successfully get coopTerms of an employer*/
+	/**
+	 * test successfully get coopTerms of an employer
+	 */
 	@Test
 	public void testCoopTermsOfAnEmployer() {
 		List<CoopTerm> coopTerms = coopTermService.getAllCoopTermOfAnEmployer(1);
@@ -254,7 +271,9 @@ public class CoopTermControllerTests {
 		compare(coopTerm1, coopTerms.get(1));
 	}
 	
-	/*test get coopTerms of an employer returns null throws exception*/
+	/**
+	 * test get coopTerms of an employer returns null throws exception
+	 */
 	@Test
 	public void testCoopTermsOfAnEmployerReturnNull() {
 		when(coopTermDao.findAll()).thenAnswer( (InvocationOnMock invocation) -> {
@@ -266,7 +285,11 @@ public class CoopTermControllerTests {
 		coopTermService.getAllCoopTermOfAnEmployer(1);	
 	}
 	
-	/* method to compare two coopterms */
+	/**
+	 * helper method to compare parameters of two coopterms
+	 * @param coopTermExpected
+	 * @param coopTermReturned
+	 */
 	private void compare(CoopTerm coopTermExpected, CoopTerm coopTermReturned) {
 		assertEquals(coopTermExpected.getAcademicSemester(), coopTermReturned.getAcademicSemester());
 		assertEquals(coopTermExpected.getCoopPlacement(), coopTermReturned.getCoopPlacement());

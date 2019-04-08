@@ -10,9 +10,7 @@ import javax.persistence.ManyToMany;
 
 
 @Entity
-
 @Table(name = "EMPLOYER")
-
 public class Employer extends CoopUser{
 	private List<Event> event;
 	private List<CoopTerm> coopTerm;

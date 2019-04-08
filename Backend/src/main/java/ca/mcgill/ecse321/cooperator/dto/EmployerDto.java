@@ -2,7 +2,6 @@ package ca.mcgill.ecse321.cooperator.dto;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 public class EmployerDto {
 	private String email;

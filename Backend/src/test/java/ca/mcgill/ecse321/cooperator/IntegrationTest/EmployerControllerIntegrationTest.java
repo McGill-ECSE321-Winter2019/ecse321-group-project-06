@@ -112,7 +112,9 @@ public class EmployerControllerIntegrationTest {
 		assertEquals(objAsJson_dto,responseContent);
 	}
 	
-	/*test successfully get one employer*/
+	/**
+	 * test successfully get one employer
+	 */
 	@Test
 	public void canGetOneEmployer() throws Exception {
 		when(employerRepo.findAll()).thenAnswer((InvocationOnMock invocation)->{
@@ -131,7 +133,9 @@ public class EmployerControllerIntegrationTest {
 		assertEquals(objAsJson_em,responseContent);
 	}
 	
-	/*test successfully get all employers*/
+	/**
+	 * test successfully get all employers
+	 */
 	@Test
 	public void canGetAllEmployers() throws Exception{
 		when(employerRepo.findAll()).thenAnswer((InvocationOnMock invocation)->{
