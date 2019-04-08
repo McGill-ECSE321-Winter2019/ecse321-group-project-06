@@ -2,27 +2,22 @@ package com.example.cooperator_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import cz.msebera.android.httpclient.Header;
+import static android.util.Log.e;
 
 public class MainActivity extends AppCompatActivity {
     private String error = "";
     private EditText localEmailet;
     private EditText localPassword;
+    private String coopUserId = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
 //                refreshErrorMessage();
 //                tv.setText("");
                 Intent intent= new Intent(MainActivity.this, dashboard.class);
+                try{
+                    coopUserId = response.getString("coopUserId");
+                    intent.putExtra("coopUserId",response.getString("coopUserId"));
+
+                } catch(JSONException e){
+                        e("MYAPP", "unexpected JSON exception", e);
+                }
                 startActivity(intent);
             }
             @Override
