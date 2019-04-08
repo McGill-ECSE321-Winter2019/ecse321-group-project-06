@@ -14,7 +14,9 @@ Our team focuses on company (employer) viewpoint. An employer can do the followi
 
 # Menu 
 - [Heroku Application](#heroku-application)
+- [Guide](#Guide)
 - [RESTful Service](#restful-service)
+- [Deliverable 4](#deliverable-4)
 - [Deliverable 3](#deliverable-3)
 - [Deliverable 2](#deliverable-2)
 - [Deliverable 1](#deliverable-1)
@@ -24,9 +26,36 @@ Heroku is a cloud service platform that is easy to use for many development proj
 * backend: <pre>https://cooperator-backend-060606.herokuapp.com/</pre>
 * frontend: <pre>https://cooperator-frontend-060606.herokuapp.com/</pre>
 
+# Guide
+- [User Documentation](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/User-Documentation)
+
 # RESTful Service 
 - [RESTful Service API](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/RESTful-Service-API)
+
+# Deliverable 4 
+## Main Tasks 
+- User Documentation 
+- User Experience 
+- Integrated System: Web Frontend with Backend Services 
+- Code Quality 
+- Build System, Continuous Integration and Delivery 
+
+## Documents 
+- **Reports**
+  - [Deliverable 4 Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-4-Report)
+  - [User Documentation](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/User-Documentation)
+- **Minutes**
+  - [Meeting Minutes 4.1](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-4-Meeting-Minutes-4.1)
+  - [Meeting Minutes 4.2](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-4-Meeting-Minutes-4.2)
+  - [Meeting Minutes 4.3](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-4-Meeting-Minutes-4.3)
+- **Effort Table**
+  - [Effort Table](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Effort-Table)
   
+  ## Table 
+  The following table shows the individual efforts of each team members in Deliverable 4. 
+  
+  
+
 # Deliverable 3 
 ## Main Tasks 
 - Architecture Modeling 
