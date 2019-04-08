@@ -1,5 +1,4 @@
 package com.example.cooperator_app;
-import java.util.Date;
 
 public class CoopTerm {
     private String endDate;
@@ -13,7 +12,9 @@ public class CoopTerm {
     }
 
     public String getEndDate() {
-        return this.endDate;
+        String yearMonthDateOnly ="";
+        yearMonthDateOnly=this.endDate.substring(0,10);
+        return yearMonthDateOnly;
     }
 
     public void setEndDate(String endDate) {
@@ -21,7 +22,9 @@ public class CoopTerm {
     }
 
     public String getStartDate() {
-        return this.startDate;
+        String yearMonthDateOnly ="";
+        yearMonthDateOnly=this.startDate.substring(0,10);
+        return yearMonthDateOnly;
     }
 
     public void setStartDate(String startDate) {
