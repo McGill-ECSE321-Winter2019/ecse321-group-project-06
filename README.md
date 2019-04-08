@@ -61,7 +61,7 @@ Heroku is a cloud service platform that is easy to use for many development proj
 | Lily Li            | 10                                         | 0                                   | 15                                                | 3                                                 | 1              | 29    |
 | Yin Zhang          | 10                                         | 15                                  | 3                                                 | 0                                                 | 1              | 29    |
 | Irene Huang        | 10                                         | 0                                   | 14                                                | 0                                                 | 5              | 29    |
-| Zhuzhen Li         | 15                                         | 0                                   | 2                                                 | 2                                                 | 5              | 24    |
+| Zhuzhen Li         | 16                                         | 0                                   | 5                                                 | 2                                                 | 5              | 28    |
 | Xinquan Wang       | 17                                         | 0                                   | 2                                                 | 2                                                 | 2              | 23    |
   
 
