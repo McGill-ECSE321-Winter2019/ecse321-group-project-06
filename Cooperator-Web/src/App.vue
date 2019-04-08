@@ -122,7 +122,6 @@ export default {
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
-
 @import 'style/css/bootstrap.min.css';
 @import 'style/css/aos.css';
 @import 'style/css/style.css';

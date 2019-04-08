@@ -2,8 +2,6 @@ import axios from 'axios'
 import Vue from 'vue'
 var config = require('../../config')
 
-// var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
-// var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
 var frontendUrl = 'https://' + config.build.host + ':'
 var backendUrl = 'https://' + config.build.backendHost + ':'
 
@@ -56,6 +54,7 @@ export default {
 
     created: function () {
       this.id = this.$cookie.get('id')
+      /*get coopterms of the employer*/
       AXIOS.get(`coopTerm/employer/`+this.id)
         .then(response => {
           this.coopTerms = response.data
@@ -141,12 +140,14 @@ export default {
   },
 
   methods: {
+      /*get students*/
     getStudent: async function(){
       for (var i = 0; i < this.coopTerms.length; i++) {
         var id = this.coopTerms[i].studentId
         await this.getName(id, i);
       }
     },
+    /*get student name*/
     getName: function(id, i){
       AXIOS.get(`student/` + id)
         .then(res => {
@@ -157,15 +158,12 @@ export default {
           this.error = e;
         })
     },
-
+    /*redirect to coop page*/
     coopTermView(item) {
-     // var coopId = item[0].coopId
       var coopId = item.coopTermId
       var studentId = item.studentId
-      //var studentId = item[0].studentId
       window.location.href = '/#/coop-page/coopterm='+coopId+'&student='+studentId
     }
-
   },
   computed: {
     sortOptions() {
