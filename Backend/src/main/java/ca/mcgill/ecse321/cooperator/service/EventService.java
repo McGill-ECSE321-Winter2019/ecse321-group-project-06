@@ -17,7 +17,17 @@ public class EventService {
 	@Autowired
 	EventRepository eventRepository;
 
-	/* exceptions */
+	/**
+	 * create an event
+	 * check the input, throws exception if the parameter is not valid
+	 * 
+	 * @param startdate
+	 * @param enddate
+	 * @param location
+	 * @param starttime
+	 * @param endtime
+	 * @return Event eventReturn
+	 */
  	@Transactional
 	public Event createEvent(Date startdate, Date enddate, String location, Time starttime, Time endtime){
 		if (startdate == null) {
@@ -47,7 +57,13 @@ public class EventService {
 		return eventReturn;
 	}
  	
- 	/* id getter*/
+ 	/**
+ 	 * get an event by the id
+ 	 * throws exception if the event is not found
+ 	 * 
+ 	 * @param id
+ 	 * @return Event event
+ 	 */
  	@Transactional
 	public Event getEvent(int id){
  
@@ -58,18 +74,32 @@ public class EventService {
 		return event;
 	}
  	
- 	/*delete an event*/
+ 	/**
+ 	 * delete an event by the id
+ 	 * 
+ 	 * @param id
+ 	 */
  	@Transactional
  	public void deleteEvent(int id) {
  		eventRepository.deleteById(id);
  	}
  	
- 	/* get all events in the list */
+ 	/**
+ 	 * get all events in the database
+ 	 *
+ 	 * @return List<Event>
+ 	 */
  	@Transactional
 	public List<Event> getAllEvents() {
 		return toList(eventRepository.findAll());
 	}
 
+ 	/**
+ 	 * convert all iterable to List
+ 	 * 
+ 	 * @param iterable
+ 	 * @return List
+ 	 */
  	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {

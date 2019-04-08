@@ -32,8 +32,6 @@ public class StudentController {
 	@Autowired
 	private EmployerService employerService;
 
-	
-	
 	/**
 	 * Create a student 
 	 * @param studentDto
@@ -55,7 +53,7 @@ public class StudentController {
 	 * @param studentId
 	 * @return studentDto 
 	 */
-	@GetMapping(value = {"/student/{studentId}", "/employer/{studentId}"})
+	@GetMapping(value = {"/student/{studentId}", "/student/{studentId}"})
 	@ResponseBody
 	public StudentDto getStudent(@PathVariable("studentId") int studentId){
 		Student student = studentService.getStudent(studentId);
@@ -86,7 +84,7 @@ public class StudentController {
 	
 	
 	/**
-	 * Convert to Dto method for student 
+	 * Convert student to studentDto method for student 
 	 * @param s
 	 * @return studentDto
 	 */

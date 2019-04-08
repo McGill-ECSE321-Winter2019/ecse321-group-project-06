@@ -36,7 +36,9 @@ public class EventServiceTest {
 		eventRepository.deleteAll();
 	}
  	
-	/* Test creating event, should not throw exception */
+	/**
+	 * Test creating event, should not throw exception
+	 */
  	@Test
 	public void testCreateEvent() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -70,7 +72,9 @@ public class EventServiceTest {
 
 	}
  	
-	/* Test creating event with no start date provided, should throw exception */
+	/**
+	 * Test creating event with no start date provided, should throw exception
+	 */
  	@Test
 	public void testCreateEventWithNullStartDate() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -93,7 +97,9 @@ public class EventServiceTest {
  		assertEquals(0, eventService.getAllEvents().size());
 	}
 
-	/* Test creating event with no end date provided, should throw exception */
+	/**
+	 * Test creating event with no end date provided, should throw exception
+	 */
  	@Test
 	public void testCreateEventWithNullEndDate() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -116,7 +122,9 @@ public class EventServiceTest {
  		assertEquals(0, eventService.getAllEvents().size());
 	}
 
-	/* Test creating event with no location provided, should throw exception */
+	/**
+	 * Test creating event with no location provided, should throw exception
+	 */
  	@Test
 	public void testCreateEventWithNullLocation() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -138,7 +146,9 @@ public class EventServiceTest {
  		assertEquals(0, eventService.getAllEvents().size());
 	}
  	
-	/* Test creating event with no start time provided, should throw exception */
+	/**
+	 * Test creating event with no start time provided, should throw exception
+	 */
  	@Test
 	public void testCreateEventWithNullStartTime() {
 		assertEquals(0, eventService.getAllEvents().size());
@@ -160,7 +170,9 @@ public class EventServiceTest {
  		assertEquals(0, eventService.getAllEvents().size());
 	}
  	
-	/* Test creating event with no end time provided, should throw exception */
+	/**
+	 * Test creating event with no end time provided, should throw exception
+	 */
  	@Test
 	public void testCreateEventWithNullEndTime() {
 		assertEquals(0, eventService.getAllEvents().size());

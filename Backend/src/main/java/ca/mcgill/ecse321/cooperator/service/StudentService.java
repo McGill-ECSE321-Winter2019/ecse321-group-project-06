@@ -24,7 +24,18 @@ public class StudentService {
 	@Autowired
 	CoopTermService coopTermService;
 
-	/*exceptions*/
+	/**
+	 * create a student
+	 * throws exception if the parameter is not valid
+	 * 
+	 * @param userEmail
+	 * @param userPassword
+	 * @param studentName
+	 * @param studentId
+	 * @param school
+	 * @param graduationDate
+	 * @return Student sReturn
+	 */
 	@SuppressWarnings("deprecation")
 	@Transactional
 	public Student createStudent(String userEmail, String userPassword, String studentName, int studentId, String school, Date graduationDate) {
@@ -56,7 +67,13 @@ public class StudentService {
 		return sReturn;
 	}
 
-	/* id getter */
+	/**
+	 * get a student by id
+	 * throws exception if the student is not found
+	 * 
+	 * @param studentId
+	 * @return
+	 */
 	@Transactional
 	public Student getStudent(int studentId) {
 	
@@ -67,15 +84,22 @@ public class StudentService {
 		return s;
 	}
 
-	/* get all students in the list */
+	/**
+	 * get all students in the database
+	 * 
+	 * @return List<Student>
+	 */
 	@Transactional
 	public List<Student> getAllStudents() {
 		return toList (studentRepository.findAll());
 	}
 	
-	
-	
-	/* Get all the students in charged by an employer */
+	/**
+	 * Get all the students in charged by an employer 
+	 * 
+	 * @param employerId
+	 * @return List<Student> allStudentList
+	 */
 	@Transactional
 	public List<Student> getAllStudentsOfAnEmployer (int employerId) {
 		List<CoopTerm> allCoopTermsOfEmployer = coopTermService.getAllCoopTermOfAnEmployer(employerId);
@@ -89,7 +113,12 @@ public class StudentService {
 		return allStudentsList;
 	}
 	
-	/* iterable method */
+	/**
+	 * convert iterable to List
+	 * 
+	 * @param iterable
+	 * @return List
+	 */
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {

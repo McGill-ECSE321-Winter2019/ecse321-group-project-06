@@ -16,7 +16,16 @@ public class EmployerService {
 	@Autowired
 	EmployerRepository employerRepository;
 
-	/* exceptions */
+	/**
+	 * create a employer
+	 * throws exception if any of the parameter is null
+	 * return the saved employer
+	 * 
+	 * @param userEmail
+	 * @param userPassword
+	 * @param companyName
+	 * @return Employer
+	 */
 	@Transactional
 	public Employer createEmployer(String userEmail, String userPassword, String companyName) {
 		Employer e = new Employer();
@@ -39,7 +48,13 @@ public class EmployerService {
 		return eReturn;
 	}
 	
-	/* id getter */
+	/**
+	 * get an employer by the id
+	 * throws exception if the employer with the id is not found in the database
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@Transactional
 	public Employer getEmployerById(int id) {
 	    
@@ -52,7 +67,13 @@ public class EmployerService {
 	}
 	
 	
-	/* email getter */
+	/**
+	 * get an employer by email
+	 * throws exception if the employer with the email is not found in the database
+	 * 
+	 * @param email
+	 * @return
+	 */
 	@Transactional
 	public Employer getEmployerByEmail(String email) {
 		
@@ -73,19 +94,31 @@ public class EmployerService {
 		return e;
 	}
 	
-	/*delete an employer*/
+	/**
+	 * delete an employer by the id
+	 * 
+	 * @param id
+	 */
 	@Transactional
 	public void deleteEmployer(int id) {
 		employerRepository.deleteById(id);
 	}
 	
-	/* get all employers in the list */
+	/**
+	 * get all employers in the database
+	 * 
+	 * @return
+	 */
 	@Transactional
 	public List<Employer> getAllEmployers() {
 		return toList(employerRepository.findAll());
 	}
 	
-	/*iterable method*/
+	/**
+	 * convert iterable to a List
+	 * @param iterable
+	 * @return
+	 */
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {

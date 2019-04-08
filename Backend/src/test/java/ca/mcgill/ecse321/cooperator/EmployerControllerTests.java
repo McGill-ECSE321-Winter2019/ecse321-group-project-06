@@ -85,15 +85,18 @@ public class EmployerControllerTests {
 		});
 	}
 	
-	
-	/* test successfully create employer*/
+	/**
+	 * test successfully create employer
+	 */
 	@Test
 	public void testMockEmployerCreation() {
 		assertNotNull(employer);
 		assertNotNull(employer1);
 	}
 
-	/* test get Employer by id return corresponding employer */
+	/**
+	 * test get Employer by id return corresponding employer
+	 */
 	@Test
 	public void testGetEmployerByID() {
 		Employer employerReturn = employerService.getEmployerById(123);
@@ -101,8 +104,11 @@ public class EmployerControllerTests {
 		assertEquals(123, employerReturn.getCoopUserId());	
 		compare(employer,employerReturn);
 	}
+
 	
-	/* test get Employer by email return corresponding employer */
+	/**
+	 * test get Employer by email return corresponding employer
+	 */
 	@Test
 	public void testGetEmployerByEmail() {
 		Employer employerReturn = employerService.getEmployerByEmail("testEmployer@gmail.com");
@@ -111,6 +117,9 @@ public class EmployerControllerTests {
 		compare(employer,employerReturn);
 	}
 	
+	/**
+	 * test delete employer, check delete method called once
+	 */
 	@Test
 	public void testDeleteEmployer() {
 		employerService.deleteEmployer(1);
@@ -120,7 +129,9 @@ public class EmployerControllerTests {
 	public ExpectedException exceptionRule = ExpectedException.none();
 	
 	
-	/*test get Employer by id returns null should throw exception*/
+	/**
+	 * test get Employer by id returns null should throw exception
+	 */
 	@Test 
 	public void testGetEmployerByIdReturnNull() {
 		when(employerDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
@@ -132,9 +143,9 @@ public class EmployerControllerTests {
 	}
 	
 
-	
-	
-	/*test get Employer by email returns null should throw exception*/
+	/**
+	 * test get Employer by email returns null should throw exception
+	 */
 	@Test 
 	public void testGetEmployerByEmailReturnNull() {
 		when(employerDao.findByEmail(anyString())).thenAnswer( (InvocationOnMock invocation) -> {
@@ -145,8 +156,10 @@ public class EmployerControllerTests {
 		employerService.getEmployerByEmail("testEmployer@gmail.com");
 	}
 	
-	
-	/*test get Employer by null email should throw exception*/
+
+	/**
+	 * test get Employer by null email should throw exception
+	 */
 	@Test 
 	public void testGetEmployerByNullEmail() {
 		exceptionRule.expect(IllegalArgumentException.class);
@@ -155,7 +168,9 @@ public class EmployerControllerTests {
 	}
 	
 	
-	/*test get Employer by invalid email should throw exception*/
+	/**
+	 * test get Employer by invalid email should throw exception
+	 */
 	@Test 
 	public void testGetEmployerByInvalidEmail() {
 		exceptionRule.expect(IllegalArgumentException.class);
@@ -163,7 +178,9 @@ public class EmployerControllerTests {
 		employerService.getEmployerByEmail("f");
 	}
 	
-	/*test get all employers*/
+	/**
+	 * test get all employers
+	 */
 	@Test
 	public void testGetAllEmployer() {
 		List<Employer> employerReturn = employerService.getAllEmployers();
@@ -172,7 +189,9 @@ public class EmployerControllerTests {
 		compare(employer1, employerReturn.get(1));	
 	}
 	
-	/* test successfully create employer return corresponding employer */
+	/**
+	 * test successfully create employer return corresponding employer
+	 */
 	@Test
 	public void testCreateEmployer() {
 		Employer employerReturn = employerService.createEmployer("testEmployer@gmail.com","test password","TestEmployer");
@@ -180,7 +199,10 @@ public class EmployerControllerTests {
 		compare(employer,employerReturn);
 	}
 
-	/* test create employer when email is null */
+	/**
+	 * test create employer when email is null
+	 * throws exception
+	 */
 	@Test
 	public void testCreateEmployerEmailNull() {
 		exceptionRule.expect(IllegalArgumentException.class);
@@ -188,7 +210,10 @@ public class EmployerControllerTests {
 		employerService.createEmployer(null,"test password","TestEmployer");	
 	}
 	
-	/* test create employer when email is all space */
+	/**
+	 * test create employer when email is all space
+	 * throws exception
+	 */
 	@Test
 	public void testCreateEmployerEmailSpace() {
 		exceptionRule.expect(IllegalArgumentException.class);
@@ -196,7 +221,10 @@ public class EmployerControllerTests {
 		employerService.createEmployer("    ","test password","TestEmployer");	
 	}
 	
-	/* test create employer when password is null */
+	/**
+	 * test create employer when password is null
+	 * throws exception
+	 */
 	@Test
 	public void testCreateEmployerPasswordNull() {
 		exceptionRule.expect(IllegalArgumentException.class);
@@ -204,7 +232,10 @@ public class EmployerControllerTests {
 		employerService.createEmployer("testEmployer@gmail.com",null,"TestEmployer");	
 	}
 	
-	/* test create employer when password is all space */
+	/**
+	 * test create employer when password is all space
+	 * throws exception
+	 */
 	@Test
 	public void testCreateEmployerPasswordSpace() {
 		exceptionRule.expect(IllegalArgumentException.class);
@@ -212,7 +243,10 @@ public class EmployerControllerTests {
 		employerService.createEmployer("testEmployer@gmail.com","    ","TestEmployer");	
 	}
 	
-	/* test create employer when Company Name is null */
+	/**
+	 * test create employer when Company Name is null
+	 * throws exception
+	 */
 	@Test
 	public void testCreateEmployerCompanyNameNull() {
 		exceptionRule.expect(IllegalArgumentException.class);
@@ -221,7 +255,10 @@ public class EmployerControllerTests {
 	}
 	
 	
-	/* test create employer when Company Name is all space */
+	/**
+	 *  test create employer when Company Name is all space 
+	 *  throws exception
+	 */
 	@Test
 	public void testCreateEmployerCompanyNameSpace() {
 		exceptionRule.expect(IllegalArgumentException.class);
@@ -229,14 +266,15 @@ public class EmployerControllerTests {
 		employerService.createEmployer("testEmployer@gmail.com","test password","    ");	
 	}
 	
-	/* method to compare two employer */
+	/**
+	 *  helper method to compare two employer 
+	 */
 	private void compare(Employer employerExpected, Employer employerReturned) {
 		assertEquals(employerExpected.getCoopUserId(), employerReturned.getCoopUserId());
 		assertEquals(employerExpected.getEmail(), employerReturned.getEmail());
 		assertEquals(employerExpected.getName(), employerReturned.getName());
 		assertEquals(employerExpected.getPassword(), employerReturned.getPassword());
 	}
-	
 	
 	
 }

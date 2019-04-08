@@ -101,15 +101,18 @@ public class StudentControllerTests {
 		
 	}
 	
-	/*test successfully create mock students */
+	/**
+	 * test successfully create mock students 
+	 */
 	@Test
 	public void testMockPersonCreation() {
 		assertNotNull(student);
 		assertNotNull(student1);
 	}
 
-	
-	/* test successfully get student by id*/
+	/** 
+	 * test successfully get student by id
+	 */
 	@Test
 	public void testGetStudentFindById() {
 		Student studentReturn = studentService.getStudent(1);
@@ -122,7 +125,9 @@ public class StudentControllerTests {
 	public ExpectedException exceptionRule = ExpectedException.none();
 
 	
-	/*test get student by id should return null throw exception*/
+	/**
+	 * test get student by id should return null throw exception
+	 */
 	@Test
 	public void GetStudentByIdReturnNull() {
 		when(studentDao.findById(anyInt())).thenAnswer( (InvocationOnMock invocation) -> {
@@ -139,10 +144,9 @@ public class StudentControllerTests {
 	}
 	
 	
-	
-	
-	
-	/*test null case of getStudentById*/
+	/**
+	 * test null case of getStudentById
+	 */
 	@Test
 	public void testGetStudentByIdReturnNull() {
 		when(studentDao.findById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
@@ -153,7 +157,9 @@ public class StudentControllerTests {
 		studentService.getStudent(1);
 	}
 	
-	/* test successfully get all students */
+	/**
+	 * test successfully get all students 
+	 */
 	
 	@Test
 	public void testGetAllStudent() {
@@ -163,7 +169,9 @@ public class StudentControllerTests {
 		compare(student1, studentReturn.get(1));
 	}
 	
-	/* method to compare two students */
+	/**
+	 * method to compare two students 
+	 */
 	private void compare(Student studentExpected, Student studentReturned) {
 		assertEquals(studentExpected.getCoopUserId(), studentReturned.getCoopUserId());
 		assertEquals(studentExpected.getCoopTerm(), studentReturned.getCoopTerm());
@@ -173,7 +181,6 @@ public class StudentControllerTests {
 		assertEquals(studentExpected.getPassword(), studentReturned.getPassword());
 		assertEquals(studentExpected.getSchool(), studentReturned.getSchool());
 	}
-	
 	
 }
 	

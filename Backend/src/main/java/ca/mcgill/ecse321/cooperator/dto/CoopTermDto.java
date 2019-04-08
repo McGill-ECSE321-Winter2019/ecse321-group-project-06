@@ -20,10 +20,8 @@ public class CoopTermDto {
 	private int employerId;
 	private int studentId;
 	private CoopTermStates state;
-
 	
-	public CoopTermDto() {
-		
+	public CoopTermDto() {		
 	}
 	
 	public CoopTermDto(Date startDate, Date endDate, String location, String academicSemester,
