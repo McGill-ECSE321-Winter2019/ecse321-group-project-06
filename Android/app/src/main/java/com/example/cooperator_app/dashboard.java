@@ -21,11 +21,13 @@ public class dashboard extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private String json_string;
     private String error = "";
+    private String coopUserId= "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        coopUserId=this.getIntent().getStringExtra("coopUserId");
     }
     public void directToHome(View v){
         Intent intent= new Intent(this, dashboard.class);
@@ -33,6 +35,7 @@ public class dashboard extends AppCompatActivity {
     }
     public void viewCoopterms(View v){
         Intent intent= new Intent(this, viewCoopterm.class);
+        intent.putExtra("coopUserId",coopUserId);
         startActivity(intent);
     }
     public void viewEvents(View v){
