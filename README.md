@@ -42,8 +42,10 @@ Heroku is a cloud service platform that is easy to use for many development proj
 
 ## Documents 
 - **Reports**
+  - [How to Start the App](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/How-to-Start-the-App)
   - [Deliverable 4 Report](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-4-Report)
   - [User Documentation](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/User-Documentation)
+  - [Android Mobile Frontend](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Android-Mobile-Frontend)
 - **Minutes**
   - [Meeting Minutes 4.1](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-4-Meeting-Minutes-4.1)
   - [Meeting Minutes 4.2](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-06/wiki/Deliverable-4-Meeting-Minutes-4.2)
@@ -54,6 +56,13 @@ Heroku is a cloud service platform that is easy to use for many development proj
   ## Table 
   The following table shows the individual efforts of each team members in Deliverable 4. 
   
+| Team's Member Name | Web Frontend Implementation & Improvements | Android Mobile Frontend Development | Integration of Web Frontend with Backend Services | Build System, Continuous Integration and Delivery | Documentations | Total |
+|--------------------|--------------------------------------------|-------------------------------------|---------------------------------------------------|---------------------------------------------------|----------------|-------|
+| Lily Li            | 10                                         | 0                                   | 15                                                | 3                                                 | 1              | 29    |
+| Yin Zhang          | 10                                         | 15                                  | 3                                                 | 0                                                 | 1              | 30    |
+| Irene Huang        | 10                                         | 0                                   | 14                                                | 0                                                 | 5              | 29    |
+| Zhuzhen Li         | 15                                         | 0                                   | 2                                                 | 2                                                 | 5              | 24    |
+| Xinquan Wang       | 17                                         | 0                                   | 2                                                 | 2                                                 | 2              | 23    |
   
 
 # Deliverable 3 
