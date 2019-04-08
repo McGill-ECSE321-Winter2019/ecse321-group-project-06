@@ -9,6 +9,17 @@ var AXIOS = axios.create({
   baseURL: backendUrl,
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
+var config = {
+  apiKey: "AIzaSyA61sctgjaZ2soMqo9PFT7DAdKBnWufssM",
+  authDomain: "cooperator-e1dc3.firebaseapp.com",
+  databaseURL: "https://cooperator-e1dc3.firebaseio.com",
+  projectId: "cooperator-e1dc3",
+  storageBucket: "cooperator-e1dc3.appspot.com",
+  messagingSenderId: "378829380532"
+};
+"https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+
+firebase.initializeApp(config);
 
 export default {
     data(){
