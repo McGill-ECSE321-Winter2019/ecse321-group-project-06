@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Cooperator-app</string>
+    <string name="app_name">Cooperator</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_app">Co-operator</string>
+    <string name="title_app1">my</string>
+    <string name="title_app2">Coops</string>
     <string name="password">Password</string>
     <string name="E_mail">E-mail</string>
     <string name="email_address">email address</string>
@@ -11,10 +12,13 @@
     <string name="Events">Events</string>
     <string name="Coopterms">Coopterms</string>
     <string name="Home">Home</string>
-    <string name="welcome">Welcome to Co-operator</string>
+    <string name="welcome">Welcome to Co-operator!</string>
     <string name="event1">Tech Fair----------------------------------Location: Montreal</string>
     <string name="event2">On Campus Recruitment-----------Location: Montreal</string>
     <string name="event1_content">Whether you have jobs today or will have jobs in the future, McGill students and alumni want to know more about your organization and potential careers!</string>
     <string name="event2_content">on campus recruitment for your organization</string>
+    <string name="instructionCoopTerm">For a list of coopTerms, click CoopTerms</string>
+    <string name="instructionEvent">For a list of events, click CoopTerms</string>
+
 
 </resources>
