@@ -53,7 +53,7 @@ public class StudentController {
 	 * @param studentId
 	 * @return studentDto 
 	 */
-	@GetMapping(value = {"/student/{studentId}", "/employer/{studentId}"})
+	@GetMapping(value = {"/student/{studentId}", "/student/{studentId}"})
 	@ResponseBody
 	public StudentDto getStudent(@PathVariable("studentId") int studentId){
 		Student student = studentService.getStudent(studentId);
